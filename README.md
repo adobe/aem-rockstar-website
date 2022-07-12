@@ -1,9 +1,10 @@
-# Your Project's Title...
+# AEM Rockstar on Helix
+
 Your project's description...
 
 ## Environments
-- Preview: https://main--aem-rockstar-helix--shsteimer.hlx.page
-- Live: https://main--aem-rockstar-helix--shsteimer.hlx.live
+- Preview: https://main--aem-rockstar-helix--adobe.hlx.page
+- Live: https://main--aem-rockstar-helix--adobe.hlx.live
 
 ## Installation
 
