@@ -3,8 +3,8 @@
 Your project's description...
 
 ## Environments
-- Preview: https://main--aem-rockstar-helix--adobe.hlx.page
-- Live: https://main--aem-rockstar-helix--adobe.hlx.live
+- Preview: https://main--aem-rockstar-website--adobe.hlx.page
+- Live: https://main--aem-rockstar-website--adobe.hlx.live
 
 ## Installation
 
