@@ -27,5 +27,25 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   footer.innerHTML = html;
   await decorateIcons(footer);
+
+  //add back to top
+  const backToTopButton = document.createElement('button');
+  backToTopButton.id = 'back-to-top;'
+
+  const arrow = document.createElement('span');
+  arrow.classList.add('arrow-up');
+  backToTopButton.appendChild(arrow);
+
+  const text = document.createElement('span');
+  text.innerText = 'Back To Top'
+  backToTopButton.appendChild(text);
+
+  backToTopButton.addEventListener('click', function(){
+    window.scrollTo(0, 0);
+  });
+
+  footer.appendChild(backToTopButton);
+
+
   block.append(footer);
 }
