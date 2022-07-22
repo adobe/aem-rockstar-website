@@ -159,12 +159,13 @@ const EMBEDS_CONFIG = {
 
 const isValidUrl = (urlString) => {
   try {
-    return Boolean(new URL(urlString)); 
+    return Boolean(new URL(urlString));
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('block string is not a fully valid url', error);
   }
-}
+  return false;
+};
 
 const loadEmbed = (block) => {
   if (block.classList.contains('is-loaded')) {
@@ -180,15 +181,13 @@ const loadEmbed = (block) => {
     // no anchor link found. Let's check if the string is a valid url or not
     const blockText = block.textContent.trim();
     // console.info("block text: " + blockText);
-    if(isValidUrl(blockText)){
+    if (isValidUrl(blockText)) {
       // console.info("url is valid: " + blockText);
       url = new URL(blockText.replace(/\/$/, ''));
-    } else {
-      console.warn("no valid url found in this block text: " + blockText);
     }
   }
   // console.info("url: "+url);
-  if(url) {
+  if (url) {
     const hostnameArr = url.hostname.split('.');
 
     // trimed domain name (ex, www.google.com -> google)
