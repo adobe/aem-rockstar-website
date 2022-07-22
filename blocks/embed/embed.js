@@ -157,15 +157,37 @@ const EMBEDS_CONFIG = {
   },
 };
 
+const isValidUrl = (urlString) => {
+  try {
+    return Boolean(new URL(urlString));
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('block string is not a fully valid url', error);
+  }
+  return false;
+};
+
 const loadEmbed = (block) => {
   if (block.classList.contains('is-loaded')) {
     return;
   }
-
+  // check if there is a anchor link and pull that out
   const a = block.querySelector('a');
+  let url;
 
   if (a) {
-    const url = new URL(a.href.replace(/\/$/, ''));
+    url = new URL(a.href.replace(/\/$/, ''));
+  } else {
+    // no anchor link found. Let's check if the string is a valid url or not
+    const blockText = block.textContent.trim();
+    // console.info("block text: " + blockText);
+    if (isValidUrl(blockText)) {
+      // console.info("url is valid: " + blockText);
+      url = new URL(blockText.replace(/\/$/, ''));
+    }
+  }
+  // console.info("url: "+url);
+  if (url) {
     const hostnameArr = url.hostname.split('.');
 
     // trimed domain name (ex, www.google.com -> google)
@@ -187,10 +209,12 @@ const loadEmbed = (block) => {
 
     // loading embed function for given config and url.
     if (config) {
-      a.outerHTML = config.embed(url);
+      // a.outerHTML = config.embed(url);
+      block.innerHTML = config.embed(url);
       block.classList = `block embed embed-${config.type}`;
     } else {
-      a.outerHTML = getDefaultEmbed(url);
+      // a.outerHTML = getDefaultEmbed(url);
+      block.innerHTML = getDefaultEmbed(url);
       block.classList = `block embed embed-${simpleDomain}`;
     }
     block.classList.add('is-loaded');
