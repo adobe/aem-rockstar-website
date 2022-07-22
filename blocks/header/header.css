@@ -20,7 +20,7 @@ header nav a:any-link {
 }
 
 .icon-home {
-    display: inline-flex;
+  display: flex;
 }
 
 .icon-home svg {

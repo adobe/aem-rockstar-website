@@ -25,12 +25,19 @@ footer .footer-inner {
 footer #back-to-top {
   background-color: var(--dark-background-color);
 }
+footer #back-to-top .arrow-up {
+  border: solid var(--text-color-invert);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+  margin-left: 15px;
+}
 
 /* desktop nav styles */
 @media (min-width: 1000px) {
   footer .footer-inner {
     flex-direction: row;
   }
-
-
 }
