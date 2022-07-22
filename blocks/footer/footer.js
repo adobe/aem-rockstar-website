@@ -12,11 +12,29 @@ governing permissions and limitations under the License.
 
 import { readBlockConfig, decorateIcons } from '../../scripts/scripts.js';
 
+function decorateBackToTop(element) {
+  const backToTopButton = document.createElement('button');
+  backToTopButton.id = 'back-to-top;'
+
+  const arrow = document.createElement('span');
+  arrow.classList.add('arrow-up');
+  backToTopButton.appendChild(arrow);
+
+  const text = document.createElement('span');
+  text.innerText = 'Back To Top'
+  backToTopButton.appendChild(text);
+
+  backToTopButton.addEventListener('click', function(){
+    window.scrollTo(0, 0);
+  });
+
+  element.appendChild(backToTopButton);
+}
+
 /**
  * loads and decorates the footer
  * @param {Element} block The header block element
  */
-
 export default async function decorate(block) {
   const cfg = readBlockConfig(block);
   block.textContent = '';
@@ -27,5 +45,8 @@ export default async function decorate(block) {
   const footer = document.createElement('div');
   footer.innerHTML = html;
   await decorateIcons(footer);
+
+  decorateBackToTop(footer);
+
   block.append(footer);
 }
