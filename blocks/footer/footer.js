@@ -18,14 +18,14 @@ function decorateBackToTop(element) {
   backToTopButton.id = 'back-to-top';
 
   const text = document.createElement('span');
-  text.innerText = 'Back To Top'
+  text.innerText = 'Back To Top';
   backToTopButton.appendChild(text);
 
   const arrow = document.createElement('span');
   arrow.classList.add('arrow-up');
   backToTopButton.appendChild(arrow);
 
-  backToTopButton.addEventListener('click', function(){
+  backToTopButton.addEventListener('click', () => {
     window.scrollTo(0, 0);
   });
 
