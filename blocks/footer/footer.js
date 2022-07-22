@@ -13,8 +13,9 @@ governing permissions and limitations under the License.
 import { readBlockConfig, decorateIcons } from '../../scripts/scripts.js';
 
 function decorateBackToTop(element) {
+  const backToTopDiv = document.createElement('div');
   const backToTopButton = document.createElement('button');
-  backToTopButton.id = 'back-to-top;'
+  backToTopButton.id = 'back-to-top';
 
   const arrow = document.createElement('span');
   arrow.classList.add('arrow-up');
@@ -28,7 +29,8 @@ function decorateBackToTop(element) {
     window.scrollTo(0, 0);
   });
 
-  element.appendChild(backToTopButton);
+  backToTopDiv.append(backToTopButton);
+  element.appendChild(backToTopDiv);
 }
 
 /**
@@ -44,6 +46,8 @@ export default async function decorate(block) {
   const html = await resp.text();
   const footer = document.createElement('div');
   footer.innerHTML = html;
+  footer.classList.add('footer-inner');
+
   await decorateIcons(footer);
 
   decorateBackToTop(footer);
