@@ -22,4 +22,8 @@
     .columns > div > div:first-of-type {
         margin-left: unset;
     }
+
+    .columns.unbalanced-left > div > div:first-of-type {
+        flex: 2;
+    }
 }
