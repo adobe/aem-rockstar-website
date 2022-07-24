@@ -245,6 +245,7 @@ main .section.highlight {
 .hot-topics {
   background-color: #f6f9fe;
 }
+
 .hot-topics ul {
   display: grid;
   column-gap: 24px;
