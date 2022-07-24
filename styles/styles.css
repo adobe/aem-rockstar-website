@@ -265,5 +265,5 @@ main .section.highlight {
   text-align: center;
   border: 0 solid var(--text-color);
   box-sizing: border-box;
-  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 0px 50px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
 }
