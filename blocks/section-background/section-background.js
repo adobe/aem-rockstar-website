@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2021 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -11,21 +10,20 @@
  * governing permissions and limitations under the License.
  */
 export default async function decorate(block) {
-    const image = block.querySelector('picture img');
-    const src = image.getAttribute('src');
-    const section = block.closest('.section');
-    if(src) {
-        section.style.backgroundImage = `url(${src})`;
-        section.classList.add('section-background-image');
+  const image = block.querySelector('picture img');
+  const src = image.getAttribute('src');
+  const section = block.closest('.section');
+  if (src) {
+    section.style.backgroundImage = `url(${src})`;
+    section.classList.add('section-background-image');
+  }
+
+  const allowedAdditiveClasses = ['hero'];
+  block.classList.forEach((clz) => {
+    if (allowedAdditiveClasses.includes(clz)) {
+      section.classList.add(`section-background-${clz}`);
     }
+  });
 
-    const allowedAdditiveClasses = ['hero'];
-    block.classList.forEach((clz) => {
-        if(allowedAdditiveClasses.includes(clz)) {
-            section.classList.add('section-background-' + clz);
-        }
-    });
-    
-
-    block.remove();
+  block.remove();
 }
