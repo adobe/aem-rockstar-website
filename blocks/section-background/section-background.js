@@ -14,8 +14,14 @@ export default async function decorate(block) {
   const src = image.getAttribute('src');
   const section = block.closest('.section');
   if (src) {
-    section.style.backgroundImage = `url(${src})`;
     section.classList.add('section-background-image');
+    if (src.startsWith('./media_') && src.includes('?')) {
+      // if the image comes from helix and has params, strip those params
+      const modifiedSrc = src.substr(0, src.indexOf('?'));
+      section.style.backgroundImage = `url(${modifiedSrc})`;
+    } else {
+      section.style.backgroundImage = `url(${src})`;
+    }
   }
 
   const allowedAdditiveClasses = ['hero'];
