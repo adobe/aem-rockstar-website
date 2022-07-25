@@ -41,7 +41,6 @@
 
   /* nav height */
   --nav-height: 41px;
-
 }
 
 body {
@@ -300,6 +299,21 @@ main .section.highlight {
 .latest-info .columns-wrapper {
   margin: unset;
   max-width: unset;
+}
+
+.previous-winners {
+  background: var(--highlight-background-color);
+  color: var(--text-color-invert);
+}
+
+.previous-winners.section-background-image {
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+
+.previous-winners h1 {
+  margin-top: 0;
 }
 
 .submission-guide main {
