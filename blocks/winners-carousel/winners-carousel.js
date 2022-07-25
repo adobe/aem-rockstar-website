@@ -9,9 +9,9 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-//import {
+// import {
 //  buildIcon,
-//} from '../../scripts/scripts.js';
+// } from '../../scripts/scripts.js';
 
 function scrollToStart(block) {
   if (block.scrollLeft !== 0) {
@@ -68,13 +68,13 @@ export default async function decorate(block) {
   const slides = [...block.children];
   slides.forEach((slide) => {
     slide.classList.add('carousel-slide');
+
     slide.classList.add('carousel-slide-card');
-    
     const slideContent = document.createElement('div');
     slideContent.classList.add('carousel-slide-card-content');
 
     [...slide.children].forEach((child) => {
-      if(child.querySelector('picture')) {
+      if (child.querySelector('picture')) {
         child.classList.add('carousel-slide-card-image');
       } else {
         slideContent.appendChild(child);
@@ -82,7 +82,6 @@ export default async function decorate(block) {
     });
 
     slide.appendChild(slideContent);
-   
   });
 
   // setup for multiple slides
