@@ -12,12 +12,14 @@
 
  :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
+  --link-color: rgb(10 17 37);
+  --link-hover-color: rgb(10 17 37);
   --background-color: #fff;
   --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
+  --highlight-background-color: rgb(236 16 0);
+  --dark-background-color: rgb(10 17 37);
   --text-color: #000;
+  --text-color-invert: #fff;
 
   /* fonts */
   --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
@@ -38,7 +40,7 @@
   --heading-font-size-xs: 18px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 41px;
 
 }
 
@@ -84,7 +86,7 @@ p, dl, ol, ul, pre, blockquote {
 
 a:any-link {
   color: var(--link-color);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:hover {
@@ -236,7 +238,71 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
 }
 
-main {
+.rockstar-info .columns {
+  margin-top: 10rem;
+}
+
+.hot-topics {
+  background-color: #f6f9fe;
+}
+
+.hot-topics ul {
+  display: grid;
+  column-gap: 24px;
+  row-gap: 24px;
+  grid-template-columns: auto;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hot-topics ul {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+
+.hot-topics li {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  height: 76px;
+  background-color: #fff;
+  text-align: center;
+  border: 0 solid var(--text-color);
+  box-sizing: border-box;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+}
+
+.latest-info {
+  color: #fff;
+}
+
+.latest-info .columns > div > div {
+  background: var(--highlight-background-color);
+  border-radius: 16px;
+  padding: 0 40px 40px;
+  margin: 10px;
+  flex-grow: 1;
+}
+
+@media (min-width: 900px) {
+  .latest-info .columns > div {
+    align-items: unset;
+  }
+}
+
+.latest-info.section-background-image {
+  background-size: cover;
+  background-position: 50% 100%;
+}
+
+.latest-info .columns-wrapper {
+  margin: unset;
+  max-width: unset;
+}
+
+.submission-guide main {
   max-width: 50%;
   display: flex;
   justify-content: center;
@@ -250,4 +316,5 @@ main {
 
 .submission-guide-sidebar {
   flex: 1;
+  margin-top: 10%;
 }
