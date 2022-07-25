@@ -31,5 +31,5 @@ export default async function decorate(block) {
     }
   });
 
-  block.remove();
+  block.closest('.section-background-wrapper').remove();
 }

@@ -1,0 +1,151 @@
+main .winners-carousel-container .winners-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  color: #000;
+}
+
+@media (min-width: 992px) {
+  main .winners-carousel-container .winners-carousel-wrapper {
+    padding: 0;
+  }
+}
+
+main .winners-carousel {
+  width: 50%;
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+main .winners-carousel::-webkit-scrollbar { 
+  display: none; /* Safari and Chrome */
+}
+
+/* slide */
+main .winners-carousel > div,
+main .winners-carousel .carousel-slide-card {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: var(--background-color);
+}
+
+@media (min-width: 576px) {
+  main .winners-carousel > div,
+  main .winners-carousel .carousel-slide {
+    margin: 0 var(--spacing-xs);
+  }
+}
+
+@media (min-width: 992px) {
+  main .winners-carousel > div,
+  main .winners-carousel .carousel-slide {
+    margin: 0 var(--spacing-s);
+  }
+}
+
+@media (min-width: 1200px) {
+  main .winners-carousel > div,
+  main .winners-carousel .carousel-slide {
+    margin: 0 var(--spacing-m);
+  }
+}
+
+main .winners-carousel .carousel-slide-card {
+  border: 1px solid var(--border-color);
+}
+
+main .winners-carousel > div > div > *:not(picture),
+main .winners-carousel .carousel-slide > div > *:not(picture) {
+  padding: 0 32px;
+}
+
+main .winners-carousel > div h2,
+main .winners-carousel > div h3 {
+  font-size: var(--heading-font-size-s);
+}
+
+main .winners-carousel > div h2 a,
+main .winners-carousel > div h3 a {
+  color: var(--text-color);
+}
+
+/* carousel img */
+main .winners-carousel .carousel-slide div > a:first-child {
+  margin: 0;
+  padding: 0;
+}
+
+main .carousel-slide-card picture {
+  display: block;
+  position: relative;
+  height: calc(100vw * .485);
+  object-fit: cover;
+  z-index: 1;
+}
+
+@media (min-width: 576px) {
+  main .carousel-slide-card picture {
+    height: calc(50vw * .485);
+  }
+}
+
+@media (min-width: 992px) {
+  main .carousel-slide-card picture {
+    height: calc(calc(100vw / 3) * .485);
+  }
+}
+
+@media (min-width: 1200px) {
+  main .carousel-slide-card picture {
+    height: calc(25vw * .485);
+  }
+}
+
+main .carousel-slide-card img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* carousel nav */
+main .winners-carousel .carousel-nav {
+  position: absolute;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  background: var(--background-color);
+  box-shadow: var(--box-shadow);
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 3;
+}
+
+main .winners-carousel .carousel-nav.carousel-nav-left {
+  left: var(--spacing-xs);
+}
+
+main .winners-carousel .carousel-nav.carousel-nav-right {
+  right: var(--spacing-xs);
+}
+
+main .winners-carousel .carousel-nav img {
+  width: 16px;
+  height: 16px;
+}
+
+main .winners-carousel .carousel-nav.carousel-nav-disabled {
+  cursor: default;
+}
+
+main .winners-carousel .carousel-nav.carousel-nav-disabled img {
+  opacity: .33;
+}
