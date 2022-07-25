@@ -250,8 +250,14 @@ main .section.highlight {
   display: grid;
   column-gap: 24px;
   row-gap: 24px;
-  grid-template-columns: repeat(3,minmax(0,1fr));
+  grid-template-columns: auto;
   align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hot-topics ul {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
 }
 
 .hot-topics li {
