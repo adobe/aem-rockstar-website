@@ -74,7 +74,7 @@ const embedSpark = (url) => {
 };
 
 const embedTwitter = (url) => {
-  const embedHTML = `<blockquote class="twitter-tweet"><a href="${url}"></a></blockquote>`;
+  const embedHTML = `<blockquote class="twitter-tweet"><a href="${url}&omit_script=true"></a></blockquote>`;
   loadScript('https://platform.twitter.com/widgets.js');
   return embedHTML;
 };
