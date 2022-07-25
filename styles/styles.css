@@ -235,3 +235,19 @@ main .section[data-section-status='initialized'] {
 main .section.highlight {
   background-color: var(--highlight-background-color);
 }
+
+main {
+  max-width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.submission-guide-content {
+  flex: 2;
+}
+
+.submission-guide-sidebar {
+  flex: 1;
+}
