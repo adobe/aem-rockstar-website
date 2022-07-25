@@ -1,8 +1,6 @@
 main .winners-carousel-container .winners-carousel-wrapper {
   position: relative;
   width: 100%;
-  margin-top: var(--spacing-xl);
-  margin-bottom: var(--spacing-xl);
   color: #000;
 }
 
@@ -33,29 +31,13 @@ main .winners-carousel .carousel-slide-card {
   background-color: var(--background-color);
 }
 
-@media (min-width: 576px) {
-  main .winners-carousel > div,
-  main .winners-carousel .carousel-slide {
-    margin: 0 var(--spacing-xs);
-  }
-}
-
-@media (min-width: 992px) {
-  main .winners-carousel > div,
-  main .winners-carousel .carousel-slide {
-    margin: 0 var(--spacing-s);
-  }
-}
-
-@media (min-width: 1200px) {
-  main .winners-carousel > div,
-  main .winners-carousel .carousel-slide {
-    margin: 0 var(--spacing-m);
-  }
-}
-
 main .winners-carousel .carousel-slide-card {
   border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 main .winners-carousel > div > div > *:not(picture),
@@ -80,33 +62,11 @@ main .winners-carousel .carousel-slide div > a:first-child {
 }
 
 main .carousel-slide-card picture {
-  display: block;
-  position: relative;
-  height: calc(100vw * .485);
   object-fit: cover;
-  z-index: 1;
-}
-
-@media (min-width: 576px) {
-  main .carousel-slide-card picture {
-    height: calc(50vw * .485);
-  }
-}
-
-@media (min-width: 992px) {
-  main .carousel-slide-card picture {
-    height: calc(calc(100vw / 3) * .485);
-  }
-}
-
-@media (min-width: 1200px) {
-  main .carousel-slide-card picture {
-    height: calc(25vw * .485);
-  }
+  z-index: -1;
 }
 
 main .carousel-slide-card img {
-  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -130,11 +90,11 @@ main .winners-carousel .carousel-nav {
 }
 
 main .winners-carousel .carousel-nav.carousel-nav-left {
-  left: var(--spacing-xs);
+  left: 2%;
 }
 
 main .winners-carousel .carousel-nav.carousel-nav-right {
-  right: var(--spacing-xs);
+  right: 52%;
 }
 
 main .winners-carousel .carousel-nav img {
@@ -144,8 +104,5 @@ main .winners-carousel .carousel-nav img {
 
 main .winners-carousel .carousel-nav.carousel-nav-disabled {
   cursor: default;
-}
-
-main .winners-carousel .carousel-nav.carousel-nav-disabled img {
   opacity: .33;
 }

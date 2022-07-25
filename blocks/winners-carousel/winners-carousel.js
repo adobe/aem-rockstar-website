@@ -32,9 +32,13 @@ function checkScrollPosition(el) {
 function buildNav(dir) {
   const btn = document.createElement('aside');
   btn.classList.add('carousel-nav', `carousel-nav-${dir}`);
-  if (dir === 'left') btn.classList.add('carousel-nav-disabled'); // start at beginning, can't scroll left
   const arrow = document.createElement('span');
-  arrow.innerHTML = '+';
+  arrow.innerHTML = '>';
+  if (dir === 'left') {
+    btn.classList.add('carousel-nav-disabled'); // start at beginning, can't scroll left
+    arrow.innerHTML = '<';
+  }
+
   btn.append(arrow);
   btn.addEventListener('click', (e) => {
     const target = e.target.closest('.carousel-nav');
