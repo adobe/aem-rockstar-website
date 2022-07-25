@@ -16,8 +16,10 @@
   --link-hover-color: #136ff6;
   --background-color: #fff;
   --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
+  --highlight-background-color: rgb(236 16 0);
+  --dark-background-color: rgb(10 17 37);
   --text-color: #000;
+  --text-color-invert: #fff;
 
   /* fonts */
   --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
@@ -38,7 +40,7 @@
   --heading-font-size-xs: 18px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 41px;
 
 }
 
@@ -234,4 +236,40 @@ main .section[data-section-status='initialized'] {
 
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+.rockstar-info .columns {
+  margin-top: 10rem;
+}
+
+.hot-topics {
+  background-color: #f6f9fe;
+}
+
+.hot-topics ul {
+  display: grid;
+  column-gap: 24px;
+  row-gap: 24px;
+  grid-template-columns: auto;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hot-topics ul {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+
+.hot-topics li {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  height: 76px;
+  background-color: #fff;
+  text-align: center;
+  border: 0 solid var(--text-color);
+  box-sizing: border-box;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
 }

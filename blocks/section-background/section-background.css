@@ -1,0 +1,11 @@
+.section-background-image {
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.section-background-image.section-background-hero {
+    min-height: 50vh;
+    color: var(--text-color-invert);
+    background-position-x: 100%;
+    background-position-y: 100%;
+}
