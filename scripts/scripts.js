@@ -613,6 +613,21 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
+export function loadScript(url, callback, type, async) {
+  const head = document.querySelector('head');
+  const script = document.createElement('script');
+  script.src = url;
+  if (type) {
+    script.setAttribute('type', type);
+  }
+  if(async) {
+    script.async = true;
+  }
+  head.append(script);
+  script.onload = callback;
+  return script;
+}
+
 /**
  * loads everything needed to get to LCP.
  */
