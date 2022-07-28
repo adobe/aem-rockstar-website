@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { loadScript } from '../../scripts/scripts.js';
+import { loadScript, instrumentBlock } from '../../scripts/scripts.js';
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
     <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
@@ -197,6 +197,7 @@ const loadEmbed = (block) => {
       config = EMBEDS_CONFIG.youtube;
     }
 
+    
     // loading embed function for given config and url.
     if (config) {
       // a.outerHTML = config.embed(url);
@@ -207,7 +208,14 @@ const loadEmbed = (block) => {
       block.innerHTML = getDefaultEmbed(url);
       block.classList = `block embed embed-${simpleDomain}`;
     }
+
     block.classList.add('is-loaded');
+
+    instrumentBlock('embed', {
+      'embedType': config ? config.type : 'default',
+      'embedUrl': url.toString()
+    });
+    
   }
 };
 

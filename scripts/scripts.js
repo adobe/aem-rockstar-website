@@ -628,6 +628,22 @@ export function loadScript(url, callback, type, async) {
   return script;
 }
 
+var idCounter = '1000';
+export function instrumentBlock(name, data, blockId) {
+  window.adobeDataLayer = window.adobeDataLayer || [];
+  
+  if(!blockId) {
+    blockId = name + '-' + idCounter++;
+  }
+  const pushData = {};
+  pushData.block = {};
+  pushData.block[blockId] = data;
+  pushData.block[blockId].type = name;
+  window.adobeDataLayer.push(pushData);
+
+  return blockId;
+}
+
 /**
  * loads everything needed to get to LCP.
  */

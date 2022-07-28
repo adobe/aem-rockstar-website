@@ -10,9 +10,9 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { readBlockConfig, decorateIcons } from '../../scripts/scripts.js';
+import { readBlockConfig, decorateIcons, instrumentBlock } from '../../scripts/scripts.js';
 
-function decorateBackToTop(element) {
+function decorateBackToTop(element, blockId) {
   const backToTopDiv = document.createElement('div');
   const backToTopButton = document.createElement('button');
   backToTopButton.id = 'back-to-top';
@@ -25,8 +25,16 @@ function decorateBackToTop(element) {
   arrow.classList.add('arrow-up');
   backToTopButton.appendChild(arrow);
 
+  window.adobeDataLayer = window.adobeDataLayer || [];
   backToTopButton.addEventListener('click', () => {
     window.scrollTo(0, 0);
+
+    window.adobeDataLayer.push({
+      'event': 'back to top',
+      'eventInfo': {
+        'reference': 'block.' + blockId
+    },
+    });
   });
 
   backToTopDiv.append(backToTopButton);
@@ -50,7 +58,8 @@ export default async function decorate(block) {
 
   await decorateIcons(footer);
 
-  decorateBackToTop(footer);
+  const blockId = instrumentBlock('footer', {});
+  decorateBackToTop(footer, blockId);
 
   block.append(footer);
 }
