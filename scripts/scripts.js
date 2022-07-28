@@ -628,22 +628,18 @@ export function loadScript(url, callback, type, async) {
   return script;
 }
 
-let idCounter = '1000';
-export function instrumentBlock(name, data, blockId) {
-  let myBlockId = blockId;
+export function instrumentBlock(name, data) {
   window.adobeDataLayer = window.adobeDataLayer || [];
 
-  if (!myBlockId) {
-    myBlockId = `${name}-${idCounter}`;
-    idCounter += 1;
-  }
   const pushData = {};
   pushData.block = {};
-  pushData.block[myBlockId] = data;
-  pushData.block[myBlockId].type = name;
-  window.adobeDataLayer.push(pushData);
 
-  return myBlockId;
+  // todo consider implications of this if same block is in page multiple times
+  // probably need to generate an id and store it in a data-attr on the block to keep these unique
+
+  pushData.block[name] = data;
+  pushData.block[name].type = name;
+  window.adobeDataLayer.push(pushData);
 }
 
 /**

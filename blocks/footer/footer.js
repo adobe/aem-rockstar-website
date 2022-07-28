@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 
 import { readBlockConfig, decorateIcons, instrumentBlock } from '../../scripts/scripts.js';
 
-function decorateBackToTop(element, blockId) {
+function decorateBackToTop(element) {
   const backToTopDiv = document.createElement('div');
   const backToTopButton = document.createElement('button');
   backToTopButton.id = 'back-to-top';
@@ -32,7 +32,7 @@ function decorateBackToTop(element, blockId) {
     window.adobeDataLayer.push({
       event: 'back to top',
       eventInfo: {
-        reference: `block.${blockId}`,
+        reference: 'block.footer',
       },
     });
   });
@@ -58,8 +58,8 @@ export default async function decorate(block) {
 
   await decorateIcons(footer);
 
-  const blockId = instrumentBlock('footer', {});
-  decorateBackToTop(footer, blockId);
+  instrumentBlock('footer', {});
+  decorateBackToTop(footer);
 
   block.append(footer);
 }
