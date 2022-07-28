@@ -2,13 +2,11 @@ main .section.cards-container {
   background-color: #F1F3F4;
   padding-top: 80px;
   overflow: auto;
-  border-color: theme('colors.light.gray.200');
+  border-color: #e5e7eb;
 }
-
 .cards-wrapper{
   width: 500px;
   float: left;
-  
 }
 .cards > ul {
   list-style: none;
@@ -19,51 +17,45 @@ main .section.cards-container {
   grid-gap: 16px;
   
 }
-
 .cards > ul > li {
-  border: 1px solid theme('colors.light.gray.300');
+  border: 1px solid #d1d5db;
   background-color: var(--background-color);
   border-radius: 30px;
 }
-
 .cards .cards-card-body {
   margin: 16px;
  
 }
-
 .cards .cards-card-image {
-  background-color: theme('colors.light.gray.100');
-  border-color: theme('colors.light.gray.300');
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
   line-height: 0;
   flex-basis: 25%;
   
 }
-
 .cards .cards-card-body > *:first-child {
   margin-top: 0;
 }
-
 .cards > ul > li img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 30px;
 }
-h1{
-  
+h1{  
     font-weight: bold;
-    color: rgb(8, 8, 8);
+    color: #080808;
     font-size: 1rem;
-    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-family: "Helvetica Neue", Arial, sans-serif;
     font-style: normal;
 }
 .cards > ul > li p {
   justify-content: flex-start;
   flex-basis: 75%;
-  color: rgb(8, 8, 8);
+  color: #080808;
   font-size: 1rem;
   letter-spacing: 1px;
-  font-family: "Helvetica Neue", "Arial", sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-style: normal;
   overflow: auto;
 }
