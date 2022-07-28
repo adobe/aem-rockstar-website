@@ -197,7 +197,6 @@ const loadEmbed = (block) => {
       config = EMBEDS_CONFIG.youtube;
     }
 
-    
     // loading embed function for given config and url.
     if (config) {
       // a.outerHTML = config.embed(url);
@@ -212,10 +211,9 @@ const loadEmbed = (block) => {
     block.classList.add('is-loaded');
 
     instrumentBlock('embed', {
-      'embedType': config ? config.type : 'default',
-      'embedUrl': url.toString()
+      embedType: config ? config.type : 'default',
+      embedUrl: url.toString(),
     });
-    
   }
 };
 

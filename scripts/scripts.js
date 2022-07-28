@@ -620,7 +620,7 @@ export function loadScript(url, callback, type, async) {
   if (type) {
     script.setAttribute('type', type);
   }
-  if(async) {
+  if (async) {
     script.async = true;
   }
   head.append(script);
@@ -628,20 +628,22 @@ export function loadScript(url, callback, type, async) {
   return script;
 }
 
-var idCounter = '1000';
+let idCounter = '1000';
 export function instrumentBlock(name, data, blockId) {
+  let myBlockId = blockId;
   window.adobeDataLayer = window.adobeDataLayer || [];
-  
-  if(!blockId) {
-    blockId = name + '-' + idCounter++;
+
+  if (!myBlockId) {
+    myBlockId = `${name}-${idCounter}`;
+    idCounter += 1;
   }
   const pushData = {};
   pushData.block = {};
-  pushData.block[blockId] = data;
-  pushData.block[blockId].type = name;
+  pushData.block[myBlockId] = data;
+  pushData.block[myBlockId].type = name;
   window.adobeDataLayer.push(pushData);
 
-  return blockId;
+  return myBlockId;
 }
 
 /**

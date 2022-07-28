@@ -30,10 +30,10 @@ function decorateBackToTop(element, blockId) {
     window.scrollTo(0, 0);
 
     window.adobeDataLayer.push({
-      'event': 'back to top',
-      'eventInfo': {
-        'reference': 'block.' + blockId
-    },
+      event: 'back to top',
+      eventInfo: {
+        reference: `block.${blockId}`,
+      },
     });
   });
 
