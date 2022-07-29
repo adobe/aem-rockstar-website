@@ -8,10 +8,13 @@ function loadAdobeLaunch() {
     scriptUrl = 'https://assets.adobedtm.com/52be42758645/f4f76a9081b6/launch-37775755caa8-staging.min.js';
   }
 
-  if (/rockstar.adobeevents.com/.test(host) || /main--aem-rockstar-website--adobe.hlx.live/.test(host)) {
+  /* commenting out loading prod library for now.
+  if (/rockstar.adobeevents.com/.test(host)
+  || /main--aem-rockstar-website--adobe.hlx.live/.test(host)) {
     // if on a prod domain, then use the prod library
     scriptUrl = 'https://assets.adobedtm.com/52be42758645/f4f76a9081b6/launch-d4e94ba1de20.min.js';
   }
+  */
 
   loadScript(scriptUrl, null, null, true);
 }
@@ -58,14 +61,27 @@ function instrumentBlocks() {
   });
 }
 
+/**
+ * Push an event to the datalayer.
+ * If the element is passed, a block reference is automatically added to eventInfo
+ * @param {*} eventName the name of the event
+ * @param {*} eventInfo any additional event info to add
+ * @param {*} element the element, if any, generating the event.
+ */
 export function event(eventName, eventInfo, element) {
   window.adobeDataLayer = window.adobeDataLayer || [];
-  let { blockId } = element.dataset;
-  if (!blockId) {
-    const parentBLock = element.closest('div.block');
-    blockId = parentBLock.dataset.blockId;
+
+  if (!eventInfo.reference && element) {
+    let { blockId } = element.dataset;
+    if (!blockId) {
+      const parentBlock = element.closest('div.block');
+      if (parentBlock) {
+        blockId = parentBlock.dataset.blockId;
+      }
+    }
+    eventInfo.reference = `block.${blockId}`;
   }
-  eventInfo.reference = `block.${blockId}`;
+
   window.adobeDataLayer.push({
     event: eventName,
     eventInfo,
