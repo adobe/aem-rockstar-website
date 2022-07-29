@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { loadScript, instrumentBlock } from '../../scripts/scripts.js';
+import { loadScript } from '../../scripts/utils.js';
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
     <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
@@ -210,7 +210,7 @@ const loadEmbed = (block) => {
 
     block.classList.add('is-loaded');
 
-    instrumentBlock('embed', {
+    block.dataset.dataLayer = JSON.stringify({
       embedType: config ? config.type : 'default',
       embedUrl: url.toString(),
     });

@@ -10,7 +10,8 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { readBlockConfig, decorateIcons, instrumentBlock } from '../../scripts/scripts.js';
+import { readBlockConfig, decorateIcons } from '../../scripts/scripts.js';
+import { event } from '../../scripts/instrument.js';
 
 function decorateBackToTop(element) {
   const backToTopDiv = document.createElement('div');
@@ -25,16 +26,9 @@ function decorateBackToTop(element) {
   arrow.classList.add('arrow-up');
   backToTopButton.appendChild(arrow);
 
-  window.adobeDataLayer = window.adobeDataLayer || [];
   backToTopButton.addEventListener('click', () => {
     window.scrollTo(0, 0);
-
-    window.adobeDataLayer.push({
-      event: 'back to top',
-      eventInfo: {
-        reference: 'block.footer',
-      },
-    });
+    event('back to top', {}, backToTopButton);
   });
 
   backToTopDiv.append(backToTopButton);
@@ -58,7 +52,6 @@ export default async function decorate(block) {
 
   await decorateIcons(footer);
 
-  instrumentBlock('footer', {});
   decorateBackToTop(footer);
 
   block.append(footer);

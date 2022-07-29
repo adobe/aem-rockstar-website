@@ -613,35 +613,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
-export function loadScript(url, callback, type, async) {
-  const head = document.querySelector('head');
-  const script = document.createElement('script');
-  script.src = url;
-  if (type) {
-    script.setAttribute('type', type);
-  }
-  if (async) {
-    script.async = true;
-  }
-  head.append(script);
-  script.onload = callback;
-  return script;
-}
-
-export function instrumentBlock(name, data) {
-  window.adobeDataLayer = window.adobeDataLayer || [];
-
-  const pushData = {};
-  pushData.block = {};
-
-  // todo consider implications of this if same block is in page multiple times
-  // probably need to generate an id and store it in a data-attr on the block to keep these unique
-
-  pushData.block[name] = data;
-  pushData.block[name].type = name;
-  window.adobeDataLayer.push(pushData);
-}
-
 /**
  * loads everything needed to get to LCP.
  */
