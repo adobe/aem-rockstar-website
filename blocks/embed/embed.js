@@ -10,17 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-const loadScript = (url, callback, type) => {
-  const head = document.querySelector('head');
-  const script = document.createElement('script');
-  script.src = url;
-  if (type) {
-    script.setAttribute('type', type);
-  }
-  head.append(script);
-  script.onload = callback;
-  return script;
-};
+import { loadScript } from '../../scripts/utils.js';
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
     <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
@@ -217,7 +207,13 @@ const loadEmbed = (block) => {
       block.innerHTML = getDefaultEmbed(url);
       block.classList = `block embed embed-${simpleDomain}`;
     }
+
     block.classList.add('is-loaded');
+
+    block.dataset.dataLayer = JSON.stringify({
+      embedType: config ? config.type : 'default',
+      embedUrl: url.toString(),
+    });
   }
 };
 
