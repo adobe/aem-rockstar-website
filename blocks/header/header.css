@@ -1,10 +1,9 @@
 /* header and nav layout */
-header nav {
-  display: grid;
-  grid-template:
-    'hamburger brand tools' var(--nav-height)
-    'sections sections sections' 1fr / 50px 1fr 50px;
+header .header {
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 0 2rem;
   position: fixed;
   z-index: 1;
@@ -15,8 +14,8 @@ header nav {
   font-family: var(--body-font-family);
 }
 
-header nav a:any-link {
-  color: currentcolor;
+header .header nav {
+  width: 1280px
 }
 
 .icon-home {
@@ -24,16 +23,6 @@ header nav a:any-link {
 }
 
 .icon-home svg {
-  height: 24px;
-  width: 23px;
-}
-
-/* desktop nav styles */
-@media (min-width: 1000px) {
-  header nav {
-    display: flex;
-    justify-content: space-between;
-    height: var(--nav-height);
-    padding: 16px 2rem;
-  }
+  width: 24px;
+  height: auto;
 }
