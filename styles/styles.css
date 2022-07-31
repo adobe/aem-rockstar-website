@@ -10,6 +10,8 @@
  * governing permissions and limitations under the License.
  */
 
+ @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
  :root {
   /* colors */
   --link-color: rgb(10 17 37);
@@ -22,8 +24,8 @@
   --text-color-invert: #fff;
 
   /* fonts */
-  --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: var(--body-font-family);
+  --body-font-family: 'Roboto','helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
+  --heading-font-family: 'Poppins', 'Roboto','helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -66,8 +68,8 @@ h4, h5, h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  margin-top: 1em;
-  margin-bottom: .5em;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 

@@ -4,8 +4,9 @@
 }
 
 .section-background-image.section-background-hero {
-    min-height: 50vh;
+    min-height: 50rem;
     color: var(--text-color-invert);
     background-position-x: 100%;
     background-position-y: 100%;
+    padding: 32px;
 }
