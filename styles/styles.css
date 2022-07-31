@@ -304,7 +304,7 @@ main .section.highlight {
 
 .latest-info.section-background-image {
   background-size: cover;
-  background-position: 50% 100%;
+  background-position: 100% 50%;
 }
 
 .latest-info .columns-wrapper {
