@@ -327,18 +327,27 @@ main .section.highlight {
 }
 
 .submission-guide main {
-  max-width: 50%;
+  max-width: 80%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
 }
 
-.submission-guide-content {
-  flex: 2;
+.submission-guide-sidebar {
+  margin-top: 10%;
+  width: 100%;
 }
 
-.submission-guide-sidebar {
-  flex: 1;
-  margin-top: 10%;
+@media (min-width: 900px) {
+  .submission-guide-content {
+    flex: 2;
+  }
+  
+  .submission-guide-sidebar {
+    flex: 1;
+    margin-top: 0;
+    width: auto;
+  } 
 }
