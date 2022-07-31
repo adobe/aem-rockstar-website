@@ -276,6 +276,7 @@ main .section.highlight {
   align-items: center;
   justify-content: center;
   height: 76px;
+  font-weight: bold;
   background-color: #fff;
   text-align: center;
   border: 0 solid var(--text-color);
