@@ -247,6 +247,14 @@ main .section.highlight {
   background-color: #f6f9fe;
 }
 
+.hot-topics h1,
+.hot-topics h2 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 768px;
+  text-align: center;
+}
+
 .hot-topics ul {
   display: grid;
   column-gap: 24px;
