@@ -1,1 +1,89 @@
 /* below the fold CSS goes here */
+.hot-topics {
+  background-color: #f6f9fe;
+}
+
+.hot-topics h1,
+.hot-topics h2 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 768px;
+  text-align: center;
+}
+
+.hot-topics ul {
+  display: grid;
+  column-gap: 24px;
+  row-gap: 24px;
+  grid-template-columns: auto;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hot-topics ul {
+    grid-template-columns: repeat(3,minmax(0,1fr));
+  }
+}
+
+.hot-topics li {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  height: 76px;
+  font-weight: bold;
+  background-color: #fff;
+  text-align: center;
+  border: 0 solid var(--text-color);
+  box-sizing: border-box;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+}
+
+.latest-info {
+  color: #fff;
+}
+
+.latest-info .columns > div > div {
+  background: var(--highlight-background-color);
+  border-radius: 16px;
+  padding: 20px 40px 40px;
+  margin: 10px;
+  flex-grow: 1;
+  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+}
+
+.latest-info .columns h2 {
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .latest-info .columns > div {
+    align-items: unset;
+  }
+}
+
+.latest-info.section-background-image {
+  background-size: cover;
+  background-position: 100% 50%;
+}
+
+.latest-info .columns-wrapper {
+  margin: unset;
+  max-width: unset;
+}
+
+.previous-winners {
+  background: var(--highlight-background-color);
+  color: var(--text-color-invert);
+}
+
+.previous-winners.section-background-image {
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    background-size: 50%;
+}
+
+.previous-winners h1 {
+  margin-top: 0;
+}
