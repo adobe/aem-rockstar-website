@@ -291,9 +291,13 @@ main .section.highlight {
 .latest-info .columns > div > div {
   background: var(--highlight-background-color);
   border-radius: 16px;
-  padding: 0 40px 40px;
+  padding: 20px 40px 40px;
   margin: 10px;
   flex-grow: 1;
+}
+
+.latest-info .columns h2 {
+  text-align: center;
 }
 
 @media (min-width: 900px) {
