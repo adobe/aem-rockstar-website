@@ -33,37 +33,3 @@ main .section.cards-container {
     grid-template-columns: repeat(3,minmax(0,1fr));
   }
 }
-/*
-.cards-wrapper{
-  width: 500px;
-  float: left;
-}
-
-
-
-
-
-.cards .cards-card-body {
-  margin: 16px;
- 
-}
-
-.cards .cards-card-image {
-  background-color: #f3f4f6;
-  border-color: #d1d5db;
-  line-height: 0;
-  flex-basis: 25%;
-  
-}
-
-.cards .cards-card-body > *:first-child {
-  margin-top: 0;
-}
-
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 30px;
-}
-*/
