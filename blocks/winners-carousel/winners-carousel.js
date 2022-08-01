@@ -16,17 +16,7 @@
 function scrollToStart(block) {
   if (block.scrollLeft !== 0) {
     block.scrollLeft = 0;
-    const leftNav = block.querySelector('.carousel-nav-left');
-    leftNav.classList.add('carousel-nav-disabled');
-    const rightNav = block.querySelector('.carousel-nav-right');
-    rightNav.classList.remove('carousel-nav-disabled');
   }
-}
-
-function checkScrollPosition(el) {
-  if (el.scrollLeft === 0) return 'start';
-  if (el.scrollWidth - el.scrollLeft === el.offsetWidth) return 'end';
-  return null;
 }
 
 function buildNav(dir) {
@@ -35,30 +25,27 @@ function buildNav(dir) {
   const arrow = document.createElement('span');
   arrow.innerHTML = '>';
   if (dir === 'left') {
-    btn.classList.add('carousel-nav-disabled'); // start at beginning, can't scroll left
     arrow.innerHTML = '<';
   }
 
   btn.append(arrow);
   btn.addEventListener('click', (e) => {
     const target = e.target.closest('.carousel-nav');
-    if (![...target.classList].includes('carousel-nav-disabled')) {
-      const carousel = e.target.closest('.winners-carousel');
-      carousel.querySelectorAll('.carousel-nav').forEach((nav) => nav.classList.remove('carousel-nav-disabled'));
-      if (dir === 'left') {
+    const carousel = e.target.closest('.winners-carousel');
+    const slideCount = carousel.querySelectorAll('.carousel-slide').length;
+    const scrollEnd = (carousel.offsetWidth * (slideCount-1));
+    if (dir === 'left') {
+      if(carousel.scrollLeft === 0) {
+        carousel.scrollLeft = scrollEnd;
+      } else {
         carousel.scrollLeft -= carousel.offsetWidth;
+      }
+    } else {
+      if(carousel.scrollLeft === scrollEnd) {
+        carousel.scrollLeft = 0;
       } else {
         carousel.scrollLeft += carousel.offsetWidth;
       }
-      setTimeout(() => {
-        const position = checkScrollPosition(carousel);
-        if ((position === 'start' && dir === 'left')
-          || (position === 'end' && dir === 'right')) {
-          btn.classList.add('carousel-nav-disabled');
-        } else {
-          btn.classList.remove('carousel-nav-disabled');
-        }
-      }, 750);
     }
   });
   return btn;
@@ -81,6 +68,7 @@ export default async function decorate(block) {
       if (child.querySelector('picture')) {
         child.classList.add('carousel-slide-card-image');
       } else {
+        child.innerHTML = child.innerHTML.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "");
         slideContent.appendChild(child);
       }
     });

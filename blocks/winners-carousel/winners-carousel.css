@@ -75,11 +75,6 @@ main .winners-carousel .carousel-nav.carousel-nav-right {
   right: 52%;
 }
 
-main .winners-carousel .carousel-nav.carousel-nav-disabled {
-  cursor: default;
-  opacity: .33;
-}
-
 main .winners-carousel .carousel-slide-card .carousel-slide-card-content {
   gap: 1rem;
   grid-area: overlay;
@@ -110,4 +105,9 @@ main .winners-carousel .carousel-slide-card .carousel-slide-card-content > div:n
   font-weight: 600;
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+main .winners-carousel .carousel-slide-card .carousel-slide-card-content a.button {
+  padding: 5px 10px;
+  font-size: 1rem;
 }
