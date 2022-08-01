@@ -26,6 +26,10 @@ footer #back-to-top {
   background-color: var(--dark-background-color);
 }
 
+footer #back-to-top span {
+  font-size: var(--body-font-size-s);
+}
+
 footer #back-to-top .arrow-up {
   border: solid var(--text-color-invert);
   border-width: 0 3px 3px 0;
