@@ -30,22 +30,19 @@ function buildNav(dir) {
 
   btn.append(arrow);
   btn.addEventListener('click', (e) => {
-    const target = e.target.closest('.carousel-nav');
     const carousel = e.target.closest('.winners-carousel');
     const slideCount = carousel.querySelectorAll('.carousel-slide').length;
-    const scrollEnd = (carousel.offsetWidth * (slideCount-1));
+    const scrollEnd = (carousel.offsetWidth * (slideCount - 1));
     if (dir === 'left') {
-      if(carousel.scrollLeft === 0) {
+      if (carousel.scrollLeft === 0) {
         carousel.scrollLeft = scrollEnd;
       } else {
         carousel.scrollLeft -= carousel.offsetWidth;
       }
+    } else if (carousel.scrollLeft === scrollEnd) {
+      carousel.scrollLeft = 0;
     } else {
-      if(carousel.scrollLeft === scrollEnd) {
-        carousel.scrollLeft = 0;
-      } else {
-        carousel.scrollLeft += carousel.offsetWidth;
-      }
+      carousel.scrollLeft += carousel.offsetWidth;
     }
   });
   return btn;
@@ -68,7 +65,7 @@ export default async function decorate(block) {
       if (child.querySelector('picture')) {
         child.classList.add('carousel-slide-card-image');
       } else {
-        child.innerHTML = child.innerHTML.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "");
+        child.innerHTML = child.innerHTML.replace(/(<p[^>]+?>|<p>|<\/p>)/img, '');
         slideContent.appendChild(child);
       }
     });
