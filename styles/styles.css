@@ -250,6 +250,7 @@ main .section.highlight {
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  font-size: var(--body-font-size-s);
 }
 
 .submission-guide-sidebar {

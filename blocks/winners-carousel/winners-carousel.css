@@ -107,7 +107,6 @@ main .winners-carousel .carousel-slide-card .carousel-slide-card-content > div:n
   line-height: 2.25rem;
 }
 
-main .winners-carousel .carousel-slide-card .carousel-slide-card-content a.button {
-  padding: 5px 10px;
-  font-size: 1rem;
+main .winners-carousel .carousel-slide-card .carousel-slide-card-content a {
+  font-size: var(--body-font-size-s);
 }
