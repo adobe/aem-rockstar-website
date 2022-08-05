@@ -577,7 +577,7 @@ initHlx();
  */
 
 const LCP_BLOCKS = ['section-background']; // add your LCP blocks to the list
-const RUM_GENERATION = 'project-1'; // add your RUM generation information here
+const RUM_GENERATION = 'aem-rockstar'; // add your RUM generation information here
 const ICON_ROOT = '/icons';
 
 sampleRUM('top');

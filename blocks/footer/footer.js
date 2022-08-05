@@ -11,6 +11,7 @@ governing permissions and limitations under the License.
 */
 
 import { readBlockConfig, decorateIcons } from '../../scripts/scripts.js';
+import { event } from '../../scripts/instrument.js';
 
 function decorateBackToTop(element) {
   const backToTopDiv = document.createElement('div');
@@ -27,6 +28,7 @@ function decorateBackToTop(element) {
 
   backToTopButton.addEventListener('click', () => {
     window.scrollTo(0, 0);
+    event('back to top', {}, backToTopButton);
   });
 
   backToTopDiv.append(backToTopButton);
