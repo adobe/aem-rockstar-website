@@ -106,5 +106,6 @@ main .form {
   
   main .form .form-submit-wrapper {
     display: flex;
+
     /* justify-content: flex-end; */
   }
