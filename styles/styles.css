@@ -22,8 +22,8 @@
   --text-color-invert: #fff;
 
   /* fonts */
-  --body-font-family: 'Roboto','Roboto-fallback', sans-serif;
-  --heading-font-family: 'Poppins', 'Poppins-fallback', sans-serif;
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --heading-font-family: poppins, poppins-fallback, sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -44,14 +44,14 @@
 }
 
 @font-face {
-  font-family: "Poppins-fallback";
+  font-family: poppins-fallback;
   size-adjust: 112.50%;
   ascent-override: 109%;
   src: local("Arial");
 }
 
 @font-face {
-  font-family: "Roboto-fallback";
+  font-family: roboto-fallback;
   size-adjust: 100.06%;
   ascent-override: 93%;
   src: local("Arial");
