@@ -1,12 +1,25 @@
-.section-background-image {
-    background-size: contain;
-    background-repeat: no-repeat;
+.section-background-container {
+    position: relative;
+    z-index: -1;
+    min-height: 50rem;
 }
 
-.section-background-image.section-background-hero {
-    min-height: 50rem;
-    color: var(--text-color-invert);
-    background-position-x: 100%;
-    background-position-y: 100%;
-    padding: 32px;
+.section-background picture {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.section-background img {
+    object-position: top;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.section-background.hero img {
+    object-position: bottom;
 }

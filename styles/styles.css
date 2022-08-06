@@ -248,6 +248,7 @@ main .section[data-section-status='initialized'] {
 }
 
 main .section.highlight {
+  color: var(--text-color-invert);
   background-color: var(--highlight-background-color);
 }
 
