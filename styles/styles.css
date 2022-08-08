@@ -41,6 +41,9 @@
 
   /* nav height */
   --nav-height: 41px;
+
+  /* standard shadow */
+  --box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
 }
 
 @font-face {
@@ -69,6 +72,10 @@ body {
 
 body.appear {
   display: unset;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 header {

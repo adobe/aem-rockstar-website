@@ -20,10 +20,6 @@ function buildNav(dir) {
   const btn = document.createElement('aside');
   btn.classList.add('carousel-nav', `carousel-nav-${dir}`);
   const arrow = document.createElement('span');
-  arrow.innerHTML = '>';
-  if (dir === 'left') {
-    arrow.innerHTML = '<';
-  }
 
   btn.append(arrow);
   btn.addEventListener('click', (e) => {

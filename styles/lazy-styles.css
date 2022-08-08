@@ -20,6 +20,7 @@
   row-gap: 24px;
   grid-template-columns: auto;
   align-items: center;
+  padding-inline: 0;
 }
 
 @media (min-width: 900px) {
@@ -40,7 +41,7 @@
   text-align: center;
   border: 0 solid var(--text-color);
   box-sizing: border-box;
-  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+  box-shadow: var(--box-shadow);
 }
 
 .latest-info {
@@ -53,7 +54,7 @@
   padding: 20px 40px 40px;
   margin: 10px;
   flex-grow: 1;
-  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+  box-shadow: var(--box-shadow);
 }
 
 .latest-info .columns h2 {

@@ -5,12 +5,17 @@ main .winners-carousel-container .winners-carousel-wrapper {
 }
 
 main .winners-carousel {
-  width: 50%;
+  width: 100%;
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
+}
+@media (min-width: 900px) {
+  main .winners-carousel {
+    width: 50%;
+  }
 }
 
 main .winners-carousel::-webkit-scrollbar { 
@@ -57,8 +62,8 @@ main .winners-carousel .carousel-nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 32px;
-  width: 32px;
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
   background: var(--background-color);
   box-shadow: var(--box-shadow);
@@ -71,8 +76,22 @@ main .winners-carousel .carousel-nav.carousel-nav-left {
   left: 2%;
 }
 
+main .winners-carousel .carousel-nav.carousel-nav-left::after {
+  content: '<';
+}
+
 main .winners-carousel .carousel-nav.carousel-nav-right {
-  right: 52%;
+  right: 2%;
+}
+
+main .winners-carousel .carousel-nav.carousel-nav-right::after {
+  content: '>';
+}
+
+@media (min-width: 900px) {
+  main .winners-carousel .carousel-nav.carousel-nav-right {
+    right: 52%;
+  }
 }
 
 main .winners-carousel .carousel-slide-card .carousel-slide-card-content {
