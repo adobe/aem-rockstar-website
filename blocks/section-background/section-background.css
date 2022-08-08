@@ -3,18 +3,6 @@
     z-index: 1;
 }
 
-.section-background-container.hero-container {
-    min-height: 40rem;
-}
-
-@media (min-width: 900px) {
-    .section-background-container.hero-container {
-        min-height: 50rem;
-    }
-} 
-
-/* end :has workaround */
-
 .section-background picture {
     position: absolute;
     top: 0;
