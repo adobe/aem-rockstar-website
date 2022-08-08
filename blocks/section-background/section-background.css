@@ -1,24 +1,7 @@
 .section-background-container {
     position: relative;
-    z-index: -1;
-    
+    z-index: 1;
 }
-
-/* 
-:has isn't well supported, once it is, ucomment this and remove the relevent js and css
-
-.section-background-container:has(div.section-background.hero) {
-    min-height: 40rem;
-}
-
-@media (min-width: 900px) {
-    .section-background-container:has(div.section-background.hero) {
-        min-height: 50rem;
-    }
-} 
-*/
-
-/* begin :has workaround */
 
 .section-background-container.hero-container {
     min-height: 40rem;
