@@ -1,8 +1,19 @@
 .section-background-container {
     position: relative;
     z-index: -1;
-    min-height: 50rem;
+    
 }
+
+.section-background-container:has(div.section-background.hero) {
+    min-height: 40rem;
+}
+
+@media (min-width: 900px) {
+    .section-background-container:has(div.section-background.hero) {
+        min-height: 50rem;
+    }
+}
+
 
 .section-background picture {
     position: absolute;
@@ -11,15 +22,16 @@
     left: 0;
     right: 0;
     z-index: -1;
+    width: 100%;
 }
 
 .section-background img {
-    object-position: top;
+    object-position: top right;
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
 .section-background.hero img {
-    object-position: bottom;
+    object-position: 100% 80%;
 }

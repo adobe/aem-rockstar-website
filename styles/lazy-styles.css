@@ -66,9 +66,9 @@
   }
 }
 
-.latest-info.section-background-image {
-  background-size: cover;
-  background-position: 100% 50%;
+.latest-info .section-background img {
+  object-position: 100% 50%;
+  object-fit: cover;
 }
 
 .latest-info .columns-wrapper {
@@ -81,10 +81,9 @@
   color: var(--text-color-invert);
 }
 
-.previous-winners.section-background-image {
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    background-size: 50%;
+.previous-winners .section-background picture {
+    width: 50%;
+    left: unset;
 }
 
 .previous-winners h1 {
