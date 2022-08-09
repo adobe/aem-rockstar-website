@@ -25,27 +25,28 @@ function buildNav(dir) {
   btn.addEventListener('click', (e) => {
     const carousel = e.target.closest('.winners-carousel');
     const scrollEnd = carousel.scrollWidth - carousel.clientWidth;
-    const halfScrollWidth = carousel.offsetWidth / 2;
+    const offsetWidth = carousel.getBoundingClientRect().width;
+    const halfScrollWidth = offsetWidth / 2;
     let finalScrollLeft = carousel.scrollLeft;
 
     // re-center
-    const offcenterBy = carousel.scrollLeft % carousel.offsetWidth;
+    const offcenterBy = carousel.scrollLeft % offsetWidth;
     if (offcenterBy > 0 && offcenterBy < halfScrollWidth) {
       finalScrollLeft -= offcenterBy;
     } else if (offcenterBy > halfScrollWidth) {
-      finalScrollLeft += (carousel.offsetWidth - offcenterBy);
+      finalScrollLeft += (offsetWidth - offcenterBy);
     }
 
     if (dir === 'left') {
       if (finalScrollLeft === 0) {
         finalScrollLeft = scrollEnd;
       } else {
-        finalScrollLeft -= carousel.offsetWidth;
+        finalScrollLeft -= offsetWidth;
       }
     } else if (finalScrollLeft >= scrollEnd) {
       finalScrollLeft = 0;
     } else {
-      finalScrollLeft += carousel.offsetWidth;
+      finalScrollLeft += offsetWidth;
     }
 
     carousel.scrollLeft = finalScrollLeft;
