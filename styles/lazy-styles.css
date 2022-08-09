@@ -1,4 +1,7 @@
 /* below the fold CSS goes here */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+
 .hot-topics {
   background-color: #f6f9fe;
 }
@@ -17,6 +20,13 @@
   row-gap: 24px;
   grid-template-columns: auto;
   align-items: center;
+  padding-inline: 0;
+}
+
+@media (min-width: 600px) {
+  .hot-topics ul {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
 }
 
 @media (min-width: 900px) {
@@ -37,7 +47,7 @@
   text-align: center;
   border: 0 solid var(--text-color);
   box-sizing: border-box;
-  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+  box-shadow: var(--box-shadow);
 }
 
 .latest-info {
@@ -50,7 +60,7 @@
   padding: 20px 40px 40px;
   margin: 10px;
   flex-grow: 1;
-  box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+  box-shadow: var(--box-shadow);
 }
 
 .latest-info .columns h2 {
@@ -63,9 +73,9 @@
   }
 }
 
-.latest-info.section-background-image {
-  background-size: cover;
-  background-position: 100% 50%;
+.latest-info .section-background img {
+  object-position: 100% 50%;
+  object-fit: cover;
 }
 
 .latest-info .columns-wrapper {
@@ -78,12 +88,19 @@
   color: var(--text-color-invert);
 }
 
-.previous-winners.section-background-image {
-    background-position: 100% 0;
-    background-repeat: no-repeat;
-    background-size: 50%;
+.previous-winners .section-background picture {
+    width: 50%;
+    left: unset;
 }
 
-.previous-winners h1 {
+.previous-winners h2 {
   margin-top: 0;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .previous-winners h2 {
+    width: 50%;
+    margin: 0;
+  }
 }

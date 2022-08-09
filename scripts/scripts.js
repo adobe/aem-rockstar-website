@@ -576,7 +576,7 @@ initHlx();
  * ------------------------------------------------------------
  */
 
-const LCP_BLOCKS = ['section-background']; // add your LCP blocks to the list
+const LCP_BLOCKS = ['hero']; // add your LCP blocks to the list
 const RUM_GENERATION = 'aem-rockstar'; // add your RUM generation information here
 const ICON_ROOT = '/icons';
 
@@ -585,6 +585,34 @@ window.addEventListener('load', () => sampleRUM('load'));
 document.addEventListener('click', () => sampleRUM('click'));
 
 loadPage(document);
+
+function buildHeroBlock(main) {
+  const h1 = main.querySelector('h1');
+  const h2 = main.querySelector('h2');
+  const picture = main.querySelector('picture');
+  const containingDiv = h1.closest('div');
+
+  if (h1 && h2 // eslint-disable-next-line no-bitwise
+    && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+    const section = document.createElement('div');
+    section.append(buildBlock('hero', { elems: [picture, h1, h2] }));
+    main.prepend(section);
+  }
+
+  // the original div these eelments were lifted from is now likely empty, so remove it
+  const pars = containingDiv.querySelectorAll('p');
+  pars.forEach((par) => {
+    if (par.innerText.trim() === '') {
+      // remove empty paragraphs from it
+      par.remove();
+    }
+  });
+
+  // if it's now empty, then remove the div
+  if (containingDiv.innerHTML.trim() === '') {
+    containingDiv.remove();
+  }
+}
 
 function loadHeader(header) {
   const headerBlock = buildBlock('header', '');
@@ -601,6 +629,19 @@ function loadFooter(footer) {
 }
 
 /**
+ * Builds all synthetic blocks in a container element.
+ * @param {Element} main The container element
+ */
+function buildAutoBlocks(main) {
+  try {
+    buildHeroBlock(main);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -608,7 +649,7 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  // buildAutoBlocks(main);
+  buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }

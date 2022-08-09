@@ -9,9 +9,6 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-// import {
-//  buildIcon,
-// } from '../../scripts/scripts.js';
 
 function scrollToStart(block) {
   if (block.scrollLeft !== 0) {
@@ -23,27 +20,36 @@ function buildNav(dir) {
   const btn = document.createElement('aside');
   btn.classList.add('carousel-nav', `carousel-nav-${dir}`);
   const arrow = document.createElement('span');
-  arrow.innerHTML = '>';
-  if (dir === 'left') {
-    arrow.innerHTML = '<';
-  }
 
   btn.append(arrow);
   btn.addEventListener('click', (e) => {
     const carousel = e.target.closest('.winners-carousel');
-    const slideCount = carousel.querySelectorAll('.carousel-slide').length;
-    const scrollEnd = (carousel.offsetWidth * (slideCount - 1));
-    if (dir === 'left') {
-      if (carousel.scrollLeft === 0) {
-        carousel.scrollLeft = scrollEnd;
-      } else {
-        carousel.scrollLeft -= carousel.offsetWidth;
-      }
-    } else if (carousel.scrollLeft === scrollEnd) {
-      carousel.scrollLeft = 0;
-    } else {
-      carousel.scrollLeft += carousel.offsetWidth;
+    const scrollEnd = carousel.scrollWidth - carousel.clientWidth;
+    const offsetWidth = carousel.getBoundingClientRect().width;
+    const halfScrollWidth = offsetWidth / 2;
+    let finalScrollLeft = carousel.scrollLeft;
+
+    // re-center
+    const offcenterBy = carousel.scrollLeft % offsetWidth;
+    if (offcenterBy > 0 && offcenterBy < halfScrollWidth) {
+      finalScrollLeft -= offcenterBy;
+    } else if (offcenterBy > halfScrollWidth) {
+      finalScrollLeft += (offsetWidth - offcenterBy);
     }
+
+    if (dir === 'left') {
+      if (finalScrollLeft === 0) {
+        finalScrollLeft = scrollEnd;
+      } else {
+        finalScrollLeft -= offsetWidth;
+      }
+    } else if (finalScrollLeft >= scrollEnd) {
+      finalScrollLeft = 0;
+    } else {
+      finalScrollLeft += offsetWidth;
+    }
+
+    carousel.scrollLeft = finalScrollLeft;
   });
   return btn;
 }

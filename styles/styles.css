@@ -10,8 +10,6 @@
  * governing permissions and limitations under the License.
  */
 
- @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
-
  :root {
   /* colors */
   --link-color: rgb(10 17 37);
@@ -24,8 +22,8 @@
   --text-color-invert: #fff;
 
   /* fonts */
-  --body-font-family: 'Roboto','helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: 'Poppins', 'Roboto','helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
+  --body-font-family: roboto, roboto-fallback, sans-serif;
+  --heading-font-family: poppins, poppins-fallback, sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -43,6 +41,23 @@
 
   /* nav height */
   --nav-height: 41px;
+
+  /* standard shadow */
+  --box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+}
+
+@font-face {
+  font-family: poppins-fallback;
+  size-adjust: 112.50%;
+  ascent-override: 109%;
+  src: local("Arial");
+}
+
+@font-face {
+  font-family: roboto-fallback;
+  size-adjust: 100.06%;
+  ascent-override: 93%;
+  src: local("Arial");
 }
 
 body {
@@ -57,6 +72,10 @@ body {
 
 body.appear {
   display: unset;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 header {
@@ -236,6 +255,7 @@ main .section[data-section-status='initialized'] {
 }
 
 main .section.highlight {
+  color: var(--text-color-invert);
   background-color: var(--highlight-background-color);
 }
 
