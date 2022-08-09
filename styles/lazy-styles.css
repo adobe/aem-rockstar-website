@@ -93,6 +93,14 @@
     left: unset;
 }
 
-.previous-winners h1 {
+.previous-winners h2 {
   margin-top: 0;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .previous-winners h2 {
+    width: 50%;
+    margin: 0;
+  }
 }

@@ -59,17 +59,28 @@ main .winners-carousel .carousel-slide-card .carousel-slide-card-image img {
 main .winners-carousel .carousel-nav {
   position: absolute;
   top: 50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   height: 48px;
   width: 48px;
   border-radius: 50%;
-  background: var(--background-color);
+  background: #000;
+  color: var(--text-color-invert);
+  opacity: .4;
   box-shadow: var(--box-shadow);
   transform: translateY(-50%);
   cursor: pointer;
   z-index: 3;
+  line-height: 1.25rem;
+}
+
+main .winners-carousel:hover .carousel-nav {
+  display: flex;
+}
+
+main .winners-carousel .carousel-nav:hover {
+  opacity: .6;
 }
 
 main .winners-carousel .carousel-nav.carousel-nav-left {

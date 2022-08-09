@@ -24,19 +24,31 @@ function buildNav(dir) {
   btn.append(arrow);
   btn.addEventListener('click', (e) => {
     const carousel = e.target.closest('.winners-carousel');
-    const slideCount = carousel.querySelectorAll('.carousel-slide').length;
-    const scrollEnd = (carousel.offsetWidth * (slideCount - 1));
-    if (dir === 'left') {
-      if (carousel.scrollLeft === 0) {
-        carousel.scrollLeft = scrollEnd;
-      } else {
-        carousel.scrollLeft -= carousel.offsetWidth;
-      }
-    } else if (carousel.scrollLeft === scrollEnd) {
-      carousel.scrollLeft = 0;
-    } else {
-      carousel.scrollLeft += carousel.offsetWidth;
+    const scrollEnd = carousel.scrollWidth - carousel.clientWidth;
+    const halfScrollWidth = carousel.offsetWidth / 2;
+    let finalScrollLeft = carousel.scrollLeft;
+
+    // re-center
+    const offcenterBy = carousel.scrollLeft % carousel.offsetWidth;
+    if (offcenterBy > 0 && offcenterBy < halfScrollWidth) {
+      finalScrollLeft -= offcenterBy;
+    } else if (offcenterBy > halfScrollWidth) {
+      finalScrollLeft += (carousel.offsetWidth - offcenterBy);
     }
+
+    if (dir === 'left') {
+      if (finalScrollLeft === 0) {
+        finalScrollLeft = scrollEnd;
+      } else {
+        finalScrollLeft -= carousel.offsetWidth;
+      }
+    } else if (finalScrollLeft >= scrollEnd) {
+      finalScrollLeft = 0;
+    } else {
+      finalScrollLeft += carousel.offsetWidth;
+    }
+
+    carousel.scrollLeft = finalScrollLeft;
   });
   return btn;
 }
