@@ -50,6 +50,21 @@
   box-shadow: var(--box-shadow);
 }
 
+.previous-winners {
+  background: var(--highlight-background-color);
+  color: var(--text-color-invert);
+}
+
+.previous-winners .section-background picture {
+    width: 50%;
+    left: unset;
+}
+
+.previous-winners h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
 .latest-info {
   color: #fff;
 }
@@ -81,21 +96,6 @@
 .latest-info .columns-wrapper {
   margin: unset;
   max-width: unset;
-}
-
-.previous-winners {
-  background: var(--highlight-background-color);
-  color: var(--text-color-invert);
-}
-
-.previous-winners .section-background picture {
-    width: 50%;
-    left: unset;
-}
-
-.previous-winners h2 {
-  margin-top: 0;
-  text-align: center;
 }
 
 @media (min-width: 900px) {
