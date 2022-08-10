@@ -48,6 +48,7 @@
   border: 0 solid var(--text-color);
   box-sizing: border-box;
   box-shadow: var(--box-shadow);
+  padding: .5em 1em;
 }
 
 .previous-winners {
