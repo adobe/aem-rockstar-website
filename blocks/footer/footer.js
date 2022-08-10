@@ -28,7 +28,7 @@ function decorateBackToTop(element) {
 
   backToTopButton.addEventListener('click', () => {
     window.scrollTo(0, 0);
-    event('back to top', {}, backToTopButton);
+    event('backToTop', {}, backToTopButton);
   });
 
   backToTopDiv.append(backToTopButton);

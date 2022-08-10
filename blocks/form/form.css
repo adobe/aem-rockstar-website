@@ -1,4 +1,8 @@
 main .form {
+    --spacing-m: 2em;
+    --spacing-xs: .725em;
+    --spacing-s: 1em;
+
     background-color: white;
     padding: var(--spacing-m);
     box-shadow: 0 1px 6px rgb(34 34 34 / 10%);
@@ -6,13 +10,11 @@ main .form {
   
   main .form h2 {
     padding: var(--spacing-m) 0;
-    font-size: var(--type-heading-l-lh);
     font-weight: normal;
   }
   
   main .form h3 {
     padding-top: var(--spacing-m);
-    font-size: var(--type-heading-m-size);
     font-weight: bold;
     text-transform: uppercase;
   }
@@ -41,8 +43,6 @@ main .form {
   main .form label {
     width: 100%;
     display: block;
-    font-size: var(--type-body-s-size);
-    line-height: var(--type-body-s-lh);
     padding-bottom: var(--spacing-xs);
     text-transform: uppercase;
     box-sizing: border-box;
@@ -86,7 +86,6 @@ main .form {
   }
   
   main .form .form-checkbox-wrapper label {
-    font-size: var(--type-body-m-size);
     font-weight: normal;
     text-transform: none;
     display: block;
@@ -97,7 +96,6 @@ main .form {
     background: rgb(20 115 230);
     color: white;
     border-radius: 16px;
-    font-size: var(--type-body-s-size);
     font-weight: 300;
     padding: 6px 16px;
     border: none;
