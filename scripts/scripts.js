@@ -596,16 +596,6 @@ function buildHeroBlock(main) {
     && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
 
-    // change webp images to lossless
-    picture.querySelectorAll('source[srcset*="format=webply"]').forEach((n) => {
-      const type = n.getAttribute('type');
-      if (type === 'image/webp') {
-        const src = n.getAttribute('srcset');
-        const newSrc = src.replaceAll('format=webply', 'format=webpll');
-        n.setAttribute('srcset', newSrc);
-      }
-    });
-
     section.append(buildBlock('hero', { elems: [picture, h1, h2] }));
     main.prepend(section);
   }

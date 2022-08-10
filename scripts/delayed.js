@@ -14,6 +14,16 @@ governing permissions and limitations under the License.
 import { sampleRUM } from './scripts.js';
 import { instrument } from './instrument.js';
 
+// change webp images to lossless
+document.querySelectorAll('picture > source[srcset*="format=webply"]').forEach((n) => {
+  const type = n.getAttribute('type');
+  if (type === 'image/webp') {
+    const src = n.getAttribute('srcset');
+    const newSrc = src.replaceAll('format=webply', 'format=webpll');
+    n.setAttribute('srcset', newSrc);
+  }
+});
+
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
