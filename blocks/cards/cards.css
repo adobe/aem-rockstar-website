@@ -18,14 +18,14 @@ main .section.cards-container {
   padding: 1rem;
 }
 
-.cards h2{  
+.cards h2 {  
   font-weight: bold;
   color: #080808;
-  font-size: 1rem;
+  font-size: var(--heading-font-size-xs);
 }
 
 .cards > ul > li p {
-  font-size: 1rem;
+  font-size: var(--body-font-size-s);
 }
 
 @media (min-width: 900px) {

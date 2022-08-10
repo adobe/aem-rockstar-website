@@ -167,7 +167,7 @@ a.button.secondary, button.secondary {
 
 
 main input {
-  font-size: 1.25rem;
+  font-size: var(--body-font-size-m);
   width: 100%;
   max-width: 50rem;
   display: block;
@@ -234,12 +234,12 @@ main img {
 
 @media (min-width: 900px) {
   :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
-    --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;  
+    --heading-font-size-xxl: 3.75rem;
+    --heading-font-size-xl: 3rem;
+    --heading-font-size-l: 2.25rem;
+    --heading-font-size-m: 1.875rem;
+    --heading-font-size-s: 1.5rem;
+    --heading-font-size-xs: 1.375rem;  
   }
   
   .section > div {

@@ -1,3 +1,5 @@
+import { event } from '../../scripts/instrument.js';
+
 function createSelect(fd) {
   const select = document.createElement('select');
   select.id = fd.Field;
@@ -51,10 +53,11 @@ function createButton(fd) {
   button.textContent = fd.Label;
   button.classList.add('button');
   if (fd.Type === 'submit') {
-    button.addEventListener('click', async (event) => {
+    button.addEventListener('click', async (evt) => {
       const form = button.closest('form');
       if (form.checkValidity()) {
-        event.preventDefault();
+        evt.preventDefault();
+        event('formSubmission', {}, button);
         button.setAttribute('disabled', '');
         await submitForm(form);
         const redirectTo = fd.Extra;
