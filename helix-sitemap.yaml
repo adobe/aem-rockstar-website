@@ -1,0 +1,4 @@
+example:
+    origin: https://rockstar.adobeevents.com
+    source: /query-index.json
+    destination: /sitemap.xml
