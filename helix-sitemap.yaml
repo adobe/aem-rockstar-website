@@ -2,7 +2,7 @@ version: 1
 
 sitemaps:
   website:
-    origin: https://rockstar.adobeevents.com
+    origin: https://helix-main--aem-rockstar-website--adobe.adobeaemcloud.com
     lastmod: YYYY-MM-DD
     languages:
       default:
