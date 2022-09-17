@@ -12,10 +12,6 @@ governing permissions and limitations under the License.
 (() => {
   window.hlx.initSidekick({
     project: 'AEM Rockstar Website',
-    outerHost: 'main--aem-rockstar-website--adobe.hlx.live',
-    host: 'https://rockstar.adobeevents.com',
-    byocdn: true,
-    hlx3: true,
     pushDown: true,
     plugins: [],
   });
