@@ -1,0 +1,6 @@
+{
+  "project": "AEM Rockstar Website",
+  "host": "https://rockstar.adobeevents.com",
+  "pushDown": true,
+  "plugins": []
+}
