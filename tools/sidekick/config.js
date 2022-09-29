@@ -12,6 +12,7 @@ governing permissions and limitations under the License.
 (() => {
   window.hlx.initSidekick({
     project: 'AEM Rockstar Website',
+    host: 'https://rockstar.adobeevents.com',
     pushDown: true,
     plugins: [],
   });
