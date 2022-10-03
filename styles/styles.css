@@ -80,6 +80,7 @@ html {
 
 header {
   height: var(--nav-height);
+  background-color: var(--dark-background-color);
 }
 
 h1, h2, h3,
