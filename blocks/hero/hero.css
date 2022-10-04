@@ -1,14 +1,14 @@
 .hero-container {
   position: relative;
   z-index: 1;
-  min-height: 40rem;
+  min-height: 20rem;
   color: var(--text-color-invert);
   background-color: var(--highlight-background-color);
 }
 
 @media (min-width: 900px) {
   .hero-container {
-      min-height: 50rem;
+      min-height: 30rem;
   }
 }
 

@@ -290,3 +290,8 @@ main .section.highlight {
     width: auto;
   } 
 }
+
+.cta-box {
+  background-color: var(--highlight-background-color);
+  position: relative;
+}
