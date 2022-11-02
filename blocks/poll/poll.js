@@ -9,10 +9,16 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import { toClassName } from '../../scripts/scripts.js';
+import { toClassName, readBlockConfig } from '../../scripts/scripts.js';
 
-async function showResults(block, resultsSrc) {
-  const resp = await fetch(`${resultsSrc}.json?sheet=results`);
+async function showResults(block, blockConfig) {
+  if (blockConfig.results !== 'true') {
+    block.innerHTML = `
+      <p>Thanks for voting. Results will be available later.</p>
+    `;
+    return;
+  }
+  const resp = await fetch(`${blockConfig.source}.json?sheet=results`);
   const json = await resp.json();
   const resultData = {};
   let totalVotes = 0;
@@ -50,10 +56,11 @@ async function showResults(block, resultsSrc) {
  * @param {Element} block The poll block element
  */
 export default async function decorate(block) {
-  const src = block.querySelector('a').href;
+  const config = readBlockConfig(block);
+  const src = config.source;
   const hasVoted = window.localStorage.getItem('poll-voted');
   if (hasVoted === 'yes') {
-    await showResults(block, src);
+    await showResults(block, config);
     return;
   }
 
@@ -110,22 +117,24 @@ export default async function decorate(block) {
         },
       }).then(() => {
         window.localStorage.setItem('poll-voted', 'yes');
-        showResults(block, src);
+        showResults(block, config);
       });
     }
   });
   submit.innerText = 'Submit';
   buttonWrapper.appendChild(submit);
 
-  const results = document.createElement('a');
-  results.classList.add('button', 'secondary');
-  results.href = '#results';
-  results.innerText = 'Show Results';
-  results.addEventListener('click', (e) => {
-    e.preventDefault();
-    showResults(block, src);
-  });
-  buttonWrapper.appendChild(results);
+  if (config.results === 'true') {
+    const results = document.createElement('a');
+    results.classList.add('button', 'secondary');
+    results.href = '#results';
+    results.innerText = 'Show Results';
+    results.addEventListener('click', (e) => {
+      e.preventDefault();
+      showResults(block, config);
+    });
+    buttonWrapper.appendChild(results);
+  }
   form.appendChild(buttonWrapper);
 
   block.innerHTML = '';
