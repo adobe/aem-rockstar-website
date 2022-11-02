@@ -1,0 +1,32 @@
+main .poll-wrapper .poll {
+  width: 800px;
+}
+
+main .poll-wrapper .poll form > div {
+  display: grid;
+  grid-column-gap: 20px;
+}
+
+main .poll-wrapper .poll form > div.poll-option-wrapper {
+  grid-template-columns: 50px 1fr;
+}
+
+main .poll-wrapper .poll form > div.button-container {
+  grid-template-columns: 1fr 1fr;
+}
+
+main .poll-wrapper .poll.poll-results > div {
+  margin-bottom: 10px;
+}
+
+main .poll-wrapper .poll.poll-results .poll-result-label {
+  padding-right: 50px;
+}
+
+main .poll-wrapper .poll.poll-results .poll-result-votes {
+  background-color: blue;
+  color: #fff;
+  display: inline-block;
+  border-radius: 1000px;
+  padding-inline: 10px;
+}
