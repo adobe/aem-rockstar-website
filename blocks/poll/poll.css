@@ -27,4 +27,6 @@ main .poll-wrapper .poll.poll-results .poll-result-votes {
   background-color: blue;
   color: #fff;
   display: inline-block;
+  border-radius: 1000px;
+  padding-inline: 10px;
 }

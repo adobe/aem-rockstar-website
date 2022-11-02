@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import { readBlockConfig, toClassName } from '../../scripts/scripts.js';
+import { toClassName } from '../../scripts/scripts.js';
 
 async function showResults(block, resultsSrc) {
   const resp = await fetch(`${resultsSrc}.json?sheet=results`);
@@ -17,7 +17,7 @@ async function showResults(block, resultsSrc) {
   const resultData = {};
   let totalVotes = 0;
   json.data.forEach((vote) => {
-    const {name, voteCount } = vote;
+    const { name, voteCount } = vote;
     const votes = parseInt(voteCount, 10);
     resultData[name] = votes;
     totalVotes += votes;
