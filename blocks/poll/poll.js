@@ -11,13 +11,13 @@
  */
 import { toClassName, readBlockConfig } from '../../scripts/scripts.js';
 
+function showVotedMessage(block) {
+  block.innerHTML = `
+    <p>Thanks for voting. Results will be available later.</p>
+  `;
+}
+
 async function showResults(block, blockConfig) {
-  if (blockConfig.results !== 'true') {
-    block.innerHTML = `
-      <p>Thanks for voting. Results will be available later.</p>
-    `;
-    return;
-  }
   const resp = await fetch(`${blockConfig.source}.json?sheet=results`);
   const json = await resp.json();
   const resultData = {};
@@ -42,7 +42,7 @@ async function showResults(block, blockConfig) {
     const pct = Math.round((parseInt(resultData[name], 10) / parseInt(totalVotes, 10)) * 100);
     voteCount.innerText = `${pct}%`;
     // dynamically set width
-    voteCount.style.width = `${pct * 10}px`;
+    voteCount.style.width = `${(pct * 10) + 25}px`;
 
     div.appendChild(voteCount);
 
@@ -51,20 +51,9 @@ async function showResults(block, blockConfig) {
   });
 }
 
-/**
- * loads and decorates the poll block
- * @param {Element} block The poll block element
- */
-export default async function decorate(block) {
-  const config = readBlockConfig(block);
-  const src = config.source;
-  const hasVoted = window.localStorage.getItem('poll-voted');
-  if (hasVoted === 'yes') {
-    await showResults(block, config);
-    return;
-  }
-
+async function showPoll(block, blockConfig) {
   // fetch poll question source
+  const src = blockConfig.source;
   const resp = await fetch(`${src}.json`);
   const json = await resp.json();
 
@@ -117,26 +106,39 @@ export default async function decorate(block) {
         },
       }).then(() => {
         window.localStorage.setItem('poll-voted', 'yes');
-        showResults(block, config);
+        initState(block, blockConfig); // eslint-disable-line no-use-before-define
       });
     }
   });
   submit.innerText = 'Submit';
   buttonWrapper.appendChild(submit);
-
-  if (config.results === 'true') {
-    const results = document.createElement('a');
-    results.classList.add('button', 'secondary');
-    results.href = '#results';
-    results.innerText = 'Show Results';
-    results.addEventListener('click', (e) => {
-      e.preventDefault();
-      showResults(block, config);
-    });
-    buttonWrapper.appendChild(results);
-  }
   form.appendChild(buttonWrapper);
 
   block.innerHTML = '';
   block.appendChild(form);
+}
+
+async function initState(block, blockConfig) {
+  const hasVoted = window.localStorage.getItem('poll-voted') === 'yes';
+  const results = blockConfig.results === 'true';
+
+  if (results) {
+    // just show show results
+    await showResults(block, blockConfig);
+  } else if (hasVoted) {
+    // show thanks for voting message
+    showVotedMessage(block);
+  } else {
+    // show the poll and let them vote
+    await showPoll(block, blockConfig);
+  }
+}
+
+/**
+ * loads and decorates the poll block
+ * @param {Element} block The poll block element
+ */
+export default async function decorate(block) {
+  const config = readBlockConfig(block);
+  await initState(block, config);
 }
