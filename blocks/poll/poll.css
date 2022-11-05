@@ -1,5 +1,5 @@
 main .poll-wrapper .poll {
-  width: 800px;
+  overflow-x: hidden !important;
 }
 
 main .poll-wrapper .poll form > div {
