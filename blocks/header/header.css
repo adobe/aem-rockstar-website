@@ -303,3 +303,8 @@ header nav .nav-sections ul > li > ul > li {
 header nav .nav-tools {
   grid-area: tools;
 }
+
+.icon-twitter-x > img {
+  filter: invert(.2);
+  height: 24px;
+}

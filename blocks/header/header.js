@@ -143,7 +143,7 @@ export default async function decorate(block) {
     block.append(navWrapper);
 
     block.querySelectorAll('a').forEach((a) => {
-      if (a.href.startsWith('https://summit')) {
+      if (a.href.startsWith('https://summit') || a.href.startsWith('https://twitter')) {
         a.target = '_blank';
       }
     });
