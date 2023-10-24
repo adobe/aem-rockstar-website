@@ -145,7 +145,14 @@ export default async function decorate(block) {
     block.querySelectorAll('a').forEach((a) => {
       if (a.href.startsWith('https://summit') || a.href.startsWith('https://twitter')) {
         a.target = '_blank';
+        a.setAttribute('area-label', 'Opens in new tab');
       }
     });
+    const adobe = block.querySelector('img[data-icon-name="home"]');
+    const xLogo = block.querySelector('img[data-icon-name="twitter-x"]');
+    adobe.setAttribute('alt', 'Adobe logo');
+    xLogo.setAttribute('alt', 'X logo');
+    const logoLink = block.querySelector('.nav-brand a');
+    logoLink.setAttribute('aria-label', 'AEM Rockstar Home');
   }
 }
