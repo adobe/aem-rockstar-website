@@ -1,5 +1,4 @@
 .hero-container {
-  position: relative;
   z-index: 1;
   min-height: 20rem;
   color: var(--text-color-invert);
@@ -13,11 +12,6 @@
 }
 
 .hero picture {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   z-index: -1;
   width: 100%;
 }

@@ -12,13 +12,14 @@ main .winners-carousel {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
 }
+
 @media (min-width: 900px) {
   main .winners-carousel {
     width: 50%;
   }
 }
 
-main .winners-carousel::-webkit-scrollbar { 
+main .winners-carousel::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
 }
 
@@ -32,7 +33,7 @@ main .winners-carousel .carousel-slide-card {
 main .winners-carousel .carousel-slide-card {
   display: grid;
   grid-template-columns: 1fr;
-  border: 1px solid var(--border-color);
+  border: 1px solid white;
   background-color: white;
   width: 100%;
   border-radius: 9999px;

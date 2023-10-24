@@ -18,7 +18,7 @@ main .section.cards-container {
   padding: 1rem;
 }
 
-.cards h2 {  
+.cards h2 {
   font-weight: bold;
   color: #080808;
   font-size: var(--heading-font-size-xs);
@@ -32,4 +32,22 @@ main .section.cards-container {
   .cards > ul {
     grid-template-columns: repeat(3,minmax(0,1fr));
   }
+}
+
+.cards .cards-card-image picture {
+  display: block;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.cards .cards-card-image picture img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center center;
 }
