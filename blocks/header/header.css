@@ -142,6 +142,11 @@ header nav[aria-expanded="true"] .nav-hamburger-icon::after {
   }
 }
 
+.icon-twitter-x > img {
+  filter: invert(.2);
+  height: 24px;
+}
+
 /* brand */
 header .nav-brand {
   grid-area: brand;
@@ -282,9 +287,4 @@ header nav .nav-sections ul > li > ul > li {
 /* tools */
 header nav .nav-tools {
   grid-area: tools;
-}
-
-.icon-twitter-x > img {
-  filter: invert(.2);
-  height: 24px;
 }
