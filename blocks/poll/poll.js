@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import { toClassName, readBlockConfig } from '../../scripts/scripts.js';
+import { toClassName, readBlockConfig } from '../../scripts/aem.js';
 
 function showVotedMessage(block) {
   block.innerHTML = `

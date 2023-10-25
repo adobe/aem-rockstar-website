@@ -1,4 +1,4 @@
-import { loadScript } from './utils.js';
+import { loadScript } from './aem.js';
 
 function loadAdobeLaunch() {
   const { host } = window.location;
