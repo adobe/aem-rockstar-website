@@ -20,6 +20,7 @@
   height: auto;
   margin: auto;
   display: block;
+  min-width: 450px;
 }
 
 .hero > div > div {

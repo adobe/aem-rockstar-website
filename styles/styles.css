@@ -131,14 +131,14 @@ pre {
 /* buttons */
 
 a.button:any-link, button {
-  font-family: var(--font-family-body);
+  font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
   border: 2px solid transparent;
   padding: 5px 30px;
   text-align: center;
-  font-style: normal; 
+  font-style: normal;
   font-weight: 600;
   cursor: pointer;
   color: var(--background-color);
@@ -164,7 +164,7 @@ a.button.secondary, button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color)
-} 
+}
 
 
 main input {
@@ -173,7 +173,7 @@ main input {
   max-width: 50rem;
   display: block;
   margin-bottom: 1rem;
-  padding: 0.75rem 0.6rem;    
+  padding: 0.75rem 0.6rem;
   border-radius: 0.25rem;
   box-sizing: border-box;
   border: 1px solid var(--text-color);
@@ -186,7 +186,7 @@ main input:hover {
 }
 
 main .section {
-  padding: 64px 16px;
+  padding: 34px 16px 0;
 }
 
 main pre {
@@ -229,8 +229,8 @@ main img {
 
 @media (min-width: 600px) {
   main .section {
-    padding: 64px 32px;
-  }  
+    padding: 34px 32px;
+  }
 }
 
 @media (min-width: 900px) {
@@ -240,9 +240,9 @@ main img {
     --heading-font-size-l: 2.25rem;
     --heading-font-size-m: 1.875rem;
     --heading-font-size-s: 1.5rem;
-    --heading-font-size-xs: 1.375rem;  
+    --heading-font-size-xs: 1.375rem;
   }
-  
+
   .section > div {
     max-width: 1200px;
     margin: auto;
@@ -283,12 +283,12 @@ main .section.highlight {
   .submission-guide-content {
     flex: 2;
   }
-  
+
   .submission-guide-sidebar {
     flex: 1;
     margin-top: 0;
     width: auto;
-  } 
+  }
 }
 
 .cta-box {
