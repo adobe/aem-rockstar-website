@@ -3,5 +3,6 @@ coverage/*
 logs/*
 node_modules/*
 .idea/*
+scripts/qrcode.js
 
 .DS_Store
