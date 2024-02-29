@@ -12,6 +12,7 @@ function drawChart() {
 
   const options = {
     is3D: true,
+    legend.position: 'none',
   };
 
   const chart = new google.visualization.PieChart(document.getElementById('chartContainer'));
