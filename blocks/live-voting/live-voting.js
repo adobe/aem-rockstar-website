@@ -1,20 +1,49 @@
 import { loadScript, readBlockConfig } from '../../scripts/aem.js';
 import qrcode from '../../scripts/qrcode.js';
 
+const dp = [
+  ['Name', 'Votes'],
+  ['Jack Jin', 1],
+  ['Tanuj Jindal', 1],
+  ['Bruno Mateos', 1],
+];
+function drawChart() {
+  const data = google.visualization.arrayToDataTable(dp);
+
+  const options = {
+    is3D: true,
+  };
+
+  const chart = new google.visualization.PieChart(document.getElementById('chartContainer'));
+
+  chart.draw(data, options);
+}
 export default async function decorate(block) {
   const config = readBlockConfig(block);
-
+  await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js');
+  await loadScript('https://www.gstatic.com/charts/loader.js');
   if (config.config === 'all') {
-    await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js');
-    const pusher = new Pusher({
-      appId: '1763232',
+    const pusher = new Pusher('9d2674cf3e51f6d87102', {
       cluster: 'us3',
       useTLS: true,
     });
 
     const channel = pusher.subscribe('rs-poll');
+
+    google.charts.load('current', { packages: ['corechart'] });
+
     channel.bind('rs-vote', (data) => {
-      console.log(data);
+
+      for (let i = 0; i < dp.length; i++) {
+        if (dp[i][0] === data.name) {
+          console.log(`found: ${dp[i][1]}`);
+          dp[i][1] += 1;
+          drawChart();
+        }
+      }
+      console.log(
+        `The event rs-vote was triggered with data ${JSON.stringify(data)}`,
+      );
     });
     console.log('Pusher loaded.');
 
@@ -69,9 +98,12 @@ export default async function decorate(block) {
     container.appendChild(col3);
 
     block.replaceWith(container);
+    const chart = document.createElement('div');
+    chart.id = 'chartContainer';
+    container.insertAdjacentElement('afterend', chart);
+    google.charts.setOnLoadCallback(drawChart);
   } else {
     const { name } = config;
-    console.log(name);
 
     const container = document.createElement('div');
     container.classList.add('container-vote');

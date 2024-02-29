@@ -13,3 +13,6 @@ div.container-flexbox > * {
 div.container-flexbox h2 {
     text-align: center;
 }
+#chartContainer {
+    height: 500px;
+}
