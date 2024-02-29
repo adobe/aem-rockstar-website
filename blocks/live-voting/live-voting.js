@@ -24,8 +24,8 @@ function drawChart() {
 }
 export default async function decorate(block) {
   const config = readBlockConfig(block);
-  await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js', { async: true });
-  await loadScript('https://www.gstatic.com/charts/loader.js', { async: true });
+  await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js', { defer: true });
+  await loadScript('https://www.gstatic.com/charts/loader.js', { defer: true });
   if (config.config === 'all') {
     // eslint-disable-next-line no-undef
     const pusher = new Pusher('9d2674cf3e51f6d87102', {
