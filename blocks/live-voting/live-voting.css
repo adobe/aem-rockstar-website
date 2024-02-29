@@ -1,0 +1,34 @@
+div.container-flexbox {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+div.container-flexbox > * {
+    padding: 1rem;
+    background-color: #999;
+    align-items: center;
+}
+
+div.container-flexbox > *:nth-child(1) {
+    background-color: red;
+    color: white;
+}
+
+div.container-flexbox > *:nth-child(2) {
+    background-color: blue;
+    color: white;
+}
+
+div.container-flexbox > *:nth-child(3) {
+    background-color: orange;
+    color: white;
+}
+
+div.container-flexbox h2 {
+    text-align: center;
+}
+
+#chart-container {
+    height: 500px;
+}
