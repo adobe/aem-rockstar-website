@@ -1,11 +1,23 @@
-import { readBlockConfig } from '../../scripts/aem.js';
+import { loadScript, readBlockConfig } from '../../scripts/aem.js';
 import qrcode from '../../scripts/qrcode.js';
-import pusher from './pusher.js';
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);
 
   if (config.config === 'all') {
+    await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js');
+    const pusher = new Pusher({
+      appId: '1763232',
+      cluster: 'us3',
+      useTLS: true,
+    });
+
+    const channel = pusher.subscribe('rs-poll');
+    channel.bind('rs-vote', (data) => {
+      console.log(data);
+    });
+    console.log('Pusher loaded.');
+
     const names = JSON.parse(config.names).members;
     const container = document.createElement('div');
     container.classList.add('container-flexbox');
