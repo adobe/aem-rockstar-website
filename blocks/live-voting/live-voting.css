@@ -1,0 +1,15 @@
+div.container-flexbox {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+div.container-flexbox > * {
+    padding: 1rem;
+    background-color: #999;
+    align-items: center;
+}
+
+div.container-flexbox h2 {
+    text-align: center;
+}
