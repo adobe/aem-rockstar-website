@@ -10,9 +10,25 @@ div.container-flexbox > * {
     align-items: center;
 }
 
+div.container-flexbox > *:nth-child(1) {
+    background-color: red;
+    color: white;
+}
+
+div.container-flexbox > *:nth-child(2) {
+    background-color: blue;
+    color: white;
+}
+
+div.container-flexbox > *:nth-child(3) {
+    background-color: orange;
+    color: white;
+}
+
 div.container-flexbox h2 {
     text-align: center;
 }
-#chartContainer {
+
+#chart-container {
     height: 500px;
 }

@@ -8,14 +8,17 @@ const dp = [
   ['Bruno Mateos', 1],
 ];
 function drawChart() {
+  // eslint-disable-next-line no-undef
   const data = google.visualization.arrayToDataTable(dp);
 
   const options = {
     is3D: true,
-    legend: { position: 'none'},
+    legend: { position: 'none' },
+    colors: ['red', 'blue', 'orange'],
   };
 
-  const chart = new google.visualization.PieChart(document.getElementById('chartContainer'));
+  // eslint-disable-next-line no-undef
+  const chart = new google.visualization.PieChart(document.getElementById('chart-container'));
 
   chart.draw(data, options);
 }
@@ -24,6 +27,7 @@ export default async function decorate(block) {
   await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js');
   await loadScript('https://www.gstatic.com/charts/loader.js');
   if (config.config === 'all') {
+    // eslint-disable-next-line no-undef
     const pusher = new Pusher('9d2674cf3e51f6d87102', {
       cluster: 'us3',
       useTLS: true,
@@ -31,13 +35,13 @@ export default async function decorate(block) {
 
     const channel = pusher.subscribe('rs-poll');
 
+    // eslint-disable-next-line no-undef
     google.charts.load('current', { packages: ['corechart'] });
 
     channel.bind('rs-vote', (data) => {
-
+      // eslint-disable-next-line no-plusplus
       for (let i = 0; i < dp.length; i++) {
         if (dp[i][0] === data.name) {
-          console.log(`found: ${dp[i][1]}`);
           dp[i][1] += 1;
           drawChart();
         }
@@ -46,21 +50,23 @@ export default async function decorate(block) {
         `The event rs-vote was triggered with data ${JSON.stringify(data)}`,
       );
     });
-    console.log('Pusher loaded.');
 
     const names = JSON.parse(config.names).members;
     const container = document.createElement('div');
     container.classList.add('container-flexbox');
     const col1 = document.createElement('div');
 
+    // eslint-disable-next-line new-cap
     const qrcode1 = new qrcode(0, 'H');
     qrcode1.addData('https://rockstar.adobeevents.com/en/live/a');
     qrcode1.make();
 
+    // eslint-disable-next-line new-cap
     const qrcode2 = new qrcode(0, 'H');
     qrcode2.addData('https://rockstar.adobeevents.com/en/live/b');
     qrcode2.make();
 
+    // eslint-disable-next-line new-cap
     const qrcode3 = new qrcode(0, 'H');
     qrcode3.addData('https://rockstar.adobeevents.com/en/live/c');
     qrcode3.make();
@@ -71,6 +77,7 @@ export default async function decorate(block) {
     col1.classList.add('col-1');
     col1.appendChild(qr1);
     const col1content = document.createElement('h2');
+    // eslint-disable-next-line prefer-destructuring
     col1content.innerText = names[0];
     col1.appendChild(col1content);
     container.appendChild(col1);
@@ -83,6 +90,7 @@ export default async function decorate(block) {
     col2.appendChild(qr2);
 
     const col2content = document.createElement('h2');
+    // eslint-disable-next-line prefer-destructuring
     col2content.innerText = names[1];
     col2.appendChild(col2content);
     container.appendChild(col2);
@@ -94,14 +102,16 @@ export default async function decorate(block) {
     qr3.innerHTML = qrcode3.createSvgTag({});
     col3.appendChild(qr3);
     const col3content = document.createElement('h2');
+    // eslint-disable-next-line prefer-destructuring
     col3content.innerText = names[2];
     col3.appendChild(col3content);
     container.appendChild(col3);
 
     block.replaceWith(container);
     const chart = document.createElement('div');
-    chart.id = 'chartContainer';
+    chart.id = 'chart-container';
     container.insertAdjacentElement('afterend', chart);
+    // eslint-disable-next-line no-undef
     google.charts.setOnLoadCallback(drawChart);
   } else {
     const { name } = config;
@@ -116,7 +126,7 @@ export default async function decorate(block) {
         'Content-Type': 'application/json',
       },
     });
-    const text = await res.json().then((data) => {
+    await res.json().then((data) => {
       const vote = document.createElement('h2');
       vote.innerText = data.message;
       container.appendChild(vote);
