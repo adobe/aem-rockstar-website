@@ -24,15 +24,15 @@ export default async function decorate(block) {
     const col1 = document.createElement('div');
 
     const qrcode1 = new qrcode(0, 'H');
-    qrcode1.addData('https://rockstar.adobeevents.com/en/live/a.html');
+    qrcode1.addData('https://rockstar.adobeevents.com/en/live/a');
     qrcode1.make();
 
     const qrcode2 = new qrcode(0, 'H');
-    qrcode2.addData('https://rockstar.adobeevents.com/en/live/b.html');
+    qrcode2.addData('https://rockstar.adobeevents.com/en/live/b');
     qrcode2.make();
 
     const qrcode3 = new qrcode(0, 'H');
-    qrcode3.addData('https://rockstar.adobeevents.com/en/live/c.html');
+    qrcode3.addData('https://rockstar.adobeevents.com/en/live/c');
     qrcode3.make();
 
     const qr1 = document.createElement('div');
