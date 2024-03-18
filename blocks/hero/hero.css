@@ -2,7 +2,7 @@
   z-index: 1;
   min-height: 20rem;
   color: var(--text-color-invert);
-  background-color: var(--highlight-background-color);
+  background-color: #000;
 }
 
 @media (min-width: 900px) {
