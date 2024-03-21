@@ -119,7 +119,7 @@ export default async function decorate(block) {
     const container = document.createElement('div');
     container.classList.add('container-vote');
 
-    if (sessionStorage.getItem('vote-expiration') !== null && parseInt(sessionStorage.getItem('vote-expiration'), 10) < Date.now()) {
+    if (sessionStorage.getItem('vote-expiration') === null || parseInt(sessionStorage.getItem('vote-expiration'), 10) < Date.now()) {
       const res = await fetch('https://6hcuq5rf1h.execute-api.us-east-1.amazonaws.com/vote', {
         method: 'POST',
         body: JSON.stringify({ name }),
