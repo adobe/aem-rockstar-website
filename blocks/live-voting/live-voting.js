@@ -119,22 +119,30 @@ export default async function decorate(block) {
     const container = document.createElement('div');
     container.classList.add('container-vote');
 
-    const res = await fetch('https://6hcuq5rf1h.execute-api.us-east-1.amazonaws.com/vote', {
-      method: 'POST',
-      body: JSON.stringify({ name }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    await res.json().then((data) => {
-      const vote = document.createElement('h2');
-      vote.innerText = data.message;
-      container.appendChild(vote);
-    });
+    if (sessionStorage.getItem('vote-expiration') !== null && parseInt(sessionStorage.getItem('vote-expiration'), 10) < Date.now()) {
+      const res = await fetch('https://6hcuq5rf1h.execute-api.us-east-1.amazonaws.com/vote', {
+        method: 'POST',
+        body: JSON.stringify({ name }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      await res.json().then((data) => {
+        const vote = document.createElement('h2');
+        vote.innerText = data.message;
+        container.appendChild(vote);
+      });
+      sessionStorage.setItem('vote-expiration', `${(Date.now() + (1000 * 30))}`);
+    } else {
+      const alreadyVoted = document.createElement('h2');
+      const alreadyVotedP = document.createElement('p');
+      alreadyVotedP.innerText = 'Please wait 30 seconds and reload this page to vote again for this person.';
+      alreadyVoted.innerText = 'You have already voted.';
+      container.appendChild(alreadyVoted);
+      container.appendChild(alreadyVotedP);
+    }
 
     block.replaceWith(container);
-
-    // put a limit on times a person can vote
   }
 
   console.log(`mode: ${config.config}`);
