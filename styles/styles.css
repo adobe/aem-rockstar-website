@@ -100,7 +100,7 @@ h4 { font-size: var(--heading-font-size-m) }
 h5 { font-size: var(--heading-font-size-s) }
 h6 { font-size: var(--heading-font-size-xs) }
 
-h2#meet-the-finalists {
+h2#meet-the-finalists, h2#meet-the-finalists {
   text-align: center;
   color: white;
 }
