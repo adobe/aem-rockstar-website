@@ -127,7 +127,6 @@ function sampleRUM(checkpoint, data) {
   }
 }
 
-
 /**
  * Setup block utils.
  */
