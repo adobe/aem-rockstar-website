@@ -1,10 +1,12 @@
-# AEM Rockstar on Helix
+# AEM Rockstar on Edge Delivery Services (aem.live)
 
-Your project's description...
+A website for the AEM Rockstar competition, hosted on Adobe's Edge Delivery Services.
 
 ## Environments
-- Preview: https://main--aem-rockstar-website--adobe.hlx.page
-- Live: https://main--aem-rockstar-website--adobe.hlx.live
+- Preview: https://main--aem-rockstar-website--adobe.aem.page
+- Live: https://main--aem-rockstar-website--adobe.aem.live
+
+converted to use adaptive forms block
 
 ## Installation
 
