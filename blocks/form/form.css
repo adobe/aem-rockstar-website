@@ -12,8 +12,8 @@
     --form-background-color: var(--background-color-primary);
     --form-padding: 0;
     --form-columns: 12;
-    --form-field-horz-gap: 40px;
-    --form-field-vert-gap: 20px;
+    --form-field-horz-gap: 0px;
+    --form-field-vert-gap: 0px;
     --form-invalid-border-color: #ff5f3f;
     --form-input-padding: 0.75rem 0.6rem;
     --form-input-font-size: 1rem;
