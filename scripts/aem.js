@@ -506,6 +506,9 @@ function updateSectionsStatus(main) {
       } else {
         section.dataset.sectionStatus = 'loaded';
         section.style.display = null;
+        if (i === 0 && sampleRUM.enhance) {
+          sampleRUM.enhance();
+        }
       }
     }
   }
