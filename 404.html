@@ -12,7 +12,9 @@
   <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
   <script type="module">
     import { sampleRUM } from '/scripts/scripts.js';
-
+    sampleRUM('404', { source: document.referrer });
+   </script>
+  <script type="module">
     window.addEventListener('load', () => {
       if (document.referrer) {
         const { origin, pathname } = new URL(document.referrer);
@@ -26,7 +28,6 @@
           btnContainer.append(backBtn);
         }
       }
-      sampleRUM('404', { source: document.referrer, target: window.location.href });
     });
   </script>
   <link rel="stylesheet" href="/styles/styles.css">
