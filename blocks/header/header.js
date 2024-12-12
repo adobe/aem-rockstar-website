@@ -150,8 +150,8 @@ export default async function decorate(block) {
     });
     const adobe = block.querySelector('img[data-icon-name="home"]');
     const xLogo = block.querySelector('img[data-icon-name="twitter-x"]');
-    adobe.setAttribute('alt', 'Adobe logo');
-    xLogo.setAttribute('alt', 'X logo');
+    adobe?.setAttribute('alt', 'Adobe logo');
+    xLogo?.setAttribute('alt', 'X logo');
     const logoLink = block.querySelector('.nav-brand a');
     logoLink.setAttribute('aria-label', 'AEM Rockstar Home');
   }
