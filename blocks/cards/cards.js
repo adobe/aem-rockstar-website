@@ -1,3 +1,12 @@
+function makeAccessible(block) {
+  const links = block.querySelectorAll('a');
+  links.forEach((link) => {
+    link.setAttribute('tabindex', '0');
+    link.setAttribute('role', 'link');
+    link.setAttribute('aria-label', link.textContent);
+  });
+}
+
 export default function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
@@ -17,4 +26,5 @@ export default function decorate(block) {
   });
   block.textContent = '';
   block.append(ul);
+  makeAccessible(block);
 }
