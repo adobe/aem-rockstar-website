@@ -232,13 +232,13 @@ main img {
   height: auto;
 }
 
-@media (min-width: 600px) {
+@media (width >= 600px) {
   main .section {
     padding: 34px 32px;
   }
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   :root {
     --heading-font-size-xxl: 3.75rem;
     --heading-font-size-xl: 3rem;
@@ -279,12 +279,21 @@ main .section.highlight {
   font-size: var(--body-font-size-s);
 }
 
+@media (width <= 900px) {
+  .submission-guide main {
+    margin-left: unset;
+    margin-right: unset;
+    max-width: unset;
+    display: block;
+  }
+}
+
 .submission-guide-sidebar {
   margin-top: 10%;
   width: 100%;
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   .submission-guide-content {
     flex: 2;
   }

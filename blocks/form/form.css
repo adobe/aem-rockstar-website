@@ -1,3 +1,10 @@
+
+.section .form-wrapper {
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .form .field-wrapper {
   display: grid;
   grid-auto-flow: row;
@@ -62,8 +69,9 @@
   margin: 0;
   padding: 0.5em;
   border-radius: 4px;
-  border: 1px solid black;
-  background-color: var(--background-color);
+  box-shadow: 0 0 10px rgb(0 0 0 / 13%);
+  border: 1px solid #fff;
+  background-color: #fff;
   color: var(--text-color);
   font-size: var(--body-font-size-s);
   transition: border-color 0.2s;
@@ -90,7 +98,7 @@
   width: max-content;
 }
 
-@media (width >= 600px) {
+@media (width >= 900px) {
   .form input,
   .form select,
   .form textarea {
@@ -102,12 +110,14 @@
   }
 }
 
-@media (width >= 900px) {
-  .form input,
-  .form select,
-  .form textarea {
-    max-width: 33vw;
-  }
+.form textarea[name='submission-text'] {
+  width: 100%;
+  height: 500px;
+}
+
+.form textarea[name='address'] {
+  width: 100%;
+  height: 100px;
 }
 
 .form .field-wrapper.selection-wrapper {
