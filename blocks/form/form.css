@@ -98,6 +98,10 @@
   width: max-content;
 }
 
+.form .hidden-wrapper {
+  display: none;
+}
+
 @media (width >= 900px) {
   .form input,
   .form select,

@@ -47,6 +47,10 @@ async function handleSubmit(form) {
   if (form.getAttribute('data-submitting') === 'true') return;
 
   const submit = form.querySelector('button[type="submit"]');
+  const timestamp = form.querySelector('#form-timestamp');
+  if (timestamp) {
+    timestamp.value = new Date().toISOString();
+  }
   try {
     form.setAttribute('data-submitting', 'true');
     submit.disabled = true;
