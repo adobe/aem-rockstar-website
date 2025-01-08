@@ -309,3 +309,15 @@ main .section.highlight {
   background-color: var(--highlight-background-color);
   position: relative;
 }
+
+#hero-video {
+  position: absolute;
+  right: 0;
+  bottom: 180px;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+.hero-wrapper {
+  position: relative;
+}

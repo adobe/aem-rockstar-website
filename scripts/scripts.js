@@ -23,7 +23,18 @@ function buildHeroBlock(main) {
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+
     const section = document.createElement('div');
+    const video = document.createElement('video');
+    video.id = 'hero-video';
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.setAttribute('loop', '');
+    const source = document.createElement('source');
+    source.setAttribute('src', '/styles/black-loop2.mp4');
+    source.setAttribute('type', 'video/mp4');
+    video.append(source);
+    section.append(video);
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);
   }
