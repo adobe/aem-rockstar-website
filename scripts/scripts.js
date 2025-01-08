@@ -29,10 +29,12 @@ function buildHeroBlock(main) {
     video.id = 'hero-video';
     video.setAttribute('autoplay', '');
     video.setAttribute('muted', '');
+    video.muted = true;
     video.setAttribute('loop', '');
     const source = document.createElement('source');
     source.setAttribute('src', '/styles/black-loop2.mp4');
     source.setAttribute('type', 'video/mp4');
+    video.setAttribute('playsinline', '');
     video.append(source);
     section.append(video);
     section.append(buildBlock('hero', { elems: [picture, h1] }));
