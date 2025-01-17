@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adobe. All rights reserved.
+ * Copyright 2025 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License. You may obtain a copy
  * of the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -11,7 +11,6 @@
  */
 
 /* eslint-env browser */
-
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
   const timeShift = () => (window.performance ? window.performance.now() : Date.now() - window.hlx.rum.firstReadTime);
@@ -71,7 +70,7 @@ function sampleRUM(checkpoint, data) {
         });
 
         sampleRUM.baseURL = sampleRUM.baseURL || new URL(window.RUM_BASE || '/', new URL('https://rum.hlx.page'));
-        sampleRUM.collectBaseURL = sampleRUM.collectBaseURL || new URL(window.origin);
+        sampleRUM.collectBaseURL = sampleRUM.collectBaseURL || sampleRUM.baseURL;
         sampleRUM.sendPing = (ck, time, pingData = {}) => {
           // eslint-disable-next-line max-len, object-curly-newline
           const rumData = JSON.stringify({
@@ -149,11 +148,12 @@ function setup() {
 }
 
 /**
- * Auto initializiation.
+ * Auto initialization.
  */
 
 function init() {
   setup();
+  sampleRUM.collectBaseURL = window.origin;
   sampleRUM();
 }
 
@@ -346,6 +346,48 @@ function decorateTemplateAndTheme() {
 }
 
 /**
+ * Wrap inline text content of block cells within a <p> tag.
+ * @param {Element} block the block element
+ */
+function wrapTextNodes(block) {
+  const validWrappers = [
+    'P',
+    'PRE',
+    'UL',
+    'OL',
+    'PICTURE',
+    'TABLE',
+    'H1',
+    'H2',
+    'H3',
+    'H4',
+    'H5',
+    'H6',
+  ];
+
+  const wrap = (el) => {
+    const wrapper = document.createElement('p');
+    wrapper.append(...el.childNodes);
+    el.append(wrapper);
+  };
+
+  block.querySelectorAll(':scope > div > div').forEach((blockColumn) => {
+    if (blockColumn.hasChildNodes()) {
+      const hasWrapper = !!blockColumn.firstElementChild
+        && validWrappers.some((tagName) => blockColumn.firstElementChild.tagName === tagName);
+      if (!hasWrapper) {
+        wrap(blockColumn);
+      } else if (
+        blockColumn.firstElementChild.tagName === 'PICTURE'
+        && (blockColumn.children.length > 1 || !!blockColumn.textContent.trim())
+      ) {
+        wrap(blockColumn);
+      }
+    }
+  });
+}
+
+/**
  * Decorates paragraphs containing a single link as buttons.
  * @param {Element} element container element
  */
@@ -385,17 +427,21 @@ function decorateButtons(element) {
 
 /**
  * Add <img> for icon, prefixed with codeBasePath and optional prefix.
- * @param {span} [element] span element with icon classes
- * @param {string} [prefix] prefix to be added to icon the src
+ * @param {Element} [span] span element with icon classes
+ * @param {string} [prefix] prefix to be added to icon src
+ * @param {string} [alt] alt text to be added to icon
  */
-function decorateIcon(span, prefix = '') {
+function decorateIcon(span, prefix = '', alt = '') {
   const iconName = Array.from(span.classList)
     .find((c) => c.startsWith('icon-'))
     .substring(5);
   const img = document.createElement('img');
   img.dataset.iconName = iconName;
   img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
+  img.alt = alt;
   img.loading = 'lazy';
+  img.width = 16;
+  img.height = 16;
   span.append(img);
 }
 
@@ -405,7 +451,7 @@ function decorateIcon(span, prefix = '') {
  * @param {string} [prefix] prefix to be added to icon the src
  */
 function decorateIcons(element, prefix = '') {
-  const icons = [...element.querySelectorAll('span.icon')];
+  const icons = element.querySelectorAll('span.icon');
   icons.forEach((span) => {
     decorateIcon(span, prefix);
   });
@@ -439,7 +485,10 @@ function decorateSections(main) {
       const meta = readBlockConfig(sectionMeta);
       Object.keys(meta).forEach((key) => {
         if (key === 'style') {
-          const styles = meta.style.split(',').map((style) => toClassName(style.trim()));
+          const styles = meta.style
+            .split(',')
+            .filter((style) => style)
+            .map((style) => toClassName(style.trim()));
           styles.forEach((style) => section.classList.add(style));
         } else {
           section.dataset[toCamelCase(key)] = meta[key];
@@ -485,33 +534,6 @@ async function fetchPlaceholders(prefix = 'default') {
     });
   }
   return window.placeholders[`${prefix}`];
-}
-
-/**
- * Updates all section status in a container element.
- * @param {Element} main The container element
- */
-function updateSectionsStatus(main) {
-  const sections = [...main.querySelectorAll(':scope > div.section')];
-  for (let i = 0; i < sections.length; i += 1) {
-    const section = sections[i];
-    const status = section.dataset.sectionStatus;
-    if (status !== 'loaded') {
-      const loadingBlock = section.querySelector(
-        '.block[data-block-status="initialized"], .block[data-block-status="loading"]',
-      );
-      if (loadingBlock) {
-        section.dataset.sectionStatus = 'loading';
-        break;
-      } else {
-        section.dataset.sectionStatus = 'loaded';
-        section.style.display = null;
-        if (i === 0 && sampleRUM.enhance) {
-          sampleRUM.enhance();
-        }
-      }
-    }
-  }
 }
 
 /**
@@ -583,20 +605,6 @@ async function loadBlock(block) {
 }
 
 /**
- * Loads JS and CSS for all blocks in a container element.
- * @param {Element} main The container element
- */
-async function loadBlocks(main) {
-  updateSectionsStatus(main);
-  const blocks = [...main.querySelectorAll('div.block')];
-  for (let i = 0; i < blocks.length; i += 1) {
-    // eslint-disable-next-line no-await-in-loop
-    await loadBlock(blocks[i]);
-    updateSectionsStatus(main);
-  }
-}
-
-/**
  * Decorates a block.
  * @param {Element} block The block element
  */
@@ -606,6 +614,7 @@ function decorateBlock(block) {
     block.classList.add('block');
     block.dataset.blockName = shortBlockName;
     block.dataset.blockStatus = 'initialized';
+    wrapTextNodes(block);
     const blockWrapper = block.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
@@ -646,17 +655,11 @@ async function loadFooter(footer) {
 }
 
 /**
- * Load LCP block and/or wait for LCP in default content.
- * @param {Array} lcpBlocks Array of blocks
+ * Wait for Image.
+ * @param {Element} section section element
  */
-async function waitForLCP(lcpBlocks) {
-  const block = document.querySelector('.block');
-  const hasLCPBlock = block && lcpBlocks.includes(block.dataset.blockName);
-  if (hasLCPBlock) await loadBlock(block);
-
-  document.body.style.display = null;
-  const lcpCandidate = document.querySelector('main img');
-
+async function waitForFirstImage(section) {
+  const lcpCandidate = section.querySelector('img');
   await new Promise((resolve) => {
     if (lcpCandidate && !lcpCandidate.complete) {
       lcpCandidate.setAttribute('loading', 'eager');
@@ -666,6 +669,42 @@ async function waitForLCP(lcpBlocks) {
       resolve();
     }
   });
+}
+
+/**
+ * Loads all blocks in a section.
+ * @param {Element} section The section element
+ */
+
+async function loadSection(section, loadCallback) {
+  const status = section.dataset.sectionStatus;
+  if (!status || status === 'initialized') {
+    section.dataset.sectionStatus = 'loading';
+    const blocks = [...section.querySelectorAll('div.block')];
+    for (let i = 0; i < blocks.length; i += 1) {
+      // eslint-disable-next-line no-await-in-loop
+      await loadBlock(blocks[i]);
+    }
+    if (loadCallback) await loadCallback(section);
+    section.dataset.sectionStatus = 'loaded';
+    section.style.display = null;
+  }
+}
+
+/**
+ * Loads all sections.
+ * @param {Element} element The parent element of sections to load
+ */
+
+async function loadSections(element) {
+  const sections = [...element.querySelectorAll('div.section')];
+  for (let i = 0; i < sections.length; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
+    await loadSection(sections[i]);
+    if (i === 0 && sampleRUM.enhance) {
+      sampleRUM.enhance();
+    }
+  }
 }
 
 init();
@@ -682,16 +721,17 @@ export {
   fetchPlaceholders,
   getMetadata,
   loadBlock,
-  loadBlocks,
   loadCSS,
   loadFooter,
   loadHeader,
   loadScript,
+  loadSection,
+  loadSections,
   readBlockConfig,
   sampleRUM,
   setup,
   toCamelCase,
   toClassName,
-  updateSectionsStatus,
-  waitForLCP,
+  waitForFirstImage,
+  wrapTextNodes,
 };
