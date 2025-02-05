@@ -28,7 +28,7 @@ main .section.cards-container {
   font-size: var(--body-font-size-s);
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   .cards > ul {
     grid-template-columns: repeat(3,minmax(0,1fr));
   }
