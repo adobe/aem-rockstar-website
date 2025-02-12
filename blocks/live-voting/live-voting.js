@@ -3,9 +3,9 @@ import qrcode from '../../scripts/qrcode.js';
 
 const dp = [
   ['Name', 'Votes'],
-  ['Jack Jin', 1],
-  ['Tanuj Jindal', 1],
-  ['Bruno Mateos', 1],
+  ['Martin Altman', 1],
+  ['Anian Weber', 1],
+  ['Scott Simmer', 1],
 ];
 function drawChart() {
   // eslint-disable-next-line no-undef
