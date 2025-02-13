@@ -7,6 +7,22 @@ const dp = [
   ['Anian Weber', 1],
   ['Scott Simmer', 1],
 ];
+
+async function onSubmit(token, name, container) {
+  const res = await fetch('https://eae1ezhtx7.execute-api.us-east-1.amazonaws.com/dev/vote', {
+    method: 'POST',
+    body: JSON.stringify({ name: `${name}`, token: `${token}` }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  await res.json().then((data) => {
+    const vote = document.querySelector('#aem-rockstar-live-voting');
+    vote.innerText = data.message;
+  });
+  sessionStorage.setItem('vote-expiration', `${(Date.now() + (1000 * 30))}`);
+}
+
 function drawChart() {
   // eslint-disable-next-line no-undef
   const data = google.visualization.arrayToDataTable(dp);
@@ -22,10 +38,12 @@ function drawChart() {
 
   chart.draw(data, options);
 }
+
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js', { defer: true });
   await loadScript('https://www.gstatic.com/charts/loader.js', { defer: true });
+  await loadScript('https://www.google.com/recaptcha/api.js?render=6Lc7idUqAAAAAPbV3RzZ52yjVj-UT4lIjXwF7nza', { defer: true });
   if (config.config === 'all') {
     // eslint-disable-next-line no-undef
     const pusher = new Pusher('9d2674cf3e51f6d87102', {
@@ -120,19 +138,19 @@ export default async function decorate(block) {
     container.classList.add('container-vote');
 
     if (sessionStorage.getItem('vote-expiration') === null || parseInt(sessionStorage.getItem('vote-expiration'), 10) < Date.now()) {
-      const res = await fetch('https://6hcuq5rf1h.execute-api.us-east-1.amazonaws.com/vote', {
-        method: 'POST',
-        body: JSON.stringify({ name }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      await res.json().then((data) => {
-        const vote = document.createElement('h2');
-        vote.innerText = data.message;
-        container.appendChild(vote);
-      });
-      sessionStorage.setItem('vote-expiration', `${(Date.now() + (1000 * 30))}`);
+      const captcha = document.createElement('button');
+      const head = document.querySelector('#aem-rockstar-live-voting');
+      head.textContent = config.name;
+      captcha.classList.add('g-recaptcha');
+      captcha.onclick = async () => {
+        const token = await grecaptcha.execute('6Lc7idUqAAAAAPbV3RzZ52yjVj-UT4lIjXwF7nza', { action: 'submit' });
+        if (!token) {
+          throw new Error('Failed to get reCAPTCHA token');
+        }
+        await onSubmit(token, name, container);
+      };
+      container.appendChild(captcha);
+      captcha.textContent = 'Vote';
     } else {
       const alreadyVoted = document.createElement('h2');
       const alreadyVotedP = document.createElement('p');
