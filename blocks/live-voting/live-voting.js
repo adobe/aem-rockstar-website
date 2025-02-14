@@ -8,7 +8,7 @@ const dp = [
   ['Scott Simmer', 1],
 ];
 
-async function onSubmit(token, name, container) {
+async function onSubmit(token, name, button) {
   const res = await fetch('https://eae1ezhtx7.execute-api.us-east-1.amazonaws.com/dev/vote', {
     method: 'POST',
     body: JSON.stringify({ name: `${name}`, token: `${token}` }),
@@ -16,6 +16,7 @@ async function onSubmit(token, name, container) {
       'Content-Type': 'application/json',
     },
   });
+  button.classList.add('disabled');
   await res.json().then((data) => {
     const vote = document.querySelector('#aem-rockstar-live-voting');
     vote.innerText = data.message;
@@ -141,13 +142,13 @@ export default async function decorate(block) {
       const captcha = document.createElement('button');
       const head = document.querySelector('#aem-rockstar-live-voting');
       head.textContent = config.name;
-      captcha.classList.add('g-recaptcha');
+      captcha.classList.add('protected-vote');
       captcha.onclick = async () => {
         const token = await grecaptcha.execute('6Lc7idUqAAAAAPbV3RzZ52yjVj-UT4lIjXwF7nza', { action: 'submit' });
         if (!token) {
           throw new Error('Failed to get reCAPTCHA token');
         }
-        await onSubmit(token, name, container);
+        await onSubmit(token, name, captcha);
       };
       container.appendChild(captcha);
       captcha.textContent = 'Vote';

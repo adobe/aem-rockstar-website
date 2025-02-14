@@ -32,3 +32,22 @@ div.container-flexbox h2 {
 #chart-container {
     height: 500px;
 }
+
+.container-vote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button.protected-vote {
+    height: 50px;
+    border-radius: 10px;
+    font-size: 30px;
+    visibility: visible;
+}
+
+button.protected-vote.disabled {
+    visibility: hidden;
+}
