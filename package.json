@@ -24,7 +24,7 @@
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/exec": "7.0.3",
     "@semantic-release/git": "10.0.1",
-    "semantic-release": "24.2.2",
+    "semantic-release": "24.2.3",
     "@babel/core": "7.26.9",
     "@babel/eslint-parser": "7.26.8",
     "chai": "5.2.0",
