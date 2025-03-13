@@ -24,51 +24,11 @@ async function onSubmit(token, name, button) {
   sessionStorage.setItem('vote-expiration', `${(Date.now() + (1000 * 30))}`);
 }
 
-function drawChart() {
-  // eslint-disable-next-line no-undef
-  const data = google.visualization.arrayToDataTable(dp);
-
-  const options = {
-    is3D: true,
-    legend: { position: 'none' },
-    colors: ['red', 'blue', 'orange'],
-  };
-
-  // eslint-disable-next-line no-undef
-  const chart = new google.visualization.PieChart(document.getElementById('chart-container'));
-
-  chart.draw(data, options);
-}
-
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js', { defer: true });
   await loadScript('https://www.google.com/recaptcha/api.js?render=6Lc7idUqAAAAAPbV3RzZ52yjVj-UT4lIjXwF7nza', { defer: true });
   if (config.config === 'all') {
-    // eslint-disable-next-line no-undef
-    const pusher = new Pusher('9d2674cf3e51f6d87102', {
-      cluster: 'us3',
-      useTLS: true,
-    });
-
-    const channel = pusher.subscribe('rs-poll');
-
-    // eslint-disable-next-line no-undef
-    google.charts.load('current', {packages: ['corechart']});
-
-    channel.bind('rs-vote', (data) => {
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < dp.length; i++) {
-        if (dp[i][0] === data.name) {
-          dp[i][1] += 1;
-          drawChart();
-        }
-      }
-      console.log(
-          `The event rs-vote was triggered with data ${JSON.stringify(data)}`,
-      );
-    });
-
     const names = JSON.parse(config.names).members;
     const container = document.createElement('div');
     container.classList.add('container-flexbox');
@@ -116,9 +76,6 @@ export default async function decorate(block) {
     // column three
     const col3 = document.createElement('div');
     col3.classList.add('col-3');
-    // const qr3 = document.createElement('div');
-    // qr3.innerHTML = qrcode3.createSvgTag({});
-    // col3.appendChild(qr3);
     const col3content = document.createElement('h2');
     const col3A = document.createElement('a');
     col3A.href = 'https://rockstar.adobeevents.com/en/live/c';
@@ -127,16 +84,7 @@ export default async function decorate(block) {
     col3A.appendChild(col3content);
     col3.appendChild(col3A);
     container.appendChild(col3);
-
-
     block.replaceWith(container);
-    /*
-    const chart = document.createElement('div');
-    chart.id = 'chart-container';
-    container.insertAdjacentElement('afterend', chart);
-    */
-    // eslint-disable-next-line no-undef
-    // google.charts.setOnLoadCallback(drawChart);
   } else if (config.config === 'qr-only') {
     const allCode = new qrcode(0, 'H');
     allCode.addData('https://rockstar.adobeevents.com/en/live/all');
