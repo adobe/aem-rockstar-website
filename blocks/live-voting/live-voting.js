@@ -43,7 +43,6 @@ function drawChart() {
 export default async function decorate(block) {
   const config = readBlockConfig(block);
   await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js', { defer: true });
-  await loadScript('https://www.gstatic.com/charts/loader.js', { defer: true });
   await loadScript('https://www.google.com/recaptcha/api.js?render=6Lc7idUqAAAAAPbV3RzZ52yjVj-UT4lIjXwF7nza', { defer: true });
   if (config.config === 'all') {
     // eslint-disable-next-line no-undef
@@ -129,12 +128,15 @@ export default async function decorate(block) {
     col3.appendChild(col3A);
     container.appendChild(col3);
 
+
     block.replaceWith(container);
+    /*
     const chart = document.createElement('div');
     chart.id = 'chart-container';
     container.insertAdjacentElement('afterend', chart);
+    */
     // eslint-disable-next-line no-undef
-    google.charts.setOnLoadCallback(drawChart);
+    // google.charts.setOnLoadCallback(drawChart);
   } else if (config.config === 'qr-only') {
     const allCode = new qrcode(0, 'H');
     allCode.addData('https://rockstar.adobeevents.com/en/live/all');
