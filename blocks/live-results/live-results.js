@@ -13,7 +13,7 @@ function drawChart() {
 
   const options = {
     is3D: true,
-    legend: { position: 'top' },
+    legend: { position: 'top', textStyle: { fontSize: 24 }, alignment: 'center' },
     colors: ['red', 'blue', 'orange'],
     height: 700,
   };
