@@ -55,7 +55,7 @@ export default async function decorate(block) {
     const channel = pusher.subscribe('rs-poll');
 
     // eslint-disable-next-line no-undef
-    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.load('current', {packages: ['corechart']});
 
     channel.bind('rs-vote', (data) => {
       // eslint-disable-next-line no-plusplus
@@ -66,7 +66,7 @@ export default async function decorate(block) {
         }
       }
       console.log(
-        `The event rs-vote was triggered with data ${JSON.stringify(data)}`,
+          `The event rs-vote was triggered with data ${JSON.stringify(data)}`,
       );
     });
 
@@ -74,6 +74,7 @@ export default async function decorate(block) {
     const container = document.createElement('div');
     container.classList.add('container-flexbox');
     const col1 = document.createElement('div');
+    col1.classList.add('col-1');
 
     // eslint-disable-next-line new-cap
     const qrcode1 = new qrcode(0, 'H');
@@ -92,38 +93,40 @@ export default async function decorate(block) {
 
     const qr1 = document.createElement('div');
     qr1.classList.add('qr1');
-    qr1.innerHTML = qrcode1.createSvgTag({});
-    col1.classList.add('col-1');
-    col1.appendChild(qr1);
     const col1content = document.createElement('h2');
+    const col1A = document.createElement('a');
+    col1A.href = 'https://rockstar.adobeevents.com/en/live/a';
     // eslint-disable-next-line prefer-destructuring
     col1content.innerText = names[0];
-    col1.appendChild(col1content);
+    col1A.appendChild(col1content);
+    col1.appendChild(col1A);
     container.appendChild(col1);
 
     // column two
     const col2 = document.createElement('div');
     col2.classList.add('col-2');
-    const qr2 = document.createElement('div');
-    qr2.innerHTML = qrcode2.createSvgTag({});
-    col2.appendChild(qr2);
-
     const col2content = document.createElement('h2');
+    const col2A = document.createElement('a');
+    col2A.href = 'https://rockstar.adobeevents.com/en/live/b';
     // eslint-disable-next-line prefer-destructuring
     col2content.innerText = names[1];
-    col2.appendChild(col2content);
+    col2A.appendChild(col2content);
+    col2.appendChild(col2A);
     container.appendChild(col2);
 
     // column three
     const col3 = document.createElement('div');
     col3.classList.add('col-3');
-    const qr3 = document.createElement('div');
-    qr3.innerHTML = qrcode3.createSvgTag({});
-    col3.appendChild(qr3);
+    // const qr3 = document.createElement('div');
+    // qr3.innerHTML = qrcode3.createSvgTag({});
+    // col3.appendChild(qr3);
     const col3content = document.createElement('h2');
+    const col3A = document.createElement('a');
+    col3A.href = 'https://rockstar.adobeevents.com/en/live/c';
     // eslint-disable-next-line prefer-destructuring
     col3content.innerText = names[2];
-    col3.appendChild(col3content);
+    col3A.appendChild(col3content);
+    col3.appendChild(col3A);
     container.appendChild(col3);
 
     block.replaceWith(container);
@@ -132,6 +135,14 @@ export default async function decorate(block) {
     container.insertAdjacentElement('afterend', chart);
     // eslint-disable-next-line no-undef
     google.charts.setOnLoadCallback(drawChart);
+  } else if (config.config === 'qr-only') {
+    const allCode = new qrcode(0, 'H');
+    allCode.addData('https://rockstar.adobeevents.com/en/live/all');
+    allCode.make();
+    const qr = document.createElement('div');
+    qr.classList.add('qr-all');
+    qr.innerHTML = allCode.createSvgTag({});
+    block.replaceWith(qr);
   } else {
     const { name } = config;
 

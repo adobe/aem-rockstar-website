@@ -1,7 +1,8 @@
 div.container-flexbox {
-    display: grid;
-    grid-auto-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 20px;
 }
 
 div.container-flexbox > * {
@@ -13,6 +14,15 @@ div.container-flexbox > * {
 div.container-flexbox > *:nth-child(1) {
     background-color: red;
     color: white;
+}
+
+div.live-voting-wrapper > div.container-flexbox > div > a {
+    color: #fff;
+    text-decoration: none;
+}
+
+div.live-voting-wrapper > div.qr-all {
+    width: 100%;
 }
 
 div.container-flexbox > *:nth-child(2) {
