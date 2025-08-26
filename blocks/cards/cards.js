@@ -20,9 +20,36 @@ export default function decorate(block) {
     ul.append(li);
   });
   ul.querySelectorAll('img').forEach((img) => {
-    const ratio = (parseInt(img.height, 10) / parseInt(img.width, 10)) * 100;
     const picture = img.parentElement;
-    picture.style.paddingBottom = `${ratio}%`;
+    
+    // Function to set aspect ratio and handle loading
+    const setAspectRatio = () => {
+      const width = img.naturalWidth || img.width;
+      const height = img.naturalHeight || img.height;
+      
+      if (width && height) {
+        // Use aspect-ratio CSS property instead of padding-bottom
+        picture.style.aspectRatio = `${width}/${height}`;
+      }
+      
+      // Add loaded class for opacity transition
+      img.classList.add('loaded');
+    };
+    
+    // If image is already loaded, set aspect ratio immediately
+    if (img.complete && img.naturalWidth !== 0) {
+      setAspectRatio();
+    } else {
+      // Otherwise, wait for image to load
+      img.addEventListener('load', setAspectRatio);
+      img.addEventListener('error', () => {
+        // Keep default aspect ratio on error and show image
+        img.classList.add('loaded');
+      });
+    }
+    
+    // Add loading="lazy" to prevent unnecessary CLS from off-screen images
+    img.setAttribute('loading', 'lazy');
   });
   block.textContent = '';
   block.append(ul);
