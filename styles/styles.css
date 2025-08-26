@@ -155,14 +155,16 @@ a.button:any-link, button {
   border-radius: 30px;
 }
 
-.section.blue-header a.button {
+.section.blue-header a.button,
+.section.blue-header a.button.disabled {
   background-color: #ff8c42;
   color: #fff;
   border-radius: 10px;
   font-weight: normal;
 }
 
-.section.news a.button {
+.section.news a.button,
+.section.news a.button.disabled {
   background-color: #ff8c42;
   color: #fff;
   border-radius: 10px;
@@ -177,6 +179,50 @@ a.button:hover, a.button:focus, button:hover, button:focus  {
 button:disabled, button:disabled:hover {
   background-color: var(--overlay-background-color);
   cursor: unset;
+}
+
+a.button.disabled, a.button.disabled:hover {
+  font-family: var(--body-font-family);
+  display: inline-block;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: 2px solid transparent;
+  padding: 5px 30px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  color: var(--background-color);
+  background-color: var(--link-color);
+  margin: 16px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 30px;
+  cursor: not-allowed !important;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.button-container-disabled {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section.blue-header .button-container-disabled {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-lock.icon-locked {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('/icons/locked.svg') no-repeat center;
+  background-size: contain;
+  opacity: 0.7;
+  flex-shrink: 0;
 }
 
 a.button.secondary, button.secondary {
