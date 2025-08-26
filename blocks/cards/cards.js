@@ -3,7 +3,8 @@ function makeAccessible(block) {
   links.forEach((link) => {
     link.setAttribute('tabindex', '0');
     link.setAttribute('role', 'link');
-    link.setAttribute('aria-label', link.textContent);
+    const linkText = link.textContent?.trim();
+    link.setAttribute('aria-label', linkText || 'View card details');
   });
 }
 
