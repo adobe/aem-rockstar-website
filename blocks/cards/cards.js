@@ -19,8 +19,19 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
-  // Optimize images for better loading
+  // Set aspect ratios immediately using AEM-provided dimensions
   ul.querySelectorAll('img').forEach((img) => {
+    const picture = img.parentElement;
+    
+    // Get dimensions from attributes (AEM provides these)
+    const width = parseInt(img.getAttribute('width'), 10);
+    const height = parseInt(img.getAttribute('height'), 10);
+    
+    if (width && height && width > 0 && height > 0) {
+      // Set aspect ratio on the picture element to prevent CLS
+      picture.style.aspectRatio = `${width}/${height}`;
+    }
+    
     // Add loading attribute if not already present
     if (!img.hasAttribute('loading')) {
       img.setAttribute('loading', 'lazy');
