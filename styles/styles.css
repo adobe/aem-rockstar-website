@@ -158,7 +158,7 @@ a.button:any-link, button {
 .section.blue-header a.button,
 .section.blue-header a.button.disabled {
   background-color: #ff8c42;
-  color: #fff;
+  color: #1A1A1A;
   border-radius: 10px;
   font-weight: normal;
 }
@@ -166,7 +166,7 @@ a.button:any-link, button {
 .section.news a.button,
 .section.news a.button.disabled {
   background-color: #ff8c42;
-  color: #fff;
+  color: #1A1A1A;
   border-radius: 10px;
   font-weight: normal;
 }
