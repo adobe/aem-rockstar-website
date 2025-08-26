@@ -200,7 +200,7 @@ a.button.disabled, a.button.disabled:hover {
   border-radius: 30px;
   cursor: not-allowed !important;
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .button-container-disabled {
