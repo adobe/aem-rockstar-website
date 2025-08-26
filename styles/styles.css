@@ -155,6 +155,20 @@ a.button:any-link, button {
   border-radius: 30px;
 }
 
+.section.blue-header a.button {
+  background-color: #ff8c42;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: normal;
+}
+
+.section.news a.button {
+  background-color: #ff8c42;
+  color: #fff;
+  border-radius: 10px;
+  font-weight: normal;
+}
+
 a.button:hover, a.button:focus, button:hover, button:focus  {
   background-color: var(--link-hover-color);
   cursor: pointer;
@@ -192,6 +206,42 @@ main input:hover {
 
 main .section {
   padding: 34px 16px 0;
+}
+
+main .section.news {
+  background-color: #ffedd4;
+}
+
+main .section.blue-header {
+  background-color: #3d59a8;
+  background: linear-gradient(90deg,rgba(61, 89, 168, 1) 0%, rgba(61, 89, 168, 0.7) 100%);
+  color: white;
+}
+
+main .section.light-blue {
+  background-color: #e6f0ff;
+}
+
+main .section.peach {
+  background-color: #fffbf6;
+}
+
+main .section.blue-header h2 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  font-family: var(--body-font-family);
+}
+
+main .section.light-blue h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  font-family: var(--body-font-family);
+}
+
+main .section.peach h2 {
+  font-size: 2rem;
+  font-weight: normal;
+  font-family: var(--body-font-family);
 }
 
 main pre {
