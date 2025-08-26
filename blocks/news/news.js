@@ -26,7 +26,7 @@ export default async function decorate(block) {
     topRow.appendChild(dateItem);
     const headlineItem = document.createElement('div');
     headlineItem.classList.add('headline-item');
-    const headlineElement = document.createElement('h4');
+    const headlineElement = document.createElement('h3');
     headlineElement.innerHTML = headline;
     headlineItem.appendChild(headlineElement);
     topRow.appendChild(headlineItem);
