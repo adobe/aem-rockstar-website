@@ -19,25 +19,17 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
-  // Set aspect ratios immediately using AEM-provided dimensions
-  ul.querySelectorAll('img').forEach((img) => {
-    const picture = img.parentElement;
-    
-    // Get dimensions from attributes (AEM provides these)
-    const width = parseInt(img.getAttribute('width'), 10);
-    const height = parseInt(img.getAttribute('height'), 10);
-    
-    if (width && height && width > 0 && height > 0) {
-      // Set aspect ratio on the picture element to prevent CLS
-      picture.style.aspectRatio = `${width}/${height}`;
-    }
-    
-    // Add loading attribute if not already present
-    if (!img.hasAttribute('loading')) {
+  // Optimize images to prevent CLS
+  ul.querySelectorAll('img').forEach((img, index) => {
+    // First image loads eagerly for LCP, rest are lazy
+    if (index === 0) {
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('fetchpriority', 'high');
+    } else if (!img.hasAttribute('loading')) {
       img.setAttribute('loading', 'lazy');
     }
     
-    // Set decode attribute for better performance
+    // Add decoding attribute for performance
     img.setAttribute('decoding', 'async');
   });
   block.textContent = '';
