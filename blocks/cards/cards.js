@@ -19,17 +19,14 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
-  // Optimize images to prevent CLS
-  ul.querySelectorAll('img').forEach((img, index) => {
-    // First image loads eagerly for LCP, rest are lazy
-    if (index === 0) {
-      img.setAttribute('loading', 'eager');
-      img.setAttribute('fetchpriority', 'high');
-    } else if (!img.hasAttribute('loading')) {
+  // Optimize images for better loading
+  ul.querySelectorAll('img').forEach((img) => {
+    // Add loading attribute if not already present
+    if (!img.hasAttribute('loading')) {
       img.setAttribute('loading', 'lazy');
     }
     
-    // Add decoding attribute for performance
+    // Set decode attribute for better performance
     img.setAttribute('decoding', 'async');
   });
   block.textContent = '';
