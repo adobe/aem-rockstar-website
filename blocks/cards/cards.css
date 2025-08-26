@@ -36,27 +36,12 @@ main .section.cards-container {
 
 .cards .cards-card-image picture {
   display: block;
-  position: relative;
   width: 100%;
   margin: 0 auto;
-  /* Default aspect ratio to prevent CLS - will be overridden by JS */
-  aspect-ratio: 16/9;
-  padding-bottom: 0; /* Reset any padding-bottom */
 }
 
 .cards .cards-card-image picture img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
   width: 100%;
-  object-fit: contain;
-  object-position: center center;
-  /* Ensure smooth loading */
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.cards .cards-card-image picture img.loaded {
-  opacity: 1;
+  height: auto;
+  display: block;
 }

@@ -19,37 +19,15 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+  // Optimize images for better loading
   ul.querySelectorAll('img').forEach((img) => {
-    const picture = img.parentElement;
-    
-    // Function to set aspect ratio and handle loading
-    const setAspectRatio = () => {
-      const width = img.naturalWidth || img.width;
-      const height = img.naturalHeight || img.height;
-      
-      if (width && height) {
-        // Use aspect-ratio CSS property instead of padding-bottom
-        picture.style.aspectRatio = `${width}/${height}`;
-      }
-      
-      // Add loaded class for opacity transition
-      img.classList.add('loaded');
-    };
-    
-    // If image is already loaded, set aspect ratio immediately
-    if (img.complete && img.naturalWidth !== 0) {
-      setAspectRatio();
-    } else {
-      // Otherwise, wait for image to load
-      img.addEventListener('load', setAspectRatio);
-      img.addEventListener('error', () => {
-        // Keep default aspect ratio on error and show image
-        img.classList.add('loaded');
-      });
+    // Add loading attribute if not already present
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
     }
     
-    // Add loading="lazy" to prevent unnecessary CLS from off-screen images
-    img.setAttribute('loading', 'lazy');
+    // Set decode attribute for better performance
+    img.setAttribute('decoding', 'async');
   });
   block.textContent = '';
   block.append(ul);
