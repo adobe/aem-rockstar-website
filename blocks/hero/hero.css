@@ -155,7 +155,6 @@
   top: 72%;
   left: 60%;
   transform: translateX(-50%) rotate(-9deg);
-  background: linear-gradient(90deg, transparent, rgba(193,53,132,.9), transparent);
 }
 
 @media (max-width: 980px) {
