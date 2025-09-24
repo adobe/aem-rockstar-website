@@ -44,6 +44,18 @@
 
   /* standard shadow */
   --box-shadow: rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 0%) 0 0 0 0, rgb(0 0 0 / 10%) 0 0 50px -5px, rgb(0 0 0 / 4%) 0 10px 10px -5px;
+
+  /* masterclass theme variables (prefixed for compatibility) */
+  --masterclass-bg-1: #0b0b10;           /* deep stage black */
+  --masterclass-bg-2: #171429;           /* indigo */
+  --ink: #eef0f4;                        /* light text */
+  --muted: #c5c8d2;                      /* secondary text */
+  --brand-1: #f97316;                    /* orange */
+  --brand-2: #c026d3;                    /* magenta */
+  --brand-3: #7c3aed;                    /* purple */
+  --card: #10121a;                       /* card bg */
+  --shadow: 0 10px 30px rgba(0,0,0,.45);
+  --radius-xl: 22px;
 }
 
 @font-face {
@@ -320,4 +332,13 @@ main .section.highlight {
 
 .hero-wrapper {
   position: relative;
+}
+
+/* Masterclass body styling when hero is present */
+body.masterclass {
+  background: radial-gradient(1200px 600px at 80% -10%, #ee5a24 0%, transparent 60%),
+              radial-gradient(900px 600px at 10% 10%, #6d28d9 0%, transparent 60%),
+              linear-gradient(180deg, var(--masterclass-bg-2), var(--masterclass-bg-1) 55%);
+  background-attachment: fixed;
+  color: var(--ink);
 }
