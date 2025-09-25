@@ -1,6 +1,9 @@
 div.info-container .info-wrapper {
     background-color: #fff;
     border-radius: 10px;
+    border: 1px solid #c7c7ca;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
 }
 
 div.info.block {
