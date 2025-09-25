@@ -60,6 +60,7 @@
 
 .hero .headline p {
   margin: .5rem 0 1rem;
+  font-size: .95rem;
   color: var(--muted);
 }
 
