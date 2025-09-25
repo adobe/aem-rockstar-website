@@ -1,3 +1,0 @@
-mountpoints:
-  /:  url: https://content.da.live/adobe/aem-rockstar-website/
-      type: markup
