@@ -1,2 +1,3 @@
 mountpoints:
-  /: https://drive.google.com/drive/u/1/folders/1JFKwVoPwl8iis1hirOTWNwUMFxb7LVF2
+  /:  url: https://content.da.live/adobe/aem-rockstar-website/
+      type: markup

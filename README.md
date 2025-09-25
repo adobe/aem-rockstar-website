@@ -1,6 +1,6 @@
 # AEM Rockstar on Edge Delivery Services (aem.live)
 
-A website for the AEM Rockstar competition, hosted on Adobe's Edge Delivery Services.
+A website for the AEM Rockstar competition, hosted on Adobe's Edge Delivery Services with Document Authoring
 
 ## Environments
 - Preview: https://main--aem-rockstar-website--adobe.aem.page
