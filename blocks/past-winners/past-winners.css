@@ -1,0 +1,169 @@
+.past-winners-container {
+  padding: 20px 0;
+}
+
+.past-winners-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.trophy-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.past-winners-header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  font-family: var(--heading-font-family);
+}
+
+.winners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+}
+
+.winner-card {
+  position: relative;
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  padding: 40px 30px 30px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.winner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.year-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #ec1000;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.recording-link {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(46, 91, 186, 0.9);
+  border-radius: 50%;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.recording-link:hover {
+  background: #2E5BBA;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(46, 91, 186, 0.3);
+}
+
+.recording-icon {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+.photo-container {
+  margin: 20px 0 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.winner-photo,
+.photo-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #2E5BBA;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.winner-info {
+  margin-top: 20px;
+}
+
+.winner-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  font-family: var(--heading-font-family);
+}
+
+/* Responsive design */
+/* Tablet: 2 columns */
+@media (max-width: 1024px) {
+  .winners-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  }
+}
+
+/* Mobile: 1 column */
+@media (max-width: 768px) {
+  .winners-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .winner-card {
+    padding: 30px 20px 20px;
+  }
+  
+  .past-winners-header {
+    margin-bottom: 30px;
+  }
+  
+  .past-winners-header h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .winner-card {
+    margin: 0 10px;
+    padding: 25px 15px 15px;
+  }
+  
+  .winner-photo,
+  .photo-placeholder {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .winner-name {
+    font-size: 1.2rem;
+  }
+}

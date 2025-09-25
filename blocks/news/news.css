@@ -1,0 +1,95 @@
+.section.news div.news-container {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #c7c7ca;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 16px;
+}
+
+.news h2 {
+    font-size: 2rem;
+    font-weight: normal;
+    font-family: var(--font-family);
+}
+
+.news h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: var(--font-family);
+}
+
+.news .date-item {
+    border: 1px solid #c7c7ca;
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6f7f7;
+    text-align: center;
+}
+
+.news .date-month {
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.news .date-day {
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.news .top-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.news .headline-item {
+    color: #000;
+    flex: 1;
+}
+
+/* Block group wrapper styling */
+.section .block-group-wrapper {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-top: 20px;
+}
+
+.section .block-group-wrapper > * {
+    flex: 0 0 calc(50% - 10px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.section .block-group-wrapper > * > .block {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.section .block-group-wrapper .news-container,
+.section .block-group-wrapper .info-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .section .block-group-wrapper {
+        flex-direction: column;
+    }
+    
+    .section .block-group-wrapper > * {
+        flex: 1 1 100%;
+    }
+}

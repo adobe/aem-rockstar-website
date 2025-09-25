@@ -26,6 +26,7 @@ function buildHeroBlock(main) {
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
 
     const section = document.createElement('div');
+    /*
     const video = document.createElement('video');
     video.id = 'hero-video';
     video.setAttribute('autoplay', '');
@@ -38,6 +39,7 @@ function buildHeroBlock(main) {
     video.setAttribute('playsinline', '');
     video.append(source);
     section.append(video);
+    */
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);
   }

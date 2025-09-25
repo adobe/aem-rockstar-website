@@ -12,7 +12,7 @@ main .section.cards-container {
 }
 
 .cards > ul > li {
-  border: 1px solid #000;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background-color: var(--background-color);
   border-radius: 10px;
   padding: 1rem;
@@ -36,18 +36,12 @@ main .section.cards-container {
 
 .cards .cards-card-image picture {
   display: block;
-  position: relative;
-  height: 100%;
   width: 100%;
   margin: 0 auto;
 }
 
 .cards .cards-card-image picture img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
   width: 100%;
-  object-fit: contain;
-  object-position: center center;
+  height: auto;
+  display: block;
 }
