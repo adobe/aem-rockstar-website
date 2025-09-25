@@ -1,0 +1,80 @@
+/* Info Cards Block - Masterclass split layout with cards */
+
+.info-cards-container .info-cards-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 24px);
+}
+
+.info-cards {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.info-cards .cards-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 4vw, 40px);
+}
+
+.info-cards .card {
+  background: var(--card, #10121a);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: clamp(18px, 2.4vw, 26px);
+  border-radius: var(--radius-xl, 22px);
+  box-shadow: var(--shadow, 0 10px 30px rgba(0, 0, 0, 0.45));
+}
+
+.info-cards .card h2 {
+  font-size: var(--heading-font-size-m);
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--ink, #eef0f4);
+}
+
+.info-cards .card p {
+  margin: 0.5rem 0 1rem;
+  color: var(--muted, #c5c8d2);
+  line-height: 1.6;
+  font-size: var(--body-font-size-s);
+}
+
+.info-cards .card ul {
+  margin: .8rem 0;
+  padding-left: 1.5rem;
+  color: var(--muted, #c5c8d2);
+  font-size: var(--body-font-size-xs);
+}
+
+.info-cards .card li {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.info-cards .card li::marker {
+  color: var(--brand-1, #f97316);
+}
+
+
+/* Responsive breakpoints */
+@media (width >= 768px) {
+  .info-cards .cards-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Light theme fallback */
+body:not(.masterclass) .info-cards .card {
+  background: var(--background-color, #fff);
+  border: 1px solid var(--overlay-background-color, #eee);
+  box-shadow: var(--box-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
+}
+
+body:not(.masterclass) .info-cards .card h2 {
+  color: var(--text-color, #000);
+}
+
+body:not(.masterclass) .info-cards .card p,
+body:not(.masterclass) .info-cards .card li {
+  color: var(--text-color, #000);
+}
+
