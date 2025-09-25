@@ -130,10 +130,6 @@
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background:
-    radial-gradient(600px 360px at 90% 35%, rgba(255,115,0,.14), transparent 60%),
-    radial-gradient(420px 280px at 72% 48%, rgba(255,115,0,.18), transparent 55%),
-    radial-gradient(520px 380px at 30% 15%, rgba(174,0,255,.18), transparent 60%);
 }
 
 .hero .bolt::before,
