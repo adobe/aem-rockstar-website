@@ -52,7 +52,7 @@ export default function decorate(block) {
       // Row 3: Description paragraph
       else if (rowIndex === 3 && content) {
         const p = document.createElement('p');
-        p.textContent = content;
+        p.innerHTML = cell.innerHTML;
         headline.appendChild(p);
       }
       // Row 4: CTA buttons (each cell is a button)
