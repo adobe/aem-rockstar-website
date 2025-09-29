@@ -3,7 +3,8 @@ function makeAccessible(block) {
   links.forEach((link) => {
     link.setAttribute('tabindex', '0');
     link.setAttribute('role', 'link');
-    link.setAttribute('aria-label', link.textContent);
+    const linkText = link.textContent?.trim();
+    link.setAttribute('aria-label', linkText || 'View card details');
   });
 }
 
@@ -19,10 +20,15 @@ export default function decorate(block) {
     });
     ul.append(li);
   });
+  // Optimize images for better loading
   ul.querySelectorAll('img').forEach((img) => {
-    const ratio = (parseInt(img.height, 10) / parseInt(img.width, 10)) * 100;
-    const picture = img.parentElement;
-    picture.style.paddingBottom = `${ratio}%`;
+    // Add loading attribute if not already present
+    if (!img.hasAttribute('loading')) {
+      img.setAttribute('loading', 'lazy');
+    }
+    
+    // Set decode attribute for better performance
+    img.setAttribute('decoding', 'async');
   });
   block.textContent = '';
   block.append(ul);

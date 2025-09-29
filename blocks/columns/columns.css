@@ -7,6 +7,56 @@
     width: 100%;
 }
 
+.section.peach div.columns-3-cols > div > div {
+    position: relative;
+    padding-left: 70px;
+}
+
+.section.peach div.columns-3-cols > div > div:first-of-type::before {
+    content: '';
+    display: block;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('/icons/Smock_Calendar_18_N.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.section.peach div.columns-3-cols > div > div:nth-of-type(2)::before {
+    content: '';
+    display: block;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('/icons/Smock_Trophy_18_N.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.section.peach div.columns-3-cols > div > div:nth-of-type(3)::before {
+    content: '';
+    display: block;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-image: url('/icons/Smock_GlobeOutline_18_N.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
 @media (min-width: 900px) {
     .columns > div {
         display: flex;
