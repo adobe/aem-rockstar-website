@@ -154,12 +154,28 @@
   transform: translateX(-50%) rotate(-9deg);
 }
 
-@media (max-width: 980px) {
+@media (width < 900px) {
   .hero-inner {
     grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
   }
+  
   .hero .logo-wrap {
     max-width: 420px;
+    order: -1;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  .hero .headline {
+    text-align: center;
+  }
+  
+  .hero .badges {
+    justify-content: center;
+  }
+  
+  .hero .cta-row {
+    justify-content: center;
   }
 }
 

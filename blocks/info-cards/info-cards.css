@@ -56,7 +56,7 @@
 
 
 /* Responsive breakpoints */
-@media (width >= 768px) {
+@media (width >= 900px) {
   .info-cards .cards-row {
     grid-template-columns: 1fr 1fr;
   }
