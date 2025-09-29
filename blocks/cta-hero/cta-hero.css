@@ -1,0 +1,186 @@
+/* Masterclass cta-hero block styles */
+.cta-hero-container .cta-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.cta-hero {
+  position: relative;
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+  color: var(--ink);
+}
+
+.cta-hero-inner {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 24px);
+}
+
+.cta-hero .logo-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 520px;
+  margin: 0 auto;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,.6));
+}
+
+.cta-hero .logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cta-hero .headline h1 {
+  font-size: clamp(2rem, 4.6vw, 4rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 .6rem;
+}
+
+.cta-hero .headline h1 .stroke {
+  background: linear-gradient(135deg, #fff, #ddd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 6px 28px rgba(0,0,0,.35);
+}
+
+.cta-hero .kicker {
+  color: #ffd7b0;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: .18em;
+  font-size: .9rem;
+  margin: 12px 0 8px;
+}
+
+.cta-hero .headline p {
+  margin: .5rem 0 1rem;
+  font-size: .95rem;
+  color: var(--muted);
+}
+
+.cta-hero .badges {
+  display: flex;
+  gap: .6rem;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.cta-hero .badge {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  padding: .35rem .7rem;
+  font-size: .85rem;
+  color: var(--muted);
+}
+
+.cta-hero .cta-row {
+  display: flex;
+  gap: .9rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1.1rem;
+}
+
+.cta-hero .btn {
+  --pad-x: clamp(16px, 2.2vw, 22px);
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: 12px var(--pad-x);
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: .2px;
+  transition: transform .16s ease, filter .2s ease, box-shadow .2s ease;
+  box-shadow: var(--shadow);
+  will-change: transform, filter;
+}
+
+.cta-hero .btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.cta-hero .btn.primary {
+  background: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+  color: white;
+}
+
+.cta-hero .btn.secondary {
+  background: transparent;
+  color: white;
+  backdrop-filter: blur(6px);
+}
+
+.cta-hero .btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* Lightning accents */
+.cta-hero .bolt {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.cta-hero .bolt::before,
+.cta-hero .bolt::after {
+  content: "";
+  position: absolute;
+  width: 48vw;
+  max-width: 620px;
+  height: 2px;
+  opacity: .7;
+  left: 52%;
+  top: 22%;
+  transform: translateX(-50%) rotate(6deg);
+  background: linear-gradient(90deg, transparent, rgba(255,160,64,.9), transparent);
+  filter: blur(0.6px);
+}
+
+.cta-hero .bolt::after {
+  top: 72%;
+  left: 60%;
+  transform: translateX(-50%) rotate(-9deg);
+}
+
+@media (width < 900px) {
+  .cta-hero-inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+  
+  .cta-hero .logo-wrap {
+    max-width: 420px;
+    order: -1;
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+  
+  .cta-hero .headline {
+    text-align: center;
+  }
+  
+  .cta-hero .badges {
+    justify-content: center;
+  }
+  
+  .cta-hero .cta-row {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-hero .btn {
+    transition: none;
+  }
+}
