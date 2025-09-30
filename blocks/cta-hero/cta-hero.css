@@ -93,7 +93,7 @@
   display: inline-flex;
   align-items: center;
   gap: .6rem;
-  padding: 12px var(--pad-x);
+  padding: 8px var(--pad-x);
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.18);
   text-decoration: none;
