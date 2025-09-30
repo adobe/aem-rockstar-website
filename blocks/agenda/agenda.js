@@ -55,6 +55,7 @@ export default function decorate(block) {
       // Create break row - time and break label
       const breakRow = document.createElement('div');
       breakRow.className = 'agenda-break';
+      breakRow.setAttribute('role', 'listitem');
       breakRow.setAttribute('aria-label', 'Break');
       
       const timeSpan = document.createElement('span');
