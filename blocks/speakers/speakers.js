@@ -11,9 +11,8 @@ export default function decorate(block) {
   const titleText = titleRow.textContent.trim();
   
   if (titleText) {
-    const h2 = document.createElement('h2');
-    h2.textContent = titleText;
-    block.insertBefore(h2, block.firstChild);
+    const titleContent = titleRow.cloneNode(true);
+    block.insertBefore(titleContent, block.firstChild);
   }
 
   // Get the number of speakers from any content row
