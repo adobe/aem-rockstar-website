@@ -26,7 +26,7 @@ export default function decorate(block) {
     if (!img.hasAttribute('loading')) {
       img.setAttribute('loading', 'lazy');
     }
-    
+
     // Set decode attribute for better performance
     img.setAttribute('decoding', 'async');
   });

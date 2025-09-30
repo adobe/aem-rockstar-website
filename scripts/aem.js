@@ -398,7 +398,7 @@ function decorateButtons(element) {
       const up = a.parentElement;
       const twoup = a.parentElement.parentElement;
       const isDisabled = a.href && a.href.includes('disabled');
-      
+
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
           a.className = 'button'; // default
@@ -422,7 +422,7 @@ function decorateButtons(element) {
           a.className = 'button secondary';
           twoup.classList.add('button-container');
         }
-        
+
         // Handle disabled buttons
         if (isDisabled) {
           a.classList.add('disabled');
@@ -433,7 +433,7 @@ function decorateButtons(element) {
             e.stopPropagation();
             return false;
           });
-          
+
           // Add locked icon next to the button
           const lockIcon = document.createElement('span');
           lockIcon.className = 'icon icon-locked button-lock';
