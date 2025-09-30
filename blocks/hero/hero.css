@@ -5,7 +5,7 @@
   background-color: #000;
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
   .hero-container {
       min-height: 30rem;
   }

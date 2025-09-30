@@ -1,0 +1,229 @@
+/* Agenda Block - Masterclass timeline design */
+
+.agenda-container .agenda-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 24px);
+}
+
+.agenda {
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+/* Agenda Header */
+.agenda-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 2rem;
+  padding: 0 8%;
+}
+
+.agenda-header h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  color: var(--ink, #eef0f4);
+}
+
+.day-badge {
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  color: var(--muted, #c5c8d2);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: var(--body-font-size-xs);
+}
+
+/* Timeline Container */
+.agenda-list {
+  margin: 0 auto;
+  width: min(980px, 90%);
+  border-left: 2px solid rgb(255 255 255 / 12%);
+  position: relative;
+}
+
+/* Agenda Row */
+.agenda-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 18px;
+  padding: 16px 0 16px 18px;
+  position: relative;
+}
+
+.agenda-row::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 26px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-1, #f97316), var(--brand-2, #c026d3));
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 8%);
+}
+
+.agenda-row .time {
+  color: var(--muted, #c5c8d2);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: var(--body-font-size-xs);
+}
+
+.agenda-row .content {
+  min-width: 0;
+}
+
+.agenda-row .topic {
+  font-weight: 800;
+  margin: 0 0 4px;
+  font-size: var(--body-font-size-s);
+  color: var(--ink, #eef0f4);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.agenda-row .desc {
+  color: var(--muted, #c5c8d2);
+  margin: 0;
+  line-height: 1.5;
+  font-size: var(--body-font-size-xs);
+}
+
+/* Session Type Chips */
+.chip {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+.chip.session {
+  background: rgb(124 58 237 / 25%);
+  border: 1px solid rgb(124 58 237 / 55%);
+  color: var(--ink, #eef0f4);
+}
+
+.chip.handson {
+  background: rgb(249 115 22 / 25%);
+  border: 1px solid rgb(249 115 22 / 60%);
+  color: var(--ink, #eef0f4);
+}
+
+.chip.qna {
+  background: rgb(192 38 211 / 25%);
+  border: 1px solid rgb(192 38 211 / 60%);
+  color: var(--ink, #eef0f4);
+}
+
+/* Break Rows */
+.agenda-break {
+  position: relative;
+  padding: 12px 0 12px 18px;
+  margin: 8px 0;
+}
+
+.agenda-break .time {
+  color: var(--muted, #c5c8d2);
+  font-weight: 700;
+  width: 120px;
+  display: inline-block;
+  font-size: var(--body-font-size-xs);
+}
+
+.agenda-break .label {
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  color: #ffd7b0;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-size: var(--body-font-size-xs);
+}
+
+.agenda-break::before {
+  content: "";
+  position: absolute;
+  left: -7px;
+  top: 22px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 30%);
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 6%);
+}
+
+/* Responsive Design */
+@media (width < 700px) {
+  .agenda-list {
+    border: none;
+  }
+  
+  .agenda-row,
+  .agenda-break {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+  
+  .agenda-row::before,
+  .agenda-break::before {
+    display: none;
+  }
+  
+  .agenda-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 0;
+  }
+}
+
+/* Light theme fallback */
+body:not(.masterclass) .agenda-header h2 {
+  color: var(--text-color, #000);
+}
+
+body:not(.masterclass) .day-badge {
+  background: var(--overlay-background-color, #eee);
+  border: 1px solid var(--text-color, #000);
+  color: var(--text-color, #000);
+}
+
+body:not(.masterclass) .agenda-row {
+  border-bottom: 1px solid var(--overlay-background-color, #eee);
+}
+
+body:not(.masterclass) .agenda-row .time {
+  color: var(--link-color, #3b63fb);
+}
+
+body:not(.masterclass) .agenda-row .topic {
+  color: var(--text-color, #000);
+}
+
+body:not(.masterclass) .agenda-row .desc {
+  color: var(--text-color, #000);
+}
+
+body:not(.masterclass) .agenda-break {
+  background: var(--overlay-background-color, #f5f5f5);
+  border: 1px solid var(--overlay-background-color, #ddd);
+}
+
+body:not(.masterclass) .agenda-break .time {
+  color: var(--link-color, #3b63fb);
+}
+
+body:not(.masterclass) .agenda-break .label {
+  color: var(--text-color, #666);
+}

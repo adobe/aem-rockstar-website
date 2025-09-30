@@ -1,0 +1,117 @@
+/* CTA Band Block - Call-to-action section with centered content */
+
+.cta-band-container .cta-band-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.cta-band {
+  background: linear-gradient(135deg, rgb(251 90 13 / 22%), rgb(172 35 197 / 22%));
+  border-top: 1px solid rgb(255 255 255 / 8%);
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+  text-align: center;
+  padding: clamp(28px, 5vw, 48px) 0;
+}
+
+.cta-band-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 24px);
+}
+
+.cta-band h2 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 600;
+  margin: 0 0 0.4rem;
+  color: var(--ink, #eef0f4);
+  line-height: 1.2;
+}
+
+.cta-band p {
+  font-size: var(--body-font-size-s);
+  color: var(--muted, #c5c8d2);
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+}
+
+.cta-band .cta-row {
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-band .btn {
+  --pad-x: clamp(16px, 2.2vw, 22px);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 8px var(--pad-x);
+  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 18%);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: transform 0.16s ease, filter 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow, 0 10px 30px rgb(0 0 0 / 45%));
+  will-change: transform, filter;
+}
+
+.cta-band .btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+.cta-band .btn.primary {
+  background: linear-gradient(135deg, var(--brand-1, #f97316), var(--brand-2, #c026d3));
+  color: white;
+}
+
+.cta-band .btn.secondary {
+  background: transparent;
+  color: white;
+  backdrop-filter: blur(6px);
+}
+
+.cta-band .btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* Light theme fallback */
+body:not(.masterclass) .cta-band {
+  background: linear-gradient(135deg, rgb(59 99 251 / 10%), rgb(236 16 0 / 10%));
+  border-top: 1px solid var(--overlay-background-color, #eee);
+  border-bottom: 1px solid var(--overlay-background-color, #eee);
+}
+
+body:not(.masterclass) .cta-band h2 {
+  color: var(--text-color, #000);
+}
+
+body:not(.masterclass) .cta-band p {
+  color: var(--dark-color, #505050);
+}
+
+body:not(.masterclass) .cta-band .btn.primary {
+  background: var(--link-color, #3b63fb);
+  color: white;
+}
+
+body:not(.masterclass) .cta-band .btn.secondary {
+  background: transparent;
+  color: var(--text-color, #000);
+  border-color: var(--text-color, #000);
+}
+
+body:not(.masterclass) .cta-band .btn {
+  box-shadow: var(--box-shadow, 0 2px 8px rgb(0 0 0 / 10%));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-band .btn {
+    transition: none;
+  }
+}

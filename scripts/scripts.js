@@ -13,7 +13,8 @@ import {
   loadCSS,
 } from './aem.js';
 
-const LCP_BLOCKS = ['cards']; // add your LCP blocks to the list
+// LCP blocks can be added here when needed
+// const LCP_BLOCKS = ['cards'];
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -24,7 +25,6 @@ function buildHeroBlock(main) {
   const picture = main.querySelector('img');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-
     const section = document.createElement('div');
     /*
     const video = document.createElement('video');

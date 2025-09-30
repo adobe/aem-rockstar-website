@@ -1,13 +1,6 @@
 import { loadScript, readBlockConfig } from '../../scripts/aem.js';
 import qrcode from '../../scripts/qrcode.js';
 
-const dp = [
-  ['Name', 'Votes'],
-  ['Martin Altman', 1],
-  ['Anian Weber', 1],
-  ['Scott Simmer', 1],
-];
-
 async function onSubmit(token, name, button) {
   const res = await fetch('https://eae1ezhtx7.execute-api.us-east-1.amazonaws.com/dev/vote', {
     method: 'POST',
@@ -86,6 +79,7 @@ export default async function decorate(block) {
     container.appendChild(col3);
     block.replaceWith(container);
   } else if (config.config === 'qr-only') {
+    // eslint-disable-next-line new-cap
     const allCode = new qrcode(0, 'H');
     allCode.addData('https://rockstar.adobeevents.com/en/live/all');
     allCode.make();
@@ -105,6 +99,7 @@ export default async function decorate(block) {
       head.textContent = config.name;
       captcha.classList.add('protected-vote');
       captcha.onclick = async () => {
+        // eslint-disable-next-line no-undef
         const token = await grecaptcha.execute('6Lc7idUqAAAAAPbV3RzZ52yjVj-UT4lIjXwF7nza', { action: 'submit' });
         if (!token) {
           throw new Error('Failed to get reCAPTCHA token');
@@ -124,6 +119,6 @@ export default async function decorate(block) {
 
     block.replaceWith(container);
   }
-
+  // eslint-disable-next-line no-console
   console.log(`mode: ${config.config}`);
 }

@@ -2,7 +2,7 @@
     background-color: #fff;
     border-radius: 10px;
     border: 1px solid #c7c7ca;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 10%);
     padding: 16px;
 }
 
@@ -84,7 +84,7 @@
     height: 100%;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section .block-group-wrapper {
         flex-direction: column;
     }
