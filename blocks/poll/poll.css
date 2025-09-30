@@ -4,7 +4,7 @@ main .poll-wrapper .poll {
 
 main .poll-wrapper .poll form > div {
   display: grid;
-  grid-column-gap: 20px;
+  column-gap: 20px;
 }
 
 main .poll-wrapper .poll form > div.poll-option-wrapper {

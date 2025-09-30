@@ -34,8 +34,8 @@
   text-align: center;
   padding: 24px 20px;
   border-radius: var(--radius-xl, 22px);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgb(255 255 255 / 3%);
+  border: 1px solid rgb(255 255 255 / 6%);
   flex: 0 0 220px;
   min-width: 275px;
   max-width: 350px;
@@ -133,7 +133,7 @@ body:not(.masterclass) .speakers h2 {
 body:not(.masterclass) .speaker {
   background: var(--background-color, #fff);
   border: 1px solid var(--overlay-background-color, #eee);
-  box-shadow: var(--box-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
+  box-shadow: var(--box-shadow, 0 2px 8px rgb(0 0 0 / 10%));
 }
 
 body:not(.masterclass) .speaker .avatar {

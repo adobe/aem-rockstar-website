@@ -6,9 +6,9 @@
 }
 
 .cta-band {
-  background: linear-gradient(135deg, rgba(251, 90, 13, 0.22), rgba(172, 35, 197, 0.22));
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, rgb(251 90 13 / 22%), rgb(172 35 197 / 22%));
+  border-top: 1px solid rgb(255 255 255 / 8%);
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
   text-align: center;
   padding: clamp(28px, 5vw, 48px) 0;
 }
@@ -44,17 +44,18 @@
 
 .cta-band .btn {
   --pad-x: clamp(16px, 2.2vw, 22px);
+
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 8px var(--pad-x);
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgb(255 255 255 / 18%);
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.2px;
   transition: transform 0.16s ease, filter 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: var(--shadow, 0 10px 30px rgba(0, 0, 0, 0.45));
+  box-shadow: var(--shadow, 0 10px 30px rgb(0 0 0 / 45%));
   will-change: transform, filter;
 }
 
@@ -81,7 +82,7 @@
 
 /* Light theme fallback */
 body:not(.masterclass) .cta-band {
-  background: linear-gradient(135deg, rgba(59, 99, 251, 0.1), rgba(236, 16, 0, 0.1));
+  background: linear-gradient(135deg, rgb(59 99 251 / 10%), rgb(236 16 0 / 10%));
   border-top: 1px solid var(--overlay-background-color, #eee);
   border-bottom: 1px solid var(--overlay-background-color, #eee);
 }
@@ -106,7 +107,7 @@ body:not(.masterclass) .cta-band .btn.secondary {
 }
 
 body:not(.masterclass) .cta-band .btn {
-  box-shadow: var(--box-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
+  box-shadow: var(--box-shadow, 0 2px 8px rgb(0 0 0 / 10%));
 }
 
 @media (prefers-reduced-motion: reduce) {

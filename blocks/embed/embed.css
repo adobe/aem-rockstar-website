@@ -22,7 +22,7 @@ main .embed {
     width: 320px;
   }
   
-  @media (min-width: 600px) {
+  @media (width >= 600px) {
       main .embed.embed-instagram {
           max-height: unset; 
       }

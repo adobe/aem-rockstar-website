@@ -54,7 +54,7 @@
   --brand-2: #c026d3;                    /* magenta */
   --brand-3: #7c3aed;                    /* purple */
   --card: #10121a;                       /* card bg */
-  --shadow: 0 10px 30px rgba(0,0,0,.45);
+  --shadow: 0 10px 30px rgb(0 0 0 / 45%);
   --radius-xl: 22px;
 }
 
@@ -167,22 +167,6 @@ a.button:any-link, button {
   border-radius: 30px;
 }
 
-.section.blue-header a.button,
-.section.blue-header a.button.disabled {
-  background-color: #ff8c42;
-  color: #1A1A1A;
-  border-radius: 10px;
-  font-weight: normal;
-}
-
-.section.news a.button,
-.section.news a.button.disabled {
-  background-color: #ff8c42;
-  color: #1A1A1A;
-  border-radius: 10px;
-  font-weight: normal;
-}
-
 a.button:hover, a.button:focus, button:hover, button:focus  {
   background-color: var(--link-hover-color);
   cursor: pointer;
@@ -198,21 +182,34 @@ a.button.disabled, a.button.disabled:hover {
   display: inline-block;
   box-sizing: border-box;
   text-decoration: none;
-  border: 2px solid transparent;
   padding: 5px 30px;
   text-align: center;
   font-style: normal;
   font-weight: 600;
+  cursor: pointer;
   color: var(--background-color);
-  background-color: var(--link-color);
+  background-color: var(--overlay-background-color);
   margin: 16px 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   border-radius: 30px;
-  cursor: not-allowed !important;
-  pointer-events: none;
-  opacity: 0.8;
+}
+
+.section.blue-header a.button,
+.section.blue-header a.button.disabled {
+  background-color: #ff8c42;
+  color: #1A1A1A;
+  border-radius: 10px;
+  font-weight: normal;
+}
+
+.section.news a.button,
+.section.news a.button.disabled {
+  background-color: #ff8c42;
+  color: #1A1A1A;
+  border-radius: 10px;
+  font-weight: normal;
 }
 
 .button-container-disabled {
@@ -271,8 +268,7 @@ main .section.news {
 }
 
 main .section.blue-header {
-  background-color: #3d59a8;
-  background: linear-gradient(90deg,rgba(61, 89, 168, 1) 0%, rgba(61, 89, 168, 0.7) 100%);
+  background: linear-gradient(90deg,rgb(61 89 168 / 100%) 0%, rgb(61 89 168 / 70%) 100%);
   color: white;
 }
 

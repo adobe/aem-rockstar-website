@@ -28,8 +28,8 @@
 }
 
 .day-badge {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
   padding: 0.45rem 0.8rem;
   border-radius: 999px;
   color: var(--muted, #c5c8d2);
@@ -42,7 +42,7 @@
 .agenda-list {
   margin: 0 auto;
   width: min(980px, 90%);
-  border-left: 2px solid rgba(255, 255, 255, 0.12);
+  border-left: 2px solid rgb(255 255 255 / 12%);
   position: relative;
 }
 
@@ -64,7 +64,7 @@
   height: 12px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--brand-1, #f97316), var(--brand-2, #c026d3));
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 8%);
 }
 
 .agenda-row .time {
@@ -108,20 +108,20 @@
 }
 
 .chip.session {
-  background: rgba(124, 58, 237, 0.25);
-  border: 1px solid rgba(124, 58, 237, 0.55);
+  background: rgb(124 58 237 / 25%);
+  border: 1px solid rgb(124 58 237 / 55%);
   color: var(--ink, #eef0f4);
 }
 
 .chip.handson {
-  background: rgba(249, 115, 22, 0.25);
-  border: 1px solid rgba(249, 115, 22, 0.6);
+  background: rgb(249 115 22 / 25%);
+  border: 1px solid rgb(249 115 22 / 60%);
   color: var(--ink, #eef0f4);
 }
 
 .chip.qna {
-  background: rgba(192, 38, 211, 0.25);
-  border: 1px solid rgba(192, 38, 211, 0.6);
+  background: rgb(192 38 211 / 25%);
+  border: 1px solid rgb(192 38 211 / 60%);
   color: var(--ink, #eef0f4);
 }
 
@@ -144,8 +144,8 @@
   display: inline-block;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
   color: #ffd7b0;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -160,8 +160,8 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+  background: rgb(255 255 255 / 30%);
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 6%);
 }
 
 /* Responsive Design */

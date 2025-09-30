@@ -25,7 +25,7 @@
   aspect-ratio: 1 / 1;
   max-width: 520px;
   margin: 0 auto;
-  filter: drop-shadow(0 20px 30px rgba(0,0,0,.6));
+  filter: drop-shadow(0 20px 30px rgb(0 0 0 / 60%));
 }
 
 .cta-hero .logo-wrap img {
@@ -43,10 +43,9 @@
 
 .cta-hero .headline h1 .stroke {
   background: linear-gradient(135deg, #fff, #ddd);
-  -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 6px 28px rgba(0,0,0,.35);
+  text-shadow: 0 6px 28px rgb(0 0 0 / 35%);
 }
 
 .cta-hero .headline .kicker {
@@ -72,8 +71,8 @@
 }
 
 .cta-hero .badge {
-  background: rgba(255,255,255,.06);
-  border: 1px solid rgba(255,255,255,.12);
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
   border-radius: 999px;
   padding: .35rem .7rem;
   font-size: .85rem;
@@ -90,12 +89,13 @@
 
 .cta-hero .btn {
   --pad-x: clamp(16px, 2.2vw, 22px);
+
   display: inline-flex;
   align-items: center;
   gap: .6rem;
   padding: 8px var(--pad-x);
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.18);
+  border: 1px solid rgb(255 255 255 / 18%);
   text-decoration: none;
   font-weight: 700;
   letter-spacing: .2px;
@@ -144,7 +144,7 @@
   left: 52%;
   top: 22%;
   transform: translateX(-50%) rotate(6deg);
-  background: linear-gradient(90deg, transparent, rgba(255,160,64,.9), transparent);
+  background: linear-gradient(90deg, transparent, rgb(255 160 64 / 90%), transparent);
   filter: blur(0.6px);
 }
 

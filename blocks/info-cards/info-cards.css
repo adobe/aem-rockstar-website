@@ -18,10 +18,10 @@
 
 .info-cards .card {
   background: var(--card, #10121a);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgb(255 255 255 / 8%);
   padding: clamp(18px, 2.4vw, 26px);
   border-radius: var(--radius-xl, 22px);
-  box-shadow: var(--shadow, 0 10px 30px rgba(0, 0, 0, 0.45));
+  box-shadow: var(--shadow, 0 10px 30px rgb(0 0 0 / 45%));
 }
 
 .info-cards .card h2 {
@@ -66,7 +66,7 @@
 body:not(.masterclass) .info-cards .card {
   background: var(--background-color, #fff);
   border: 1px solid var(--overlay-background-color, #eee);
-  box-shadow: var(--box-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
+  box-shadow: var(--box-shadow, 0 2px 8px rgb(0 0 0 / 10%));
 }
 
 body:not(.masterclass) .info-cards .card h2 {

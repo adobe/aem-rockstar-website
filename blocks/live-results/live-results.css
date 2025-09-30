@@ -1,6 +1,7 @@
 #chart-container {
     height: 100%;
 }
+
 div.live-results-wrapper {
     display: flex;
     flex-direction: column;
