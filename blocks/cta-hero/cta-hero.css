@@ -63,6 +63,29 @@
   color: var(--muted);
 }
 
+.cta-hero .headline .date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgb(255 255 255 / 6%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 999px;
+  color: var(--muted, #c5c8d2);
+  font-weight: 600;
+  font-size: var(--body-font-size-xs);
+  letter-spacing: 0.02em;
+  margin: 0 0 1.5rem;
+}
+
+.cta-hero .headline .date-pill .dot {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, var(--brand-1, #f97316), var(--brand-2, #c026d3));
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
 .cta-hero .badges {
   display: flex;
   gap: .6rem;
@@ -177,10 +200,21 @@
   .cta-hero .cta-row {
     justify-content: center;
   }
+
+  .cta-hero .headline .date-pill {
+    justify-content: center;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cta-hero .btn {
     transition: none;
   }
+}
+
+/* Light theme fallback */
+body:not(.masterclass) .cta-hero .headline .date-pill {
+  background: var(--overlay-background-color, #f5f5f5);
+  border: 1px solid var(--overlay-background-color, #ddd);
+  color: var(--text-color, #666);
 }

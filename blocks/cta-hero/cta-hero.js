@@ -48,8 +48,14 @@ export default function decorate(block) {
         const p = document.createElement('p');
         p.innerHTML = cell.innerHTML;
         headline.appendChild(p);
-      } else if (rowIndex === 4) {
-      // Row 4: CTA buttons (each cell is a button)
+      } else if (rowIndex === 4 && content) {
+      // Row 4: Date pill
+        const datePill = document.createElement('time');
+        datePill.className = 'date-pill';
+        datePill.innerHTML = `<span class="dot"></span> ${content}`;
+        headline.appendChild(datePill);
+      } else if (rowIndex === 5) {
+      // Row 5: CTA buttons (each cell is a button)
         const link = cell.querySelector('a');
         if (link) {
           if (cellIndex === 0) {
@@ -71,7 +77,7 @@ export default function decorate(block) {
           ctaRow.appendChild(link.cloneNode(true));
         }
       } else {
-      // Row 5+: Images
+      // Row 6+: Images
         const img = cell.querySelector('img');
         if (img) {
           if (!logoWrap) {
