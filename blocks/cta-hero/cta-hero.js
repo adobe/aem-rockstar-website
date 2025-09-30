@@ -69,6 +69,14 @@ export default function decorate(block) {
           // Add each cell as a button (first is primary, others are secondary)
           const ctaRow = headline.querySelector('.cta-row');
           link.className = `btn ${cellIndex === 0 ? 'primary' : 'secondary'}`;
+          
+          // Open external links in new tab, keep anchor links on same page
+          const href = link.getAttribute('href');
+          if (href && !href.startsWith('#') && !href.startsWith('/') && !href.includes(window.location.hostname)) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+          }
+          
           ctaRow.appendChild(link.cloneNode(true));
         }
       }

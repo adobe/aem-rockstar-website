@@ -37,8 +37,17 @@ export default function decorate(block) {
         // Process links in this cell
         const links = cell.querySelectorAll('a');
         links.forEach((link, linkIndex) => {
-          link.className = `btn ${linkIndex === 0 ? 'primary' : 'secondary'}`;
-          ctaRow.appendChild(link.cloneNode(true));
+          const clonedLink = link.cloneNode(true);
+          clonedLink.className = `btn ${linkIndex === 0 ? 'primary' : 'secondary'}`;
+          
+          // Open external links in new tab, keep anchor links on same page
+          const href = clonedLink.getAttribute('href');
+          if (href && !href.startsWith('#') && !href.startsWith('/') && !href.includes(window.location.hostname)) {
+            clonedLink.setAttribute('target', '_blank');
+            clonedLink.setAttribute('rel', 'noopener noreferrer');
+          }
+          
+          ctaRow.appendChild(clonedLink);
         });
       }
     });
