@@ -1,3 +1,13 @@
+// Helper function to get CSS class for session type
+function getSessionTypeClass(sessionType) {
+  const lowerType = sessionType.toLowerCase();
+  if (lowerType.includes('session')) return 'session';
+  if (lowerType.includes('hands-on') || lowerType.includes('hands‑on') || lowerType.includes('lab')) return 'handson';
+  if (lowerType.includes('q&a') || lowerType.includes('question') || lowerType.includes('ask')) return 'qna';
+  // Default to session if no match
+  return 'session';
+}
+
 export default function decorate(block) {
   const rows = [...block.children];
   if (rows.length < 3) return;
@@ -12,7 +22,7 @@ export default function decorate(block) {
     const titleContent = titleCell.cloneNode(true);
     agendaHeader.appendChild(titleContent);
   }
-  
+
   // Row 1: Day badge (optional)
   const badgeRow = rows[1];
   const badgeCell = badgeRow?.children[0];
@@ -34,11 +44,11 @@ export default function decorate(block) {
     const cells = [...row.children];
     if (cells.length < 2) return; // Need at least 2 columns
     const timeCell = cells[0];
-    const titleCell = cells[1];
+    const agendaTitleCell = cells[1];
     const sessionTypeCell = cells[2];
     const descriptionCell = cells[3];
     const timeText = timeCell?.textContent.trim() || '';
-    const titleText = titleCell?.textContent.trim() || '';
+    const titleText = agendaTitleCell?.textContent.trim() || '';
     const sessionTypeText = sessionTypeCell?.textContent.trim() || '';
     const descriptionText = descriptionCell?.textContent.trim() || '';
     if (!timeText && !titleText) return; // Skip completely empty rows
@@ -101,18 +111,8 @@ export default function decorate(block) {
 
   // Replace original content
   const originalRows = [...block.children];
-  originalRows.forEach(row => row.remove());
+  originalRows.forEach((row) => row.remove());
   // Add header and agenda list to block
   block.appendChild(agendaHeader);
   block.appendChild(agendaList);
-}
-
-// Helper function to get CSS class for session type
-function getSessionTypeClass(sessionType) {
-  const lowerType = sessionType.toLowerCase();
-  if (lowerType.includes('session')) return 'session';
-  if (lowerType.includes('hands-on') || lowerType.includes('hands‑on') || lowerType.includes('lab')) return 'handson';
-  if (lowerType.includes('q&a') || lowerType.includes('question') || lowerType.includes('ask')) return 'qna';
-  // Default to session if no match
-  return 'session';
 }

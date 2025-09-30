@@ -9,7 +9,7 @@ export default function decorate(block) {
   // Row 0: Section title
   const titleRow = rows[0];
   const titleText = titleRow.textContent.trim();
-  
+
   if (titleText) {
     const titleContent = titleRow.cloneNode(true);
     block.insertBefore(titleContent, block.firstChild);
@@ -19,11 +19,11 @@ export default function decorate(block) {
   const imageRow = rows[1] ? [...rows[1].children] : [];
   const nameRow = rows[2] ? [...rows[2].children] : [];
   const titleRowData = rows[3] ? [...rows[3].children] : [];
-  
+
   const speakerCount = Math.max(imageRow.length, nameRow.length, titleRowData.length);
 
   // Create speaker cards
-  for (let i = 0; i < speakerCount; i++) {
+  for (let i = 0; i < speakerCount; i += 1) {
     const speaker = document.createElement('div');
     speaker.className = 'speaker';
 
@@ -34,7 +34,7 @@ export default function decorate(block) {
     // Check for image in row 1
     const imageCell = imageRow[i];
     const img = imageCell?.querySelector('img');
-    
+
     if (img) {
       // Use image as avatar
       const avatarImg = document.createElement('img');
@@ -46,17 +46,17 @@ export default function decorate(block) {
       // Use initials from name or fallback
       const nameCell = nameRow[i];
       const nameText = nameCell?.textContent.trim() || '';
-      
+
       if (nameText) {
         // Extract initials from name
         const nameParts = nameText.split(' ');
-        const initials = nameParts.map(part => part.charAt(0)).join('').toUpperCase();
+        const initials = nameParts.map((part) => part.charAt(0)).join('').toUpperCase();
         avatar.textContent = initials.substring(0, 2);
       } else {
         avatar.textContent = '??';
       }
     }
-    
+
     speaker.appendChild(avatar);
 
     // Add name from row 2
@@ -79,6 +79,6 @@ export default function decorate(block) {
   }
 
   // Remove original rows and add the grid
-  rows.forEach(row => row.remove());
+  rows.forEach((row) => row.remove());
   block.appendChild(speakersGrid);
 }
