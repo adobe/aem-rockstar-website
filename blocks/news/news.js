@@ -1,4 +1,4 @@
-import { loadScript, readBlockConfig } from '../../scripts/aem.js';
+import { readBlockConfig } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
   const config = readBlockConfig(block);

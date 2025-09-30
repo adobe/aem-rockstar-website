@@ -13,7 +13,8 @@ import {
   loadCSS,
 } from './aem.js';
 
-const LCP_BLOCKS = ['cards']; // add your LCP blocks to the list
+// LCP blocks can be added here when needed
+// const LCP_BLOCKS = ['cards'];
 
 /**
  * Builds hero block and prepends to main in a new section.
