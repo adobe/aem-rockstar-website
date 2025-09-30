@@ -88,7 +88,7 @@ export default function decorate(block) {
             logoWrap = document.createElement('div');
             logoWrap.className = 'logo-wrap';
           }
-          const picture = createOptimizedPicture(img.src, img.alt, false, [{ width: '520' }]);
+          const picture = createOptimizedPicture(img.src, img.alt, true, [{ width: '520' }]);
           logoWrap.appendChild(picture);
         }
       }
