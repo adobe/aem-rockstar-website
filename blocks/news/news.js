@@ -11,8 +11,8 @@ export default async function decorate(block) {
   const month = monthNames[dateObj.getMonth()];
   const day = dateObj.getDate();
 
-  const contentElement = block.querySelector('div:last-of-type > div:last-of-type > p');
-  const content = contentElement ? contentElement.innerHTML : '';
+  const contentElements = block.querySelectorAll('div:last-of-type > div:last-of-type > p');
+  const content = Array.from(contentElements).map(p => p.outerHTML).join('');
   const { headline } = config;
   const newsContainer = document.createElement('div');
   const topRow = document.createElement('div');
