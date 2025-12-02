@@ -47,48 +47,70 @@ function createInput(type, name, id, placeholder = '', required = false) {
 }
 
 /**
- * Simple markdown to HTML converter for basic formatting
+ * Escapes HTML characters to prevent XSS attacks
+ * @param {string} text - The text to escape
+ * @returns {string} Escaped text
+ */
+function escapeHtml(text) {
+  const map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, (match) => map[match]);
+}
+
+/**
+ * Simple markdown to HTML converter for basic formatting with XSS protection
  * @param {string} markdown - The markdown text to convert
  * @returns {string} HTML string
  */
 function markdownToHtml(markdown) {
   if (!markdown) return '';
   
-  let html = markdown
-    // Headers
-    .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gm, '<h1>$1</h1>')
+  // First escape all HTML to prevent XSS
+  let html = escapeHtml(markdown);
+  
+  // Now safely apply markdown formatting
+  html = html
+    // Headers (escape content)
+    .replace(/^### (.*$)/gm, (match, content) => `<h3>${content}</h3>`)
+    .replace(/^## (.*$)/gm, (match, content) => `<h2>${content}</h2>`)
+    .replace(/^# (.*$)/gm, (match, content) => `<h1>${content}</h1>`)
     
-    // Bold and italic
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    // Bold and italic (escape content)
+    .replace(/\*\*(.*?)\*\*/g, (match, content) => `<strong>${content}</strong>`)
+    .replace(/\*(.*?)\*/g, (match, content) => `<em>${content}</em>`)
     
-    // Links
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    // Links (validate and escape URLs and text)
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+      // Basic URL validation - only allow http/https
+      const cleanUrl = url.trim();
+      if (cleanUrl.match(/^https?:\/\/[^\s<>"']+$/)) {
+        return `<a href="${cleanUrl}" target="_blank" rel="noopener">${text}</a>`;
+      }
+      return `${text} (${url})`;  // Fallback for invalid URLs
+    })
     
-    // Code blocks
-    .replace(/```([^`]+)```/g, '<pre><code>$1</code></pre>')
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // Code blocks (content already escaped)
+    .replace(/```([^`]+)```/g, (match, content) => `<pre><code>${content}</code></pre>`)
+    .replace(/`([^`]+)`/g, (match, content) => `<code>${content}</code>`)
     
-    // Unordered lists
-    .replace(/^\* (.*$)/gm, '<li>$1</li>')
-    .replace(/^- (.*$)/gm, '<li>$1</li>')
+    // Unordered lists (content already escaped)
+    .replace(/^\* (.*$)/gm, (match, content) => `<li>${content}</li>`)
+    .replace(/^- (.*$)/gm, (match, content) => `<li>${content}</li>`)
     
     // Line breaks
     .replace(/\n/g, '<br>');
     
-  // Wrap consecutive list items in ul tags
-  html = html.replace(/(<li>.*?<\/li>)(<br>)*(?=<li>|$)/gs, (match, listItems) => {
-    const items = listItems.match(/<li>.*?<\/li>/g);
-    if (items && items.length > 1) {
-      return '<ul>' + items.join('') + '</ul>';
-    }
-    return match;
-  });
+  // Fix list processing - wrap consecutive list items properly
+  // First, find and wrap consecutive list items
+  html = html.replace(/(<li>.*?<\/li>)(<br>)*(?=<li>)/gs, '$1');
   
-  // Clean up single list items
-  html = html.replace(/<li>(.*?)<\/li>/g, '<ul><li>$1</li></ul>');
+  // Then wrap list item groups in ul tags
+  html = html.replace(/((?:<li>.*?<\/li>)+)/g, '<ul>$1</ul>');
   
   return html;
 }
@@ -171,10 +193,14 @@ function createTextArea(name, id, placeholder = '', required = false, rows = 4, 
       textarea.style.display = 'none';
       previewContainer.style.display = 'block';
       
-      // Update preview content
+      // Update preview content (safely with escaped HTML)
       const markdown = textarea.value;
-      const html = markdownToHtml(markdown);
-      previewContainer.innerHTML = html || '<em>Nothing to preview</em>';
+      if (markdown.trim()) {
+        const html = markdownToHtml(markdown);
+        previewContainer.innerHTML = html;
+      } else {
+        previewContainer.innerHTML = '<em>Nothing to preview</em>';
+      }
     }
   };
   
