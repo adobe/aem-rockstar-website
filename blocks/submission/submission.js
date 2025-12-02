@@ -372,8 +372,8 @@ function createSubmissionForm(submitUrl) {
  * @param {Element} block - The block element
  */
 export default async function decorate(block) {
-  // Use test n8n webhook endpoint
-  const submitUrl = 'https://dkuntze.app.n8n.cloud/webhook-test/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb';
+  // Use production n8n webhook endpoint
+  const submitUrl = 'https://dkuntze.app.n8n.cloud/webhook/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb';
 
   // Create the form
   const form = createSubmissionForm(submitUrl);
