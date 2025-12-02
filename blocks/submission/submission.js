@@ -239,6 +239,7 @@ async function handleSubmit(form, submitUrl) {
   if (form.getAttribute('data-submitting') === 'true') return;
 
   const submitButton = form.querySelector('button[type="submit"]');
+  let isSuccess = false;
   
   try {
     form.setAttribute('data-submitting', 'true');
@@ -264,11 +265,13 @@ async function handleSubmit(form, submitUrl) {
     });
 
     if (response.ok) {
-      // Show success message
+      isSuccess = true;
+      // Show success message (this destroys the original form content)
       form.innerHTML = `
         <div class="success-message">
           <h3>Thank you!</h3>
-          <p>Your AEM Rockstar idea has been submitted successfully. We'll review your submission and get back to you soon.</p>
+          <p>Your AEM Rockstar idea has been submitted successfully. We'll review your submission
+           and get back to you soon. Feel free to make mulitple submissions</p>
         </div>
       `;
     } else {
@@ -285,9 +288,15 @@ async function handleSubmit(form, submitUrl) {
     `;
     form.insertBefore(errorDiv, form.firstChild);
   } finally {
-    form.setAttribute('data-submitting', 'false');
-    submitButton.disabled = false;
-    submitButton.textContent = 'Submit Idea';
+    // Only restore button state if submission failed (button still exists)
+    if (!isSuccess && submitButton && submitButton.parentNode) {
+      form.setAttribute('data-submitting', 'false');
+      submitButton.disabled = false;
+      submitButton.textContent = 'Submit Idea';
+    } else if (!isSuccess) {
+      // Fallback: just reset form state if button is gone but we didn't succeed
+      form.setAttribute('data-submitting', 'false');
+    }
   }
 }
 
