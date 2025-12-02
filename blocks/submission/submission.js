@@ -221,11 +221,19 @@ async function handleSubmit(form, submitUrl) {
 
     const payload = generatePayload(form);
     
+    // Create form-encoded data to avoid CORS preflight request
+    const formData = new URLSearchParams();
+    
+    // Add all form fields as individual parameters
+    Object.entries(payload).forEach(([key, value]) => {
+      formData.append(key, value || '');
+    });
+    
     const response = await fetch(submitUrl, {
       method: 'POST',
-      body: JSON.stringify({ data: payload }),
+      body: formData,
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
 
@@ -364,16 +372,8 @@ function createSubmissionForm(submitUrl) {
  * @param {Element} block - The block element
  */
 export default async function decorate(block) {
-  // Determine submit URL based on environment
-  let submitUrl;
-  
-  if (window.location.hostname.includes('.aem.page')) {
-    // Use n8n webhook-test endpoint for .page preview environment (tested working)
-    submitUrl = 'https://dkuntze.app.n8n.cloud/webhook-test/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb';
-  } else {
-    // Use n8n webhook endpoint for localhost, .aem.live, and other environments
-    submitUrl = 'https://dkuntze.app.n8n.cloud/webhook/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb';
-  }
+  // Use test n8n webhook endpoint
+  const submitUrl = 'https://dkuntze.app.n8n.cloud/webhook-test/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb';
 
   // Create the form
   const form = createSubmissionForm(submitUrl);
