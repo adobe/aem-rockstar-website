@@ -12,7 +12,7 @@ export default async function decorate(block) {
   const day = dateObj.getDate();
 
   const contentElements = block.querySelectorAll('div:last-of-type > div:last-of-type > p');
-  const content = Array.from(contentElements).map(p => p.outerHTML).join('');
+  const content = Array.from(contentElements).map((p) => p.outerHTML).join('');
   const { headline } = config;
   const newsContainer = document.createElement('div');
   const topRow = document.createElement('div');

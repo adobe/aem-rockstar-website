@@ -1,0 +1,455 @@
+/* Submission Block Styling */
+
+.section .submission-wrapper {
+  background-color: #f8f8f8;
+  padding: 32px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.submission .submission-form {
+  display: grid;
+  gap: 32px;
+}
+
+.submission .form-title {
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--heading-color);
+}
+
+.submission .form-description {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color);
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+/* Fieldset Styling */
+.submission fieldset {
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0;
+  background-color: #fff;
+}
+
+.submission fieldset legend {
+  font-size: var(--body-font-size-l);
+  font-weight: 700;
+  padding: 0 12px;
+  color: var(--heading-color);
+  background-color: #f8f8f8;
+}
+
+/* Field Wrapper Styling */
+.submission .field-wrapper {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.submission .field-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+/* Label Styling */
+.submission label {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  color: var(--text-color);
+  display: block;
+}
+
+.submission label[data-required]::after {
+  content: ' *';
+  color: #d73502;
+  font-weight: 700;
+}
+
+/* Input, Select, and Textarea Styling */
+.submission input,
+.submission select,
+.submission textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  background-color: #fff;
+  color: var(--text-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Textarea Specific Styling */
+.submission textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.5;
+}
+
+.submission textarea[name="description"] {
+  min-height: 200px;
+}
+
+/* Select Styling */
+.submission select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  padding-right: 40px;
+  appearance: none;
+}
+
+.submission input:hover,
+.submission select:hover,
+.submission textarea:hover {
+  border-color: var(--link-color);
+}
+
+.submission input:focus,
+.submission select:focus,
+.submission textarea:focus {
+  outline: none;
+  border-color: var(--link-color);
+  box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
+}
+
+.submission input:focus-visible,
+.submission select:focus-visible,
+.submission textarea:focus-visible,
+.submission button:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.submission .markdown-editor-container textarea {
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+  font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 200px;
+}
+
+.submission input:invalid,
+.submission select:invalid,
+.submission textarea:invalid {
+  border-color: #d73502;
+}
+
+.submission input:invalid:focus,
+.submission select:invalid:focus,
+.submission textarea:invalid:focus {
+  box-shadow: 0 0 0 3px rgb(215 53 2 / 10%);
+}
+
+/* Button Styling */
+.submission .button {
+  background-color: var(--link-color);
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  justify-self: start;
+  min-width: 180px;
+}
+
+.submission .button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.submission .button:active {
+  transform: translateY(0);
+}
+
+.submission[data-submitting="true"] .button {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.submission .button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submission .button:disabled:hover {
+  background-color: #6c757d;
+  transform: none;
+}
+
+/* Success and Error Messages */
+.submission .success-message,
+.submission .error-message {
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.submission .success-message {
+  background-color: #d4edda;
+  border: 2px solid #c3e6cb;
+  color: #155724;
+}
+
+.submission .success-message h3 {
+  margin: 0 0 12px;
+  font-size: var(--body-font-size-l);
+  color: #155724;
+}
+
+.submission .success-message p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.submission .error-message {
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+  color: #721c24;
+}
+
+.submission .error-message p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (width >= 600px) {
+  .submission fieldset {
+    padding: 32px;
+  }
+  
+  .submission .field-wrapper {
+    margin-bottom: 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .submission fieldset {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  
+  .submission fieldset legend {
+    grid-column: 1 / -1;
+    margin-bottom: 8px;
+  }
+  
+  /* Full width fields */
+  .submission .textarea-wrapper,
+  .submission .submit-wrapper,
+  .submission .text-wrapper:has(#submission-title) {
+    grid-column: 1 / -1;
+  }
+  
+  .submission .form-title,
+  .submission .form-description {
+    text-align: center;
+  }
+}
+
+/* Loading State */
+.submission[data-submitting="true"] {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Focus Management */
+
+/* Markdown Editor Styling */
+.submission .markdown-wrapper {
+  grid-column: 1 / -1;
+}
+
+.submission .markdown-editor-container {
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.submission .markdown-help {
+  padding: 6px 12px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 11px;
+  color: #868e96;
+  font-style: italic;
+}
+
+.submission .markdown-help strong {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.submission .markdown-tabs {
+  display: flex;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 0 12px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.submission .markdown-tab {
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  color: #868e96;
+  cursor: pointer;
+  border-radius: 3px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.submission .markdown-tab:hover {
+  color: #495057;
+  text-decoration-color: #495057;
+}
+
+.submission .markdown-tab.active {
+  color: var(--link-color);
+  font-weight: 500;
+  text-decoration: none;
+  background-color: rgb(0 123 255 / 8%);
+}
+
+
+.submission .markdown-editor-container textarea:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.submission .markdown-preview {
+  padding: 16px;
+  min-height: 200px;
+  background-color: #fff;
+  border-radius: 0;
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.submission .markdown-preview h1,
+.submission .markdown-preview h2,
+.submission .markdown-preview h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.submission .markdown-preview h1 {
+  font-size: var(--heading-font-size-m);
+  border-bottom: 2px solid #e9ecef;
+  padding-bottom: 8px;
+}
+
+.submission .markdown-preview h2 {
+  font-size: var(--heading-font-size-s);
+}
+
+.submission .markdown-preview h3 {
+  font-size: var(--body-font-size-l);
+}
+
+.submission .markdown-preview p {
+  margin-bottom: 12px;
+}
+
+.submission .markdown-preview strong {
+  font-weight: 600;
+  color: var(--heading-color);
+}
+
+.submission .markdown-preview em {
+  font-style: italic;
+}
+
+.submission .markdown-preview code {
+  background-color: #f8f9fa;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
+  font-size: 0.9em;
+  color: #d73502;
+}
+
+.submission .markdown-preview pre {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 16px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.submission .markdown-preview pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-color);
+  border-radius: 0;
+}
+
+.submission .markdown-preview ul {
+  margin: 0 0 12px;
+  padding-left: 24px;
+}
+
+.submission .markdown-preview li {
+  margin-bottom: 4px;
+}
+
+.submission .markdown-preview a {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.submission .markdown-preview a:hover {
+  text-decoration: none;
+}
+
+.submission .markdown-preview br {
+  line-height: 0.5;
+}
+
+.submission .markdown-preview em:only-child {
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .submission input,
+  .submission select,
+  .submission textarea {
+    border-width: 3px;
+  }
+  
+  .submission fieldset {
+    border-width: 3px;
+  }
+  
+  .submission .markdown-editor-container {
+    border-width: 3px;
+  }
+}
