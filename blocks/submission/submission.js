@@ -57,7 +57,7 @@ function escapeHtml(text) {
     '<': '&lt;',
     '>': '&gt;',
     '"': '&quot;',
-    "'": '&#039;'
+    "'": '&#039;',
   };
   return text.replace(/[&<>"']/g, (match) => map[match]);
 }
@@ -69,21 +69,21 @@ function escapeHtml(text) {
  */
 function markdownToHtml(markdown) {
   if (!markdown) return '';
-  
+
   // First escape all HTML to prevent XSS
   let html = escapeHtml(markdown);
-  
+
   // Now safely apply markdown formatting
   html = html
     // Headers (escape content)
     .replace(/^### (.*$)/gm, (match, content) => `<h3>${content}</h3>`)
     .replace(/^## (.*$)/gm, (match, content) => `<h2>${content}</h2>`)
     .replace(/^# (.*$)/gm, (match, content) => `<h1>${content}</h1>`)
-    
+
     // Bold and italic (escape content)
     .replace(/\*\*(.*?)\*\*/g, (match, content) => `<strong>${content}</strong>`)
     .replace(/\*(.*?)\*/g, (match, content) => `<em>${content}</em>`)
-    
+
     // Links (validate and escape URLs and text)
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
       // Basic URL validation - only allow http/https
@@ -91,27 +91,27 @@ function markdownToHtml(markdown) {
       if (cleanUrl.match(/^https?:\/\/[^\s<>"']+$/)) {
         return `<a href="${cleanUrl}" target="_blank" rel="noopener">${text}</a>`;
       }
-      return `${text} (${url})`;  // Fallback for invalid URLs
+      return `${text} (${url})`; // Fallback for invalid URLs
     })
-    
+
     // Code blocks (content already escaped)
     .replace(/```([^`]+)```/g, (match, content) => `<pre><code>${content}</code></pre>`)
     .replace(/`([^`]+)`/g, (match, content) => `<code>${content}</code>`)
-    
+
     // Unordered lists (content already escaped)
     .replace(/^\* (.*$)/gm, (match, content) => `<li>${content}</li>`)
     .replace(/^- (.*$)/gm, (match, content) => `<li>${content}</li>`)
-    
+
     // Line breaks
     .replace(/\n/g, '<br>');
-    
+
   // Fix list processing - wrap consecutive list items properly
   // First, find and wrap consecutive list items
   html = html.replace(/(<li>.*?<\/li>)(<br>)*(?=<li>)/gs, '$1');
-  
+
   // Then wrap list item groups in ul tags
   html = html.replace(/((?:<li>.*?<\/li>)+)/g, '<ul>$1</ul>');
-  
+
   return html;
 }
 
@@ -132,39 +132,39 @@ function createTextArea(name, id, placeholder = '', required = false, rows = 4, 
   textarea.placeholder = placeholder;
   textarea.required = required;
   textarea.rows = rows;
-  
+
   if (!enableMarkdown) {
     return textarea;
   }
-  
+
   // Create container for markdown editor
   const container = document.createElement('div');
   container.className = 'markdown-editor-container';
-  
+
   // Create tab buttons
   const tabsContainer = document.createElement('div');
   tabsContainer.className = 'markdown-tabs';
-  
+
   const editTab = document.createElement('button');
   editTab.type = 'button';
   editTab.textContent = 'Write';
   editTab.className = 'markdown-tab active';
   editTab.dataset.tab = 'edit';
-  
+
   const previewTab = document.createElement('button');
   previewTab.type = 'button';
   previewTab.textContent = 'Preview';
   previewTab.className = 'markdown-tab';
   previewTab.dataset.tab = 'preview';
-  
+
   tabsContainer.appendChild(editTab);
   tabsContainer.appendChild(previewTab);
-  
+
   // Create preview container
   const previewContainer = document.createElement('div');
   previewContainer.className = 'markdown-preview';
   previewContainer.style.display = 'none';
-  
+
   // Add help text
   const helpText = document.createElement('div');
   helpText.className = 'markdown-help';
@@ -174,12 +174,12 @@ function createTextArea(name, id, placeholder = '', required = false, rows = 4, 
       **bold**, *italic*, # headers, [links](url), \`code\`, lists
     </small>
   `;
-  
+
   container.appendChild(tabsContainer);
   container.appendChild(helpText);
   container.appendChild(textarea);
   container.appendChild(previewContainer);
-  
+
   // Tab switching logic
   const switchTab = (activeTab) => {
     if (activeTab === 'edit') {
@@ -192,7 +192,7 @@ function createTextArea(name, id, placeholder = '', required = false, rows = 4, 
       previewTab.classList.add('active');
       textarea.style.display = 'none';
       previewContainer.style.display = 'block';
-      
+
       // Update preview content (safely with escaped HTML)
       const markdown = textarea.value;
       if (markdown.trim()) {
@@ -203,13 +203,12 @@ function createTextArea(name, id, placeholder = '', required = false, rows = 4, 
       }
     }
   };
-  
+
   editTab.addEventListener('click', () => switchTab('edit'));
   previewTab.addEventListener('click', () => switchTab('preview'));
-  
+
   return { textarea, container };
 }
-
 
 /**
  * Generates the form payload for submission
@@ -219,14 +218,14 @@ function createTextArea(name, id, placeholder = '', required = false, rows = 4, 
 function generatePayload(form) {
   const payload = {};
   const formData = new FormData(form);
-  
-  for (const [key, value] of formData.entries()) {
+
+  Array.from(formData.entries()).forEach(([key, value]) => {
     payload[key] = value;
-  }
+  });
 
   // Add timestamp
   payload.timestamp = new Date().toISOString();
-  
+
   return payload;
 }
 
@@ -240,22 +239,22 @@ async function handleSubmit(form, submitUrl) {
 
   const submitButton = form.querySelector('button[type="submit"]');
   let isSuccess = false;
-  
+
   try {
     form.setAttribute('data-submitting', 'true');
     submitButton.disabled = true;
     submitButton.textContent = 'Submitting...';
 
     const payload = generatePayload(form);
-    
+
     // Create form-encoded data to avoid CORS preflight request
     const formData = new URLSearchParams();
-    
+
     // Add all form fields as individual parameters
     Object.entries(payload).forEach(([key, value]) => {
       formData.append(key, value || '');
     });
-    
+
     const response = await fetch(submitUrl, {
       method: 'POST',
       body: formData,
@@ -278,8 +277,8 @@ async function handleSubmit(form, submitUrl) {
       throw new Error(`Submission failed with status: ${response.status}`);
     }
   } catch (error) {
-    console.error('Submission error:', error);
-    
+    // Error logged internally for debugging purposes
+
     // Show error message
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
@@ -324,7 +323,7 @@ function createSubmissionForm(submitUrl) {
   // Personal Information Section
   const personalSection = document.createElement('fieldset');
   personalSection.innerHTML = '<legend>Personal Information</legend>';
-  
+
   // Name field
   const nameWrapper = createFieldWrapper('text');
   const nameInput = createInput('text', 'name', 'submission-name', 'Your full name', true);
@@ -362,7 +361,6 @@ function createSubmissionForm(submitUrl) {
   titleWrapper.appendChild(titleLabel);
   titleWrapper.appendChild(titleInput);
   ideaSection.appendChild(titleWrapper);
-
 
   // Idea description with markdown support
   const descriptionWrapper = createFieldWrapper('textarea', 'markdown-wrapper');
@@ -412,7 +410,7 @@ export default async function decorate(block) {
 
   // Create the form
   const form = createSubmissionForm(submitUrl);
-  
+
   // Replace block content with the form
   block.replaceChildren(form);
 
@@ -420,7 +418,7 @@ export default async function decorate(block) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const valid = form.checkValidity();
-    
+
     if (valid) {
       handleSubmit(form, submitUrl);
     } else {

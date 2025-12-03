@@ -15,14 +15,14 @@
 .submission .form-title {
   font-size: var(--heading-font-size-m);
   font-weight: 700;
-  margin: 0 0 8px 0;
+  margin: 0 0 8px;
   color: var(--heading-color);
 }
 
 .submission .form-description {
   font-size: var(--body-font-size-m);
   color: var(--text-color);
-  margin: 0 0 24px 0;
+  margin: 0 0 24px;
   line-height: 1.5;
 }
 
@@ -84,32 +84,6 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.submission input:hover,
-.submission select:hover,
-.submission textarea:hover {
-  border-color: var(--link-color);
-}
-
-.submission input:focus,
-.submission select:focus,
-.submission textarea:focus {
-  outline: none;
-  border-color: var(--link-color);
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.submission input:invalid,
-.submission select:invalid,
-.submission textarea:invalid {
-  border-color: #d73502;
-}
-
-.submission input:invalid:focus,
-.submission select:invalid:focus,
-.submission textarea:invalid:focus {
-  box-shadow: 0 0 0 3px rgba(215, 53, 2, 0.1);
-}
-
 /* Textarea Specific Styling */
 .submission textarea {
   resize: vertical;
@@ -130,6 +104,51 @@
   background-size: 16px;
   padding-right: 40px;
   appearance: none;
+}
+
+.submission input:hover,
+.submission select:hover,
+.submission textarea:hover {
+  border-color: var(--link-color);
+}
+
+.submission input:focus,
+.submission select:focus,
+.submission textarea:focus {
+  outline: none;
+  border-color: var(--link-color);
+  box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
+}
+
+.submission input:focus-visible,
+.submission select:focus-visible,
+.submission textarea:focus-visible,
+.submission button:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.submission .markdown-editor-container textarea {
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+  font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 200px;
+}
+
+.submission input:invalid,
+.submission select:invalid,
+.submission textarea:invalid {
+  border-color: #d73502;
+}
+
+.submission input:invalid:focus,
+.submission select:invalid:focus,
+.submission textarea:invalid:focus {
+  box-shadow: 0 0 0 3px rgb(215 53 2 / 10%);
 }
 
 /* Button Styling */
@@ -154,6 +173,11 @@
 
 .submission .button:active {
   transform: translateY(0);
+}
+
+.submission[data-submitting="true"] .button {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
 
 .submission .button:disabled {
@@ -182,7 +206,7 @@
 }
 
 .submission .success-message h3 {
-  margin: 0 0 12px 0;
+  margin: 0 0 12px;
   font-size: var(--body-font-size-l);
   color: #155724;
 }
@@ -246,19 +270,7 @@
   pointer-events: none;
 }
 
-.submission[data-submitting="true"] .button {
-  background-color: #6c757d;
-  cursor: not-allowed;
-}
-
 /* Focus Management */
-.submission input:focus-visible,
-.submission select:focus-visible,
-.submission textarea:focus-visible,
-.submission button:focus-visible {
-  outline: 2px solid var(--link-color);
-  outline-offset: 2px;
-}
 
 /* Markdown Editor Styling */
 .submission .markdown-wrapper {
@@ -290,7 +302,7 @@
   display: flex;
   justify-content: flex-start;
   gap: 16px;
-  padding: 0px 12px;
+  padding: 0 12px;
   background-color: #f8f9fa;
   border-bottom: 1px solid #e9ecef;
 }
@@ -303,7 +315,6 @@
   font-weight: 400;
   color: #868e96;
   cursor: pointer;
-  transition: color 0.2s ease;
   border-radius: 3px;
   text-decoration: underline;
   text-decoration-color: transparent;
@@ -319,19 +330,9 @@
   color: var(--link-color);
   font-weight: 500;
   text-decoration: none;
-  background-color: rgba(0, 123, 255, 0.08);
+  background-color: rgb(0 123 255 / 8%);
 }
 
-.submission .markdown-editor-container textarea {
-  border: none;
-  border-radius: 0;
-  background-color: #fff;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  resize: vertical;
-  min-height: 200px;
-}
 
 .submission .markdown-editor-container textarea:focus {
   box-shadow: none;
@@ -388,7 +389,7 @@
   background-color: #f8f9fa;
   padding: 2px 6px;
   border-radius: 3px;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-family: Monaco, Menlo, 'Ubuntu Mono', monospace;
   font-size: 0.9em;
   color: #d73502;
 }
@@ -410,7 +411,7 @@
 }
 
 .submission .markdown-preview ul {
-  margin: 0 0 12px 0;
+  margin: 0 0 12px;
   padding-left: 24px;
 }
 
@@ -437,7 +438,7 @@
 }
 
 /* High Contrast Mode Support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
   .submission input,
   .submission select,
   .submission textarea {
