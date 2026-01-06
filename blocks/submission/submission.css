@@ -166,6 +166,15 @@
   min-width: 180px;
 }
 
+/* Eligibility Disclaimer */
+.submission .eligibility-disclaimer {
+  font-size: var(--body-font-size-xs);
+  color: #6c757d;
+  margin: 8px 0 0;
+  font-style: italic;
+  line-height: 1.4;
+}
+
 .submission .button:hover {
   background-color: #0056b3;
   transform: translateY(-1px);

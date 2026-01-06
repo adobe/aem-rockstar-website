@@ -395,6 +395,13 @@ function createSubmissionForm(submitUrl) {
   submitButton.textContent = 'Submit Idea';
   submitButton.className = 'button primary';
   submitWrapper.appendChild(submitButton);
+  
+  // Add eligibility disclaimer
+  const eligibilityText = document.createElement('p');
+  eligibilityText.textContent = '* Adobe Employees are not eligible';
+  eligibilityText.className = 'eligibility-disclaimer';
+  submitWrapper.appendChild(eligibilityText);
+  
   form.appendChild(submitWrapper);
 
   return form;
@@ -406,7 +413,8 @@ function createSubmissionForm(submitUrl) {
  */
 export default async function decorate(block) {
   // Use production n8n webhook endpoint
-  const submitUrl = 'https://dkuntze.app.n8n.cloud/webhook/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb';
+  const submitUrl = 'https://dkuntze.app.n8n.cloud/webhook/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb'; // Production
+  // const submitUrl = 'https://dkuntze.app.n8n.cloud/webhook-test/828ff9cd-e9bf-4bc8-8f13-3fe84012a2cb'; // Test
 
   // Create the form
   const form = createSubmissionForm(submitUrl);
@@ -414,7 +422,7 @@ export default async function decorate(block) {
   // Replace block content with the form
   block.replaceChildren(form);
 
-  // Add form submission handler
+  // Add form submission handler';
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const valid = form.checkValidity();
