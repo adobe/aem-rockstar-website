@@ -70,6 +70,22 @@ function buildAutoBlocks(main) {
   }
 }
 
+function addVideo(main) {
+  if (main.querySelector('div.section.blue-header.video')) {
+    const videoSection = main.querySelector('div.section.blue-header.video');
+    const video = document.createElement('video');
+    video.id = 'hero-video';
+    video.setAttribute('autoplay', '');
+    video.setAttribute('muted', '');
+    video.muted = true;
+    video.setAttribute('loop', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('src', '/styles/Summit2026_Homepage_1_Desktop_1.mp4');
+    video.setAttribute('type', 'video/mp4');
+    videoSection.appendChild(video);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -82,6 +98,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  addVideo(main);
 }
 
 /**
