@@ -4,8 +4,9 @@
  * Configuration is read from the block content:
  *   Row 1: Webhook URL
  *   Row 2: Location name
- *   Row 3: (Optional) Form title
- *   Row 4: (Optional) Form description
+ *   Row 3: Event address/venue
+ *   Row 4: (Optional) Form title
+ *   Row 5: (Optional) Form description
  */
 
 /**
@@ -60,9 +61,10 @@ function createInput(type, name, id, placeholder = '', required = false) {
  * Generates the form payload for submission
  * @param {HTMLFormElement} form - The form element
  * @param {string} location - The location value
+ * @param {string} address - The event address
  * @returns {Object} Form data payload
  */
-function generatePayload(form, location) {
+function generatePayload(form, location, address) {
   const payload = {};
   const formData = new FormData(form);
 
@@ -70,8 +72,9 @@ function generatePayload(form, location) {
     payload[key] = value;
   });
 
-  // Add location and timestamp
+  // Add location, address, and timestamp
   payload.location = location;
+  payload.address = address;
   payload.timestamp = new Date().toISOString();
 
   return payload;
@@ -82,8 +85,9 @@ function generatePayload(form, location) {
  * @param {HTMLFormElement} form - The form element
  * @param {string} submitUrl - The submission URL
  * @param {string} location - The location value
+ * @param {string} address - The event address
  */
-async function handleSubmit(form, submitUrl, location) {
+async function handleSubmit(form, submitUrl, location, address) {
   if (form.getAttribute('data-submitting') === 'true') return;
 
   const submitButton = form.querySelector('button[type="submit"]');
@@ -94,7 +98,7 @@ async function handleSubmit(form, submitUrl, location) {
     submitButton.disabled = true;
     submitButton.textContent = 'Registering...';
 
-    const payload = generatePayload(form, location);
+    const payload = generatePayload(form, location, address);
 
     // Create form-encoded data to avoid CORS preflight request
     const formData = new URLSearchParams();
@@ -154,6 +158,7 @@ async function handleSubmit(form, submitUrl, location) {
  * @param {Object} config - Configuration object
  * @param {string} config.submitUrl - The URL to submit the form to
  * @param {string} config.location - The location name
+ * @param {string} config.address - The event address/venue
  * @param {string} config.title - Form title
  * @param {string} config.description - Form description
  * @returns {HTMLFormElement} The complete form element
@@ -162,6 +167,7 @@ function createRegistrationForm(config) {
   const {
     submitUrl,
     location,
+    address = '',
     title = 'Register',
     description = '',
   } = config;
@@ -187,11 +193,25 @@ function createRegistrationForm(config) {
     header.appendChild(formDescription);
   }
 
+  // Location info container
+  const locationInfo = document.createElement('div');
+  locationInfo.className = 'location-info';
+
   // Location badge
   const locationBadge = document.createElement('div');
   locationBadge.className = 'location-badge';
   locationBadge.innerHTML = `<span class="location-icon">📍</span><span class="location-text">${location}</span>`;
-  header.appendChild(locationBadge);
+  locationInfo.appendChild(locationBadge);
+
+  // Event address
+  if (address) {
+    const addressElement = document.createElement('p');
+    addressElement.className = 'event-address';
+    addressElement.textContent = address;
+    locationInfo.appendChild(addressElement);
+  }
+
+  header.appendChild(locationInfo);
 
   form.appendChild(header);
 
@@ -263,6 +283,7 @@ function extractConfig(block) {
   const config = {
     submitUrl: '',
     location: '',
+    address: '',
     title: 'Register',
     description: '',
   };
@@ -277,9 +298,12 @@ function extractConfig(block) {
         config.location = content;
         break;
       case 2:
-        if (content) config.title = content;
+        config.address = content;
         break;
       case 3:
+        if (content) config.title = content;
+        break;
+      case 4:
         if (content) config.description = content;
         break;
       default:
@@ -321,7 +345,7 @@ export default async function decorate(block) {
     const valid = form.checkValidity();
 
     if (valid) {
-      handleSubmit(form, config.submitUrl, config.location);
+      handleSubmit(form, config.submitUrl, config.location, config.address);
     } else {
       // Focus on first invalid field
       const firstInvalidField = form.querySelector(':invalid:not(fieldset)');
