@@ -30,24 +30,24 @@ export default async function decorate(block) {
 
     // eslint-disable-next-line new-cap
     const qrcode1 = new qrcode(0, 'H');
-    qrcode1.addData('https://rockstar.adobeevents.com/en/live/a');
+    qrcode1.addData('https://rockstar.adobeevents.com/en/live/x');
     qrcode1.make();
 
     // eslint-disable-next-line new-cap
     const qrcode2 = new qrcode(0, 'H');
-    qrcode2.addData('https://rockstar.adobeevents.com/en/live/b');
+    qrcode2.addData('https://rockstar.adobeevents.com/en/live/y');
     qrcode2.make();
 
     // eslint-disable-next-line new-cap
     const qrcode3 = new qrcode(0, 'H');
-    qrcode3.addData('https://rockstar.adobeevents.com/en/live/c');
+    qrcode3.addData('https://rockstar.adobeevents.com/en/live/z');
     qrcode3.make();
 
     const qr1 = document.createElement('div');
     qr1.classList.add('qr1');
     const col1content = document.createElement('h2');
     const col1A = document.createElement('a');
-    col1A.href = 'https://rockstar.adobeevents.com/en/live/a';
+    col1A.href = 'https://rockstar.adobeevents.com/en/live/x';
     // eslint-disable-next-line prefer-destructuring
     col1content.innerText = names[0];
     col1A.appendChild(col1content);
@@ -59,7 +59,7 @@ export default async function decorate(block) {
     col2.classList.add('col-2');
     const col2content = document.createElement('h2');
     const col2A = document.createElement('a');
-    col2A.href = 'https://rockstar.adobeevents.com/en/live/b';
+    col2A.href = 'https://rockstar.adobeevents.com/en/live/y';
     // eslint-disable-next-line prefer-destructuring
     col2content.innerText = names[1];
     col2A.appendChild(col2content);
@@ -71,7 +71,7 @@ export default async function decorate(block) {
     col3.classList.add('col-3');
     const col3content = document.createElement('h2');
     const col3A = document.createElement('a');
-    col3A.href = 'https://rockstar.adobeevents.com/en/live/c';
+    col3A.href = 'https://rockstar.adobeevents.com/en/live/z';
     // eslint-disable-next-line prefer-destructuring
     col3content.innerText = names[2];
     col3A.appendChild(col3content);
