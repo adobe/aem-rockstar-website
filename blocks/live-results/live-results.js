@@ -2,9 +2,9 @@ import { loadScript } from '../../scripts/aem.js';
 
 const dp = [
   ['Name', 'Votes'],
-  ['Martin Altman', 1],
-  ['Anian Weber', 1],
-  ['Scott Simmer', 1],
+  ['Person One', 1],
+  ['Person Two', 1],
+  ['Person Three', 1],
 ];
 
 function drawChart() {
