@@ -1,11 +1,6 @@
-import { loadScript } from '../../scripts/aem.js';
+import { loadScript, readBlockConfig } from '../../scripts/aem.js';
 
-const FALLBACK_DATA = [
-  ['Name', 'Votes'],
-  ['Person One', 1],
-  ['Person Two', 1],
-  ['Person Three', 1],
-];
+const FALLBACK_NAMES = [];
 
 const COLOR_PALETTE = [
   '#ff4d4d',
@@ -23,32 +18,30 @@ function parseNumber(value) {
   return Number.isNaN(parsed) ? 0 : parsed;
 }
 
-function getInitialData(block) {
+function getInitialNames(block) {
   const table = block.querySelector('table');
   if (table) {
     const rows = [...table.querySelectorAll('tr')];
-    const data = rows.map((row) => [...row.children].map((cell) => cell.textContent.trim()));
-    if (data.length > 1) return data;
+    const names = rows
+      .map((row) => row.children[0]?.textContent.trim())
+      .filter((name) => name && !isHeaderLabel(name));
+    if (names.length) return names;
   }
 
   const rows = [...block.querySelectorAll(':scope > div')];
   if (rows.length) {
-    const data = [['Name', 'Votes']];
-    rows.forEach((row) => {
-      const cells = [...row.children];
-      if (cells.length >= 2) {
-        data.push([cells[0].textContent.trim(), cells[1].textContent.trim()]);
-      }
-    });
-    if (data.length > 1) return data;
+    const names = rows
+      .map((row) => row.children[0]?.textContent.trim())
+      .filter((name) => name && !isHeaderLabel(name));
+    if (names.length) return names;
   }
 
-  return FALLBACK_DATA;
+  return FALLBACK_NAMES;
 }
 
 function isHeaderLabel(name) {
   const normalized = String(name || '').trim().toLowerCase();
-  return ['name', 'names', 'candidate', 'candidates'].includes(normalized);
+  return ['name', 'names', 'candidate', 'candidates', 'mode', 'live results', 'live-results'].includes(normalized);
 }
 
 function animateNumber(el, nextValue) {
@@ -85,22 +78,26 @@ export default async function decorate(block) {
   await loadScript('https://js.pusher.com/7.0/pusher-with-encryption.min.js', { defer: true });
   document.body.classList.add('has-live-results');
 
-  const initialData = getInitialData(block);
+  const config = readBlockConfig(block);
+  const mode = (config.mode || 'default').toString().trim().toLowerCase();
+
+  const initialNames = getInitialNames(block);
   const candidates = new Map();
   const rowsByName = new Map();
   let votesEnabled = false;
 
-  initialData.slice(1).forEach(([name, votes], index) => {
+  initialNames.forEach((name, index) => {
     if (!name || isHeaderLabel(name)) return;
     candidates.set(name, {
       name,
-      votes: parseNumber(votes),
+      votes: 0,
       color: COLOR_PALETTE[index % COLOR_PALETTE.length],
     });
   });
 
   const wrapper = document.createElement('section');
   wrapper.className = 'live-results live-results--fullscreen';
+  wrapper.dataset.mode = mode;
   wrapper.innerHTML = `
     <div class="live-results__header">
       <div>
