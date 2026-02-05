@@ -213,6 +213,33 @@ export default async function decorate(block) {
   let remainingMs = TIMER_DURATION_MS;
   const minDurationMs = 15 * 1000;
   const maxDurationMs = 10 * 60 * 1000;
+  const storageKey = 'live-results-history';
+  const maxHistory = 5;
+
+  const saveResults = () => {
+    const entries = [...candidates.values()];
+    const total = entries.reduce((sum, item) => sum + item.votes, 0);
+    try {
+      const history = JSON.parse(window.localStorage.getItem(storageKey) || '[]');
+      const payload = {
+        savedAt: new Date().toISOString(),
+        totalVotes: total,
+        results: entries
+          .map((item) => ({
+            name: item.name,
+            votes: item.votes,
+            percent: total === 0 ? 0 : Number(((item.votes / total) * 100).toFixed(1)),
+          }))
+          .sort((a, b) => b.votes - a.votes),
+      };
+      history.unshift(payload);
+      if (history.length > maxHistory) history.length = maxHistory;
+      window.localStorage.setItem(storageKey, JSON.stringify(history));
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn('Unable to save live results', error);
+    }
+  };
 
   const updateTimer = (endTime) => {
     const now = Date.now();
@@ -228,6 +255,7 @@ export default async function decorate(block) {
       timerButton.disabled = true;
       votesEnabled = false;
       list.querySelectorAll('.live-results__bar').forEach((bar) => bar.remove());
+      saveResults();
     }
   };
 
