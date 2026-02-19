@@ -1,0 +1,233 @@
+/* N8N Form Block Styling */
+
+.section .n8n-form-wrapper {
+  background-color: #f8f8f8;
+  padding: 32px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.n8n-form .n8n-form-form {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Form Header */
+.n8n-form .form-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.n8n-form .form-title {
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+}
+
+.n8n-form .form-description {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color);
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+/* Form Fields Container */
+.n8n-form .form-fields {
+  display: grid;
+  gap: 20px;
+  width: 100%;
+  grid-template-columns: 1fr;
+}
+
+/* Field Wrapper Styling */
+.n8n-form .field-wrapper {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Label Styling */
+.n8n-form label {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  color: var(--text-color);
+  display: block;
+}
+
+.n8n-form label[data-required]::after {
+  content: ' *';
+  color: #d73502;
+  font-weight: 700;
+}
+
+/* Input Styling */
+.n8n-form input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  background-color: #fff;
+  color: var(--text-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.n8n-form input::placeholder {
+  color: #999;
+}
+
+.n8n-form input:hover {
+  border-color: var(--link-color);
+}
+
+.n8n-form input:focus {
+  outline: none;
+  border-color: var(--link-color);
+  box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
+}
+
+.n8n-form input:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.n8n-form input:invalid:not(:placeholder-shown) {
+  border-color: #d73502;
+}
+
+.n8n-form input:invalid:not(:placeholder-shown):focus {
+  box-shadow: 0 0 0 3px rgb(215 53 2 / 10%);
+}
+
+/* Button Styling */
+.n8n-form .submit-wrapper {
+  margin-top: 8px;
+  width: fit-content;
+  justify-self: center;
+}
+
+.n8n-form .button {
+  background-color: var(--link-color);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: auto;
+  min-width: 180px;
+  display: inline-block;
+}
+
+.n8n-form .button:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.n8n-form .button:active {
+  transform: translateY(0);
+}
+
+.n8n-form .button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.n8n-form .button:disabled:hover {
+  background-color: #6c757d;
+  transform: none;
+}
+
+.n8n-form .button:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Success and Error Messages */
+.n8n-form .success-message,
+.n8n-form .error-message {
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.n8n-form .success-message {
+  background-color: #d4edda;
+  border: 2px solid #c3e6cb;
+  color: #155724;
+}
+
+.n8n-form .success-message h3 {
+  margin: 0 0 12px;
+  font-size: var(--body-font-size-l);
+  color: #155724;
+}
+
+.n8n-form .success-message p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.n8n-form .error-message {
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+  color: #721c24;
+}
+
+.n8n-form .error-message p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Loading State */
+.n8n-form[data-submitting="true"] {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (width >= 600px) {
+  .n8n-form .form-fields {
+    gap: 20px;
+  }
+
+  .n8n-form .button {
+    padding: 14px 48px;
+  }
+}
+
+@media (width >= 900px) {
+  .section .n8n-form-wrapper {
+    padding: 48px;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .n8n-form input {
+    border-width: 3px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .n8n-form input,
+  .n8n-form .button {
+    transition: none;
+  }
+
+  .n8n-form .button:hover {
+    transform: none;
+  }
+}
