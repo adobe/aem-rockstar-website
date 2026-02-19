@@ -395,13 +395,13 @@ function createSubmissionForm(submitUrl) {
   submitButton.textContent = 'Submit Idea';
   submitButton.className = 'button primary';
   submitWrapper.appendChild(submitButton);
-  
+
   // Add eligibility disclaimer
   const eligibilityText = document.createElement('p');
   eligibilityText.textContent = '* Adobe Employees are not eligible';
   eligibilityText.className = 'eligibility-disclaimer';
   submitWrapper.appendChild(eligibilityText);
-  
+
   form.appendChild(submitWrapper);
 
   return form;

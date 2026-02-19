@@ -1,106 +1,73 @@
-/* MC Register Block Styling */
+/* N8N Form Block Styling */
 
-.section .mc-register-wrapper {
+.section .n8n-form-wrapper {
   background-color: #f8f8f8;
   padding: 32px;
   border-radius: 12px;
   width: 100%;
 }
 
-.mc-register .mc-register-form {
+.n8n-form .n8n-form-form {
   display: grid;
   gap: 24px;
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* Form Header */
-.mc-register .form-header {
+.n8n-form .form-header {
   text-align: center;
   margin-bottom: 8px;
 }
 
-.mc-register .form-title {
+.n8n-form .form-title {
   font-size: var(--heading-font-size-m);
   font-weight: 700;
   margin: 0 0 8px;
   color: #1a1a1a;
 }
 
-.mc-register .form-description {
+.n8n-form .form-description {
   font-size: var(--body-font-size-m);
   color: var(--text-color);
   margin: 0 0 16px;
   line-height: 1.5;
 }
 
-/* Location Info Container */
-.mc-register .location-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-/* Location Badge */
-.mc-register .location-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: #e7f3ff;
-  border: 1px solid #b3d7ff;
-  border-radius: 24px;
-  padding: 8px 16px;
-  font-size: var(--body-font-size-s);
-  font-weight: 600;
-  color: #0056b3;
-}
-
-.mc-register .location-icon {
-  font-size: 1.1em;
-}
-
-.mc-register .location-text {
-  letter-spacing: 0.02em;
-}
-
-/* Event Address */
-.mc-register .event-address {
-  margin: 0;
-  font-size: var(--body-font-size-s);
-  color: #555;
-  line-height: 1.4;
-  text-align: center;
-}
-
 /* Form Fields Container */
-.mc-register .form-fields {
+.n8n-form .form-fields {
   display: grid;
   gap: 20px;
+  width: 100%;
+  grid-template-columns: 1fr;
 }
 
 /* Field Wrapper Styling */
-.mc-register .field-wrapper {
+.n8n-form .field-wrapper {
   display: grid;
   gap: 6px;
+  width: 100%;
+  min-width: 0;
 }
 
 /* Label Styling */
-.mc-register label {
+.n8n-form label {
   font-size: var(--body-font-size-s);
   font-weight: 600;
   color: var(--text-color);
   display: block;
 }
 
-.mc-register label[data-required]::after {
+.n8n-form label[data-required]::after {
   content: ' *';
   color: #d73502;
   font-weight: 700;
 }
 
 /* Input Styling */
-.mc-register input {
+.n8n-form input {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 16px;
@@ -113,39 +80,41 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.mc-register input::placeholder {
+.n8n-form input::placeholder {
   color: #999;
 }
 
-.mc-register input:hover {
+.n8n-form input:hover {
   border-color: var(--link-color);
 }
 
-.mc-register input:focus {
+.n8n-form input:focus {
   outline: none;
   border-color: var(--link-color);
   box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
 }
 
-.mc-register input:focus-visible {
+.n8n-form input:focus-visible {
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
 }
 
-.mc-register input:invalid:not(:placeholder-shown) {
+.n8n-form input:invalid:not(:placeholder-shown) {
   border-color: #d73502;
 }
 
-.mc-register input:invalid:not(:placeholder-shown):focus {
+.n8n-form input:invalid:not(:placeholder-shown):focus {
   box-shadow: 0 0 0 3px rgb(215 53 2 / 10%);
 }
 
 /* Button Styling */
-.mc-register .submit-wrapper {
+.n8n-form .submit-wrapper {
   margin-top: 8px;
+  width: fit-content;
+  justify-self: center;
 }
 
-.mc-register .button {
+.n8n-form .button {
   background-color: var(--link-color);
   color: #fff;
   border: none;
@@ -155,127 +124,110 @@
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.1s ease;
-  width: 100%;
+  width: auto;
   min-width: 180px;
+  display: inline-block;
 }
 
-.mc-register .button:hover {
+.n8n-form .button:hover {
   background-color: #0056b3;
   transform: translateY(-1px);
 }
 
-.mc-register .button:active {
+.n8n-form .button:active {
   transform: translateY(0);
 }
 
-.mc-register .button:disabled {
+.n8n-form .button:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
   transform: none;
 }
 
-.mc-register .button:focus-visible {
+.n8n-form .button:focus-visible {
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
 }
 
-.mc-register .button:disabled:hover {
+.n8n-form .button:disabled:hover {
   background-color: #6c757d;
   transform: none;
 }
 
 /* Success and Error Messages */
-.mc-register .success-message,
-.mc-register .error-message {
+.n8n-form .success-message,
+.n8n-form .error-message {
   padding: 24px;
   border-radius: 8px;
   text-align: center;
 }
 
-.mc-register .success-message {
+.n8n-form .success-message {
   background-color: #d4edda;
   border: 2px solid #c3e6cb;
   color: #155724;
 }
 
-.mc-register .success-message h3 {
+.n8n-form .success-message h3 {
   margin: 0 0 12px;
   font-size: var(--body-font-size-l);
   color: #155724;
 }
 
-.mc-register .success-message p {
+.n8n-form .success-message p {
   margin: 0;
   line-height: 1.5;
 }
 
-.mc-register .error-message {
+.n8n-form .error-message {
   background-color: #f8d7da;
   border: 2px solid #f5c6cb;
   color: #721c24;
 }
 
-.mc-register .error-message p {
+.n8n-form .error-message p {
   margin: 0;
   font-weight: 600;
 }
 
 /* Loading State */
-.mc-register[data-submitting="true"] {
+.n8n-form[data-submitting="true"] {
   opacity: 0.7;
   pointer-events: none;
 }
 
 /* Responsive Design */
 @media (width >= 600px) {
-  .mc-register .form-fields {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 24px;
+  .n8n-form .form-fields {
+    gap: 20px;
   }
 
-  /* Full width fields */
-  .mc-register .email-wrapper,
-  .mc-register .company-wrapper,
-  .mc-register .jobtitle-wrapper {
-    grid-column: 1 / -1;
-  }
-
-  .mc-register .button {
-    width: auto;
-    justify-self: center;
+  .n8n-form .button {
     padding: 14px 48px;
-  }
-
-  .mc-register .submit-wrapper {
-    justify-self: center;
   }
 }
 
 @media (width >= 900px) {
-  .section .mc-register-wrapper {
+  .section .n8n-form-wrapper {
     padding: 48px;
   }
 }
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: more) {
-  .mc-register input {
+  .n8n-form input {
     border-width: 3px;
-  }
-
-  .mc-register .location-badge {
-    border-width: 2px;
   }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .mc-register input,
-  .mc-register .button {
+  .n8n-form input,
+  .n8n-form .button {
     transition: none;
   }
 
-  .mc-register .button:hover {
+  .n8n-form .button:hover {
     transform: none;
   }
 }
