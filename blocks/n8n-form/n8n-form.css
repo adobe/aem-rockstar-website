@@ -126,6 +126,7 @@
   width: auto;
   min-width: 180px;
   display: inline-block;
+
   /* Same shadow shape as hover so only color changes - prevents layout shift */
   box-shadow: 0 2px 8px rgb(0 0 0 / 0%);
 }

@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   extends: 'airbnb-base',
+  ignorePatterns: ['blocks/n8n-form/n8n-code/**'],
   env: {
     browser: true,
   },
