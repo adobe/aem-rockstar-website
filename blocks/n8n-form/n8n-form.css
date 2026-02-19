@@ -67,46 +67,43 @@
   font-weight: 700;
 }
 
-/* Input Styling - outline is only box-shadow (same size/position always, so it never moves) */
+/* Input Styling - outline is only box-shadow (same size/position always, so it never moves).
+   !important overrides global main input { border: 1px } and main input:hover so field never shrinks. */
 .n8n-form input {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid transparent;
+  border: 2px solid transparent !important;
   border-radius: 6px;
   font-size: var(--body-font-size-s);
   font-family: var(--body-font-family);
   background-color: #fff;
   color: var(--text-color);
   transition: box-shadow 0.2s ease;
-  /* Single outline: always 2px at same offset; only color changes on focus/invalid */
-  box-shadow: 0 0 0 2px #ddd;
+  box-shadow: 0 0 0 2px #ddd !important;
 }
 
 .n8n-form input::placeholder {
   color: #999;
 }
 
-/* Override global main input:hover (1px border) so our border stays 2px – prevents vertical jump */
-main .n8n-form input:hover,
 .n8n-form input:hover {
-  border: 2px solid transparent;
-  box-shadow: 0 0 0 2px #ddd;
+  border: 2px solid transparent !important;
+  box-shadow: 0 0 0 2px #ddd !important;
 }
 
 .n8n-form input:focus,
 .n8n-form input:focus-visible {
   outline: none;
-  /* Same 2px ring position; border hidden so we use box-shadow as the only outline */
-  box-shadow: 0 0 0 2px var(--link-color);
+  box-shadow: 0 0 0 2px var(--link-color) !important;
 }
 
 .n8n-form input:invalid:not(:placeholder-shown) {
-  box-shadow: 0 0 0 2px #d73502;
+  box-shadow: 0 0 0 2px #d73502 !important;
 }
 
 .n8n-form input:invalid:not(:placeholder-shown):focus {
-  box-shadow: 0 0 0 2px #d73502;
+  box-shadow: 0 0 0 2px #d73502 !important;
 }
 
 /* Button Styling */
@@ -219,18 +216,20 @@ main .n8n-form input:hover,
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: more) {
-  .n8n-form input {
-    border-width: 3px;
-    box-shadow: 0 0 0 3px #ddd;
+  .n8n-form input,
+  .n8n-form input:hover {
+    border-width: 3px !important;
+    box-shadow: 0 0 0 3px #ddd !important;
   }
 
   .n8n-form input:focus,
   .n8n-form input:focus-visible {
-    box-shadow: 0 0 0 3px var(--link-color);
+    box-shadow: 0 0 0 3px var(--link-color) !important;
   }
 
-  .n8n-form input:invalid:not(:placeholder-shown) {
-    box-shadow: 0 0 0 3px #d73502;
+  .n8n-form input:invalid:not(:placeholder-shown),
+  .n8n-form input:invalid:not(:placeholder-shown):focus {
+    box-shadow: 0 0 0 3px #d73502 !important;
   }
 }
 
