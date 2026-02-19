@@ -144,14 +144,14 @@
   transform: none;
 }
 
-.n8n-form .button:disabled:hover {
-  background-color: #6c757d;
-  transform: none;
-}
-
 .n8n-form .button:focus-visible {
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
+}
+
+.n8n-form .button:disabled:hover {
+  background-color: #6c757d;
+  transform: none;
 }
 
 /* Success and Error Messages */

@@ -7,7 +7,7 @@
  *   Row 2: Form description (optional, single cell)
  *   Row 3: Thank-you title (optional, single cell, default "Thank you!")
  *   Row 4: Thank-you message (optional, single cell)
- *   First row with 2+ cells: start of field definitions. Cells: Label | Name | Type | Required | Placeholder
+ *   First row with 2+ cells: field definitions. Cells: Label | Name | Type | Required | Placeholder
  *   If no field rows are provided, defaults to Name + Email.
  */
 
@@ -90,7 +90,9 @@ function parseFieldRow(cells, index) {
   const requiredStr = (cells[3]?.trim() || 'yes').toLowerCase();
   const required = requiredStr === 'yes' || requiredStr === 'true' || requiredStr === '1';
   const placeholder = cells[4]?.trim() || '';
-  return { label: label || name, name, type, required, placeholder };
+  return {
+    label: label || name, name, type, required, placeholder,
+  };
 }
 
 /**
@@ -115,7 +117,7 @@ function generatePayload(form) {
  * @param {HTMLFormElement} form - The form element
  * @param {string} submitUrl - The submission URL
  * @param {Object} successText - Optional { title, message } for the thank you screen
- * @param {string} [bearerToken] - Optional Bearer token; if set, sends Authorization header so n8n can forward it (e.g. for admin.da.live PUT).
+ * @param {string} [bearerToken] - Optional Bearer token; sends Authorization header for n8n.
  */
 async function handleSubmit(form, submitUrl, successText = {}, bearerToken = null) {
   if (form.getAttribute('data-submitting') === 'true') return;
@@ -186,8 +188,12 @@ async function handleSubmit(form, submitUrl, successText = {}, bearerToken = nul
 
 /** Default fields when none are configured (name + email) */
 const DEFAULT_FIELDS = [
-  { label: 'Name', name: 'name', type: 'text', required: true, placeholder: 'Your name' },
-  { label: 'Email', name: 'email', type: 'email', required: true, placeholder: 'your@email.com' },
+  {
+    label: 'Name', name: 'name', type: 'text', required: true, placeholder: 'Your name',
+  },
+  {
+    label: 'Email', name: 'email', type: 'email', required: true, placeholder: 'your@email.com',
+  },
 ];
 
 /**
@@ -256,7 +262,7 @@ function createForm(config) {
 
 /**
  * Extracts configuration from block content.
- * The first row may be the block name row (first cell = block name); it is skipped so row 0 = URL, 1 = title, 2 = description, 3+ = fields.
+ * First row may be block name (skipped); then row 0 = URL, 1 = title, 2 = description, 3+ = fields.
  * @param {Element} block - The block element
  * @returns {Object} Configuration object with submitUrl, title, description, fields[]
  */
@@ -274,14 +280,19 @@ function extractConfig(block) {
     successTitle: '',
     successMessage: '',
     fields: [],
-    /** Optional. When set, form POST includes Authorization: Bearer <token> so n8n can forward it (e.g. for admin.da.live). */
+    /** Optional. When set, form POST includes Authorization: Bearer <token> for n8n. */
     bearerToken: '',
   };
 
-  if (dataRows.length > 0) config.submitUrl = dataRows[0].children[0]?.textContent?.trim() ?? '';
-  if (dataRows.length > 1) config.title = dataRows[1].children[0]?.textContent?.trim() || config.title;
+  if (dataRows.length > 0) {
+    config.submitUrl = dataRows[0].children[0]?.textContent?.trim() ?? '';
+  }
+  if (dataRows.length > 1) {
+    const titleCell = dataRows[1].children[0]?.textContent?.trim();
+    config.title = titleCell || config.title;
+  }
 
-  // Rows 2+ are either optional single-cell (description, success title, success message) or field rows (2+ cells)
+  // Rows 2+: optional single-cell (description, success title/message) or field rows (2+ cells)
   let fieldStartIndex = dataRows.length;
   for (let i = 2; i < dataRows.length; i += 1) {
     if ((dataRows[i].children?.length ?? 0) >= 2) {
@@ -308,10 +319,11 @@ function extractConfig(block) {
     config.fields = DEFAULT_FIELDS;
   }
 
-  // Optional: Bearer token for Authorization header (block data attribute or window.n8nFormBearerToken)
+  // Optional: Bearer token (block data-bearer-token or window.n8nFormBearerToken)
+  const win = typeof window !== 'undefined' ? window : null;
   config.bearerToken = block.dataset.bearerToken
     || block.getAttribute('data-bearer-token')
-    || (typeof window !== 'undefined' && window.n8nFormBearerToken)
+    || (win && win.n8nFormBearerToken)
     || '';
 
   return config;
@@ -325,7 +337,8 @@ export default async function decorate(block) {
   const config = extractConfig(block);
 
   if (!config.submitUrl) {
-    block.innerHTML = '<p class="error-message">Error: Webhook URL is required. Please configure the block with a valid n8n webhook URL.</p>';
+    block.innerHTML = '<p class="error-message">Error: Webhook URL is required. '
+      + 'Configure the block with a valid n8n webhook URL.</p>';
     return;
   }
 

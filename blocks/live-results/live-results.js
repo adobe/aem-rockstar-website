@@ -18,6 +18,11 @@ function parseNumber(value) {
   return Number.isNaN(parsed) ? 0 : parsed;
 }
 
+function isHeaderLabel(name) {
+  const normalized = String(name || '').trim().toLowerCase();
+  return ['name', 'names', 'candidate', 'candidates', 'mode', 'live results', 'live-results'].includes(normalized);
+}
+
 function getInitialNames(block) {
   const table = block.querySelector('table');
   if (table) {
@@ -37,11 +42,6 @@ function getInitialNames(block) {
   }
 
   return FALLBACK_NAMES;
-}
-
-function isHeaderLabel(name) {
-  const normalized = String(name || '').trim().toLowerCase();
-  return ['name', 'names', 'candidate', 'candidates', 'mode', 'live results', 'live-results'].includes(normalized);
 }
 
 function animateNumber(el, nextValue) {
