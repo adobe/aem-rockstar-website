@@ -87,6 +87,13 @@
   color: #999;
 }
 
+/* Override global main input:hover (1px border) so our border stays 2px – prevents vertical jump */
+main .n8n-form input:hover,
+.n8n-form input:hover {
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 2px #ddd;
+}
+
 .n8n-form input:focus,
 .n8n-form input:focus-visible {
   outline: none;
