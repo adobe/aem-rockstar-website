@@ -93,14 +93,16 @@
   display: block;
 }
 
-.mc-register label[data-required]::after {
+.mc-register label[data-required]::after,
+.mc-register legend[data-required]::after {
   content: ' *';
   color: #d73502;
   font-weight: 700;
 }
 
-/* Input Styling */
-.mc-register input {
+/* Input and Textarea Styling */
+.mc-register input:not([type="radio"]),
+.mc-register textarea {
   box-sizing: border-box;
   width: 100%;
   padding: 12px 16px;
@@ -113,31 +115,88 @@
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.mc-register input::placeholder {
+.mc-register input:not([type="radio"])::placeholder,
+.mc-register textarea::placeholder {
   color: #999;
 }
 
-.mc-register input:hover {
+.mc-register textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.mc-register input:not([type="radio"]):hover,
+.mc-register textarea:hover {
   border-color: var(--link-color);
 }
 
-.mc-register input:focus {
+.mc-register input:not([type="radio"]):focus,
+.mc-register textarea:focus {
   outline: none;
   border-color: var(--link-color);
   box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
 }
 
-.mc-register input:focus-visible {
+.mc-register input:not([type="radio"]):focus-visible,
+.mc-register textarea:focus-visible {
   outline: 2px solid var(--link-color);
   outline-offset: 2px;
 }
 
-.mc-register input:invalid:not(:placeholder-shown) {
+.mc-register input:not([type="radio"]):invalid:not(:placeholder-shown),
+.mc-register textarea:invalid:not(:placeholder-shown) {
   border-color: #d73502;
 }
 
-.mc-register input:invalid:not(:placeholder-shown):focus {
+.mc-register input:not([type="radio"]):invalid:not(:placeholder-shown):focus,
+.mc-register textarea:invalid:not(:placeholder-shown):focus {
   box-shadow: 0 0 0 3px rgb(215 53 2 / 10%);
+}
+
+.mc-register .radio-fieldset {
+  border: 0;
+  margin: 0;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.mc-register .radio-fieldset legend {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.mc-register .radio-group {
+  display: grid;
+  gap: 10px;
+}
+
+.mc-register .radio-option {
+  align-items: center;
+  column-gap: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 400;
+  margin: 0;
+}
+
+.mc-register .radio-option input[type="radio"] {
+  accent-color: var(--link-color);
+  flex-shrink: 0;
+  height: 18px;
+  margin: 0;
+  width: 18px;
+}
+
+.mc-register .radio-option input[type="radio"]:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.mc-register .dietary-other-wrapper.is-hidden {
+  display: none;
 }
 
 /* Button Styling */
@@ -236,8 +295,15 @@
   /* Full width fields */
   .mc-register .email-wrapper,
   .mc-register .company-wrapper,
-  .mc-register .jobtitle-wrapper {
+  .mc-register .jobtitle-wrapper,
+  .mc-register .dietary-wrapper,
+  .mc-register .dietary-other-wrapper,
+  .mc-register .expectations-wrapper {
     grid-column: 1 / -1;
+  }
+
+  .mc-register .radio-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .mc-register .button {
@@ -259,7 +325,8 @@
 
 /* High Contrast Mode Support */
 @media (prefers-contrast: more) {
-  .mc-register input {
+  .mc-register input:not([type="radio"]),
+  .mc-register textarea {
     border-width: 3px;
   }
 
@@ -270,7 +337,8 @@
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .mc-register input,
+  .mc-register input:not([type="radio"]),
+  .mc-register textarea,
   .mc-register .button {
     transition: none;
   }
