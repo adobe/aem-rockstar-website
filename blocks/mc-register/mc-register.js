@@ -58,6 +58,23 @@ function createInput(type, name, id, placeholder = '', required = false) {
 }
 
 /**
+ * Creates a textarea field
+ * @param {string} name - Field name
+ * @param {string} id - Field ID
+ * @param {string} placeholder - Placeholder text
+ * @param {number} rows - Number of visible rows
+ * @returns {HTMLTextAreaElement} Textarea element
+ */
+function createTextarea(name, id, placeholder = '', rows = 4) {
+  const textarea = document.createElement('textarea');
+  textarea.name = name;
+  textarea.id = id;
+  textarea.placeholder = placeholder;
+  textarea.rows = rows;
+  return textarea;
+}
+
+/**
  * Generates the form payload for submission
  * @param {HTMLFormElement} form - The form element
  * @param {string} location - The location value
@@ -244,7 +261,7 @@ function createRegistrationForm(config) {
   fieldsContainer.appendChild(emailWrapper);
 
   // Company field
-  const companyWrapper = createFieldWrapper('text');
+  const companyWrapper = createFieldWrapper('text', 'company-wrapper');
   const companyInput = createInput('text', 'company', 'mc-register-company', 'Your company name');
   const companyLabel = createLabel('Company/Organization', 'mc-register-company');
   companyWrapper.appendChild(companyLabel);
@@ -252,12 +269,106 @@ function createRegistrationForm(config) {
   fieldsContainer.appendChild(companyWrapper);
 
   // Job Title field
-  const jobTitleWrapper = createFieldWrapper('text');
+  const jobTitleWrapper = createFieldWrapper('text', 'jobtitle-wrapper');
   const jobTitleInput = createInput('text', 'jobTitle', 'mc-register-jobtitle', 'Your job title');
   const jobTitleLabel = createLabel('Job Title', 'mc-register-jobtitle');
   jobTitleWrapper.appendChild(jobTitleLabel);
   jobTitleWrapper.appendChild(jobTitleInput);
   fieldsContainer.appendChild(jobTitleWrapper);
+
+  // Dietary restrictions field
+  const dietaryWrapper = createFieldWrapper('radio', 'dietary-wrapper');
+  const dietaryFieldset = document.createElement('fieldset');
+  dietaryFieldset.className = 'radio-fieldset';
+
+  const dietaryLegend = document.createElement('legend');
+  dietaryLegend.textContent = 'Do you have any dietary restrictions or allergies?';
+  dietaryLegend.dataset.required = true;
+  dietaryFieldset.appendChild(dietaryLegend);
+
+  const dietaryGroup = document.createElement('div');
+  dietaryGroup.className = 'radio-group';
+
+  const dietaryOptions = [
+    { value: 'none', label: 'None' },
+    { value: 'vegetarian', label: 'Vegetarian' },
+    { value: 'vegan', label: 'Vegan' },
+    { value: 'gluten-free', label: 'Gluten-free' },
+    { value: 'other', label: 'Other' },
+  ];
+
+  dietaryOptions.forEach(({ value, label }, index) => {
+    const optionLabel = document.createElement('label');
+    optionLabel.className = 'radio-option';
+    optionLabel.setAttribute('for', `mc-register-dietary-${value}`);
+
+    const radio = createInput('radio', 'dietaryRestrictions', `mc-register-dietary-${value}`);
+    radio.value = value;
+    if (index === 0) {
+      radio.required = true;
+    }
+
+    const optionText = document.createElement('span');
+    optionText.textContent = label;
+
+    optionLabel.appendChild(radio);
+    optionLabel.appendChild(optionText);
+    dietaryGroup.appendChild(optionLabel);
+  });
+
+  dietaryFieldset.appendChild(dietaryGroup);
+  dietaryWrapper.appendChild(dietaryFieldset);
+  fieldsContainer.appendChild(dietaryWrapper);
+
+  // Dietary "other" details field
+  const dietaryOtherWrapper = createFieldWrapper('text', 'dietary-other-wrapper is-hidden');
+  const dietaryOtherInput = createInput(
+    'text',
+    'dietaryRestrictionsOther',
+    'mc-register-dietary-other',
+    'Please specify',
+  );
+  dietaryOtherInput.disabled = true;
+  const dietaryOtherLabel = createLabel(
+    'Please specify your dietary restriction or allergy',
+    'mc-register-dietary-other',
+  );
+  dietaryOtherWrapper.appendChild(dietaryOtherLabel);
+  dietaryOtherWrapper.appendChild(dietaryOtherInput);
+  fieldsContainer.appendChild(dietaryOtherWrapper);
+
+  const dietaryRadioInputs = dietaryGroup.querySelectorAll('input[type="radio"]');
+  const toggleDietaryOtherField = () => {
+    const isOtherSelected = Array.from(dietaryRadioInputs).some(
+      (radio) => radio.checked && radio.value === 'other',
+    );
+    dietaryOtherWrapper.classList.toggle('is-hidden', !isOtherSelected);
+    dietaryOtherInput.disabled = !isOtherSelected;
+    dietaryOtherInput.required = isOtherSelected;
+    if (!isOtherSelected) {
+      dietaryOtherInput.value = '';
+    }
+  };
+
+  dietaryRadioInputs.forEach((radio) => {
+    radio.addEventListener('change', toggleDietaryOtherField);
+  });
+  toggleDietaryOtherField();
+
+  // Masterclass expectations field
+  const expectationsWrapper = createFieldWrapper('textarea', 'expectations-wrapper');
+  const expectationsInput = createTextarea(
+    'masterclassExpectations',
+    'mc-register-expectations',
+    'Share what you hope to get out of Masterclass',
+  );
+  const expectationsLabel = createLabel(
+    'What do you hope to get out of Masterclass?',
+    'mc-register-expectations',
+  );
+  expectationsWrapper.appendChild(expectationsLabel);
+  expectationsWrapper.appendChild(expectationsInput);
+  fieldsContainer.appendChild(expectationsWrapper);
 
   form.appendChild(fieldsContainer);
 
