@@ -1,12 +1,20 @@
 /**
  * MC Register Block
  * A registration form that submits to an n8n webhook
- * Configuration is read from the block content:
+ * Configuration supports two formats:
+ *
+ * Position-based (rows in order):
  *   Row 1: Webhook URL
  *   Row 2: Location name
  *   Row 3: Event address/venue
  *   Row 4: (Optional) Form title
  *   Row 5: (Optional) Form description
+ *   Row 6: (Optional) did (document id)
+ *   Row 7: (Optional) sid (sheet id)
+ *
+ * Key-value (per-row key | value or "key: value"):
+ *   submitUrl / webhookUrl, location, address, title, description, did, sid
+ *   (did = document id, sid = sheet id; obfuscated from FE user, sent in payload only)
  */
 
 /**
@@ -77,11 +85,10 @@ function createTextarea(name, id, placeholder = '', rows = 4) {
 /**
  * Generates the form payload for submission
  * @param {HTMLFormElement} form - The form element
- * @param {string} location - The location value
- * @param {string} address - The event address
+ * @param {Object} config - Config with location, address, did, sid (obfuscated, not exposed in DOM)
  * @returns {Object} Form data payload
  */
-function generatePayload(form, location, address) {
+function generatePayload(form, config) {
   const payload = {};
   const formData = new FormData(form);
 
@@ -89,10 +96,11 @@ function generatePayload(form, location, address) {
     payload[key] = value;
   });
 
-  // Add location, address, and timestamp
-  payload.location = location;
-  payload.address = address;
+  payload.location = config.location;
+  payload.address = config.address;
   payload.timestamp = new Date().toISOString();
+  if (config.did) payload.did = config.did;
+  if (config.sid) payload.sid = config.sid;
 
   return payload;
 }
@@ -101,10 +109,9 @@ function generatePayload(form, location, address) {
  * Handles form submission
  * @param {HTMLFormElement} form - The form element
  * @param {string} submitUrl - The submission URL
- * @param {string} location - The location value
- * @param {string} address - The event address
+ * @param {Object} config - Config with location, address, did, sid (obfuscated, not exposed in DOM)
  */
-async function handleSubmit(form, submitUrl, location, address) {
+async function handleSubmit(form, submitUrl, config) {
   if (form.getAttribute('data-submitting') === 'true') return;
 
   const submitButton = form.querySelector('button[type="submit"]');
@@ -115,7 +122,7 @@ async function handleSubmit(form, submitUrl, location, address) {
     submitButton.disabled = true;
     submitButton.textContent = 'Registering...';
 
-    const payload = generatePayload(form, location, address);
+    const payload = generatePayload(form, config);
 
     // Create form-encoded data to avoid CORS preflight request
     const formData = new URLSearchParams();
@@ -384,23 +391,81 @@ function createRegistrationForm(config) {
   return form;
 }
 
+/** Known config keys for key-value format (case-insensitive) */
+const CONFIG_KEYS = ['submiturl', 'webhookurl', 'location', 'address', 'title', 'description', 'did', 'sid'];
+
+/** Maps key variations to config property names */
+const KEY_TO_PROP = {
+  submiturl: 'submitUrl',
+  webhookurl: 'submitUrl',
+  location: 'location',
+  address: 'address',
+  title: 'title',
+  description: 'description',
+  did: 'did',
+  sid: 'sid',
+};
+
 /**
- * Extracts configuration from block content
- * @param {Element} block - The block element
- * @returns {Object} Configuration object
+ * Parses config from key-value format (rows with key in cell 0, value in cell 1)
+ * @param {Element[]} rows - Block row elements
+ * @returns {Object|null} Parsed config or null if not key-value format
  */
-function extractConfig(block) {
-  const rows = block.querySelectorAll(':scope > div');
+function parseKeyValueConfig(rows) {
+  if (rows.length === 0) return null;
+
   const config = {
     submitUrl: '',
     location: '',
     address: '',
     title: 'Register',
     description: '',
+    did: '',
+    sid: '',
+  };
+
+  for (const row of rows) {
+    const cells = [...row.children].map((c) => c.textContent.trim());
+    if (cells.length >= 2) {
+      const key = cells[0].toLowerCase().replace(/\s+/g, '');
+      const value = cells[1];
+      const prop = KEY_TO_PROP[key];
+      if (prop && value) {
+        config[prop] = value;
+      }
+    } else if (cells.length === 1 && cells[0].includes(':')) {
+      const [rawKey, ...rest] = cells[0].split(':');
+      const key = rawKey.trim().toLowerCase().replace(/\s+/g, '');
+      const value = rest.join(':').trim();
+      const prop = KEY_TO_PROP[key];
+      if (prop && value) {
+        config[prop] = value;
+      }
+    }
+  }
+
+  return config;
+}
+
+/**
+ * Parses config from position-based format
+ * Row 0: Webhook URL, 1: Location, 2: Address, 3: Title (opt), 4: Description (opt), 5: did (opt), 6: sid (opt)
+ * @param {Element[]} rows - Block row elements
+ * @returns {Object} Configuration object
+ */
+function parsePositionBasedConfig(rows) {
+  const config = {
+    submitUrl: '',
+    location: '',
+    address: '',
+    title: 'Register',
+    description: '',
+    did: '',
+    sid: '',
   };
 
   rows.forEach((row, index) => {
-    const content = row.textContent.trim();
+    const content = (row.children[0]?.textContent ?? row.textContent ?? '').trim();
     switch (index) {
       case 0:
         config.submitUrl = content;
@@ -417,12 +482,51 @@ function extractConfig(block) {
       case 4:
         if (content) config.description = content;
         break;
+      case 5:
+        if (content) config.did = content;
+        break;
+      case 6:
+        if (content) config.sid = content;
+        break;
       default:
         break;
     }
   });
 
   return config;
+}
+
+/**
+ * Detects whether block content is key-value format
+ * @param {Element[]} rows - Block row elements
+ * @returns {boolean}
+ */
+function isKeyValueFormat(rows) {
+  if (rows.length === 0) return false;
+  const firstRow = rows[0];
+  const cells = [...firstRow.children];
+  if (cells.length >= 2) return true;
+  const content = (cells[0]?.textContent ?? firstRow.textContent ?? '').trim();
+  const firstPart = content.split(':')[0]?.trim().toLowerCase().replace(/\s+/g, '') ?? '';
+  return CONFIG_KEYS.includes(firstPart);
+}
+
+/**
+ * Extracts configuration from block content.
+ * Supports two formats:
+ * 1. Position-based: Row 0=Webhook URL, 1=Location, 2=Address, 3=Title, 4=Description, 5=did, 6=sid
+ * 2. Key-value: Rows with key|value cells (e.g. submitUrl|url, location|Name) or "key: value" in a cell
+ * @param {Element} block - The block element
+ * @returns {Object} Configuration object
+ */
+function extractConfig(block) {
+  const rows = [...block.querySelectorAll(':scope > div')];
+  if (rows.length === 0) return { submitUrl: '', location: '', address: '', title: 'Register', description: '', did: '', sid: '' };
+
+  if (isKeyValueFormat(rows)) {
+    return parseKeyValueConfig(rows);
+  }
+  return parsePositionBasedConfig(rows);
 }
 
 /**
@@ -456,7 +560,7 @@ export default async function decorate(block) {
     const valid = form.checkValidity();
 
     if (valid) {
-      handleSubmit(form, config.submitUrl, config.location, config.address);
+      handleSubmit(form, config.submitUrl, config);
     } else {
       // Focus on first invalid field
       const firstInvalidField = form.querySelector(':invalid:not(fieldset)');
