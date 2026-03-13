@@ -65,26 +65,52 @@ export default function decorate(block) {
           headline.appendChild(datePill);
         }
       } else if (rowIndex === 5) {
-      // Row 5: CTA buttons (each cell is a button)
-        const link = cell.querySelector('a');
-        if (link) {
-          if (cellIndex === 0) {
-            // Create CTA container on first cell
-            const ctaRow = document.createElement('div');
+      // Row 5: CTA buttons (each cell is a button; first cell supports a <ul> of links)
+        const addLink = (link, index) => {
+          let ctaRow = headline.querySelector('.cta-row');
+          if (!ctaRow) {
+            ctaRow = document.createElement('div');
             ctaRow.className = 'cta-row';
             headline.appendChild(ctaRow);
           }
-          // Add each cell as a button (first is primary, others are secondary)
-          const ctaRow = headline.querySelector('.cta-row');
           link.className = `btn ${cellIndex === 0 ? 'primary' : 'secondary'}`;
-          // Open external links in new tab, keep anchor links on same page
           const href = link.getAttribute('href');
           if (href && !href.startsWith('#') && !href.startsWith('/') && !href.includes(window.location.hostname)) {
             link.setAttribute('target', '_blank');
             link.setAttribute('rel', 'noopener noreferrer');
           }
-
           ctaRow.appendChild(link.cloneNode(true));
+        };
+
+        if (cellIndex === 0) {
+          const listItems = cell.querySelectorAll('li a');
+          if (listItems.length > 0) {
+            let ctaRow = headline.querySelector('.cta-row');
+            if (!ctaRow) {
+              ctaRow = document.createElement('div');
+              ctaRow.className = 'cta-row';
+              headline.appendChild(ctaRow);
+            }
+            const group = document.createElement('div');
+            group.className = 'cta-primary-group';
+            listItems.forEach((link, i) => {
+              const a = link.cloneNode(true);
+              a.className = 'btn primary';
+              const href = a.getAttribute('href');
+              if (href && !href.startsWith('#') && !href.startsWith('/') && !href.includes(window.location.hostname)) {
+                a.setAttribute('target', '_blank');
+                a.setAttribute('rel', 'noopener noreferrer');
+              }
+              group.appendChild(a);
+            });
+            ctaRow.appendChild(group);
+          } else {
+            const link = cell.querySelector('a');
+            if (link) addLink(link, 0);
+          }
+        } else {
+          const link = cell.querySelector('a');
+          if (link) addLink(link, cellIndex);
         }
       } else {
       // Row 6+: Images
