@@ -49,11 +49,21 @@ export default function decorate(block) {
         p.innerHTML = cell.innerHTML;
         headline.appendChild(p);
       } else if (rowIndex === 4 && content) {
-      // Row 4: Date pill
-        const datePill = document.createElement('time');
-        datePill.className = 'date-pill';
-        datePill.innerHTML = `<span class="dot"></span> ${content}`;
-        headline.appendChild(datePill);
+      // Row 4: Date pill(s) — supports a single value or a <ul> of multiple dates
+        const listItems = cell.querySelectorAll('li');
+        if (listItems.length > 0) {
+          listItems.forEach((li) => {
+            const datePill = document.createElement('time');
+            datePill.className = 'date-pill';
+            datePill.innerHTML = `<span class="dot"></span> ${li.textContent.trim()}`;
+            headline.appendChild(datePill);
+          });
+        } else {
+          const datePill = document.createElement('time');
+          datePill.className = 'date-pill';
+          datePill.innerHTML = `<span class="dot"></span> ${content}`;
+          headline.appendChild(datePill);
+        }
       } else if (rowIndex === 5) {
       // Row 5: CTA buttons (each cell is a button)
         const link = cell.querySelector('a');
