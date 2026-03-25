@@ -6,7 +6,8 @@
 
 .cta-hero {
   position: relative;
-  padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+  /* padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem); */
+  padding: 0;
   color: var(--ink);
 }
 
