@@ -64,7 +64,7 @@ main .section.live-results-fullscreen {
 
 .live-results__header {
   display: grid;
-  gap: 12px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -98,7 +98,7 @@ main .section.live-results-fullscreen {
 }
 
 .live-results__title {
-  margin: 6px 0 0;
+  margin: 2px 0 0;
   font-family: var(--heading-font-family);
   font-size: clamp(1.8rem, 2.7vw, 2.8rem);
   text-transform: uppercase;
@@ -115,8 +115,8 @@ main .section.live-results-fullscreen {
 .live-results__total,
 .live-results__timer {
   display: grid;
-  gap: 2px;
-  padding: 8px 14px;
+  gap: 1px;
+  padding: 6px 14px;
   border-radius: 12px;
   background: rgb(255 255 255 / 8%);
   border: 1px solid rgb(255 255 255 / 16%);
@@ -141,7 +141,7 @@ main .section.live-results-fullscreen {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 .live-results__timer-btn {
