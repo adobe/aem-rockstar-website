@@ -398,7 +398,7 @@ main .section.live-results-fullscreen {
   display: inline-flex;
 }
 
-.live-results__card.is-leading {
+.live-results--timer-ended .live-results__card.is-leading {
   background: linear-gradient(120deg, rgb(255 255 255 / 14%), rgb(255 255 255 / 4%));
   border-color: rgb(255 255 255 / 35%);
   box-shadow: 0 16px 24px rgb(15 23 42 / 35%);
