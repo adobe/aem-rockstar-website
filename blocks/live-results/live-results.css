@@ -106,15 +106,10 @@ main .section.live-results-fullscreen {
 }
 
 .live-results__meta {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 10;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: start;
-  padding: clamp(8px, 1.5vw, 16px) clamp(12px, 2vw, 24px);
 }
 
 .live-results__total,
@@ -262,12 +257,13 @@ main .section.live-results-fullscreen {
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  justify-content: start;
+  gap: 12px;
   flex: 0 0 50%;
   order: -1;
   min-height: 0;
   max-height: 100%;
+  overflow: hidden;
 }
 
 .live-results__qr:not([aria-hidden]) {
@@ -276,13 +272,12 @@ main .section.live-results-fullscreen {
 
 .live-results__qr-img {
   width: min(100%, 420px);
-  max-height: 100%;
+  max-height: calc(100vh - 160px);
   aspect-ratio: 1;
   border-radius: 20px;
   background: #fff;
   padding: 16px;
   box-sizing: border-box;
-  object-fit: contain;
 }
 
 .live-results__qr-img svg {
@@ -293,6 +288,7 @@ main .section.live-results-fullscreen {
 
 .live-results__qr-label {
   margin: 0;
+  flex: 0 0 auto;
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
