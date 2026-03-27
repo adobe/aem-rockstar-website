@@ -109,7 +109,7 @@ main .section.live-results-fullscreen {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .live-results__total,
@@ -121,6 +121,20 @@ main .section.live-results-fullscreen {
   background: rgb(255 255 255 / 8%);
   border: 1px solid rgb(255 255 255 / 16%);
   backdrop-filter: blur(12px);
+}
+
+.live-results__total {
+  display: flex;
+  flex-direction: column;
+}
+
+.live-results__total-value {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  container-type: size;
+  font-size: 55cqh;
 }
 
 .live-results__total-label,
