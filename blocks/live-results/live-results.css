@@ -311,7 +311,7 @@ main .section.live-results-fullscreen {
   padding: calc(10px * var(--scale, 1));
 }
 
-.live-results__card::before {
+.live-results--timer-ended .live-results__card::before {
   content: '';
   position: absolute;
   inset: -1px;
