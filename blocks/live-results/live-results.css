@@ -1,8 +1,8 @@
 .live-results {
   position: relative;
   display: grid;
-  gap: 24px;
-  padding: 28px;
+  gap: 16px;
+  padding: 20px;
   width: 100%;
   max-width: 100vw;
   box-sizing: border-box;
@@ -21,12 +21,12 @@ body.has-live-results footer {
 }
 
 .live-results--fullscreen {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   border-radius: 0;
   box-shadow: none;
-  padding-left: clamp(20px, 4vw, 44px);
-  padding-right: clamp(20px, 4vw, 44px);
+  padding: clamp(12px, 2vw, 24px) clamp(20px, 4vw, 44px);
+  grid-template-rows: auto 1fr;
 }
 
 main .section.live-results-fullscreen {
@@ -106,20 +106,26 @@ main .section.live-results-fullscreen {
 }
 
 .live-results__meta {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   align-items: start;
+  padding: clamp(8px, 1.5vw, 16px) clamp(12px, 2vw, 24px);
 }
 
 .live-results__total,
 .live-results__timer {
   display: grid;
-  gap: 4px;
-  padding: 10px 16px;
-  border-radius: 16px;
+  gap: 2px;
+  padding: 8px 14px;
+  border-radius: 12px;
   background: rgb(255 255 255 / 8%);
   border: 1px solid rgb(255 255 255 / 16%);
+  backdrop-filter: blur(12px);
 }
 
 .live-results__total-label,
@@ -229,16 +235,22 @@ main .section.live-results-fullscreen {
 
 .live-results__body {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   align-items: start;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .live-results__cards {
   display: grid;
-  gap: 16px;
+  gap: 10px;
   align-items: start;
+  align-content: start;
   flex: 1 1 0;
   min-width: 0;
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
   grid-template-columns: 1fr;
 }
 
@@ -254,7 +266,8 @@ main .section.live-results-fullscreen {
   gap: 20px;
   flex: 0 0 50%;
   order: -1;
-  min-height: 300px;
+  min-height: 0;
+  max-height: 100%;
 }
 
 .live-results__qr:not([aria-hidden]) {
@@ -263,11 +276,13 @@ main .section.live-results-fullscreen {
 
 .live-results__qr-img {
   width: min(100%, 420px);
+  max-height: 100%;
   aspect-ratio: 1;
   border-radius: 20px;
   background: #fff;
   padding: 16px;
   box-sizing: border-box;
+  object-fit: contain;
 }
 
 .live-results__qr-img svg {
@@ -423,8 +438,7 @@ main .section.live-results-fullscreen {
 
 @media (width >= 600px) {
   .live-results {
-    padding: 36px;
-    gap: 28px;
+    gap: 20px;
   }
 
   .live-results__header {
@@ -435,12 +449,5 @@ main .section.live-results-fullscreen {
   .live-results__meta {
     justify-content: end;
     text-align: right;
-  }
-
-}
-
-@media (width >= 900px) {
-  .live-results {
-    padding: 44px;
   }
 }
