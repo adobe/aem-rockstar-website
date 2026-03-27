@@ -1,4 +1,5 @@
 import { loadScript, readBlockConfig } from '../../scripts/aem.js';
+import qrcode from '../../scripts/qrcode.js';
 
 const FALLBACK_NAMES = [];
 
@@ -81,6 +82,11 @@ export default async function decorate(block) {
   const config = readBlockConfig(block);
   const mode = (config.mode || 'default').toString().trim().toLowerCase();
 
+  // eslint-disable-next-line new-cap
+  const qr = new qrcode(0, 'H');
+  qr.addData('https://rockstar.adobeevents.com/en/live/all');
+  qr.make();
+
   const initialNames = getInitialNames(block);
   const candidates = new Map();
   const rowsByName = new Map();
@@ -116,17 +122,29 @@ export default async function decorate(block) {
             <button class="live-results__timer-adjust" type="button" data-adjust="-15">-15s</button>
             <button class="live-results__timer-adjust" type="button" data-adjust="15">+15s</button>
             <button class="live-results__timer-btn" type="button">Start</button>
+            <button class="live-results__timer-pause" type="button">Pause</button>
+            <button class="live-results__timer-reset" type="button">Reset</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="live-results__cards" role="list"></div>
+    <div class="live-results__body">
+      <div class="live-results__cards" role="list"></div>
+      <div class="live-results__qr" aria-hidden="true">
+        <div class="live-results__qr-img">${qr.createSvgTag({})}</div>
+        <p class="live-results__qr-label">Scan to Vote</p>
+      </div>
+    </div>
   `;
 
   const list = wrapper.querySelector('.live-results__cards');
+  const qrPanel = wrapper.querySelector('.live-results__qr');
   const totalValue = wrapper.querySelector('.live-results__total-value');
   const timerValue = wrapper.querySelector('.live-results__timer-value');
   const timerButton = wrapper.querySelector('.live-results__timer-btn');
+  const timerPauseButton = wrapper.querySelector('.live-results__timer-pause');
+  const timerResetButton = wrapper.querySelector('.live-results__timer-reset');
+  const eyebrow = wrapper.querySelector('.live-results__eyebrow');
   const timerAdjustButtons = wrapper.querySelectorAll('.live-results__timer-adjust');
 
   const createCard = (candidate) => {
@@ -248,6 +266,7 @@ export default async function decorate(block) {
       window.clearInterval(timerId);
       timerId = null;
       wrapper.classList.add('live-results--timer-ended');
+      qrPanel.setAttribute('aria-hidden', 'true');
       timerButton.textContent = 'Ended';
       timerButton.disabled = true;
       votesEnabled = false;
@@ -271,9 +290,8 @@ export default async function decorate(block) {
     });
   });
 
-  timerButton.addEventListener('click', () => {
-    if (timerId) return;
-    wrapper.classList.remove('live-results--timer-ended');
+  const startTimer = () => {
+    wrapper.classList.remove('live-results--timer-ended', 'live-results--timer-paused');
     const endTime = Date.now() + remainingMs;
     updateTimer(endTime);
     timerButton.textContent = 'Running';
@@ -282,8 +300,49 @@ export default async function decorate(block) {
       button.disabled = true;
     });
     wrapper.classList.add('live-results--timer-running');
+    qrPanel.removeAttribute('aria-hidden');
     votesEnabled = true;
     timerId = window.setInterval(() => updateTimer(endTime), 250);
+  };
+
+  timerButton.addEventListener('click', () => {
+    if (timerId) return;
+    startTimer();
+  });
+
+  timerResetButton.addEventListener('click', () => {
+    window.clearInterval(timerId);
+    timerId = null;
+    votesEnabled = false;
+    remainingMs = TIMER_DURATION_MS;
+    wrapper.classList.remove('live-results--timer-running', 'live-results--timer-paused', 'live-results--timer-ended');
+    timerButton.textContent = 'Start';
+    timerButton.disabled = false;
+    timerAdjustButtons.forEach((button) => { button.disabled = false; });
+    timerPauseButton.textContent = 'Pause';
+    eyebrow.textContent = 'Now Live';
+    qrPanel.setAttribute('aria-hidden', 'true');
+    updateTimerDisplay();
+  });
+
+  timerPauseButton.addEventListener('click', () => {
+    if (wrapper.classList.contains('live-results--timer-paused')) {
+      // Resume
+      wrapper.classList.remove('live-results--timer-paused');
+      timerPauseButton.textContent = 'Pause';
+      eyebrow.textContent = 'Now Live';
+      votesEnabled = true;
+      const endTime = Date.now() + remainingMs;
+      timerId = window.setInterval(() => updateTimer(endTime), 250);
+    } else {
+      // Pause
+      window.clearInterval(timerId);
+      timerId = null;
+      votesEnabled = false;
+      wrapper.classList.add('live-results--timer-paused');
+      timerPauseButton.textContent = 'Resume';
+      eyebrow.textContent = 'Paused';
+    }
   });
 
   // eslint-disable-next-line no-undef

@@ -83,7 +83,13 @@ body {
 }
 
 body.appear {
-  display: unset;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body.appear main {
+  flex: 1;
 }
 
 html {

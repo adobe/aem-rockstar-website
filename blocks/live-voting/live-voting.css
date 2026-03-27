@@ -45,6 +45,7 @@ div.container-flexbox h2 {
 
 .container-vote {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-left: auto;

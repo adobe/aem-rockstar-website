@@ -4,5 +4,6 @@ logs/*
 node_modules/*
 .idea/*
 .vscode/*
+.claude/*
 
 .DS_Store
