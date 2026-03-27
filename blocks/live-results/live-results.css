@@ -201,8 +201,13 @@ main .section.live-results-fullscreen {
 
 .live-results--timer-running .live-results__timer-btn,
 .live-results--timer-running .live-results__timer-adjust,
-.live-results--timer-running .live-results__timer-reset {
+.live-results--timer-running:not(.live-results--timer-ended) .live-results__timer-reset {
   display: none;
+}
+
+.live-results--timer-ended .live-results__timer-reset,
+.live-results--timer-running.live-results--timer-paused .live-results__timer-reset {
+  display: inline-flex;
 }
 
 .live-results__timer-reset {

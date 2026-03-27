@@ -323,6 +323,11 @@ export default async function decorate(block) {
     eyebrow.textContent = 'Now Live';
     qrPanel.setAttribute('aria-hidden', 'true');
     updateTimerDisplay();
+    candidates.forEach((candidate) => { candidate.votes = 0; });
+    rowsByName.forEach((card) => card.remove());
+    rowsByName.clear();
+    animateNumber(totalValue, 0);
+    wrapper.classList.add('live-results--no-votes');
   });
 
   timerPauseButton.addEventListener('click', () => {
