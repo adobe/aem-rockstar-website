@@ -271,7 +271,7 @@ main .section.live-results-fullscreen {
 
 .live-results__qr-img {
   width: auto;
-  height: 100%;
+  height: calc(100% - 32px);
   aspect-ratio: 1;
   border-radius: 20px;
   background: #fff;
@@ -405,7 +405,7 @@ main .section.live-results-fullscreen {
   transform: translateY(-1px) scale(1.01);
 }
 
-.live-results__card.is-leading::before {
+.live-results--timer-ended .live-results__card.is-leading::before {
   opacity: 1;
 }
 
