@@ -1,6 +1,38 @@
 import { loadScript, readBlockConfig } from '../../scripts/aem.js';
 import qrcode from '../../scripts/qrcode.js';
 
+function normalizeMember(entry) {
+  if (typeof entry === 'string') {
+    return { name: entry, headshot: null };
+  }
+  const headshot = entry.headshot || null;
+  return { name: entry.name ?? '', headshot };
+}
+
+function appendHeadshotImg(parent, src) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.alt = '';
+  img.classList.add('live-voting-headshot');
+  parent.appendChild(img);
+}
+
+function buildMemberColumn(member, href, colClass) {
+  const col = document.createElement('div');
+  col.classList.add(colClass);
+  const link = document.createElement('a');
+  link.href = href;
+  const { name, headshot } = normalizeMember(member);
+  const h2 = document.createElement('h2');
+  h2.innerText = name;
+  link.appendChild(h2);
+  if (headshot) {
+    appendHeadshotImg(link, headshot);
+  }
+  col.appendChild(link);
+  return col;
+}
+
 async function onSubmit(token, name, button) {
   const res = await fetch('https://eae1ezhtx7.execute-api.us-east-1.amazonaws.com/dev/vote', {
     method: 'POST',
@@ -25,8 +57,12 @@ export default async function decorate(block) {
     const names = JSON.parse(config.names).members;
     const container = document.createElement('div');
     container.classList.add('container-flexbox');
-    const col1 = document.createElement('div');
-    col1.classList.add('col-1');
+    const hrefs = [
+      'https://rockstar.adobeevents.com/en/live/x',
+      'https://rockstar.adobeevents.com/en/live/y',
+      'https://rockstar.adobeevents.com/en/live/z',
+    ];
+    const colClasses = ['col-1', 'col-2', 'col-3'];
 
     // eslint-disable-next-line new-cap
     const qrcode1 = new qrcode(0, 'H');
@@ -45,38 +81,9 @@ export default async function decorate(block) {
 
     const qr1 = document.createElement('div');
     qr1.classList.add('qr1');
-    const col1content = document.createElement('h2');
-    const col1A = document.createElement('a');
-    col1A.href = 'https://rockstar.adobeevents.com/en/live/x';
-    // eslint-disable-next-line prefer-destructuring
-    col1content.innerText = names[0];
-    col1A.appendChild(col1content);
-    col1.appendChild(col1A);
-    container.appendChild(col1);
-
-    // column two
-    const col2 = document.createElement('div');
-    col2.classList.add('col-2');
-    const col2content = document.createElement('h2');
-    const col2A = document.createElement('a');
-    col2A.href = 'https://rockstar.adobeevents.com/en/live/y';
-    // eslint-disable-next-line prefer-destructuring
-    col2content.innerText = names[1];
-    col2A.appendChild(col2content);
-    col2.appendChild(col2A);
-    container.appendChild(col2);
-
-    // column three
-    const col3 = document.createElement('div');
-    col3.classList.add('col-3');
-    const col3content = document.createElement('h2');
-    const col3A = document.createElement('a');
-    col3A.href = 'https://rockstar.adobeevents.com/en/live/z';
-    // eslint-disable-next-line prefer-destructuring
-    col3content.innerText = names[2];
-    col3A.appendChild(col3content);
-    col3.appendChild(col3A);
-    container.appendChild(col3);
+    names.slice(0, 3).forEach((member, i) => {
+      container.appendChild(buildMemberColumn(member, hrefs[i], colClasses[i]));
+    });
     block.replaceWith(container);
   } else if (config.config === 'qr-only') {
     // eslint-disable-next-line new-cap
@@ -96,7 +103,13 @@ export default async function decorate(block) {
     if (sessionStorage.getItem('vote-expiration') === null || parseInt(sessionStorage.getItem('vote-expiration'), 10) < Date.now()) {
       const captcha = document.createElement('button');
       const head = document.querySelector('#aem-rockstar-live-voting');
-      head.textContent = config.name;
+      if (head) {
+        head.textContent = '';
+        head.append(document.createTextNode(config.name));
+        if (config.headshot) {
+          appendHeadshotImg(head, config.headshot);
+        }
+      }
       captcha.classList.add('protected-vote');
       captcha.onclick = async () => {
         // eslint-disable-next-line no-undef
