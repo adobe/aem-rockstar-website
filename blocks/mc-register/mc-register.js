@@ -269,7 +269,7 @@ function createRegistrationForm(config) {
 
   // Company field
   const companyWrapper = createFieldWrapper('text', 'company-wrapper');
-  const companyInput = createInput('text', 'company', 'mc-register-company', 'Your company name');
+  const companyInput = createInput('text', 'company', 'mc-register-company', 'Your company name', true);
   const companyLabel = createLabel('Company/Organization', 'mc-register-company');
   companyWrapper.appendChild(companyLabel);
   companyWrapper.appendChild(companyInput);
@@ -277,7 +277,7 @@ function createRegistrationForm(config) {
 
   // Job Title field
   const jobTitleWrapper = createFieldWrapper('text', 'jobtitle-wrapper');
-  const jobTitleInput = createInput('text', 'jobTitle', 'mc-register-jobtitle', 'Your job title');
+  const jobTitleInput = createInput('text', 'jobTitle', 'mc-register-jobtitle', 'Your job title', true);
   const jobTitleLabel = createLabel('Job Title', 'mc-register-jobtitle');
   jobTitleWrapper.appendChild(jobTitleLabel);
   jobTitleWrapper.appendChild(jobTitleInput);
