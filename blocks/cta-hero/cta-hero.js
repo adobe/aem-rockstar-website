@@ -66,7 +66,7 @@ export default function decorate(block) {
         }
       } else if (rowIndex === 5) {
       // Row 5: CTA buttons (each cell is a button; first cell supports a <ul> of links)
-        const addLink = (link, index) => {
+        const addLink = (link) => {
           let ctaRow = headline.querySelector('.cta-row');
           if (!ctaRow) {
             ctaRow = document.createElement('div');
@@ -93,7 +93,7 @@ export default function decorate(block) {
             }
             const group = document.createElement('div');
             group.className = 'cta-primary-group';
-            listItems.forEach((link, i) => {
+            listItems.forEach((link) => {
               const a = link.cloneNode(true);
               a.className = 'btn primary';
               const href = a.getAttribute('href');

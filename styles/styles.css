@@ -82,6 +82,25 @@ body {
   display: none;
 }
 
+.submission-guide main {
+  max-width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: var(--body-font-size-s);
+}
+
+@media (width <= 900px) {
+  .submission-guide main {
+    margin-left: unset;
+    margin-right: unset;
+    max-width: unset;
+    display: block;
+  }
+}
+
 body.appear {
   display: flex;
   flex-direction: column;
@@ -377,25 +396,6 @@ main .section.highlight {
 
 .rockstar-info .columns {
   margin-top: 10rem;
-}
-
-.submission-guide main {
-  max-width: 80%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: var(--body-font-size-s);
-}
-
-@media (width <= 900px) {
-  .submission-guide main {
-    margin-left: unset;
-    margin-right: unset;
-    max-width: unset;
-    display: block;
-  }
 }
 
 .submission-guide-sidebar {
