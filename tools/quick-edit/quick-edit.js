@@ -31,13 +31,13 @@ function generateSidekickPayload() {
   return {
     detail: {
       config: {
-        mountpoint: `https://content.da.live/${owner}/${repo}/`
+        mountpoint: `https://content.da.live/${owner}/${repo}/`,
       },
       location: {
         pathname: window.location.pathname,
       },
-    }
-  }
+    },
+  };
 }
 
 export default function init(payload) {

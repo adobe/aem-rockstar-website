@@ -424,7 +424,7 @@ function parseKeyValueConfig(rows) {
     sid: '',
   };
 
-  for (const row of rows) {
+  rows.forEach((row) => {
     const cells = [...row.children].map((c) => c.textContent.trim());
     if (cells.length >= 2) {
       const key = cells[0].toLowerCase().replace(/\s+/g, '');
@@ -442,14 +442,15 @@ function parseKeyValueConfig(rows) {
         config[prop] = value;
       }
     }
-  }
+  });
 
   return config;
 }
 
 /**
  * Parses config from position-based format
- * Row 0: Webhook URL, 1: Location, 2: Address, 3: Title (opt), 4: Description (opt), 5: did (opt), 6: sid (opt)
+ * Row 0: Webhook URL, 1: Location, 2: Address, 3: Title (opt), 4: Description (opt),
+ * 5: did (opt), 6: sid (opt)
  * @param {Element[]} rows - Block row elements
  * @returns {Object} Configuration object
  */
@@ -515,13 +516,24 @@ function isKeyValueFormat(rows) {
  * Extracts configuration from block content.
  * Supports two formats:
  * 1. Position-based: Row 0=Webhook URL, 1=Location, 2=Address, 3=Title, 4=Description, 5=did, 6=sid
- * 2. Key-value: Rows with key|value cells (e.g. submitUrl|url, location|Name) or "key: value" in a cell
+ * 2. Key-value: Rows with key|value cells (e.g. submitUrl|url, location|Name)
+ *    or "key: value" in a cell
  * @param {Element} block - The block element
  * @returns {Object} Configuration object
  */
 function extractConfig(block) {
   const rows = [...block.querySelectorAll(':scope > div')];
-  if (rows.length === 0) return { submitUrl: '', location: '', address: '', title: 'Register', description: '', did: '', sid: '' };
+  if (rows.length === 0) {
+    return {
+      submitUrl: '',
+      location: '',
+      address: '',
+      title: 'Register',
+      description: '',
+      did: '',
+      sid: '',
+    };
+  }
 
   if (isKeyValueFormat(rows)) {
     return parseKeyValueConfig(rows);
