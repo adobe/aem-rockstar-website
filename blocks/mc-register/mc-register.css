@@ -199,6 +199,31 @@
   display: none;
 }
 
+/* Inline Field Error */
+.mc-register .field-error {
+  margin: 0;
+  font-size: var(--body-font-size-xs, var(--body-font-size-s));
+  font-weight: 600;
+  color: #d73502;
+  line-height: 1.4;
+}
+
+.mc-register .field-error.is-hidden {
+  display: none;
+}
+
+/* Inline Non-Blocking Hint */
+.mc-register .field-hint {
+  margin: 0;
+  font-size: var(--body-font-size-xs, var(--body-font-size-s));
+  color: #856404;
+  line-height: 1.4;
+}
+
+.mc-register .field-hint.is-hidden {
+  display: none;
+}
+
 /* Button Styling */
 .mc-register .submit-wrapper {
   margin-top: 8px;

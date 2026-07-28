@@ -17,6 +17,60 @@
  *   (did = document id, sid = sheet id; obfuscated from FE user, sent in payload only)
  */
 
+/** Message shown when an Adobe employee attempts to register */
+const ADOBE_EMAIL_MESSAGE = 'Adobe employees are not permitted to register for this event.';
+
+/** Non-blocking hint shown when a personal email address is used */
+const PERSONAL_EMAIL_MESSAGE = 'We recommend registering with your corporate email address.';
+
+/** Common personal / free email providers (used for the non-blocking hint) */
+const PERSONAL_EMAIL_DOMAINS = [
+  'gmail.com',
+  'googlemail.com',
+  'yahoo.com',
+  'ymail.com',
+  'hotmail.com',
+  'outlook.com',
+  'live.com',
+  'msn.com',
+  'icloud.com',
+  'me.com',
+  'mac.com',
+  'aol.com',
+  'proton.me',
+  'protonmail.com',
+  'gmx.com',
+  'zoho.com',
+];
+
+/**
+ * Extracts the lowercased domain portion of an email address
+ * @param {string} email - The email address
+ * @returns {string} The domain, or an empty string if none is present
+ */
+function getEmailDomain(email) {
+  const parts = (email || '').trim().toLowerCase().split('@');
+  return parts.length === 2 ? parts[1] : '';
+}
+
+/**
+ * Checks whether an email address belongs to the adobe.com domain
+ * @param {string} email - The email address to check
+ * @returns {boolean} True if the email uses an @adobe.com address
+ */
+function isAdobeEmail(email) {
+  return getEmailDomain(email) === 'adobe.com';
+}
+
+/**
+ * Checks whether an email address uses a known personal / free email provider
+ * @param {string} email - The email address to check
+ * @returns {boolean} True if the email uses a personal email domain
+ */
+function isPersonalEmail(email) {
+  return PERSONAL_EMAIL_DOMAINS.includes(getEmailDomain(email));
+}
+
 /**
  * Creates a field wrapper element
  * @param {string} type - The field type
@@ -265,7 +319,50 @@ function createRegistrationForm(config) {
   const emailLabel = createLabel('Email Address', 'mc-register-email', true);
   emailWrapper.appendChild(emailLabel);
   emailWrapper.appendChild(emailInput);
+
+  // Inline blocking error message (e.g. Adobe employee restriction)
+  const emailError = document.createElement('p');
+  emailError.className = 'field-error is-hidden';
+  emailError.id = 'mc-register-email-error';
+  emailError.setAttribute('role', 'alert');
+  emailWrapper.appendChild(emailError);
+
+  // Inline non-blocking hint (e.g. personal email recommendation)
+  const emailHint = document.createElement('p');
+  emailHint.className = 'field-hint is-hidden';
+  emailHint.id = 'mc-register-email-hint';
+  emailHint.setAttribute('role', 'status');
+  emailWrapper.appendChild(emailHint);
+
+  emailInput.setAttribute('aria-describedby', `${emailError.id} ${emailHint.id}`);
   fieldsContainer.appendChild(emailWrapper);
+
+  const showEmailError = (message) => {
+    emailInput.setCustomValidity(message);
+    emailError.textContent = message;
+    emailError.classList.toggle('is-hidden', !message);
+  };
+
+  const showEmailHint = (message) => {
+    emailHint.textContent = message;
+    emailHint.classList.toggle('is-hidden', !message);
+  };
+
+  const validateEmailDomain = () => {
+    if (isAdobeEmail(emailInput.value)) {
+      showEmailError(ADOBE_EMAIL_MESSAGE);
+      showEmailHint('');
+    } else if (isPersonalEmail(emailInput.value)) {
+      showEmailError('');
+      showEmailHint(PERSONAL_EMAIL_MESSAGE);
+    } else {
+      showEmailError('');
+      showEmailHint('');
+    }
+  };
+
+  emailInput.addEventListener('input', validateEmailDomain);
+  emailInput.addEventListener('blur', validateEmailDomain);
 
   // Company field
   const companyWrapper = createFieldWrapper('text', 'company-wrapper');
