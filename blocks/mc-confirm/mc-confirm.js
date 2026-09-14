@@ -15,6 +15,48 @@
  *   (did = document id, sid = sheet id; obfuscated from FE user, sent in payload only)
  */
 
+/** Message shown when a personal / free email address is used */
+const PERSONAL_EMAIL_MESSAGE = 'Please use your corporate email address to respond.';
+
+/** Common personal / free email providers (not accepted for this form) */
+const PERSONAL_EMAIL_DOMAINS = [
+  'gmail.com',
+  'googlemail.com',
+  'yahoo.com',
+  'ymail.com',
+  'hotmail.com',
+  'outlook.com',
+  'live.com',
+  'msn.com',
+  'icloud.com',
+  'me.com',
+  'mac.com',
+  'aol.com',
+  'proton.me',
+  'protonmail.com',
+  'gmx.com',
+  'zoho.com',
+];
+
+/**
+ * Extracts the lowercased domain portion of an email address
+ * @param {string} email - The email address
+ * @returns {string} The domain, or an empty string if none is present
+ */
+function getEmailDomain(email) {
+  const parts = (email || '').trim().toLowerCase().split('@');
+  return parts.length === 2 ? parts[1] : '';
+}
+
+/**
+ * Checks whether an email address uses a known personal / free email provider
+ * @param {string} email - The email address to check
+ * @returns {boolean} True if the email uses a personal email domain
+ */
+function isPersonalEmail(email) {
+  return PERSONAL_EMAIL_DOMAINS.includes(getEmailDomain(email));
+}
+
 /**
  * Creates a field wrapper element
  * @param {string} type - The field type
@@ -226,7 +268,29 @@ function createConfirmForm(config) {
   const emailLabel = createLabel('Email Address', 'mc-confirm-email', true);
   emailWrapper.appendChild(emailLabel);
   emailWrapper.appendChild(emailInput);
+
+  // Inline blocking error message (e.g. personal email restriction)
+  const emailError = document.createElement('p');
+  emailError.className = 'field-error is-hidden';
+  emailError.id = 'mc-confirm-email-error';
+  emailError.setAttribute('role', 'alert');
+  emailWrapper.appendChild(emailError);
+
+  emailInput.setAttribute('aria-describedby', emailError.id);
   fieldsContainer.appendChild(emailWrapper);
+
+  const showEmailError = (message) => {
+    emailInput.setCustomValidity(message);
+    emailError.textContent = message;
+    emailError.classList.toggle('is-hidden', !message);
+  };
+
+  const validateEmailDomain = () => {
+    showEmailError(isPersonalEmail(emailInput.value) ? PERSONAL_EMAIL_MESSAGE : '');
+  };
+
+  emailInput.addEventListener('input', validateEmailDomain);
+  emailInput.addEventListener('blur', validateEmailDomain);
 
   form.appendChild(fieldsContainer);
 

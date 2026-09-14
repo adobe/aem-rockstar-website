@@ -101,6 +101,19 @@
   box-shadow: 0 0 0 3px rgb(215 53 2 / 10%);
 }
 
+/* Inline Field Error */
+.mc-confirm .field-error {
+  margin: 0;
+  font-size: var(--body-font-size-xs, var(--body-font-size-s));
+  font-weight: 600;
+  color: #d73502;
+  line-height: 1.4;
+}
+
+.mc-confirm .field-error.is-hidden {
+  display: none;
+}
+
 /* Actions (Accept / Decline) */
 .mc-confirm .actions-wrapper {
   display: grid;
