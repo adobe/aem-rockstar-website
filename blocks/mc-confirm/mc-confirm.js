@@ -16,9 +16,10 @@
  */
 
 /** Message shown when a personal / free email address is used */
-const PERSONAL_EMAIL_MESSAGE = 'Please use your corporate email address to respond.';
+const PERSONAL_EMAIL_MESSAGE = 'We recommend using your corporate email address. '
+  + 'If you continue with a personal email, please explain why below.';
 
-/** Common personal / free email providers (not accepted for this form) */
+/** Common personal / free email providers (require an exception explanation) */
 const PERSONAL_EMAIL_DOMAINS = [
   'gmail.com',
   'googlemail.com',
@@ -270,24 +271,45 @@ function createConfirmForm(config) {
   emailWrapper.appendChild(emailLabel);
   emailWrapper.appendChild(emailInput);
 
-  // Inline blocking error message (e.g. personal email restriction)
-  const emailError = document.createElement('p');
-  emailError.className = 'field-error is-hidden';
-  emailError.id = 'mc-confirm-email-error';
-  emailError.setAttribute('role', 'alert');
-  emailWrapper.appendChild(emailError);
+  // Inline warning message (e.g. personal email discouraged)
+  const emailWarning = document.createElement('p');
+  emailWarning.className = 'field-error is-hidden';
+  emailWarning.id = 'mc-confirm-email-warning';
+  emailWarning.setAttribute('role', 'alert');
+  emailWrapper.appendChild(emailWarning);
 
-  emailInput.setAttribute('aria-describedby', emailError.id);
+  emailInput.setAttribute('aria-describedby', emailWarning.id);
   fieldsContainer.appendChild(emailWrapper);
 
-  const showEmailError = (message) => {
-    emailInput.setCustomValidity(message);
-    emailError.textContent = message;
-    emailError.classList.toggle('is-hidden', !message);
-  };
+  // Email exception field: required justification when a personal email is used
+  const emailExceptionWrapper = createFieldWrapper('text', 'email-exception-wrapper is-hidden');
+  const emailExceptionInput = createInput(
+    'text',
+    'emailException',
+    'mc-confirm-email-exception',
+    'Explain why you\'re using a personal email address',
+  );
+  emailExceptionInput.disabled = true;
+  const emailExceptionLabel = createLabel(
+    'Email Exception',
+    'mc-confirm-email-exception',
+  );
+  emailExceptionWrapper.appendChild(emailExceptionLabel);
+  emailExceptionWrapper.appendChild(emailExceptionInput);
+  fieldsContainer.appendChild(emailExceptionWrapper);
 
   const validateEmailDomain = () => {
-    showEmailError(isPersonalEmail(emailInput.value) ? PERSONAL_EMAIL_MESSAGE : '');
+    const usesPersonalEmail = isPersonalEmail(emailInput.value);
+
+    emailWarning.textContent = usesPersonalEmail ? PERSONAL_EMAIL_MESSAGE : '';
+    emailWarning.classList.toggle('is-hidden', !usesPersonalEmail);
+
+    emailExceptionWrapper.classList.toggle('is-hidden', !usesPersonalEmail);
+    emailExceptionInput.disabled = !usesPersonalEmail;
+    emailExceptionInput.required = usesPersonalEmail;
+    if (!usesPersonalEmail) {
+      emailExceptionInput.value = '';
+    }
   };
 
   emailInput.addEventListener('input', validateEmailDomain);

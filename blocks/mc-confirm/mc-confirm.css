@@ -129,6 +129,10 @@
   display: none;
 }
 
+.mc-confirm .email-exception-wrapper.is-hidden {
+  display: none;
+}
+
 /* Actions (Accept / Decline) */
 .mc-confirm .actions-wrapper {
   display: grid;
