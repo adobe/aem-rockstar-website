@@ -1,0 +1,230 @@
+/* MC Confirm Block Styling */
+
+.section .mc-confirm-wrapper {
+  background-color: #f8f8f8;
+  padding: 32px;
+  border-radius: 12px;
+  width: 100%;
+}
+
+.mc-confirm .mc-confirm-form {
+  display: grid;
+  gap: 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Form Header */
+.mc-confirm .form-header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.mc-confirm .form-title {
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #1a1a1a;
+}
+
+.mc-confirm .form-description {
+  font-size: var(--body-font-size-m);
+  color: var(--text-color);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Form Fields Container */
+.mc-confirm .form-fields {
+  display: grid;
+  gap: 20px;
+}
+
+/* Field Wrapper Styling */
+.mc-confirm .field-wrapper {
+  display: grid;
+  gap: 6px;
+}
+
+/* Label Styling */
+.mc-confirm label {
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  color: var(--text-color);
+  display: block;
+}
+
+.mc-confirm label[data-required]::after {
+  content: ' *';
+  color: #d73502;
+  font-weight: 700;
+}
+
+/* Input Styling */
+.mc-confirm input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: var(--body-font-size-s);
+  font-family: var(--body-font-family);
+  background-color: #fff;
+  color: var(--text-color);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mc-confirm input::placeholder {
+  color: #999;
+}
+
+.mc-confirm input:hover {
+  border-color: var(--link-color);
+}
+
+.mc-confirm input:focus {
+  outline: none;
+  border-color: var(--link-color);
+  box-shadow: 0 0 0 3px rgb(0 123 255 / 10%);
+}
+
+.mc-confirm input:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.mc-confirm input:invalid:not(:placeholder-shown) {
+  border-color: #d73502;
+}
+
+.mc-confirm input:invalid:not(:placeholder-shown):focus {
+  box-shadow: 0 0 0 3px rgb(215 53 2 / 10%);
+}
+
+/* Actions (Accept / Decline) */
+.mc-confirm .actions-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.mc-confirm .button {
+  border: none;
+  padding: 14px 24px;
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  width: 100%;
+}
+
+.mc-confirm .button.primary {
+  background-color: var(--link-color);
+  color: #fff;
+}
+
+.mc-confirm .button.primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.mc-confirm .button.secondary {
+  background-color: #fff;
+  color: var(--text-color);
+  border: 2px solid #ddd;
+}
+
+.mc-confirm .button.secondary:hover {
+  border-color: #999;
+  transform: translateY(-1px);
+}
+
+.mc-confirm .button:active {
+  transform: translateY(0);
+}
+
+.mc-confirm .button:disabled {
+  background-color: #6c757d;
+  color: #fff;
+  border-color: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.mc-confirm .button:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+/* Success and Error Messages */
+.mc-confirm .success-message,
+.mc-confirm .error-message {
+  padding: 24px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.mc-confirm .success-message {
+  background-color: #d4edda;
+  border: 2px solid #c3e6cb;
+  color: #155724;
+}
+
+.mc-confirm .success-message h3 {
+  margin: 0 0 12px;
+  font-size: var(--body-font-size-l);
+  color: #155724;
+}
+
+.mc-confirm .success-message p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.mc-confirm .error-message {
+  background-color: #f8d7da;
+  border: 2px solid #f5c6cb;
+  color: #721c24;
+}
+
+.mc-confirm .error-message p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Loading State */
+.mc-confirm[data-submitting="true"] {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (width >= 900px) {
+  .section .mc-confirm-wrapper {
+    padding: 48px;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  .mc-confirm input {
+    border-width: 3px;
+  }
+
+  .mc-confirm .button.secondary {
+    border-width: 2px;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .mc-confirm input,
+  .mc-confirm .button {
+    transition: none;
+  }
+
+  .mc-confirm .button:hover {
+    transform: none;
+  }
+}
