@@ -33,7 +33,7 @@
     "eslint-plugin-import": "2.32.0",
     "@esm-bundle/chai": "4.3.4-fix.0",
     "@web/test-runner": "1.0.0",
-    "@web/test-runner-commands": "1.0.0",
+    "@web/test-runner-commands": "1.0.1",
     "sinon": "22.1.0",
     "stylelint": "17.14.1",
     "stylelint-config-standard": "40.0.0"
