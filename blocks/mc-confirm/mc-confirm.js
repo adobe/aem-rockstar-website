@@ -250,8 +250,9 @@ function createConfirmForm(config) {
   header.appendChild(formTitle);
 
   if (description) {
-    const formDescription = document.createElement('p');
-    formDescription.textContent = description;
+    const formDescription = document.createElement('div');
+    // description may contain rich text markup (links, bold, lists, etc.)
+    formDescription.innerHTML = description;
     formDescription.className = 'form-description';
     header.appendChild(formDescription);
   }
@@ -346,21 +347,27 @@ function parseKeyValueConfig(rows) {
   };
 
   rows.forEach((row) => {
-    const cells = [...row.children].map((c) => c.textContent.trim());
-    if (cells.length >= 2) {
-      const key = cells[0].toLowerCase().replace(/\s+/g, '');
-      const value = cells[1];
+    const cellEls = [...row.children];
+    if (cellEls.length >= 2) {
+      const key = cellEls[0].textContent.trim().toLowerCase().replace(/\s+/g, '');
       const prop = KEY_TO_PROP[key];
-      if (prop && value) {
-        config[prop] = value;
+      if (prop) {
+        // Preserve rich text markup (links, bold, lists, etc.) for description
+        const value = prop === 'description'
+          ? cellEls[1].innerHTML.trim()
+          : cellEls[1].textContent.trim();
+        if (value) config[prop] = value;
       }
-    } else if (cells.length === 1 && cells[0].includes(':')) {
-      const [rawKey, ...rest] = cells[0].split(':');
-      const key = rawKey.trim().toLowerCase().replace(/\s+/g, '');
-      const value = rest.join(':').trim();
-      const prop = KEY_TO_PROP[key];
-      if (prop && value) {
-        config[prop] = value;
+    } else if (cellEls.length === 1) {
+      const text = cellEls[0].textContent.trim();
+      if (text.includes(':')) {
+        const [rawKey, ...rest] = text.split(':');
+        const key = rawKey.trim().toLowerCase().replace(/\s+/g, '');
+        const value = rest.join(':').trim();
+        const prop = KEY_TO_PROP[key];
+        if (prop && value) {
+          config[prop] = value;
+        }
       }
     }
   });
@@ -384,7 +391,9 @@ function parsePositionBasedConfig(rows) {
   };
 
   rows.forEach((row, index) => {
-    const content = (row.children[0]?.textContent ?? row.textContent ?? '').trim();
+    const cell = row.children[0] ?? row;
+    // Preserve rich text markup (links, bold, lists, etc.) for description
+    const content = (index === 2 ? cell.innerHTML : cell.textContent).trim();
     switch (index) {
       case 0:
         config.submitUrl = content;

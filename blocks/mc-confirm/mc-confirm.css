@@ -30,8 +30,23 @@
 .mc-confirm .form-description {
   font-size: var(--body-font-size-m);
   color: var(--text-color);
-  margin: 0;
   line-height: 1.5;
+}
+
+.mc-confirm .form-description p,
+.mc-confirm .form-description ul,
+.mc-confirm .form-description ol {
+  margin: 0 0 8px;
+  text-align: left;
+}
+
+.mc-confirm .form-description ul,
+.mc-confirm .form-description ol {
+  padding-left: 20px;
+}
+
+.mc-confirm .form-description > :last-child {
+  margin-bottom: 0;
 }
 
 /* Form Fields Container */
