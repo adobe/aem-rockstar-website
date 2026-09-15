@@ -308,7 +308,7 @@ function createConfirmForm(config) {
   );
   emailExceptionInput.disabled = true;
   const emailExceptionLabel = createLabel(
-    'Email Exception',
+    'Email Exception / Comments',
     'mc-confirm-email-exception',
   );
   emailExceptionWrapper.appendChild(emailExceptionLabel);
