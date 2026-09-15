@@ -107,6 +107,23 @@ function createInput(type, name, id, placeholder = '', required = false) {
 }
 
 /**
+ * Creates a textarea field
+ * @param {string} name - Field name
+ * @param {string} id - Field ID
+ * @param {string} placeholder - Placeholder text
+ * @param {number} rows - Number of visible text rows
+ * @returns {HTMLTextAreaElement} Textarea element
+ */
+function createTextarea(name, id, placeholder = '', rows = 3) {
+  const textarea = document.createElement('textarea');
+  textarea.name = name;
+  textarea.id = id;
+  textarea.placeholder = placeholder;
+  textarea.rows = rows;
+  return textarea;
+}
+
+/**
  * Generates the form payload for submission
  * @param {HTMLFormElement} form - The form element
  * @param {string} decision - "accept" or "decline"
@@ -282,12 +299,12 @@ function createConfirmForm(config) {
   fieldsContainer.appendChild(emailWrapper);
 
   // Email exception field: required justification when a personal email is used
-  const emailExceptionWrapper = createFieldWrapper('text', 'email-exception-wrapper is-hidden');
-  const emailExceptionInput = createInput(
-    'text',
+  const emailExceptionWrapper = createFieldWrapper('textarea', 'email-exception-wrapper is-hidden');
+  const emailExceptionInput = createTextarea(
     'emailException',
     'mc-confirm-email-exception',
     'Explain why you\'re using a personal email address',
+    5,
   );
   emailExceptionInput.disabled = true;
   const emailExceptionLabel = createLabel(
