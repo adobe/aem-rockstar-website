@@ -16,8 +16,8 @@
  */
 
 /** Message shown when a personal / free email address is used */
-const PERSONAL_EMAIL_MESSAGE = 'We recommend using your corporate email address. '
-  + 'If you continue with a personal email, please explain why below.';
+const PERSONAL_EMAIL_MESSAGE = 'We require using your corporate email address. '
+  + 'If you continue with a personal email, your invite may be rescinded.';
 
 /** Common personal / free email providers (require an exception explanation) */
 const PERSONAL_EMAIL_DOMAINS = [
