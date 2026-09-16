@@ -303,12 +303,12 @@ function createConfirmForm(config) {
   const emailExceptionInput = createTextarea(
     'emailException',
     'mc-confirm-email-exception',
-    'Explain why you\'re using a personal email address',
+    'Enter your corporate email or you will be removed from the invitation',
     5,
   );
   emailExceptionInput.disabled = true;
   const emailExceptionLabel = createLabel(
-    'Email Exception / Comments',
+    'Comments',
     'mc-confirm-email-exception',
   );
   emailExceptionWrapper.appendChild(emailExceptionLabel);
