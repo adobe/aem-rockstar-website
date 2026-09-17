@@ -15,15 +15,20 @@
  *   (did = document id, sid = sheet id; obfuscated from FE user, sent in payload only)
  */
 
-/** Message shown when a personal / free email address is used */
-const PERSONAL_EMAIL_MESSAGE = 'We require using your corporate email address. '
-  + 'If you continue with a personal email, your invite may be rescinded.';
+/** Message shown when a personal / free email address is used for registration */
+const PERSONAL_EMAIL_MESSAGE = 'You registered with a personal email address. '
+  + 'Please provide your company email address below.';
 
-/** Common personal / free email providers (require an exception explanation) */
+/** Message shown when company email field contains a personal email */
+const CORPORATE_EMAIL_ERROR = 'Personal email addresses are not allowed. '
+  + 'Please use your company email address.';
+
+/** Common personal / free email providers (not allowed) */
 const PERSONAL_EMAIL_DOMAINS = [
   'gmail.com',
   'googlemail.com',
   'yahoo.com',
+  'yahoo.co.in',
   'ymail.com',
   'hotmail.com',
   'outlook.com',
@@ -107,23 +112,6 @@ function createInput(type, name, id, placeholder = '', required = false) {
 }
 
 /**
- * Creates a textarea field
- * @param {string} name - Field name
- * @param {string} id - Field ID
- * @param {string} placeholder - Placeholder text
- * @param {number} rows - Number of visible text rows
- * @returns {HTMLTextAreaElement} Textarea element
- */
-function createTextarea(name, id, placeholder = '', rows = 3) {
-  const textarea = document.createElement('textarea');
-  textarea.name = name;
-  textarea.id = id;
-  textarea.placeholder = placeholder;
-  textarea.rows = rows;
-  return textarea;
-}
-
-/**
  * Generates the form payload for submission
  * @param {HTMLFormElement} form - The form element
  * @param {string} decision - "accept" or "decline"
@@ -202,6 +190,14 @@ async function handleSubmit(form, decision, submitUrl, config) {
     const responseBody = await parseResponseBody(response);
 
     if (response.ok) {
+      // Check if backend returned an error status (even with HTTP 200)
+      // Treat 'success' and 'ok' as valid success statuses
+      const validSuccessStatuses = ['success', 'ok'];
+      if (responseBody?.status && !validSuccessStatuses.includes(responseBody.status)) {
+        const message = responseBody.message || 'An error occurred processing your request.';
+        throw new Error(message);
+      }
+
       isSuccess = true;
       const defaultMessage = decision === 'accept'
         ? 'Thank you! Your acceptance has been recorded.'
@@ -281,10 +277,10 @@ function createConfirmForm(config) {
   const fieldsContainer = document.createElement('div');
   fieldsContainer.className = 'form-fields';
 
-  // Email field
+  // Email field (registration email - allows all domains)
   const emailWrapper = createFieldWrapper('email');
   const emailInput = createInput('email', 'email', 'mc-confirm-email', 'your.email@company.com', true);
-  const emailLabel = createLabel('Email Address', 'mc-confirm-email', true);
+  const emailLabel = createLabel('Email Address (Used for Registration)', 'mc-confirm-email', true);
   emailWrapper.appendChild(emailLabel);
   emailWrapper.appendChild(emailInput);
 
@@ -298,39 +294,89 @@ function createConfirmForm(config) {
   emailInput.setAttribute('aria-describedby', emailWarning.id);
   fieldsContainer.appendChild(emailWrapper);
 
-  // Email exception field: required justification when a personal email is used
-  const emailExceptionWrapper = createFieldWrapper('textarea', 'email-exception-wrapper is-hidden');
-  const emailExceptionInput = createTextarea(
-    'emailException',
-    'mc-confirm-email-exception',
-    'Enter your corporate email or you will be removed from the invitation',
-    5,
+  // Corporate email field: shown only when personal email detected in first field
+  const corporateEmailWrapper = createFieldWrapper('email', 'corporate-email-wrapper is-hidden');
+  const corporateEmailInput = createInput(
+    'email',
+    'companyEmail',
+    'mc-confirm-corporate-email',
+    'your.name@company.com',
+    false,
   );
-  emailExceptionInput.disabled = true;
-  const emailExceptionLabel = createLabel(
-    'Comments',
-    'mc-confirm-email-exception',
+  const corporateEmailLabel = createLabel(
+    'Company Email Address',
+    'mc-confirm-corporate-email',
+    false,
   );
-  emailExceptionWrapper.appendChild(emailExceptionLabel);
-  emailExceptionWrapper.appendChild(emailExceptionInput);
-  fieldsContainer.appendChild(emailExceptionWrapper);
+  corporateEmailWrapper.appendChild(corporateEmailLabel);
+  corporateEmailWrapper.appendChild(corporateEmailInput);
 
-  const validateEmailDomain = () => {
-    const usesPersonalEmail = isPersonalEmail(emailInput.value);
+  // Inline error message for corporate email field
+  const corporateEmailError = document.createElement('p');
+  corporateEmailError.className = 'field-error is-hidden';
+  corporateEmailError.id = 'mc-confirm-corporate-email-error';
+  corporateEmailError.setAttribute('role', 'alert');
+  corporateEmailWrapper.appendChild(corporateEmailError);
 
-    emailWarning.textContent = usesPersonalEmail ? PERSONAL_EMAIL_MESSAGE : '';
-    emailWarning.classList.toggle('is-hidden', !usesPersonalEmail);
+  corporateEmailInput.setAttribute('aria-describedby', corporateEmailError.id);
+  fieldsContainer.appendChild(corporateEmailWrapper);
 
-    emailExceptionWrapper.classList.toggle('is-hidden', !usesPersonalEmail);
-    emailExceptionInput.disabled = !usesPersonalEmail;
-    emailExceptionInput.required = usesPersonalEmail;
-    if (!usesPersonalEmail) {
-      emailExceptionInput.value = '';
+  const validateForm = () => {
+    const registrationEmailIsPersonal = isPersonalEmail(emailInput.value);
+    const corporateEmailIsPersonal = isPersonalEmail(corporateEmailInput.value);
+    const corporateEmailHasValue = corporateEmailInput.value.trim().length > 0;
+
+    // Show/hide warning for registration email field
+    emailWarning.textContent = registrationEmailIsPersonal ? PERSONAL_EMAIL_MESSAGE : '';
+    emailWarning.classList.toggle('is-hidden', !registrationEmailIsPersonal);
+
+    // Show/hide corporate email field based on registration email
+    corporateEmailWrapper.classList.toggle('is-hidden', !registrationEmailIsPersonal);
+    corporateEmailInput.required = registrationEmailIsPersonal;
+    corporateEmailLabel.dataset.required = registrationEmailIsPersonal ? 'true' : '';
+
+    // If corporate email field is visible, validate it
+    if (registrationEmailIsPersonal) {
+      if (corporateEmailHasValue && corporateEmailIsPersonal) {
+        // Corporate email field has a personal email - show error
+        corporateEmailError.textContent = CORPORATE_EMAIL_ERROR;
+        corporateEmailError.classList.remove('is-hidden');
+        corporateEmailInput.setCustomValidity(CORPORATE_EMAIL_ERROR);
+      } else {
+        // Corporate email is valid or empty
+        corporateEmailError.textContent = '';
+        corporateEmailError.classList.add('is-hidden');
+        corporateEmailInput.setCustomValidity('');
+      }
+    } else {
+      // Corporate email field is hidden, clear any errors
+      corporateEmailInput.value = '';
+      corporateEmailError.textContent = '';
+      corporateEmailError.classList.add('is-hidden');
+      corporateEmailInput.setCustomValidity('');
+    }
+
+    // Determine if form can be submitted
+    const acceptButton = form.querySelector('button[data-decision="accept"]');
+    const declineButton = form.querySelector('button[data-decision="decline"]');
+
+    let canSubmit = true;
+    if (registrationEmailIsPersonal) {
+      // If registration email is personal, corporate email must be filled and valid
+      canSubmit = corporateEmailHasValue && !corporateEmailIsPersonal;
+    }
+
+    if (acceptButton && declineButton) {
+      acceptButton.disabled = !canSubmit;
+      declineButton.disabled = !canSubmit;
     }
   };
 
-  emailInput.addEventListener('input', validateEmailDomain);
-  emailInput.addEventListener('blur', validateEmailDomain);
+  // Validate on input for immediate feedback
+  emailInput.addEventListener('input', validateForm);
+  emailInput.addEventListener('blur', validateForm);
+  corporateEmailInput.addEventListener('input', validateForm);
+  corporateEmailInput.addEventListener('blur', validateForm);
 
   form.appendChild(fieldsContainer);
 
