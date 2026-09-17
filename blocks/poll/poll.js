@@ -106,7 +106,7 @@ async function showPoll(block, blockConfig) {
         },
       }).then(() => {
         window.localStorage.setItem('poll-voted', 'yes');
-        initState(block, blockConfig);
+        initState(block, blockConfig); // eslint-disable-line no-use-before-define
       });
     }
   });

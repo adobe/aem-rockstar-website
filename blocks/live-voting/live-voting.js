@@ -64,14 +64,17 @@ export default async function decorate(block) {
     ];
     const colClasses = ['col-1', 'col-2', 'col-3'];
 
+    // eslint-disable-next-line new-cap
     const qrcode1 = new qrcode(0, 'H');
     qrcode1.addData('https://rockstar.adobeevents.com/en/live/x');
     qrcode1.make();
 
+    // eslint-disable-next-line new-cap
     const qrcode2 = new qrcode(0, 'H');
     qrcode2.addData('https://rockstar.adobeevents.com/en/live/y');
     qrcode2.make();
 
+    // eslint-disable-next-line new-cap
     const qrcode3 = new qrcode(0, 'H');
     qrcode3.addData('https://rockstar.adobeevents.com/en/live/z');
     qrcode3.make();
@@ -83,6 +86,7 @@ export default async function decorate(block) {
     });
     block.replaceWith(container);
   } else if (config.config === 'qr-only') {
+    // eslint-disable-next-line new-cap
     const allCode = new qrcode(0, 'H');
     allCode.addData('https://rockstar.adobeevents.com/en/live/all');
     allCode.make();
@@ -128,5 +132,6 @@ export default async function decorate(block) {
 
     block.replaceWith(container);
   }
+  // eslint-disable-next-line no-console
   console.log(`mode: ${config.config}`);
 }

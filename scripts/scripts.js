@@ -23,6 +23,7 @@ import {
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('img');
+  // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
     /*
@@ -64,6 +65,7 @@ function buildAutoBlocks(main) {
   try {
     buildHeroBlock(main);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
@@ -88,6 +90,7 @@ function addVideo(main) {
  * Decorates the main element.
  * @param {Element} main The main element
  */
+// eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
@@ -141,6 +144,7 @@ async function loadLazy(doc) {
   loadFonts();
 
   const loadQuickEdit = async (...args) => {
+    // eslint-disable-next-line import/no-cycle
     const { default: initQuickEdit } = await import('../tools/quick-edit/quick-edit.js');
     initQuickEdit(...args);
   };
@@ -171,6 +175,7 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
+  // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
