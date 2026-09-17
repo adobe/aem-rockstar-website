@@ -82,7 +82,6 @@ export default async function decorate(block) {
   const config = readBlockConfig(block);
   const mode = (config.mode || 'default').toString().trim().toLowerCase();
 
-  // eslint-disable-next-line new-cap
   const qr = new qrcode(0, 'H');
   qr.addData('https://rockstar.adobeevents.com/en/live/all');
   qr.make();
@@ -251,7 +250,6 @@ export default async function decorate(block) {
       if (history.length > maxHistory) history.length = maxHistory;
       window.localStorage.setItem(storageKey, JSON.stringify(history));
     } catch (error) {
-      // eslint-disable-next-line no-console
       console.warn('Unable to save live results', error);
     }
   };
@@ -377,7 +375,6 @@ export default async function decorate(block) {
       if (card) card.classList.remove('is-updated');
     }, 1200);
 
-    // eslint-disable-next-line no-console
     console.log(`The event rs-vote was triggered with data ${JSON.stringify(data)}`);
   });
 

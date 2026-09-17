@@ -151,7 +151,6 @@ const isValidUrl = (urlString) => {
   try {
     return Boolean(new URL(urlString));
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('block string is not a fully valid url', error);
   }
   return false;
