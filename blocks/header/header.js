@@ -110,6 +110,36 @@ export default async function decorate(block) {
     });
 
     const navSections = nav.querySelector('.nav-sections');
+    if (document.body.classList.contains('rockstar-site') && navSections) {
+      const home = document.body.classList.contains('rockstar-home') ? '' : '/en/';
+      const links = [
+        ['The show', `${home}#the-show`],
+        ['The community', `${home}#the-community`],
+        ['Latest news', `${home}#latest-news--updates`],
+        ['Masterclass', '/en/masterclass'],
+        ['Submission guide', '/en/submission-guide'],
+      ];
+      const list = document.createElement('ul');
+      links.forEach(([label, href]) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        link.textContent = label;
+        link.href = href;
+        if (link.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '') && !link.hash) {
+          link.setAttribute('aria-current', 'page');
+        }
+        item.append(link);
+        list.append(item);
+      });
+      navSections.replaceChildren(list);
+      const brand = nav.querySelector('.nav-brand a');
+      if (brand) {
+        const wordmark = document.createElement('span');
+        wordmark.className = 'nav-wordmark';
+        wordmark.textContent = 'AEM ROCKSTAR';
+        brand.append(wordmark);
+      }
+    }
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
