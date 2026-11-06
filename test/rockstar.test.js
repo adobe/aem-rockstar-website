@@ -1,6 +1,10 @@
 /* global describe, it, afterEach */
 import { expect } from '@esm-bundle/chai';
-import { prepareRockstarHome, finishRockstarHome, prepareRockstarPage } from '../scripts/rockstar.js';
+import {
+  prepareRockstarHome, prepareRockstarFanzine, finishRockstarHome, prepareRockstarPage,
+} from '../scripts/rockstar.js';
+import decorateFanzine from '../blocks/rockstar-fanzine/rockstar-fanzine.js';
+import { decorateBlock } from '../scripts/aem.js';
 
 function fixture(html) {
   const main = document.createElement('main');
@@ -101,6 +105,49 @@ describe('Rockstar homepage preparation', () => {
     prepareRockstarHome(main);
     expect(main.querySelector('h1').textContent).to.equal('Author headline');
     expect(document.body.classList.contains('rockstar-home')).to.equal(true);
+  });
+
+  it('features the genuine past winner and keeps the replay destination in a single fanzine hero', () => {
+    const main = fixture(`<div><h1>AEM Rockstar</h1></div>
+      <div><h2>Recap</h2><div class="cards"><div><div>
+        <p><a href="/sessions/2026-recording">Recording</a></p><p>Real recording description.</p>
+      </div></div></div></div>
+      <div><h2>Past winners</h2><div class="past-winners"><div><div>2026</div>
+        <div><picture><img src="/portrait.jpg" alt=""></picture></div>
+        <div>Actual Winner</div><div>/sessions/winner</div></div></div></div>`);
+    prepareRockstarFanzine(main);
+    prepareRockstarFanzine(main);
+    const block = main.querySelector('.rockstar-fanzine');
+    expect(main.querySelectorAll('.rockstar-fanzine')).to.have.lengthOf(1);
+    expect(block.querySelector('a').getAttribute('href')).to.include('/sessions/2026-recording');
+    expect(block.querySelector('img').alt).to.equal('Actual Winner');
+    expect(block.querySelector('img').loading).to.equal('eager');
+    expect(block.querySelector('figcaption').textContent).to.include('2026 AEM Rockstar winner');
+    expect(main.querySelector('.past-winners').textContent).to.include('Actual Winner');
+    expect(main.querySelector('.cards').textContent).to.include('Real recording description.');
+    decorateBlock(block);
+    decorateFanzine(block);
+    expect(block.querySelector('.fanzine-masthead h1').textContent).to.include('AEM Rockstar 11');
+    expect(block.querySelector('.fanzine-story a')).not.to.equal(null);
+    expect(block.querySelector('.fanzine-feature figure')).not.to.equal(null);
+    expect(block.querySelector('p > figure')).to.equal(null);
+  });
+
+  it('keeps a usable guide action without inventing a winner or replay when those fields are omitted', () => {
+    const main = fixture('<div><h1>AEM Rockstar</h1></div>');
+    prepareRockstarFanzine(main);
+    const block = main.querySelector('.rockstar-fanzine');
+    decorateFanzine(block);
+    expect(block.querySelector('a').getAttribute('href')).to.include('/en/submission-guide');
+    expect(block.textContent).not.to.include('2026 finalists');
+    expect(block.querySelector('.fanzine-feature')).to.equal(null);
+  });
+
+  it('does not replace an explicitly authored hero when preparing the fanzine option', () => {
+    const main = fixture('<div><div class="rockstar-hero"><h1>Author headline</h1></div></div>');
+    prepareRockstarFanzine(main);
+    expect(main.querySelector('h1').textContent).to.equal('Author headline');
+    expect(main.querySelector('.rockstar-fanzine')).to.equal(null);
   });
 
   it('archives older decorated news once and labels the historical submission destination', () => {

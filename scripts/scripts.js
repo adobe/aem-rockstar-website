@@ -112,16 +112,17 @@ async function loadEager(doc) {
   if (main) {
     const rockstarPage = /^\/en\/(?:submission-(?:guide|2026)|masterclass(?:\/.*)?)\/?$/.test(window.location.pathname);
     if (doc.body.classList.contains('home') || rockstarPage) {
-      const { prepareRockstarHome, prepareRockstarPage } = await import('./rockstar.js');
-      doc.body.classList.add('rockstar-site');
+      const { prepareRockstarFanzine, prepareRockstarPage } = await import('./rockstar.js');
+      doc.body.classList.add('rockstar-site', 'rockstar-grunge');
       const styles = ['rockstar'];
       if (doc.body.classList.contains('home')) {
-        prepareRockstarHome(main);
+        prepareRockstarFanzine(main);
       } else {
         doc.body.classList.add('rockstar-inner');
         prepareRockstarPage(main);
         styles.push('rockstar-pages');
       }
+      styles.push('rockstar-grunge');
       await Promise.all(styles.map((style) => loadCSS(`${window.hlx.codeBasePath}/styles/${style}.css`)));
     }
     decorateMain(main);

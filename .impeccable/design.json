@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-05T22:45:09.232Z",
-  "title": "Design System: AEM Rockstar — The Gig Poster",
+  "generatedAt": "2026-11-06T17:34:00.016Z",
+  "title": "Design System: AEM Rockstar — The Gig Poster / Cut-and-Paste Fanzine",
   "extensions": {
     "colorMeta": {
       "rockstar-yellow": {
@@ -23,19 +23,48 @@
         "role": "neutral",
         "displayName": "Off-white",
         "tonalRamp": ["oklch(15% 0.002 106)", "oklch(27% 0.004 106)", "oklch(39% 0.006 106)", "oklch(51% 0.008 106)", "oklch(63% 0.01 106)", "oklch(75% 0.01 106)", "oklch(87% 0.009 106)", "oklch(95% 0.005 106)"]
+      },
+      "fanzine-paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper — Scoped Fanzine",
+        "tonalRamp": ["oklch(15% 0.002 106)", "oklch(27% 0.004 106)", "oklch(39% 0.006 106)", "oklch(51% 0.008 106)", "oklch(63% 0.01 106)", "oklch(75% 0.01 106)", "oklch(87% 0.009 106)", "oklch(95% 0.005 106)"]
+      },
+      "fanzine-red": {
+        "role": "primary",
+        "displayName": "Rough Red Ink — Scoped Fanzine",
+        "tonalRamp": ["oklch(15% 0.03 30)", "oklch(27% 0.07 30)", "oklch(39% 0.12 30)", "oklch(51% 0.18 30)", "oklch(63% 0.20 30)", "oklch(75% 0.14 30)", "oklch(87% 0.07 30)", "oklch(95% 0.02 30)"]
+      },
+      "fanzine-charcoal": {
+        "role": "neutral",
+        "displayName": "Charcoal Backing — Scoped Fanzine",
+        "tonalRamp": ["oklch(15% 0 0)", "oklch(27% 0 0)", "oklch(39% 0 0)", "oklch(51% 0 0)", "oklch(63% 0 0)", "oklch(75% 0 0)", "oklch(87% 0 0)", "oklch(95% 0 0)"]
+      },
+      "fanzine-white": {
+        "role": "neutral",
+        "displayName": "Clean Paper — Scoped Fanzine",
+        "tonalRamp": ["oklch(15% 0.002 106)", "oklch(27% 0.004 106)", "oklch(39% 0.006 106)", "oklch(51% 0.008 106)", "oklch(63% 0.01 106)", "oklch(75% 0.01 106)", "oklch(87% 0.009 106)", "oklch(95% 0.005 106)"]
+      },
+      "confirmation-error": {
+        "role": "semantic",
+        "displayName": "Confirmation Instruction Red — Scoped Text Only",
+        "tonalRamp": ["oklch(15% 0.03 35)", "oklch(27% 0.07 35)", "oklch(39% 0.12 35)", "oklch(51% 0.16 35)", "oklch(63% 0.15 35)", "oklch(75% 0.11 35)", "oklch(87% 0.06 35)", "oklch(95% 0.02 35)"]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Poster Title", "purpose": "Prepared homepage title only; at 900px use clamp(7rem, 12.3vw, 11rem). Uppercase." },
-      "edition": { "displayName": "Edition Numeral", "purpose": "Blue edition beside the title, with an accessible edition label." },
+      "fanzine-display": { "displayName": "Fanzine Masthead", "purpose": "Current homepage only; uppercase, ink-worn title capped at 8.5rem, with a deliberate break below 600px." },
+      "fanzine-story": { "displayName": "Fanzine Lead Story", "purpose": "Homepage red story sheet; uppercase ink-worn headline with its own fixed line break." },
+      "fanzine-story-body": { "displayName": "Fanzine Story Text", "purpose": "Homepage story paragraphs, capped at 46ch; no poster face on reading text." },
+      "fanzine-winner-name": { "displayName": "Fanzine Alumni Name", "purpose": "Homepage paper-backed alumni only; not the larger featured portrait caption or sibling speaker name." },
+      "display": { "displayName": "Earlier Gig Poster Title", "purpose": "Original 2027-redesign homepage option, not current fanzine; at 900px use clamp(7rem, 12.3vw, 11rem). Uppercase." },
+      "edition": { "displayName": "Earlier Gig Poster Edition Numeral", "purpose": "Original option's blue numeral beside the title, not the current red inline fanzine stamp." },
       "headline": { "displayName": "Homepage Section Headline", "purpose": "Fluid homepage section headings; siblings use their own fixed reading/task roles." },
       "title": { "displayName": "News Title", "purpose": "Bold Roboto news headings, distinct from Anton display." },
       "body": { "displayName": "Reading Text", "purpose": "Shared scoped reading text; guide content and disclosure paragraphs cap at 70ch." },
       "replay-body": { "displayName": "Replay Reading Text", "purpose": "Smaller replay paragraphs, capped at 65ch." },
       "action": { "displayName": "Ticket Label", "purpose": "Wrapping Roboto action labels." },
       "label": { "displayName": "Small Roboto Label", "purpose": "Small bold metadata such as agenda times; not winner-year tabs." },
-      "winner-year": { "displayName": "Winner Concert Tab", "purpose": "Uppercase Anton year attached above the portrait, blue fill and yellow text." },
-      "read-title": { "displayName": "Reading Page Title", "purpose": "Direct authored page title in a yellow band; 3rem becomes 4rem at 600px, preserving IDs and year." },
+      "winner-year": { "displayName": "Winner Concert Tab", "purpose": "Uppercase Anton year above the portrait; original option uses blue/yellow, current fanzine uses charcoal/clean-paper." },
+      "read-title": { "displayName": "Reading Page Title", "purpose": "Direct authored page title in the current red printed band; 3rem becomes 4rem at 600px, preserving IDs/year. Yellow band is the historical/base variant." },
       "read-section": { "displayName": "Guide Section", "purpose": "Fixed 2rem guide section heading; 70ch reading column, not a poster headline." },
       "read-subsection": { "displayName": "Guide Subsection", "purpose": "Fixed 1.5rem guide subsection heading." },
       "masterclass-title": { "displayName": "Course Hero Title", "purpose": "Masterclass hero heading, followed by copy and the original course logo on mobile." },
@@ -58,107 +87,150 @@
       "name": "Primary Ticket",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Blue link ticket on a light field; preview destination is the actual homepage replay section.",
-      "html": "<a class=\"ds-primary\" href=\"/en/#the-show\">Watch the 2026 replay</a>",
-      "css": ".ds-primary{display:inline-block;font-family:Roboto,roboto-fallback,sans-serif;font-size:1rem;font-weight:700;line-height:1.4;padding:16px 22px;border:1px solid transparent;border-radius:0;background:var(--rockstar-blue,#193acc);color:var(--rockstar-white,#f8f8f2);text-align:center;text-decoration:none;white-space:normal}.ds-primary::after{content:'';display:inline-block;width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);margin-left:18px;transition:translate .2s cubic-bezier(.16,1,.3,1)}.ds-primary:hover,.ds-primary:focus-visible{background:var(--rockstar-ink,#202020)}.ds-primary:hover::after,.ds-primary:focus-visible::after{translate:4px}.ds-primary:focus-visible{outline:3px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary::after{transition:none}}"
+      "description": "Historical/base Gig Poster blue ticket, not the current homepage or selected supporting-page control. Local base values preserve the original option in this preview.",
+      "html": "<a class=\"ds-primary\" href=\"/en/submission-guide\">Explore the submission guide</a>",
+      "css": ".ds-primary{--rockstar-blue:#193acc;--rockstar-white:#f8f8f2;--rockstar-ink:#202020;display:inline-block;font-family:Roboto,roboto-fallback,sans-serif;font-size:1rem;font-weight:700;line-height:1.4;padding:16px 22px;border:1px solid transparent;border-radius:0;background:var(--rockstar-blue);color:var(--rockstar-white);text-align:center;text-decoration:none;white-space:normal}.ds-primary::after{content:'';display:inline-block;width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);margin-left:18px;transition:translate .2s cubic-bezier(.16,1,.3,1)}.ds-primary:hover,.ds-primary:focus-visible{background:var(--rockstar-ink)}.ds-primary:hover::after,.ds-primary:focus-visible::after{translate:4px}.ds-primary:focus-visible{outline:3px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-primary::after{transition:none}}"
     },
     {
-      "name": "Replay Ticket",
+      "name": "Fanzine Replay Ticket",
       "kind": "button",
-      "refersTo": "button-replay",
-      "description": "Yellow reversal on the blue replay field. Destination is the homepage replay section in this standalone preview.",
+      "refersTo": "fanzine-ticket",
+      "description": "Current homepage charcoal ticket on printed paper; hover reverses, focus retains charcoal with an outline. The story-sheet variant also reverses on focus. Preview links to the real replay section rather than inventing a session URL.",
       "html": "<div class=\"ds-replay-field\"><a class=\"ds-replay\" href=\"/en/#the-show\">Watch the 2026 finalists</a></div>",
-      "css": ".ds-replay-field{background:var(--rockstar-blue,#193acc);padding:24px}.ds-replay{display:inline-block;font-family:Roboto,roboto-fallback,sans-serif;font-size:1rem;font-weight:700;line-height:1.4;padding:16px 22px;border:1px solid transparent;border-radius:0;background:var(--rockstar-yellow,#fcdf38);color:var(--rockstar-ink,#202020);text-align:center;text-decoration:none;white-space:normal}.ds-replay::after{content:'';display:inline-block;width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);margin-left:18px;transition:translate .2s cubic-bezier(.16,1,.3,1)}.ds-replay:hover,.ds-replay:focus-visible{background:var(--rockstar-yellow,#fcdf38);color:var(--rockstar-ink,#202020)}.ds-replay:hover::after,.ds-replay:focus-visible::after{translate:4px}.ds-replay:focus-visible{outline:3px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-replay::after{transition:none}}"
+      "css": ".ds-replay-field{--rockstar-yellow:#deded7;--rockstar-ink:#181817;--rockstar-white:#f4f4ee;background:var(--rockstar-yellow) url('/styles/assets/fanzine-print.png');padding:24px}.ds-replay{display:inline-block;font-family:Roboto,roboto-fallback,sans-serif;font-size:1rem;font-weight:700;line-height:1.4;padding:16px 22px;border:1px solid transparent;border-radius:0;background:var(--rockstar-ink);color:var(--rockstar-white);text-align:center;text-decoration:none;white-space:normal}.ds-replay::after{content:'';display:inline-block;width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);margin-left:18px;transition:translate .2s cubic-bezier(.16,1,.3,1)}.ds-replay:hover{background:var(--rockstar-white);color:var(--rockstar-ink)}.ds-replay:hover::after,.ds-replay:focus-visible::after{translate:4px}.ds-replay:focus-visible{outline:3px solid currentColor;outline-offset:5px}@media(prefers-reduced-motion:reduce){.ds-replay::after{transition:none}}"
     },
     {
       "name": "Shared Rockstar Navigation",
       "kind": "nav",
       "refersTo": "navigation",
-      "description": "Desktop sibling-page link-group excerpt with Masterclass as the exact current page. Full shell is fixed at 72px with a nonwrapping Anton wordmark and existing Adobe icon; this is not a mobile-menu runtime replacement.",
+      "description": "Historical/base Gig Poster desktop link-group excerpt with Masterclass current, not current selected sibling navigation. Local base values preserve the original option. Full shell is fixed at 72px with Adobe icon/Anton wordmark; no mobile-menu runtime is simulated.",
       "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a href=\"/en/#the-show\">The show</a><a href=\"/en/#the-community\">The community</a><a href=\"/en/#latest-news--updates\">Latest news</a><a href=\"/en/masterclass\" aria-current=\"page\">Masterclass</a><a href=\"/en/submission-guide\">Submission guide</a></nav>",
-      "css": ".ds-nav{display:flex;align-items:center;flex-wrap:wrap;gap:2em;min-height:72px;padding:0 20px;background:var(--rockstar-yellow,#fcdf38);color:var(--rockstar-ink,#202020);border-bottom:1px solid var(--rockstar-ink,#202020);font-family:Roboto,roboto-fallback,sans-serif;font-size:.875rem;font-weight:500;line-height:1.6}.ds-nav a{color:inherit;text-decoration:none}.ds-nav a:hover{color:inherit;text-decoration:none}.ds-nav a[aria-current='page']{text-decoration:underline;text-underline-offset:.35em}.ds-nav a:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+      "css": ".ds-nav{--rockstar-yellow:#fcdf38;--rockstar-ink:#202020;display:flex;align-items:center;flex-wrap:wrap;gap:2em;min-height:72px;padding:0 20px;background:var(--rockstar-yellow);color:var(--rockstar-ink);border-bottom:1px solid var(--rockstar-ink);font-family:Roboto,roboto-fallback,sans-serif;font-size:.875rem;font-weight:500;line-height:1.6}.ds-nav a{color:inherit;text-decoration:none}.ds-nav a:hover{color:inherit;text-decoration:none}.ds-nav a[aria-current='page']{text-decoration:underline;text-underline-offset:.35em}.ds-nav a:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
     },
     {
       "name": "Historical Disclosure",
       "kind": "custom",
       "refersTo": "news-disclosure",
-      "description": "Native news-area archive excerpt with the actual historical-truth notice: no border, 12px summary padding. General homepage disclosures retain their top rule and 18px summary padding.",
+      "description": "Current fanzine news-area native archive on printed paper, with the actual historical-truth notice: no border, 12px summary padding. General homepage disclosures retain their top rule and 18px summary padding.",
       "html": "<details class=\"ds-disclosure\"><summary>Historical submission guidance (2024-2026)</summary><p>These are past-edition rules and entry instructions, not confirmed eligibility or submission dates for AEM Rockstar 11.</p></details>",
-      "css": ".ds-disclosure{background:var(--rockstar-white,#f8f8f2);color:var(--rockstar-ink,#202020);font-family:Roboto,roboto-fallback,sans-serif;font-size:1.0625rem;line-height:1.6;border:0;margin-top:0}.ds-disclosure summary{padding:12px 0;font-weight:700;cursor:pointer}.ds-disclosure p{max-width:70ch;margin:1em 0}.ds-disclosure summary:hover{color:inherit}.ds-disclosure summary:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+      "css": ".ds-disclosure{--rockstar-yellow:#deded7;--rockstar-ink:#181817;background:var(--rockstar-yellow) url('/styles/assets/fanzine-print.png');color:var(--rockstar-ink);font-family:Roboto,roboto-fallback,sans-serif;font-size:1.0625rem;line-height:1.6;border:0;margin-top:0}.ds-disclosure summary{padding:12px 0;font-weight:700;cursor:pointer}.ds-disclosure p{max-width:70ch;margin:1em 0}.ds-disclosure summary:hover{color:inherit}.ds-disclosure summary:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
     },
     {
       "name": "Ruled Topics",
       "kind": "custom",
-      "description": "Editorial list excerpt, not chips or selectable filters.",
+      "description": "Current fanzine red printed topics list excerpt, not chips or selectable filters. The earlier Gig Poster option uses yellow with the same row structure.",
       "html": "<div class=\"ds-topics\"><ul><li>Extensions/UI Extensibility</li><li>Universal Editor</li><li>Accelerators / Boilerplate</li></ul></div>",
-      "css": ".ds-topics{background:var(--rockstar-yellow,#fcdf38);color:var(--rockstar-ink,#202020);font-family:Roboto,roboto-fallback,sans-serif;font-size:1.0625rem;line-height:1.6}.ds-topics ul{list-style:none;padding:0;margin:32px 0 0;display:flex;flex-wrap:wrap;gap:0}.ds-topics li{border-bottom:1px solid var(--rockstar-ink,#202020);padding:14px 0;width:100%;font-weight:700}@media(min-width:600px){.ds-topics li{width:calc(50% - 24px);margin-right:24px}}@media(min-width:900px){.ds-topics li{width:calc(33.333% - 24px)}}"
+      "css": ".ds-topics{--rockstar-blue:#ef4937;--rockstar-ink:#181817;background:var(--rockstar-blue) url('/styles/assets/fanzine-print.png');color:var(--rockstar-ink);font-family:Roboto,roboto-fallback,sans-serif;font-size:1.0625rem;line-height:1.6}.ds-topics ul{list-style:none;padding:0;margin:32px 0 0;display:flex;flex-wrap:wrap;gap:0}.ds-topics li{border-bottom:1px solid var(--rockstar-ink);padding:14px 0;width:100%;font-weight:700}@media(min-width:600px){.ds-topics li{width:calc(50% - 24px);margin-right:24px}}@media(min-width:900px){.ds-topics li{width:calc(33.333% - 24px)}}"
     },
     {
-      "name": "Winner Tile — Text Excerpt",
+      "name": "Fanzine Winner Tile — Text Excerpt",
       "kind": "card",
-      "refersTo": "winner-tile",
-      "description": "Attached blue/yellow Anton concert tab and name without a fabricated portrait. Production places the genuine square CMS portrait immediately below the tab; no image placeholder is a system primitive.",
+      "refersTo": "fanzine-winner-tile",
+      "description": "Current paper-backed alumni tile with charcoal/clean-paper Anton year and the smaller fanzine name. Production places the genuine square monochrome CMS portrait below the tab; no fabricated portrait or placeholder is rendered here. All 11 alumni remain in production.",
       "html": "<article class=\"ds-winner\"><div class=\"ds-year\">2026</div><div class=\"ds-winner-info\"><h3>Lisa Marie Brown</h3></div></article>",
-      "css": "@font-face{font-family:Anton;src:url('/fonts/anton-latin.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}.ds-winner,.ds-winner:hover{background:transparent;color:var(--rockstar-ink,#202020);border:0;border-radius:0;box-shadow:none;padding:0;margin:0;text-align:left;transform:none}.ds-year{display:inline-block;max-width:100%;box-sizing:border-box;background:var(--rockstar-blue,#193acc);color:var(--rockstar-yellow,#fcdf38);padding:8px 12px;font-family:Anton,sans-serif;font-weight:400;font-size:1.25rem;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;border-radius:0}.ds-winner-info{margin-top:14px}.ds-winner h3{font-family:Anton,sans-serif;font-weight:400;font-size:clamp(1.3rem,2.4vw,2rem);line-height:1.2;margin:0}"
+      "css": "@font-face{font-family:Anton;src:url('/fonts/anton-latin.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}.ds-winner{--rockstar-yellow:#deded7;--rockstar-ink:#181817;--rockstar-white:#f4f4ee}.ds-winner,.ds-winner:hover{background:var(--rockstar-yellow) url('/styles/assets/fanzine-print.png');color:var(--rockstar-ink);border:0;border-radius:0;box-shadow:none;padding:10px;margin:0;text-align:left;transform:none}.ds-year{display:inline-block;max-width:100%;box-sizing:border-box;background:var(--rockstar-ink);color:var(--rockstar-white);padding:6px 10px;margin-bottom:8px;font-family:Anton,sans-serif;font-weight:400;font-size:1.25rem;line-height:1.2;letter-spacing:.02em;text-transform:uppercase;border-radius:0}.ds-winner-info{margin-top:14px}.ds-winner h3{font-family:Anton,sans-serif;font-weight:400;font-size:clamp(1.25rem,2vw,1.75rem);line-height:1.2;margin:0 0 4px}"
     },
     {
       "name": "Compact Form Header",
       "kind": "custom",
-      "refersTo": "form-header",
-      "description": "Confirmation header excerpt with the existing default title; actual descriptions, venue text, and old dates remain authored. No location emoji or poster-scale title.",
+      "refersTo": "fanzine-form-header",
+      "description": "Current supporting red printed header on an unrotated clean-paper card. Fixed 2rem title; padding 24px, 32px at 900px. Generic preview text is not evidence of authored missing-route content; venue/configuration remain authoritative.",
       "html": "<header class=\"ds-form-header\"><h2>Confirm your response</h2></header>",
-      "css": "@font-face{font-family:Anton;src:url('/fonts/anton-latin.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}.ds-form-header{padding:24px;background:var(--rockstar-yellow,#fcdf38);text-align:left}.ds-form-header h2{margin:0 0 16px;font-family:Anton,sans-serif;font-size:2rem;font-weight:400;line-height:1.2;color:#1a1a1a;text-wrap:balance}@media(min-width:900px){.ds-form-header{padding:32px}}"
+      "css": "@font-face{font-family:Anton;src:url('/fonts/anton-latin.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}.ds-form-header{--rockstar-blue:#ef4937;--rockstar-ink:#181817;padding:24px;background:var(--rockstar-blue) url('/styles/assets/fanzine-print.png');color:var(--rockstar-ink);text-align:left}.ds-form-header h2{margin:0 0 16px;font-family:Anton,sans-serif;font-size:2rem;font-weight:400;line-height:1.2;color:var(--rockstar-ink);text-wrap:balance}@media(min-width:900px){.ds-form-header{padding:32px}}"
     },
     {
       "name": "Registration Text Field",
       "kind": "input",
       "refersTo": "text-field",
-      "description": "Native registration input, showing its specific hover/focus/invalid treatment. Access-request fields instead use a stable shadow-drawn stroke; semantic feedback is not a brand palette extension.",
+      "description": "Current native registration field on clean paper: dark link-color hover/focus border and outline, inherited blue-tinted halo, white input, red alias caret. Native required/invalid colors remain inherited. Access fields use stable shadow strokes instead.",
       "html": "<div class=\"ds-field\"><label for=\"ds-first-name\">First Name<span aria-hidden=\"true\"> *</span></label><input id=\"ds-first-name\" name=\"firstName\" autocomplete=\"given-name\" placeholder=\"First name\" required></div>",
-      "css": ".ds-field{display:grid;gap:6px;color:var(--rockstar-ink,#202020);font-family:Roboto,roboto-fallback,sans-serif}.ds-field label{display:block;font-size:1rem;font-weight:600;line-height:1.6}.ds-field label span{color:#d73502;font-weight:700}.ds-field input{box-sizing:border-box;width:100%;padding:12px 16px;border:2px solid #ddd;border-radius:0;font:1rem Roboto,roboto-fallback,sans-serif;background:#fff;color:var(--rockstar-ink,#202020);caret-color:var(--rockstar-blue,#193acc);transition:border-color .2s ease,box-shadow .2s ease}.ds-field input::placeholder{color:#666}.ds-field input:hover{border-color:var(--rockstar-blue,#193acc)}.ds-field input:focus{outline:none;border-color:var(--rockstar-blue,#193acc);box-shadow:0 0 0 3px rgb(0 123 255 / 10%)}.ds-field input:focus-visible{outline:2px solid var(--rockstar-blue,#193acc);outline-offset:2px}.ds-field input:invalid:not(:placeholder-shown){border-color:#d73502}.ds-field input:invalid:not(:placeholder-shown):focus{box-shadow:0 0 0 3px rgb(215 53 2 / 10%)}@media(prefers-reduced-motion:reduce){.ds-field input{transition:none}}"
+      "css": ".ds-field{--rockstar-ink:#181817;--rockstar-blue:#ef4937;--rockstar-white:#f4f4ee;--link-color:var(--rockstar-ink);display:grid;gap:6px;background:var(--rockstar-white);color:var(--rockstar-ink);font-family:Roboto,roboto-fallback,sans-serif}.ds-field label{display:block;font-size:1rem;font-weight:600;line-height:1.6}.ds-field label span{color:#d73502;font-weight:700}.ds-field input{box-sizing:border-box;width:100%;padding:12px 16px;border:2px solid #ddd;border-radius:0;font:1rem Roboto,roboto-fallback,sans-serif;background:#fff;color:var(--rockstar-ink);caret-color:var(--rockstar-blue);transition:border-color .2s ease,box-shadow .2s ease}.ds-field input::placeholder{color:#666}.ds-field input:hover{border-color:var(--link-color)}.ds-field input:focus{outline:none;border-color:var(--link-color);box-shadow:0 0 0 3px rgb(0 123 255 / 10%)}.ds-field input:focus-visible{outline:2px solid var(--link-color);outline-offset:2px}.ds-field input:invalid:not(:placeholder-shown){border-color:#d73502}.ds-field input:invalid:not(:placeholder-shown):focus{box-shadow:0 0 0 3px rgb(215 53 2 / 10%)}@media(prefers-reduced-motion:reduce){.ds-field input{transition:none}}"
     },
     {
       "name": "Confirmation Actions",
       "kind": "button",
-      "description": "Existing Accept/Decline controls: blue primary, blue outlined secondary, ink enabled hover, neutral disabled state. Preview has no submission behavior; actual conditional fields, loading, errors, success, and endpoints remain in the unchanged form runtime.",
+      "refersTo": "fanzine-form-primary",
+      "description": "Current charcoal Accept and transparent dark outlined Decline on clean paper; enabled hover reverses, dark focus stays visible, disabled gray remains. Only confirmation .field-error uses darker red for 5.704:1 text contrast. Preview has no controller/submission behavior and does not establish missing-route authored fidelity.",
       "html": "<div class=\"ds-actions\"><button class=\"ds-confirm-button\" type=\"button\">Accept</button><button class=\"ds-confirm-button ds-secondary\" type=\"button\">Decline</button></div>",
-      "css": ".ds-actions{display:grid;grid-template-columns:1fr 1fr;gap:16px}.ds-confirm-button{width:100%;min-width:0;border:1px solid transparent;border-radius:0;padding:16px 22px;background:var(--rockstar-blue,#193acc);color:var(--rockstar-white,#f8f8f2);font:700 1rem/1.4 Roboto,roboto-fallback,sans-serif;white-space:normal;cursor:pointer;box-shadow:none;transform:none;transition:background-color .2s ease,transform .1s ease}.ds-confirm-button.ds-secondary{border-color:var(--rockstar-blue,#193acc);background:transparent;color:var(--rockstar-blue,#193acc)}.ds-confirm-button:hover:not(:disabled){background:var(--rockstar-ink,#202020);color:var(--rockstar-white,#f8f8f2)}.ds-confirm-button:focus-visible{outline:3px solid var(--rockstar-blue,#193acc);outline-offset:5px}.ds-confirm-button:active{transform:none}.ds-confirm-button:disabled{border-color:#666;background:#666;color:var(--rockstar-white,#f8f8f2);cursor:not-allowed}.ds-actions[data-submitting='true']{opacity:.7;pointer-events:none}@media(prefers-reduced-motion:reduce){.ds-confirm-button{transition:none}}"
+      "css": ".ds-actions{--rockstar-white:#f4f4ee;--rockstar-ink:#181817;display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--rockstar-white)}.ds-confirm-button{width:100%;min-width:0;border:1px solid var(--rockstar-ink);border-radius:0;padding:16px 22px;background:var(--rockstar-ink);color:var(--rockstar-white);font:700 1rem/1.4 Roboto,roboto-fallback,sans-serif;white-space:normal;cursor:pointer;box-shadow:none;transform:none;transition:background-color .2s ease,transform .1s ease}.ds-confirm-button.ds-secondary{border-color:var(--rockstar-ink);background:transparent;color:var(--rockstar-ink)}.ds-confirm-button:hover:not(:disabled){background:var(--rockstar-white);color:var(--rockstar-ink);border-color:var(--rockstar-ink)}.ds-confirm-button:focus-visible{outline:3px solid var(--rockstar-ink);outline-offset:5px}.ds-confirm-button:active{transform:none}.ds-confirm-button:disabled{border-color:#666;background:#666;color:var(--rockstar-white);cursor:not-allowed}.ds-actions[data-submitting='true']{opacity:.7;pointer-events:none}@media(prefers-reduced-motion:reduce){.ds-confirm-button{transition:none}}"
     },
     {
       "name": "Agenda Session Label",
       "kind": "chip",
-      "refersTo": "agenda-session",
-      "description": "Noninteractive session-type annotation, not a selectable filter; agenda names and tabular times stay Roboto. Breaks use yellow bands rather than timeline dots.",
+      "refersTo": "fanzine-agenda-session",
+      "description": "Current noninteractive cool-paper session annotation inherited through the yellow variable alias, not a filter. Agenda names/dark tabular times stay Roboto; breaks use red printed bands and day badges charcoal/clean paper.",
       "html": "<span class=\"ds-session\">Session</span>",
-      "css": ".ds-session{display:inline-block;margin-left:0;padding:4px 8px;border:0;border-radius:0;background:var(--rockstar-yellow,#fcdf38);color:var(--rockstar-ink,#202020);font:800 .875rem/1.6 Roboto,roboto-fallback,sans-serif;vertical-align:middle}"
+      "css": ".ds-session{--rockstar-yellow:#deded7;--rockstar-ink:#181817;display:inline-block;margin-left:0;padding:4px 8px;border:0;border-radius:0;background:var(--rockstar-yellow);color:var(--rockstar-ink);font:800 .875rem/1.6 Roboto,roboto-fallback,sans-serif;vertical-align:middle}"
+    },
+    {
+      "name": "Fanzine Scoped Navigation",
+      "kind": "nav",
+      "refersTo": "fanzine-navigation",
+      "description": "Current homepage/selected-sibling charcoal desktop link-group excerpt. Actual shell retains Adobe icon/Anton wordmark, page-current underline, native mobile button, expanded state, Escape, and focus; no inert hamburger is invented. Siblings prefix home hashes with /en/.",
+      "html": "<nav class=\"ds-fanzine-nav\" aria-label=\"Main\"><a href=\"/en/#the-show\">The show</a><a href=\"/en/#the-community\">The community</a><a href=\"/en/#latest-news--updates\">Latest news</a><a href=\"/en/masterclass\">Masterclass</a><a href=\"/en/submission-guide\">Submission guide</a></nav>",
+      "css": ".ds-fanzine-nav{--rockstar-ink:#181817;--rockstar-white:#f4f4ee;--rockstar-yellow:#deded7;display:flex;align-items:center;flex-wrap:wrap;gap:2em;min-height:72px;padding:0 20px;background:var(--rockstar-ink);color:var(--rockstar-white);border-bottom:1px solid var(--rockstar-yellow);font-family:Roboto,roboto-fallback,sans-serif;font-size:.875rem;font-weight:500;line-height:1.6}.ds-fanzine-nav a{color:inherit;text-decoration:none}.ds-fanzine-nav a:hover{color:inherit;text-decoration:none}.ds-fanzine-nav a[aria-current='page']{text-decoration:underline;text-underline-offset:.35em}.ds-fanzine-nav a:focus-visible{outline:3px solid currentColor;outline-offset:5px}"
+    },
+    {
+      "name": "Fanzine Masthead",
+      "kind": "custom",
+      "refersTo": "fanzine-masthead",
+      "description": "Current homepage paper masthead and accessible red edition stamp: -1deg sheet, 3deg stamp, original print grain and ink mask. Title break only below 600px; cap 8.5rem. No generated portrait or photographic material.",
+      "html": "<div class=\"ds-fanzine-ground\"><div class=\"ds-masthead\"><h1>AEM <br class=\"ds-title-break\">Rockstar <span class=\"ds-edition\" aria-label=\"Edition 11\">11</span></h1><p>Big ideas. Live demos. Loud applause.</p></div></div>",
+      "css": "@font-face{font-family:Anton;src:url('/fonts/anton-latin.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}.ds-fanzine-ground{--rockstar-ink:#181817;--rockstar-yellow:#deded7;--rockstar-blue:#ef4937;background:var(--rockstar-ink);padding:32px 26px 56px}.ds-masthead{padding:20px;background:var(--rockstar-yellow) url('/styles/assets/fanzine-print.png');color:var(--rockstar-ink);transform:rotate(-1deg)}.ds-masthead h1{margin:0;font:400 clamp(3.2rem,9.4vw,8.5rem)/1.02 Anton,sans-serif;letter-spacing:-.025em;text-transform:uppercase;text-wrap:initial;mask-image:url('/styles/assets/fanzine-ink.png');mask-size:384px 256px}.ds-edition{display:inline-block;padding-inline:8px;background:var(--rockstar-blue);color:var(--rockstar-ink);transform:rotate(3deg)}.ds-masthead p{font:700 1.125rem/1.4 Roboto,roboto-fallback,sans-serif;margin:20px 0 0;max-width:40ch}@media(min-width:600px){.ds-title-break{display:none}.ds-masthead{padding:24px 28px}.ds-masthead p{font-size:1.5rem;max-width:none}}"
+    },
+    {
+      "name": "Fanzine Lead Story",
+      "kind": "custom",
+      "refersTo": "fanzine-story-sheet",
+      "description": "Homepage red story sheet with the historical replay copy and charcoal ticket that reverses on hover/focus. Standalone preview links to the real replay section; production uses the authored session destination. Genuine eager optimized 800px winner portrait follows on mobile; at 900px production uses 1.4fr/1fr when the feature exists.",
+      "html": "<div class=\"ds-story-ground\"><section class=\"ds-story\"><h2>Missed the show?<br>Hit play.</h2><p>Watch the real 2026 finalists share practical AEM demos. Rockstar 11 is the next chapter; its dates and lineup are not announced here.</p><p class=\"ds-story-action\"><a class=\"ds-story-ticket\" href=\"/en/#the-show\">Watch the 2026 replay</a></p></section></div>",
+      "css": "@font-face{font-family:Anton;src:url('/fonts/anton-latin.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}.ds-story-ground{--rockstar-blue:#ef4937;--rockstar-ink:#181817;--rockstar-white:#f4f4ee;background:var(--rockstar-ink);padding:28px}.ds-story{padding:24px;background:var(--rockstar-blue) url('/styles/assets/fanzine-print.png');color:var(--rockstar-ink);transform:rotate(.6deg)}.ds-story h2{margin:0;font:400 clamp(2.125rem,4.8vw,4.5rem)/1.05 Anton,sans-serif;text-transform:uppercase;mask-image:url('/styles/assets/fanzine-ink.png');mask-size:384px 256px}.ds-story p{max-width:46ch;font:400 1.125rem/1.5 Roboto,roboto-fallback,sans-serif;margin:24px 0}.ds-story .ds-story-action{margin-bottom:0}.ds-story-ticket{display:inline-block;box-sizing:border-box;width:100%;margin:0;padding:16px 22px;border:1px solid transparent;border-radius:0;background:var(--rockstar-ink);color:var(--rockstar-white);font:700 1rem/1.4 Roboto,roboto-fallback,sans-serif;text-decoration:none;text-align:center;white-space:normal}.ds-story-ticket::after{content:'';display:inline-block;width:9px;height:9px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg);margin-left:18px;transition:translate .2s cubic-bezier(.16,1,.3,1)}.ds-story-ticket:hover,.ds-story-ticket:focus-visible{background:var(--rockstar-white);color:var(--rockstar-ink)}.ds-story-ticket:hover::after,.ds-story-ticket:focus-visible::after{translate:4px}.ds-story-ticket:focus-visible{outline:3px solid currentColor;outline-offset:5px}@media(min-width:600px){.ds-story{padding:32px}.ds-story-ticket{width:auto}}@media(prefers-reduced-motion:reduce){.ds-story-ticket::after{transition:none}}"
+    }
+    ,
+    {
+      "name": "Clean Supporting Form Card — Access Field Excerpt",
+      "kind": "card",
+      "refersTo": "fanzine-form-card",
+      "description": "Current unrotated clean-paper wrapper capped at 720px on charcoal. Fields have 24px inline margins and width:auto/min-width:0, preventing 100%-width-plus-margin clipping. This excerpt retains white native inputs, stable dark focus strokes, native invalid red, and red alias caret. Browser evidence: five routes use authored preview content; register-nyc/register-ban/confirm-ban/nyc-setup returned 404 locally, on main preview, and live, with no original HTML snapshots. Those four used browser-only synthetic block configurations with fake test logistics and example.invalid mocked endpoints; shipping source has no fixtures. Fixture-prefixed captures prove controller/styling behavior, not authored fidelity or route availability. CMS/404 sampleRUM repairs, deployment, and real backend delivery are unclaimed; all forms were mocked.",
+      "html": "<div class=\"ds-form-ground\"><article class=\"ds-access-card\"><div class=\"ds-access-form\"><div class=\"ds-access-fields\"><div class=\"ds-access-field\"><label for=\"ds-access-name\">First Name</label><input id=\"ds-access-name\" name=\"firstName\" autocomplete=\"given-name\" placeholder=\"First name\" required></div></div></div></article></div>",
+      "css": ".ds-form-ground{--rockstar-ink:#181817;--rockstar-white:#f4f4ee;--rockstar-blue:#ef4937;--link-color:var(--rockstar-ink);background:var(--rockstar-ink);padding:20px}.ds-access-card{width:100%;max-width:720px;margin-inline:auto;background:var(--rockstar-white);color:var(--rockstar-ink);border-radius:0;padding:0}.ds-access-form{display:grid;gap:24px;width:100%;padding-bottom:24px}.ds-access-fields{display:grid;gap:20px;grid-template-columns:1fr;margin-inline:24px;width:auto;min-width:0}.ds-access-field{display:grid;gap:6px;width:100%;min-width:0;font-family:Roboto,roboto-fallback,sans-serif}.ds-access-field label{font-size:1rem;font-weight:600;line-height:1.6}.ds-access-field input{box-sizing:border-box;width:100%;padding:12px 16px;border:2px solid transparent;border-radius:0;background:#fff;color:var(--rockstar-ink);caret-color:var(--rockstar-blue);font:1rem Roboto,roboto-fallback,sans-serif;box-shadow:0 0 0 2px #ddd;transition:box-shadow .2s ease}.ds-access-field input::placeholder{color:#666}.ds-access-field input:hover{box-shadow:0 0 0 2px #ddd}.ds-access-field input:focus,.ds-access-field input:focus-visible{outline:none;box-shadow:0 0 0 2px var(--link-color)}.ds-access-field input:invalid:not(:placeholder-shown){box-shadow:0 0 0 2px #d73502}@media(prefers-contrast:more){.ds-access-field input{border-width:3px;box-shadow:0 0 0 3px #ddd}.ds-access-field input:hover{box-shadow:0 0 0 3px #ddd}.ds-access-field input:focus,.ds-access-field input:focus-visible{box-shadow:0 0 0 3px var(--link-color)}.ds-access-field input:invalid:not(:placeholder-shown){box-shadow:0 0 0 3px #d73502}}@media(prefers-reduced-motion:reduce){.ds-access-field input{transition:none}}"
+    },
+    {
+      "name": "Confirmation Conditional-Email Instruction",
+      "kind": "custom",
+      "refersTo": "fanzine-confirmation-instruction",
+      "description": "Actual unchanged controller instruction with the one scoped .mc-confirm .field-error correction to #b62b00 on clean paper: computed 5.704:1 for accept and decline. Other error/warning/success colors remain inherited. Final supplied checks: lint passed with six existing warnings, CSS lint passed, 12 focused tests passed, diff whitespace passed; 55 supporting cases (45 responsive/20 synthetic, seven mocked functional/five synthetic, three isolation) and 23 decoded captures. Detector [] predates this correction and was not rerun. Full finish review found this contrast issue; fresh narrow one-shot Verdict Pass resolved only that fix, disposition ship, no patch-induced regression observed—not unrestricted whole-site approval, authored missing-route fidelity, or backend verification. No suites, browser, detector, or captures rerun for this documentation merge.",
+      "html": "<div class=\"ds-confirm-paper\"><p class=\"ds-confirm-instruction\" role=\"alert\">You registered with a personal email address. Please provide your company email address below.</p></div>",
+      "css": ".ds-confirm-paper{--rockstar-white:#f4f4ee;background:var(--rockstar-white)}.ds-confirm-instruction{margin:0;color:#b62b00;font-family:Roboto,roboto-fallback,sans-serif;font-size:var(--body-font-size-xs,.875rem);font-weight:600;line-height:1.4}"
     }
   ],
   "narrative": {
-    "northStar": "The Gig Poster",
-    "overview": "Electric fields, condensed lettering, rectangular tickets, and unboxed editorial content make the Rockstar surfaces feel like a concert bill. Practitioners and their real portraits supply the personality; the AEM Rockstar name and Adobe connection remain intact. Guides trade poster scale for readable hierarchy, while forms keep brand expression in compact headers and square controls.\n\nThis is a finished-build record, not an unconditional sitewide replacement. Shared branding, header, and footer use `body.rockstar-site`; the authored `home` theme retains homepage-only recomposition under `body.rockstar-home`. The submission guide, closed 2026 submission page, masterclass, and its descendants receive `body.rockstar-inner` and the sibling stylesheet without recomposing their blocks. Live voting/results and commerce, product, cart, and test pages are excluded. CMS-authored copy, IDs, imagery, form configuration, and endpoints remain authoritative; no new raster asset or animation was added.",
+    "northStar": "The Gig Poster / Cut-and-Paste Fanzine",
+    "overview": "Electric fields, condensed lettering, rectangular tickets, and unboxed editorial content make the Rockstar surfaces feel like a concert bill. Practitioners and their real portraits supply the personality; the AEM Rockstar name and Adobe connection remain intact. Guides trade poster scale for readable hierarchy, while forms keep brand expression in compact headers and square controls.\n\nThe user-selected Cut-and-Paste Fanzine adds charcoal backing, cool paper sheets, rough red ink, slightly misregistered homepage Anton headlines, and monochrome genuine portraits. Its paper masthead and red lead story make one pasted-up issue; the real historical replay remains the action. The approved supporting-page extension shares this world through red printed bands and clean reading/form sheets, not a third aesthetic or a copy of the homepage composition.\n\nThis is a finished-build record, not an unconditional sitewide replacement. On `2027-redesign-option-2`, the homepage receives `body.rockstar-home.rockstar-grunge` and its recomposed hero; selected siblings receive `body.rockstar-inner.rockstar-grunge`, retaining their reading/course/form DOM structures. The loader includes the base, sibling (for inner pages), and grunge stylesheets. Yellow/blue Gig Poster primitives remain the unchanged base/historical option, not the current selected siblings' palette. Voting/results and commerce, product, cart, and test pages remain excluded. CMS-authored copy, IDs, imagery, form configuration, and endpoints remain authoritative where available. The extension reuses the two original Canvas print rasters and adds no raster, dependency, animation, controller, or AEM core change. The original `2027-redesign` branch remains the Gig Poster option.",
     "keyCharacteristics": [
-      "Yellow and blue fields with high-contrast ink and paper text.",
+      "Historical yellow/blue Gig Poster base; current charcoal/paper/red Fanzine homepage and selected siblings.",
       "Anton headlines paired with existing Roboto reading text.",
-      "Square actions, hairline divisions, and unboxed people.",
+      "Square actions and hairline divisions; unboxed grayscale course speakers, paper-backed homepage alumni, and clean reading/form sheets.",
       "Native disclosures and brief, reduced-motion-aware feedback.",
-      "Shared identity with distinct homepage, reading, masterclass, and task-form hierarchies."
+      "Shared identity with a tilted fanzine masthead and distinct reading, masterclass, and task-form hierarchies."
     ],
     "rules": [
-      { "name": "The Field Contrast Rule", "body": "Pair ink with yellow or off-white, and off-white with blue; the replay ticket reverses to yellow with ink on its blue field.", "section": "colors" },
-      { "name": "The Scoped Voice Rule", "body": "Share Anton and the palette across the prepared routes, not the giant homepage scale: fixed reading roles and compact form titles preserve comprehension and task clarity.", "section": "typography" },
-      { "name": "The Flat Bill Rule", "body": "Keep editorial containers and people unboxed; retain hierarchy through fields, spacing, and thin rules rather than adding card elevation.", "section": "elevation" }
+      { "name": "The Field Contrast Rule", "body": "On historical/base Gig Poster surfaces pair ink with yellow or off-white, and off-white with blue. On Fanzine pair charcoal with paper or red, and clean paper text with charcoal; supporting prose, agenda times, and controls use charcoal, not rough red as reading ink.", "section": "colors" },
+      { "name": "The Scoped Ink Rule", "body": "Preserve base yellow/blue tokens; Fanzine aliases apply only through the selected body/route gate. Homepage recomposition and rotation do not propagate to supporting reading or form structures.", "section": "colors" },
+      { "name": "The Scoped Voice Rule", "body": "Share Anton and the scoped Fanzine palette across prepared routes, not homepage display scale: fixed reading roles and compact form titles preserve comprehension and task clarity.", "section": "typography" },
+      { "name": "The Flat Bill Rule", "body": "Keep Gig Poster editorial containers and people unboxed; fanzine may use its native flat paper sheets and alumni backing. Neither world adds card elevation; retain hierarchy through material, fields, spacing, and thin rules.", "section": "elevation" }
     ],
     "dos": [
-      "**Do** keep shared tokens and shell inside the prepared route boundary, and homepage recomposition inside the homepage boundary.",
+      "**Do** preserve historical/base Gig Poster tokens; use Fanzine aliases for the selected homepage/supporting routes, with recomposition and rotation confined to the homepage.",
       "**Do** preserve genuine CMS imagery, portrait identity, recording destinations, and authorable structures.",
-      "**Do** use the existing focus treatment, semantic controls, and reduced-motion behavior.",
+      "**Do** retain dark visible supporting focus, native semantic controls, and reduced-motion behavior; keep confirmation instruction red scoped to its measured clean-paper context.",
       "**Do** label historical recordings and guidance as historical; upcoming dates and registration remain unconfirmed.",
-      "**Do** retain the guide's 70ch measure, fixed reading hierarchy, compact form titles, native fields, and semantic feedback.",
+      "**Do** retain the guide's 70ch measure, fixed reading hierarchy, compact form titles, clean unrotated prose/inputs, 24px form-child margins, and access fields' auto/min-width correction.",
       "**Do** preserve inline symbols and block configuration; preparation strips only leading decorative emoji prefixes from direct prose headings, paragraphs, lists, and their list-item/emphasis text."
     ],
     "donts": [
       "**Don't** apply giant homepage display/edition sizes to guide or task-form headings, or retheme excluded routes.",
-      "**Don't** turn the flat replay, news, or community content into rounded, shadowed card grids.",
+      "**Don't** turn flat replay, news, or supporting-page people into rounded, shadowed card grids; homepage fanzine paper backing is native material, not permission for elevated cards.",
       "**Don't** treat the working replay action as proof of upcoming registration or a confirmed lineup.",
       "**Don't** treat preview tonal ramps in the sidecar as additional shipped palette tokens.",
       "**Don't** reinterpret old masterclass dates, the 2026 guide, closed submissions, or mocked form responses as current availability or verified backend delivery."

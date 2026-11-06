@@ -1,12 +1,38 @@
 ---
-name: AEM Rockstar — The Gig Poster
-description: The shipped homepage identity and scoped guide, masterclass, and form treatments.
+name: AEM Rockstar — The Gig Poster / Cut-and-Paste Fanzine
+description: Historical Gig Poster base and approved Cut-and-Paste Fanzine homepage/supporting-page variant.
 colors:
   rockstar-yellow: "#fcdf38"
   rockstar-blue: "#193acc"
   rockstar-ink: "#202020"
   rockstar-white: "#f8f8f2"
+  fanzine-paper: "#deded7"
+  fanzine-red: "#ef4937"
+  fanzine-charcoal: "#181817"
+  fanzine-white: "#f4f4ee"
+  confirmation-error: "#b62b00"
 typography:
+  fanzine-display:
+    fontFamily: "Anton, sans-serif"
+    fontSize: "clamp(3.2rem, 9.4vw, 8.5rem)"
+    fontWeight: 400
+    lineHeight: 1.02
+    letterSpacing: "-.025em"
+  fanzine-story:
+    fontFamily: "Anton, sans-serif"
+    fontSize: "clamp(2.125rem, 4.8vw, 4.5rem)"
+    fontWeight: 400
+    lineHeight: 1.05
+  fanzine-story-body:
+    fontFamily: "Roboto, roboto-fallback, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 400
+    lineHeight: 1.5
+  fanzine-winner-name:
+    fontFamily: "Anton, sans-serif"
+    fontSize: "clamp(1.25rem, 2vw, 1.75rem)"
+    fontWeight: 400
+    lineHeight: 1.2
   display:
     fontFamily: "Anton, sans-serif"
     fontSize: "clamp(3.2rem, 12.4vw, 11rem)"
@@ -99,6 +125,40 @@ spacing:
   section-mobile: "56px"
   section-wide: "72px"
 components:
+  fanzine-ticket:
+    backgroundColor: "{colors.fanzine-charcoal}"
+    textColor: "{colors.fanzine-white}"
+    typography: "{typography.action}"
+    rounded: "{rounded.square}"
+    padding: "16px 22px"
+  fanzine-ticket-hover:
+    backgroundColor: "{colors.fanzine-white}"
+    textColor: "{colors.fanzine-charcoal}"
+  fanzine-navigation:
+    backgroundColor: "{colors.fanzine-charcoal}"
+    textColor: "{colors.fanzine-white}"
+    height: "72px"
+  fanzine-masthead:
+    backgroundColor: "{colors.fanzine-paper}"
+    textColor: "{colors.fanzine-charcoal}"
+    typography: "{typography.fanzine-display}"
+    padding: "20px"
+  fanzine-story-sheet:
+    backgroundColor: "{colors.fanzine-red}"
+    textColor: "{colors.fanzine-charcoal}"
+    typography: "{typography.fanzine-story}"
+    padding: "24px"
+  fanzine-winner-tile:
+    backgroundColor: "{colors.fanzine-paper}"
+    textColor: "{colors.fanzine-charcoal}"
+    rounded: "{rounded.square}"
+    padding: "10px"
+  fanzine-winner-year:
+    backgroundColor: "{colors.fanzine-charcoal}"
+    textColor: "{colors.fanzine-white}"
+    typography: "{typography.winner-year}"
+    rounded: "{rounded.square}"
+    padding: "6px 10px"
   button-primary:
     backgroundColor: "{colors.rockstar-blue}"
     textColor: "{colors.rockstar-white}"
@@ -147,47 +207,102 @@ components:
     textColor: "{colors.rockstar-ink}"
     rounded: "{rounded.square}"
     padding: "4px 8px"
+  fanzine-page-title-band:
+    backgroundColor: "{colors.fanzine-red}"
+    textColor: "{colors.fanzine-charcoal}"
+    typography: "{typography.read-title}"
+  fanzine-reading-sheet:
+    backgroundColor: "{colors.fanzine-white}"
+    textColor: "{colors.fanzine-charcoal}"
+    typography: "{typography.body}"
+  fanzine-form-header:
+    backgroundColor: "{colors.fanzine-red}"
+    textColor: "{colors.fanzine-charcoal}"
+    typography: "{typography.form-title}"
+    padding: "24px"
+  fanzine-form-card:
+    backgroundColor: "{colors.fanzine-white}"
+    textColor: "{colors.fanzine-charcoal}"
+    rounded: "{rounded.square}"
+    width: "720px"
+  fanzine-form-primary:
+    backgroundColor: "{colors.fanzine-charcoal}"
+    textColor: "{colors.fanzine-white}"
+    typography: "{typography.action}"
+    rounded: "{rounded.square}"
+    padding: "16px 22px"
+  fanzine-form-primary-hover:
+    backgroundColor: "{colors.fanzine-white}"
+    textColor: "{colors.fanzine-charcoal}"
+  fanzine-form-decline:
+    backgroundColor: "transparent"
+    textColor: "{colors.fanzine-charcoal}"
+    typography: "{typography.action}"
+    rounded: "{rounded.square}"
+    padding: "16px 22px"
+  fanzine-confirmation-instruction:
+    textColor: "{colors.confirmation-error}"
+  fanzine-agenda-session:
+    backgroundColor: "{colors.fanzine-paper}"
+    textColor: "{colors.fanzine-charcoal}"
+    rounded: "{rounded.square}"
+    padding: "4px 8px"
 ---
 
-# Design System: AEM Rockstar — The Gig Poster
+# Design System: AEM Rockstar — The Gig Poster / Cut-and-Paste Fanzine
 
 ## Overview
 
-**Creative North Star: "The Gig Poster"**
+**Creative North Star: "The Gig Poster / Cut-and-Paste Fanzine"**
 
 Electric fields, condensed lettering, rectangular tickets, and unboxed editorial content make the Rockstar surfaces feel like a concert bill. Practitioners and their real portraits supply the personality; the AEM Rockstar name and Adobe connection remain intact. Guides trade poster scale for readable hierarchy, while forms keep brand expression in compact headers and square controls.
 
-This is a finished-build record, not an unconditional sitewide replacement. Shared branding, header, and footer use `body.rockstar-site`; the authored `home` theme retains homepage-only recomposition under `body.rockstar-home`. The submission guide, closed 2026 submission page, masterclass, and its descendants receive `body.rockstar-inner` and the sibling stylesheet without recomposing their blocks. Live voting/results and commerce, product, cart, and test pages are excluded. CMS-authored copy, IDs, imagery, form configuration, and endpoints remain authoritative; no new raster asset or animation was added.
+The user-selected Cut-and-Paste Fanzine adds charcoal backing, cool paper sheets, rough red ink, slightly misregistered homepage Anton headlines, and monochrome genuine portraits. Its paper masthead and red lead story make one pasted-up issue; the real historical replay remains the action. The approved supporting-page extension shares this world through red printed bands and clean reading/form sheets, not a third aesthetic or a copy of the homepage composition.
+
+This is a finished-build record, not an unconditional sitewide replacement. On `2027-redesign-option-2`, the homepage receives `body.rockstar-home.rockstar-grunge` and its recomposed hero; selected siblings receive `body.rockstar-inner.rockstar-grunge`, retaining their reading/course/form DOM structures. The loader includes the base, sibling (for inner pages), and grunge stylesheets. Yellow/blue Gig Poster primitives remain the unchanged base/historical option, not the current selected siblings' palette. Voting/results and commerce, product, cart, and test pages remain excluded. CMS-authored copy, IDs, imagery, form configuration, and endpoints remain authoritative where available. The extension reuses the two original Canvas print rasters and adds no raster, dependency, animation, controller, or AEM core change. The original `2027-redesign` branch remains the Gig Poster option.
 
 **Key Characteristics:**
-- Yellow and blue fields with high-contrast ink and paper text.
+- Historical yellow/blue Gig Poster base; current charcoal/paper/red Fanzine homepage and selected siblings.
 - Anton headlines paired with existing Roboto reading text.
-- Square actions, hairline divisions, and unboxed people.
+- Square actions and hairline divisions; unboxed grayscale course speakers, paper-backed homepage alumni, and clean reading/form sheets.
 - Native disclosures and brief, reduced-motion-aware feedback.
-- Shared identity with distinct homepage, reading, masterclass, and task-form hierarchies.
+- Shared identity with a tilted fanzine masthead and distinct reading, masterclass, and task-form hierarchies.
 
-Current sibling routes: `/en/submission-guide`, `/en/submission-2026`, `/en/masterclass`, `/en/masterclass/register-nyc`, `/en/masterclass/register-ban`, `/en/masterclass/confirm-ban`, `/en/masterclass/nyc-setup`, `/en/masterclass/eds-labs-access-request`, and `/en/masterclass/demo-bbird-access-request`. The masterclass descendant matcher is broader than this nine-route inventory, not permission to retheme unrelated pages.
+Authorized sibling routes: `/en/submission-guide`, `/en/submission-2026`, `/en/masterclass`, `/en/masterclass/register-nyc`, `/en/masterclass/register-ban`, `/en/masterclass/confirm-ban`, `/en/masterclass/nyc-setup`, `/en/masterclass/eds-labs-access-request`, and `/en/masterclass/demo-bbird-access-request`. The masterclass descendant matcher is intentionally broader than this nine-route inventory, not arbitrary site coverage or proof that content exists.
 
-Evidence: `styles/rockstar.css`, `styles/rockstar-pages.css`, `blocks/rockstar-hero/rockstar-hero.css`, `scripts/rockstar.js`, `scripts/scripts.js`, and `blocks/header/header.js`; inherited values come from global styles and existing winner, agenda, registration, confirmation, and access-form blocks. Captures under `.impeccable/review/`: `desktop.png` / `mobile.png` for home; route-named `*-390.png` / `*-1440.png` for all nine siblings; `masterclass-first-viewport-390.png` / `masterclass-first-viewport-1440.png` for readable viewport views; and the registration-error, confirmation-company-email, and confirmation-success mobile captures. The homepage-specific inherited direction contract remains `.impeccable/surfaces/scripts-rockstar-js.md`, corroborated by `direction-roll.txt` (`seed:ec3d1bc95c21797e`); this was code-led, with no comp or external QUALITY BAR catalog card. `PRODUCT.md` supplies the content-truth and accessibility constraints.
+Evidence: `styles/rockstar-grunge.css`, unchanged `styles/rockstar.css` and `styles/rockstar-pages.css`, `scripts/scripts.js`, `scripts/rockstar.js`, the approved `blocks/rockstar-fanzine` homepage, and existing header/agenda/registration/confirmation/access-form styles. Contracts are `.impeccable/surfaces/styles-rockstar-grunge-css.md` and `.impeccable/surfaces/scripts-rockstar-js.md`; reading/persuasion/task modes remain surface-brief constraints, not product-wide rules. Inherited `seed:f7c7cad6ffcf995b` is corroborated by `fanzine-direction-roll.txt`; the user selected grounded candidate 1, Cut-and-Paste Fanzine, over assigned candidate 6, Backstage Contact Sheet. This extension is code-led, without a new roll, image comp, or external QUALITY BAR card. `PRODUCT.md` supplies content-truth and accessibility constraints.
+
+Evidence limits: register-nyc, register-ban, confirm-ban, and nyc-setup returned 404 on local, main preview, and live during verification. No original HTML snapshots exist for these four. Browser-only interception supplied explicit synthetic block configurations with fake test titles/location/venue and `example.invalid` mocked endpoints; shipping source contains no fixtures. Their `fanzine-pages-fixture-` captures establish unchanged controller/new styling behavior, not actual authored content or route availability. The other five routes use authored preview content. No CMS content was restored or invented, and the existing 404 sampleRUM import was not fixed. All forms were mocked; real backend delivery and website publishing/deployment remain unclaimed.
+
+Current capture evidence under `.impeccable/review/`: contact sheets `fanzine-pages-contact-mobile.png` / `fanzine-pages-contact-desktop.png`; course hierarchy uses the first viewport `fanzine-pages-first-masterclass-390.png` / `fanzine-pages-first-masterclass-1440.png`, not a full-page thumbnail. Five authored routes use `fanzine-pages-{route-with-slashes-replaced-by-hyphens}-{390,1440}.png`; four synthetic routes use `fanzine-pages-fixture-{route-with-slashes-replaced-by-hyphens}-{390,1440}.png`, plus fixture-registration-error-390, fixture-confirmation-company-email-390, and fixture-confirmation-success-390 captures. `fanzine-pages-capture-validity.json` records 23 same-named decoded/dimension-checked captures. Earlier Gig Poster desktop/mobile and sibling rollout captures are historical, not current unaffected-sibling evidence. Current homepage captures retain the `fanzine-` prefix, including first-view, full-page, focus, menu, and guidance evidence.
 
 ## Colors
 
-The four frontmatter colors are the shared scoped custom properties. Existing authored imagery retains its original colors, including the older masterclass logo.
+The four `rockstar-*` frontmatter colors remain the base/historical primitives. The separately named `fanzine-*` primitives record `body.rockstar-grunge` aliases of the same CSS variable names, not new variables: `--rockstar-yellow` maps to fanzine-paper, `--rockstar-blue` to fanzine-red, `--rockstar-ink` to fanzine-charcoal, and `--rockstar-white` to fanzine-white. The loader applies these to the homepage and selected inner routes. Base component tokens remain base; `fanzine-*` component tokens describe current variants. The form-card width token is a maximum, not a fixed viewport width. The original multicolor masterclass logo remains unchanged.
 
 ### Primary
-- **Electric Yellow** (`rockstar-yellow`): poster, topics, navigation, news date blocks, replay tickets on blue, sibling title bands, masterclass hero/break bands, and compact form headers.
+- **Electric Yellow** (`rockstar-yellow`): historical/base Gig Poster navigation, title/course/form bands, poster/topics/date blocks, and replay tickets; not the selected current siblings.
+- **Rough Red Ink** (`fanzine-red`): homepage stamp/story/topics/statistics and selection; selected sibling printed title bands, course promotion, agenda breaks, and compact form headers.
 
 ### Secondary
-- **Royal Blue** (`rockstar-blue`): replay and statistics fields, footer, edition numeral, winner-year tab fill, primary tickets, sibling prose links, form accents, and agenda times.
+- **Royal Blue** (`rockstar-blue`): historical/base primary tickets, footer, prose links, form accents, agenda times, replay/statistics, numeral, and winner tabs.
 
 ### Neutral
 - **Ink** (`rockstar-ink`): light-field text and hairline divisions; primary ticket hover/focus fill.
 - **Off-white** (`rockstar-white`): community/news canvas and text on blue.
+- **Cool Paper** (`fanzine-paper`): homepage masthead, portrait/alumni sheets, replay/news beneath grain; supporting agenda session annotations inherit this alias without grain.
+- **Charcoal Backing** (`fanzine-charcoal`): page/navigation/footer ground, paper/red text, tickets/year tabs/recording/news dates; supporting prose links, agenda times, primary controls, Decline strokes, and visible focus.
+- **Clean Paper** (`fanzine-white`): text on charcoal and reversed ticket state; selected sibling reading/form cards and enabled control hover surfaces, without grain.
+
+### Semantic state
+- **Confirmation Instruction Red** (`confirmation-error`): only the scoped confirmation `.field-error` text on clean paper; measured contrast is 5.704:1 for both accept and decline flows. This is a specific legibility correction, not a global recolor of brand red or native feedback.
 
 ### Named Rules
-**The Field Contrast Rule.** Pair ink with yellow or off-white, and off-white with blue; the replay ticket reverses to yellow with ink on its blue field.
+**The Field Contrast Rule.** On historical/base Gig Poster surfaces pair ink with yellow or off-white, and off-white with blue. On Fanzine pair charcoal with paper or red, and clean paper text with charcoal; supporting prose, agenda times, and controls use charcoal, not rough red as reading ink.
 
-Homepage default prose links still inherit the site's dark link color; sibling prose links use blue and hover to ink. Replay links explicitly use off-white. Semantic form colors remain in their component CSS: red errors/required markers, amber warnings, green success, white input surfaces, and neutral borders. Placeholder and disabled-action gray (`#666`) is a specific readability/state treatment, not a fifth brand color. The system does not authorize replacing Adobe's logo colors or recoloring authored imagery.
+**The Scoped Ink Rule.** Preserve base yellow/blue tokens; Fanzine aliases apply only through the selected body/route gate. Homepage recomposition and rotation do not propagate to supporting reading or form structures.
+
+Selected sibling prose links are dark and underlined; agenda times are dark with tabular numerals. Current replay links use charcoal; base Gig Poster retains blue sibling links and off-white replay links. Native form errors/required markers, amber warnings, green success, white input surfaces, and neutral borders remain inherited except confirmation instruction text. Placeholder/disabled gray (`#666`) is a state treatment, not a brand color. Preserve Adobe and original course-logo colors; genuine homepage winners and supporting speakers receive the scoped grayscale treatment.
 
 ## Typography
 
@@ -197,48 +312,53 @@ Homepage default prose links still inherit the site's dark link color; sibling p
 Anton supplies tall poster lettering and scoped sibling headings; Roboto keeps paragraphs, controls, navigation, agenda names/times, and news titles readable. Anton is locally served with swap from `fonts/anton-latin.woff2` (approximately 12 KB), licensed in `fonts/anton-OFL.txt`. Its supplied weight is regular. Existing Roboto regular/bold files remain in use.
 
 ### Hierarchy
-- **Display:** homepage-only frontmatter display role; uppercase two-line title with balanced wrapping. At widths of at least 900px the size becomes `clamp(7rem, 12.3vw, 11rem)`.
-- **Edition:** frontmatter edition role; blue numeral aligned beside the title, not a background watermark.
+- **Fanzine display / Story:** current homepage frontmatter fanzine roles; masthead caps at 8.5rem, with a deliberate title break below 600px and no forced break from 600px. Uppercase story has its own fixed line break. Ink-wear masks apply only to these two headlines.
+- **Fanzine story body:** frontmatter role with a 46ch measure. Masthead invitation uses bold Roboto (1.125rem, line height 1.4), becoming 1.5rem at 600px; its 40ch limit is removed there. Featured winner name uses Anton, `clamp(1.75rem, 3vw, 2.5rem)`; caption metadata uses Roboto (1rem, line height 1.4).
+- **Display / Edition (earlier Gig Poster option):** retained frontmatter roles describe the original poster, not the current fanzine title or stamp. Its display becomes `clamp(7rem, 12.3vw, 11rem)` at 900px; its separate blue numeral is not a watermark. The current red stamp inherits fanzine display, with an accessible edition label.
 - **Headline:** frontmatter headline role for homepage section headings, with a bottom margin (28px). Statistics headings are a smaller exception (2rem).
 - **Title:** frontmatter title role; news headings deliberately use bold Roboto rather than Anton.
-- **Winner name:** regular Anton, `clamp(1.3rem, 2.4vw, 2rem)`, line height (1.2). The shared heading rule overrides the incumbent block's bold weight. This is a separate observed role, not the news title.
+- **Winner name:** current alumni use frontmatter fanzine-winner-name; the earlier option uses regular Anton, `clamp(1.3rem, 2.4vw, 2rem)`, line height (1.2). The shared heading rule overrides the incumbent block's bold weight. Neither is the news title.
 - **Body:** frontmatter body role; replay paragraphs use the smaller replay-body role and a measure (65ch); disclosure paragraphs cap at 70ch.
-- **Action / Label:** frontmatter action role for tickets; the small bold Roboto label role is not the winner-year treatment. Hero invitation uses bold Roboto, `clamp(1rem, 2vw, 1.5rem)`, line height (1.4).
-- **Winner year:** frontmatter winner-year role; uppercase Anton concert tabs attached above portraits, not tiny plain Roboto labels.
-- **Reading title / Section / Subsection:** fixed frontmatter read roles for the guide; title becomes 4rem at 600px, while section and subsection sizes remain fixed. Other direct authored page titles use the same yellow title-band role.
+- **Action / Label:** frontmatter action role for tickets; the small bold Roboto label role is not the winner-year treatment. The earlier poster invitation uses bold Roboto, `clamp(1rem, 2vw, 1.5rem)`, line height (1.4).
+- **Winner year:** frontmatter winner-year type role remains uppercase Anton above portraits; current fanzine tabs use their separately scoped charcoal/clean-paper component role.
+- **Reading title / Section / Subsection:** fixed frontmatter read roles for the guide; title becomes 4rem at 600px, while section and subsection sizes remain fixed. Direct authored page titles use the current red printed title-band variant; the base yellow role is historical.
 - **Masterclass title:** frontmatter masterclass-title role for the course hero. Learning/agenda/speaker section headings use regular Anton (2rem); speaker names use regular Anton (1.5rem). Agenda topics stay bold Roboto (1.0625rem); times use bold Roboto (.875rem) with tabular numerals, descriptions use Roboto (1rem).
 - **Form title / Field label / Field input:** fixed frontmatter form and field roles. Form titles stay compact at every breakpoint; descriptions use Roboto (1rem). Labels and controls do not inherit poster typography.
 
 ### Named Rules
-**The Scoped Voice Rule.** Share Anton and the palette across the prepared routes, not the giant homepage scale: fixed reading roles and compact form titles preserve comprehension and task clarity.
+**The Scoped Voice Rule.** Share Anton and the scoped Fanzine palette across prepared routes, not homepage display scale: fixed reading roles and compact form titles preserve comprehension and task clarity.
 
 ## Layout
 
-Shared full-width color bands contain centered content capped at 1200px. Section padding is 56px vertically and 20px horizontally on small screens; at 600px it becomes 72px and 32px. The homepage poster is deliberately shallower: vertical padding (36px), increasing to 40px at 600px. Navigation has its own 1264px border-box cap and fixed height (72px). All main-content IDs reserve navigation height plus 24px of scroll margin.
+Shared full-width color bands contain centered content capped at 1200px. Section padding is 56px vertically and 20px horizontally on small screens; at 600px it becomes 72px and 32px. Current fanzine hero section padding is 32px 22px 56px, becoming 36px 36px 64px at 600px, plus 4px block inline padding. The earlier poster uses vertical padding (36px), increasing to 40px at 600px. Navigation has its own 1264px border-box cap and fixed height (72px). All main-content IDs reserve navigation height plus 24px of scroll margin.
 
-The recurring gaps are the frontmatter spacing steps, not an invented universal scale. Hero copy and numeral remain a two-column grid even on mobile; its ticket spans both columns with a top rule and padding (20px). The hero ticket is full width; at 600px its wrapper becomes a right-justified flex row. At 900px the hero gap becomes 32px.
+The recurring gaps are the frontmatter spacing steps, not an invented universal scale. Fanzine masthead sits above the story/portrait spread: one column in source order on mobile, story then portrait, with a 28px gap and 36px top margin. At 900px, when a genuine feature exists, the spread becomes `1.4fr 1fr` with a 36px gap and top alignment. Masthead padding grows from 20px to 24px 28px at 600px; story padding grows from 24px to 32px. Its ticket is full width until 600px, then auto width. The feature sheet has 14px padding; its landscape portrait has aspect ratio 1.4. The retained earlier Gig Poster layout is a two-column copy/numeral grid even on mobile, with a ruled spanning ticket rail; it is not the current homepage composition.
 
 - **Replay:** stacked image/text until 900px, then a `1.15fr 1fr` grid with a 48px gap.
 - **Topics:** ruled full-width rows; two columns at 600px and three at 900px, with 24px trailing spacing.
-- **People:** two columns initially with gaps (32px 20px); three at 600px with gaps (40px 32px); four at 900px.
+- **People:** all 11 alumni retained; two columns initially with gaps (32px 20px); three at 600px with gaps (40px 32px); four at 900px. Fanzine adds 10px paper backing, not a new grid.
 - **News:** one column with a 24px gap; three at 900px with a 32px gap. Archive disclosures span the grid.
 - **Historical guidance:** one column, becoming two with a 48px gap at 900px.
-- **Reading pages:** yellow title/lead band followed by a readable guide column (70ch). Preparation separates only a direct authored heading and following lead paragraph, preserves copy/IDs/year, and promotes an authored lower-level page title to H1 (including the sole H3 case). Blocks are not recomposed. The 2026 guide remains historical and the closed submission page stays closed, without a new form.
-- **Masterclass:** yellow hero with heading/copy before the genuine course logo on mobile; at 900px it becomes a `1.4fr .6fr` grid. Learning columns remain unboxed. Two authored agendas use stacked rows, becoming 160px time plus content columns at 600px with a 24px gap; breaks are rectangular yellow bands. Speaker portraits follow two/three/four columns at 0/600/900px. Course-section top padding is 56px, increasing to 72px at 900px.
-- **Task forms:** transparent wrappers cap at 720px. Left-aligned yellow headers have 24px padding, increasing to 32px at 900px; the title size does not grow. Existing field grids, radio groups, conditional fields, and accept/decline actions remain the task structure.
+- **Reading pages:** red printed title/lead band above a clean paper guide column (70ch). Preparation separates only a direct authored heading and following lead paragraph, preserves copy/IDs/year, and promotes an authored lower-level page title to H1 (including the sole H3 case). Blocks are not recomposed or rotated. The 2026 guide remains historical and the closed submission page stays closed, without a new form.
+- **Masterclass:** red printed hero with heading/copy before the original multicolor course logo on mobile; at 900px it remains a `1.4fr .6fr` grid. The first viewport establishes course hierarchy, not homepage masthead scale. Learning columns remain clean/unboxed. Two authored agendas stack rows, becoming 160px time plus content columns at 600px with a 24px gap; breaks are red printed rectangles. Genuine grayscale speakers follow two/three/four columns at 0/600/900px. Course-section top padding is 56px, increasing to 72px at 900px.
+- **Task forms:** transparent outer sections expose charcoal backing; clean paper wrappers cap at 720px. Left-aligned red printed headers have 24px padding, increasing to 32px at 900px; title size stays fixed. Form bodies have 24px bottom padding. Direct fields, submit/action wrappers, success, and error panels have 24px inline margins. Access-request `.form-fields` explicitly uses `width:auto; min-width:0`, avoiding inherited 100%-width plus margins clipping. Existing grids, radios, conditional fields, and accept/decline actions remain unchanged and unrotated.
 
-Existing `browser-checks.json` covers the homepage at 320/390/600/900/1440 before the inner-only decorative correction. `rollout-browser-checks.json` has 55 passing entries: nine sibling routes at those five widths, seven mocked form scenarios, and three excluded-route isolation checks. It covers overflow/JS errors, images, navigation/current page, mobile menu/Escape, scroll offsets, focus/reduced motion, historical IDs/copy, closed submission state, conditional fields, retries, and accept/decline payloads. All POSTs were intercepted: UI behavior was checked with mocked responses, not live submissions or backend testing. Supplied validation also records nine focused `test/rockstar.test.js` tests passing, `npm run lint` passing with six pre-existing unused-disable warnings, and `git diff --check` passing. Product suites were not rerun for this documentation-only merge.
+Historical `browser-checks.json` and `rollout-browser-checks.json` describe the earlier option. Current `check-rockstar-pages.mjs` evidence in `fanzine-pages-checks.json` records 55 passing cases: 45 responsive cases across nine routes at 320/390/600/900/1440 (20 synthetic), seven mocked functional scenarios (five synthetic/two authored), and three excluded-route class/style-isolation cases. Control-level form/viewport clipping checks are included. Actual computed confirmation instruction contrast is 5.704:1 in both accept and decline. Source tags distinguish authored preview content from synthetic configurations.
+
+Homepage `check-fanzine.mjs` passed seven widths (320/390/600/900/1280/1440/1600) and nine shared-theme activation/isolation assertions; those nine assertions alone do not prove authored content exists. Supplied final validation: `npm run lint` passed (six pre-existing warnings/no errors), `npm run lint:css` passed after CSS fixes, `npx --no-install web-test-runner test/rockstar.test.js --node-resolve` passed 12 tests, and `git diff --check` passed. `fanzine-pages-detector.json` is empty (`[]`), run once before the reviewer-only contrast correction and not rerun. Earlier detector evidence is historical. This documentation merge does not rerun suites, detector, browser, or captures.
 
 ## Elevation & Depth
 
-The principal surfaces are flat. Color fields, rules, scale, and image/text juxtaposition supply hierarchy; replay containers, winner tiles, learning columns, and speakers remove card shells rather than acquiring elevation. The inherited recording-icon hover still scales and adds a soft shadow; it is an isolated legacy residue, not an elevation token to reuse. Form focus halos and the access-input's stable shadow-drawn stroke are functional state indicators, not lifted surfaces.
+The historical Gig Poster base remains flat and unboxed. Fanzine adds material layering without card shadows: homepage masthead/feature rotate -1deg, story .6deg, and red edition stamp 3deg. Supporting guides/forms do not rotate; clean sheets, printed bands, rules, and spacing provide depth. Alumni have flat paper backing without hover lift; course people/learning content remain unboxed. The inherited recording-icon hover scale/soft shadow is legacy residue, not an elevation token. Form focus halos and stable shadow-drawn input strokes are functional state indicators, not lifted surfaces.
+
+The two shipping materials are original deterministic Canvas-authored indexed rasters with embedded origin/provenance: `styles/assets/fanzine-print.png` (approximately 30 KB, transparent print grain) and `styles/assets/fanzine-ink.png` (approximately 10 KB, alpha ink-wear mask). The material scan returned two rasters and zero missing provenance records; this extension reuses them. Grain covers homepage paper/red fields and supporting title/course/form headers and agenda breaks, never long prose or inputs. The mask repeats at 384px 256px only on homepage masthead/story headlines. Genuine CMS portraits supply people, not generated textures or fabricated faces.
 
 ### Named Rules
-**The Flat Bill Rule.** Keep editorial containers and people unboxed; retain hierarchy through fields, spacing, and thin rules rather than adding card elevation.
+**The Flat Bill Rule.** Keep Gig Poster editorial containers and people unboxed; fanzine may use its native flat paper sheets and alumni backing. Neither world adds card elevation; retain hierarchy through material, fields, spacing, and thin rules.
 
 ## Shapes
 
-Tickets, winner-year tabs, winner/speaker portraits, replay imagery, date blocks, form fields/actions, and content containers use square geometry. Portraits crop to a square; images themselves remain genuine CMS assets. Thin borders (1px) divide selected sections, topic/agenda rows, disclosures, and the poster ticket area; homepage news articles and archive wrappers have no staggered bottom borders. Native radios retain their familiar circular geometry. The ticket chevron is drawn with CSS borders, not a text glyph. Native disclosure markers and the existing CSS hamburger are functional controls, not decorative iconography.
+Tickets, winner-year tabs, alumni/speaker portraits, replay imagery, date blocks, form fields/actions, and content containers use square geometry. Alumni/speaker portraits crop square; the fanzine lead portrait instead uses a landscape 1.4 aspect ratio, still square-cornered. Images remain genuine CMS assets; homepage winner and supporting speaker portraits receive grayscale and contrast (1.1). Thin borders (1px) divide selected sections, topic/agenda rows, disclosures, and the earlier poster ticket area; homepage news articles and archive wrappers have no staggered bottom borders. Paper edges are rectangular with slight hero rotations, not torn polygon clips. Native radios retain their familiar circular geometry. The ticket chevron is drawn with CSS borders, not a text glyph. Native disclosure markers and the existing CSS hamburger are functional controls, not decorative iconography.
 
 ## Components
 
@@ -246,55 +366,62 @@ Tickets, winner-year tabs, winner/speaker portraits, replay imagery, date blocks
 
 Ticket-like and legible, with the primary and replay variants defined in frontmatter. Labels wrap instead of truncating; borders are transparent (1px), corners square.
 
-- **Primary:** royal-blue fill, off-white text. Hover and keyboard focus change fill to ink.
-- **Replay on blue:** yellow fill with ink text; its more specific color assignment persists on hover/focus.
+- **Historical/base primary:** royal-blue fill, off-white text. Hover and keyboard focus change fill to ink; current supporting controls use the Fanzine variant.
+- **Earlier Gig Poster replay on blue:** yellow fill with ink text; its more specific color assignment persists on hover/focus.
+- **Fanzine story ticket:** charcoal fill with clean paper text; hover and keyboard focus reverse to clean paper with charcoal text. Replay/news tickets share the resting fill and hover reversal; their focus retains the inherited charcoal fill and visible current-color outline. Do not claim the story's focus reversal applies to every ticket.
 - **Feedback:** link tickets append a border-drawn chevron (9px square, 2px strokes, 18px left margin). Hover/focus translates it 4px over `.2s cubic-bezier(.16, 1, .3, 1)`.
-- **Focus:** shared visible outline (3px solid current color), offset (5px); sibling course/form actions explicitly use blue outlines.
+- **Focus:** shared visible outline (3px solid current color), offset (5px); current sibling course/form actions explicitly use charcoal outlines. Base actions retain blue outlines.
 - **Motion:** reduced-motion mode removes ticket-arrow and recording-link transitions and disables smooth scrolling. No looping motion or autoplay is established.
 
-Form buttons use the same square blue/off-white language without the link-ticket chevron. Enabled hover changes to ink; disabled buttons use neutral gray and a not-allowed cursor. Confirmation's secondary action rests transparent with a blue stroke/text; hover becomes ink with off-white text, and disabled styling takes precedence. Existing loading behavior remains intact. These are native task controls, not a homepage form or filter-chip system.
+Current supporting form/course controls are charcoal with clean-paper text and dark borders; enabled hover reverses to clean paper with charcoal text/border. Disabled controls retain gray fill/stroke and paper text. Confirmation Decline is transparent with dark stroke/text and the same enabled hover reversal; disabled styling takes precedence. Form buttons have no link-ticket chevron; loading and native task behavior remain intact. These are not a homepage form or filter-chip system.
 
 ### Cards / Containers
 
-Replay content is an unboxed image/text pairing on blue, with the image spanning its available width. Community tiles have no panel background, border, padding, rounding, or card hover lift; the attached year tab is blue with yellow Anton text and padding (8px 12px), directly above the square portrait, with the name below. Optional recording controls use the existing inline SVG and sit over the portrait. News articles and archive wrappers are borderless, unpadded containers rather than raised card shells; grid spacing provides separation. Masterclass learning columns and genuine speaker portraits carry the same unboxed treatment.
+Current replay content is an unboxed image/text pairing on printed paper; the earlier option uses blue. Images span available width. Current community tiles are paper rectangles with frontmatter fanzine padding; charcoal/clean-paper year tabs have an 8px bottom margin, square monochrome portraits, and Anton names with a 4px bottom margin. There is no border, rounding, shadow, or card hover lift. Earlier Gig Poster community tiles remain recorded as unboxed, unpadded tiles with blue/yellow tabs (8px 12px); these are not the current homepage preview. Optional recording controls keep the existing inline SVG, positioned top 12px/right 10px on fanzine tiles with charcoal fill and clean-paper stroke. News articles and archive wrappers are borderless, unpadded containers within the paper field; charcoal date blocks use clean-paper text and tabular numerals. Masterclass learning columns and genuine speaker portraits retain their unchanged unboxed treatment.
 
 ### Inputs / Fields
 
-Square and readable, with Roboto labels/controls and neutral placeholders. Registration/confirmation text inputs and textareas retain white surfaces, neutral strokes, blue hover/focus borders, blue focus outlines, and their existing subtle focus halos. Access-request inputs instead retain a stable shadow-drawn stroke: neutral at rest/hover, blue at focus, red for populated invalid input; their focus rule suppresses the generic outline. Do not collapse these into one invented focus token. Text-field padding is defined in frontmatter; placeholders use neutral gray (`#666`) and carets use blue.
+Square and readable, with Roboto labels/controls and neutral placeholders on clean paper cards. Native input surfaces remain white, without grain. Registration/confirmation hover/focus borders and keyboard outlines resolve `--link-color` to charcoal, retaining the existing subtle blue-tinted halo (`0 0 0 3px rgb(0 123 255 / 10%)`) and native invalid red border/halo. Access inputs retain stable shadow-drawn strokes: neutral at rest/hover, charcoal at focus, native red for populated invalid input; their focus suppresses the generic outline. The access stroke is 2px, increasing to 3px under the inherited higher-contrast preference. Do not collapse these into one invented focus token. Padding is defined in frontmatter; placeholders use gray (`#666`), while carets still resolve `--rockstar-blue` to rough red. Dark visible focus is not a claim that every inherited halo/caret was recolored.
 
-Native radios, required markers, dietary-other and corporate-email conditional fields, inline errors/warnings, green success panels, red error panels, loading opacity, and disabled controls remain semantic states from the existing blocks. Success/error panel corners are square. Registration's decorative location emoji is hidden without removing venue text. Form JavaScript, configuration, endpoints, old dates, and submission behavior were not changed by the visual rollout.
+Native radios, required markers, dietary-other and corporate-email conditional fields, warning/success/error panels, loading opacity, and disabled controls remain inherited. The single exception is `.rockstar-inner.rockstar-grunge .mc-confirm .field-error`: confirmation instruction/error text uses the frontmatter confirmation-error token on clean paper for measured 5.704:1 contrast. Other native semantic colors are untouched. Success/error panel corners are square. The 24px form-child margins and access fields' auto/min-width correction prevent control-level clipping, not new controller logic. Registration's decorative location emoji is hidden without removing venue text. Controllers, endpoints, payloads, conditional behavior, and old authored dates remain unchanged.
 
 ### Agenda Session Labels
 
-Restrained rectangular annotations, not selectable chips. Yellow session labels use ink text, small Roboto (.875rem), and padding (4px 8px). Day badges reverse to off-white on blue; break bands use yellow with plain ink labels. Session names and tabular times stay Roboto rather than becoming condensed poster text.
+Restrained rectangular annotations, not selectable chips. Current session labels inherit cool paper with charcoal text, small Roboto (.875rem), and padding (4px 8px). Day badges use charcoal/clean paper; breaks are red printed bands with dark plain labels. Names and dark tabular times stay Roboto. Yellow labels/blue badges remain historical/base roles, not current sibling colors.
 
 ### Navigation
 
-Fixed yellow bar with an ink bottom rule, existing Adobe icon, and nonwrapping Anton wordmark (1.2rem, tracking .02em). The scoped links lead to show, community, news, Masterclass, and the genuine submission guide. Homepage hash links stay local; on siblings they are prefixed with `/en/`. Exact page matches without hashes receive `aria-current="page"` and an underline, not a pill. Desktop navigation starts at 900px; links inherit Roboto (the incumbent desktop size is .875rem). Below that, a real button controls the collapsible menu with expanded state, Escape handling, and keyboard focus. No new hover fill is established.
+The historical/base shell is a fixed yellow bar with an ink bottom rule; current Fanzine homepage and selected siblings override it to charcoal with clean-paper links/wordmark/hamburger and a paper bottom rule. Both retain the existing Adobe icon and nonwrapping Anton wordmark (1.2rem, tracking .02em). The scoped links lead to show, community, news, Masterclass, and the genuine submission guide. Homepage hash links stay local; on siblings they are prefixed with `/en/`. Exact page matches without hashes receive `aria-current="page"` and an underline, not a pill. Desktop navigation starts at 900px; links inherit Roboto (the incumbent desktop size is .875rem). Below that, a real button controls the collapsible menu with expanded state, Escape handling, and keyboard focus. No new hover fill is established.
 
 ### Disclosures
 
 Native `details`/`summary` preserve keyboard behavior and the browser marker. General homepage disclosures have a top rule, margin above (36px), and bold summary with vertical padding (18px). News/guidance archive wrappers remove borders and reset that margin to zero; all summaries within news use compact vertical padding (12px). Historical guidance is explicitly labeled as past-edition material, not current eligibility or dates.
 
-### Poster
+### Fanzine Masthead / Lead Story
 
-The two-line title and separate edition numeral form the signature bill. The numeral has an accessible edition label. The ruled ticket rail carries a genuine destination: currently the 2026 replay, with community/submission-guide fallbacks when authored material is absent. This is current surface behavior, not a permanent event-registration component.
+The tilted paper masthead contains the AEM Rockstar title and inline red edition stamp, not the earlier giant separate numeral. The lead-story sheet exposes the historical 2026 replay action before the portrait in source/mobile order. The featured winner is taken from the first authored alumni row, with its actual name/year; `createOptimizedPicture` builds an eager optimized 800px CMS portrait with the name as alt text. The feature is omitted if its genuine image/name/year are absent; the 900px two-column layout is conditional on the feature. No fabricated person or placeholder portrait is authorized. When a recording is unavailable, the existing community/submission-guide fallback and neutral next-chapter copy apply, not invented registration.
+
+### Poster (Earlier Gig Poster Option)
+
+The two-line title and separate edition numeral form the signature bill. The numeral has an accessible edition label. The ruled ticket rail carries a genuine destination: the 2026 replay, with community/submission-guide fallbacks when authored material is absent. This describes the earlier option's surface behavior, not a permanent event-registration component.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep shared tokens and shell inside the prepared route boundary, and homepage recomposition inside the homepage boundary.
+- **Do** preserve historical/base Gig Poster tokens; use Fanzine aliases for the selected homepage/supporting routes, with recomposition and rotation confined to the homepage.
 - **Do** preserve genuine CMS imagery, portrait identity, recording destinations, and authorable structures.
-- **Do** use the existing focus treatment, semantic controls, and reduced-motion behavior.
+- **Do** retain dark visible supporting focus, native semantic controls, and reduced-motion behavior; keep confirmation instruction red scoped to its measured clean-paper context.
 - **Do** label historical recordings and guidance as historical; upcoming dates and registration remain unconfirmed.
-- **Do** retain the guide's 70ch measure, fixed reading hierarchy, compact form titles, native fields, and semantic feedback.
+- **Do** retain the guide's 70ch measure, fixed reading hierarchy, compact form titles, clean unrotated prose/inputs, 24px form-child margins, and access fields' auto/min-width correction.
 - **Do** preserve inline symbols and block configuration; preparation strips only leading decorative emoji prefixes from direct prose headings, paragraphs, lists, and their list-item/emphasis text.
 
 ### Don't:
 - **Don't** apply giant homepage display/edition sizes to guide or task-form headings, or retheme excluded routes.
-- **Don't** turn the flat replay, news, or community content into rounded, shadowed card grids.
+- **Don't** turn flat replay, news, or supporting-page people into rounded, shadowed card grids; homepage fanzine paper backing is native material, not permission for elevated cards.
 - **Don't** treat the working replay action as proof of upcoming registration or a confirmed lineup.
 - **Don't** treat preview tonal ramps in the sidecar as additional shipped palette tokens.
 - **Don't** reinterpret old masterclass dates, the 2026 guide, closed submissions, or mocked form responses as current availability or verified backend delivery.
 
-Not canonized or repaired: the inherited recording-link hover scale/soft shadow remains legacy drift from the flat container language; the existing masterclass `.kicker` remains authored residue, not a reusable eyebrow rule. The hidden trophy/location glyphs and hero bolt are not an icon system. No hard offset shadow or system display face is adopted; no product-source changes were authorized in this merge. The initial rollout review found decorative emoji leftovers, subsequently corrected; the fresh fallback scorer marked that single correction RESOLVED / SHIP only at that scope, not unrestricted whole-site approval. The existing detector had no primary findings; its type-ramp advisories are not a reason to invent roles or suppress checks. Product tests and detector were not rerun here.
+Not canonized or repaired: inherited recording-link hover scale/soft shadow remains legacy drift; the existing masterclass `.kicker` is a craft defect/authored residue, not a reusable eyebrow rule. Hidden trophy/location glyphs and the old hero bolt are not an icon system. No hard offset shadow or system display face is adopted. Missing-route authored content and the existing 404 sampleRUM import remain outside this frontend/documentation scope; synthetic fixtures do not legitimize them.
+
+Review boundary: the earlier seed-evidence correction and original rollout findings are historical, not current whole-site certificates. The fresh full supporting-page finish reviewer matched all contract rows except conditional-email instruction contrast, disposition fix. One scoped confirmation red-text correction followed. A fresh narrow Verdict Pass (synchronous one-shot could not continue) scored that one fix resolved, disposition ship, with no patch-induced regression observed. This describes reviewed frontend scope and a narrowed verdict, not unrestricted whole-site approval, authored missing-route fidelity, real backend delivery, or publishing/deployment. No source repair, suite rerun, detector rerun, or browser recapture occurred in this documentation merge.

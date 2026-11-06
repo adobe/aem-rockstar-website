@@ -1,4 +1,4 @@
-import { buildBlock } from './aem.js';
+import { buildBlock, createOptimizedPicture } from './aem.js';
 
 function styleSection(section, style) {
   let metadata = section.querySelector('.section-metadata');
@@ -48,14 +48,14 @@ export function prepareRockstarPage(main) {
  * Adapts the authored home content without changing other pages or its source blocks.
  */
 export function prepareRockstarHome(main) {
-  if (!main) return;
-  if (main.querySelector('.rockstar-hero')) {
+  if (!main) return null;
+  if (main.querySelector('.rockstar-hero, .rockstar-fanzine')) {
     document.body.classList.add('rockstar-home');
-    return;
+    return null;
   }
   const firstSection = main.firstElementChild;
   const title = firstSection?.querySelector('h1');
-  if (!title) return;
+  if (!title) return null;
 
   document.body.classList.add('rockstar-home');
   const recap = main.querySelector('.cards');
@@ -157,6 +157,51 @@ export function prepareRockstarHome(main) {
     styleSection(stats, 'gig-stats');
     main.append(stats);
   }
+  return hero;
+}
+
+export function prepareRockstarFanzine(main) {
+  const hero = prepareRockstarHome(main);
+  if (!hero) return;
+  const [copy, edition, action] = hero.firstElementChild.children;
+  const replay = action.querySelector('a');
+  const story = document.createElement('div');
+  const heading = document.createElement('h2');
+  const introduction = document.createElement('p');
+  if (replay.textContent.includes('replay')) {
+    heading.textContent = 'Missed the show? Hit play.';
+    introduction.textContent = 'Watch the real 2026 finalists share practical AEM demos. Rockstar 11 is the next chapter; its dates and lineup are not announced here.';
+    const archiveHeading = main.querySelector('#the-show h2');
+    if (archiveHeading) archiveHeading.textContent = 'The 2026 replay, in full.';
+  } else {
+    heading.textContent = 'The next chapter starts here.';
+    introduction.textContent = 'Explore the people and ideas behind AEM Rockstar.';
+  }
+  story.append(heading, introduction, ...action.childNodes);
+
+  const feature = document.createElement('div');
+  const winner = main.querySelector('.past-winners > div');
+  const image = winner?.children[1]?.querySelector('img');
+  const name = winner?.children[2]?.textContent.trim();
+  const year = winner?.children[0]?.textContent.trim();
+  if (image && name && year) {
+    const figure = document.createElement('figure');
+    const picture = createOptimizedPicture(image.src, name, true, [{ width: '800' }]);
+    const caption = document.createElement('figcaption');
+    const winnerName = document.createElement('strong');
+    winnerName.textContent = name;
+    const winnerYear = document.createElement('span');
+    winnerYear.textContent = `${year} AEM Rockstar winner`;
+    caption.append(winnerName, winnerYear);
+    figure.append(picture, caption);
+    feature.append(figure);
+  }
+  hero.replaceWith(buildBlock('rockstar-fanzine', [[
+    { elems: [...copy.childNodes] },
+    edition.textContent,
+    { elems: [...story.childNodes] },
+    { elems: [...feature.childNodes] },
+  ]]));
 }
 
 export function finishRockstarHome(main) {

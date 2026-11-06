@@ -2,32 +2,29 @@
 version: 1
 slug: "scripts-rockstar-js"
 primary_target: "scripts/rockstar.js"
-related_targets: ["styles/rockstar.css","blocks/rockstar-hero/rockstar-hero.js"]
+related_targets: ["styles/rockstar-grunge.css","blocks/rockstar-fanzine/rockstar-fanzine.js"]
 ---
 
-# Rockstar 11 homepage
+# Rockstar 11 homepage: Cut-and-Paste Fanzine
 
-Target: `scripts/rockstar.js`, `styles/rockstar.css`, `blocks/rockstar-hero/`.
-Mode: Persuade. Primary outcome: excitement and attendance. Entry: the existing English homepage, using its `home` theme.
+Mode: Persuade. The second design option started with the English homepage only. The user has now approved its extension to the same nine supporting pages, governed by `styles-rockstar-grunge-css.md`. Keep the first option on `2027-redesign`.
 
-The user selected The Gig Poster and requested implementation in the repository. Keep the AEM Rockstar name and Adobe connection. The old XI plan was discarded and is not authority.
+The user requested "edgier and dirtier - more grungy" and selected Cut-and-Paste Fanzine from the decision board. The approved code-led composition is the session's `option-2-fanzine.html`; it establishes arrangement and density, not final texture.
 
 ## Direction contract
 
-THESIS: AEM practitioners are the headliners. The page is an electric concert bill, not a corporate hero followed by equal cards.
+THESIS: Practical AEM demos belong to a scrappy practitioner publication, not a polished corporate campaign. The whole homepage reads as one pasted-up issue.
 
-OWN-WORLD: Committed electric-yellow and royal-blue fields, ink-black lettering, white replay imagery. Anton display type and existing Roboto body text. Large rectangular ticket-like actions, unboxed editorial sections, deliberate rules and clear links. A visitor browsing a bright conference lobby should read it instantly.
+OWN-WORLD: Charcoal ground, cool gray paper, rough red ink, Anton pasted headlines, Roboto reading text. Slightly misregistered sheets, authored raster print wear, monochrome genuine portraits, square readable controls. The physical scene is an event fan reading a photocopied zine backstage; pale sheets over dark backing, not neon lighting.
 
-STORY: Recognize Rockstar 11, understand that real people share practical AEM demos, watch actual finalists, and explore the community's history. Upcoming logistics remain unannounced unless the content owner supplies them.
+STORY: Recognize AEM Rockstar 11, see a genuine previous winner, watch the historical 2026 finalists, then meet the community and read real updates. Preserve authored facts and destinations; upcoming dates, registration, and lineup remain unconfirmed.
 
-FIRST VIEWPORT: A full-width yellow poster with a large two-line AEM Rockstar title; edition 11 occupies the right-hand title space. A short invitation and a blue replay ticket anchor the poster's foot. The next royal-blue section begins with actual 2026 replay content. Mobile preserves title, invitation, action, then historical proof. Signature interaction: focused or hovered replay tickets shift an arrow toward their real destination; no autoplay or endless motion.
+FIRST VIEWPORT: A wide tilted paper masthead contains AEM Rockstar and the red edition stamp. Immediately below, a rough red lead-story sheet with the primary replay action sits beside the genuine 2026 winner's monochrome portrait. Mobile stacks masthead, replay action, then portrait. Signature interaction: the selected replay ticket shifts a small printed arrow on hover or focus; no motion hides content and reduced motion remains still.
 
-FORM: The Gig Poster, candidate 1 of seven grounded directions, selected by the user over assigned candidate 3 (The Main Event). Other grounded candidates: backstage laminate, fan zine, record sleeve, demo fair, and concert lightbox. `seed:ec3d1bc95c21797e`. Code-led; no generated comp is owed.
+FORM: Cut-and-Paste Fanzine, candidate 1 of seven grounded directions, selected over assigned candidate 6, Backstage Contact Sheet. Other grounded candidates: venue-wall paint, bootleg tour tee, battered road case, record-store bootleg sleeve, and wristband-and-stamp lineup. `seed:f7c7cad6ffcf995b`. Code-led; no generated comp is owed.
 
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
 
-## Scope and implementation
+## Scope and constraints
 
-Transform the existing homepage through a theme-scoped preparation step, retaining authored recap, news, topics, rules, and winner material. Reuse existing blocks wherever possible. Isolate sitewide header/footer overrides to the new homepage body class. Add no framework, build step, backend, fake event date, registration destination, lineup, or testimonials. Preserve the AEM library.
-
-Facts to confirm later: actual Rockstar 11 dates, registration URL, and submission-opening status. The historical 2026 recording is the working primary action for now; label it explicitly as a replay.
+Retain the original blocks, replay, winners, topic areas, news, history, and historical-guidance disclosures. The fanzine hero remains homepage-only; the approved supporting pages now share its palette and shell through the grunge stylesheet, with reading/task restraint recorded in their own brief. No framework, dependency change, backend, fake date, lineup, testimonial, or modified AEM core.
