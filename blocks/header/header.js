@@ -113,11 +113,11 @@ export default async function decorate(block) {
     if (document.body.classList.contains('rockstar-site') && navSections) {
       const home = document.body.classList.contains('rockstar-home') ? '' : '/en/';
       const links = [
-        ['The show', `${home}#the-show`],
-        ['The community', `${home}#the-community`],
-        ['Latest news', `${home}#latest-news--updates`],
+        ['The Show', `${home}#the-show`],
+        ['The Community', `${home}#the-community`],
+        ['Latest News', `${home}#latest-news--updates`],
         ['Masterclass', '/en/masterclass'],
-        ['Submission guide', '/en/submission-guide'],
+        ['Submission Guide', '/en/submission-guide'],
       ];
       const list = document.createElement('ul');
       links.forEach(([label, href]) => {
