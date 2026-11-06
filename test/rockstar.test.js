@@ -73,14 +73,19 @@ describe('Rockstar homepage preparation', () => {
     expect(document.body.classList.contains('rockstar-home')).to.equal(false);
   });
 
-  it('preserves the authored replay and moves tour content into an archive', () => {
+  it('preserves the replay and promotes tour content and photos into an always-visible section', () => {
     const main = fixture(`
       <div><h1>AEM Rockstar</h1><h2>The previous winner</h2></div>
       <div><h2>Recap</h2><div class="cards">
         <div><div><p><a href="/sessions/recording"><picture><img alt=""></picture></a></p>
         <p>Original demo description</p></div></div>
-        <div><div><p>Historical tour information</p></div></div>
+        <div><div><p><picture><img src="/tour-logo.png" alt=""></picture>Historical tour information</p>
+          <p>COMPLETED</p><ul><li>April 9-10 // New York City</li></ul>
+          <p><a href="/en/masterclass">More Info</a></p></div></div>
+        <div><div><p><picture><img src="/tour-photo.png" alt=""></picture></p></div></div>
       </div></div>`);
+    const logo = main.querySelector('img[src="/tour-logo.png"]');
+    const photo = main.querySelector('img[src="/tour-photo.png"]');
     prepareRockstarHome(main);
     prepareRockstarHome(main);
     expect(main.querySelectorAll('.rockstar-hero')).to.have.lengthOf(1);
@@ -88,7 +93,19 @@ describe('Rockstar homepage preparation', () => {
       .to.include('/sessions/recording');
     expect(main.querySelector('#the-show').textContent).to.include('Original demo description');
     expect(main.querySelector('#the-show').textContent).to.include('The previous winner');
-    expect(main.querySelector('.tour-archive').textContent).to.include('Historical tour information');
+    const backstage = main.querySelector('#backstage');
+    expect(main.querySelectorAll('#backstage')).to.have.lengthOf(1);
+    expect(backstage.previousElementSibling.id).to.equal('the-show');
+    expect(backstage.querySelector('h2').textContent).to.include('Backstage');
+    expect(backstage.querySelector('details, summary')).to.equal(null);
+    expect(backstage.textContent).to.include('Historical tour information');
+    expect(backstage.textContent).to.include('COMPLETED');
+    expect(backstage.querySelector('li').textContent).to.equal('April 9-10 // New York City');
+    expect(backstage.querySelector('a').getAttribute('href')).to.equal('/en/masterclass');
+    expect(backstage.querySelector('.backstage-tour figure img')).to.equal(logo);
+    expect(backstage.querySelector('.backstage-tour p').textContent).to.equal('Historical tour information');
+    expect(backstage.querySelector('.backstage-gallery img')).to.equal(photo);
+    expect(main.querySelector('#the-show').contains(backstage)).to.equal(false);
     expect(main.querySelector('.cards').children).to.have.lengthOf(1);
   });
 
@@ -125,6 +142,7 @@ describe('Rockstar homepage preparation', () => {
     expect(block.querySelector('figcaption').textContent).to.include('2026 AEM Rockstar winner');
     expect(main.querySelector('.past-winners').textContent).to.include('Actual Winner');
     expect(main.querySelector('.cards').textContent).to.include('Real recording description.');
+    expect(main.querySelector('#backstage')).to.equal(null);
     decorateBlock(block);
     decorateFanzine(block);
     expect(block.querySelector('.fanzine-masthead h1').textContent).to.include('AEM Rockstar 11');

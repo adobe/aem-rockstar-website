@@ -108,16 +108,38 @@ export function prepareRockstarHome(main) {
     }
     const tourRows = [...recap.children].slice(1);
     if (tourRows.length) {
-      const archive = document.createElement('details');
-      archive.className = 'tour-archive';
-      const summary = document.createElement('summary');
-      summary.textContent = 'Backstage: the 2026 masterclass tour';
-      archive.append(summary);
+      const backstage = document.createElement('div');
+      backstage.id = 'backstage';
+      const backstageHeading = document.createElement('h2');
+      backstageHeading.textContent = 'Backstage: the 2026 masterclass tour';
+      backstage.append(backstageHeading);
       tourRows.forEach((row) => {
-        [...row.children].forEach((cell) => archive.append(...cell.childNodes));
+        const article = document.createElement('article');
+        const content = document.createElement('div');
+        content.className = 'backstage-copy';
+        [...row.children].forEach((cell) => content.append(...cell.childNodes));
+        if (content.textContent.trim()) {
+          article.className = 'backstage-tour';
+          const picture = content.querySelector('picture');
+          if (picture) {
+            const tourImage = picture.closest('a') || picture;
+            const paragraph = tourImage.closest('p');
+            const figure = document.createElement('figure');
+            figure.append(tourImage);
+            article.append(figure);
+            if (paragraph && !paragraph.textContent.trim() && !paragraph.children.length) {
+              paragraph.remove();
+            }
+          }
+        } else {
+          article.className = 'backstage-gallery';
+        }
+        article.append(content);
+        backstage.append(article);
         row.remove();
       });
-      section.append(archive);
+      styleSection(backstage, 'gig-backstage');
+      section.after(backstage);
     }
   }
 
