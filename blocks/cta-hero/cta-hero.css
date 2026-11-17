@@ -226,3 +226,25 @@ body:not(.masterclass) .cta-hero .headline .date-pill {
   border: 1px solid var(--overlay-background-color, #ddd);
   color: var(--text-color, #666);
 }
+
+.cta-hero.nomination .headline h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.15;
+}
+
+.cta-hero.nomination .headline p:not(.kicker) {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.cta-hero.nomination .logo-wrap {
+  max-width: 320px;
+}
+
+@media (width < 900px) {
+  .cta-hero.nomination .logo-wrap {
+    order: 0;
+    max-width: 180px;
+    margin-bottom: 0;
+  }
+}
