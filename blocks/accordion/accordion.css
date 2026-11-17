@@ -80,3 +80,14 @@ main .accordion a:any-link {
   color: inherit;
   text-decoration: underline;
 }
+
+body.rockstar-inner main .accordion {
+  --accordion-background: var(--rockstar-white);
+  --accordion-text: var(--rockstar-ink);
+  --accordion-border: var(--rockstar-ink);
+  --accordion-accent: var(--rockstar-ink);
+}
+
+body.rockstar-inner main .accordion :is(details, summary:focus-visible) {
+  border-radius: 0;
+}
