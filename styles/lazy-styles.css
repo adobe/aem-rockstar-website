@@ -104,3 +104,19 @@
     margin: 0;
   }
 }
+
+.section.hall-of-fame > .default-content-wrapper > h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.section.hall-of-fame > .default-content-wrapper > p {
+  font-size: 1.0625rem;
+}
+
+.section.hall-of-fame .info-cards {
+  padding: 24px 0;
+}
+
+.section.hall-of-fame .info-cards .card h2 {
+  font-size: 1.25rem;
+}
