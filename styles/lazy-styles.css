@@ -120,17 +120,3 @@
 .section.hall-of-fame .info-cards .card h2 {
   font-size: 1.25rem;
 }
-
-@media (width >= 900px) {
-  .rockstar-inner main:has(.hof-nomination) > .section {
-    padding-bottom: 40px;
-  }
-
-  .rockstar-inner main:has(.hof-nomination) > .section + .section {
-    padding-top: 40px;
-  }
-
-  .rockstar-inner main:has(.hof-nomination) > .section:empty {
-    display: none;
-  }
-}
