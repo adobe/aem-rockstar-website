@@ -66,20 +66,6 @@ body.rockstar-inner {
   padding-top: 0;
 }
 
-@media (width >= 900px) {
-  .rockstar-inner main:has(.hof-nomination) > .section {
-    padding-bottom: 40px;
-  }
-
-  .rockstar-inner main:has(.hof-nomination) > .section + .section {
-    padding-top: 40px;
-  }
-
-  .rockstar-inner main:has(.hof-nomination) > .section:empty {
-    display: none;
-  }
-}
-
 .rockstar-inner .section .cta-hero-wrapper {
   max-width: none;
   margin-inline: calc(-1 * var(--rockstar-gutter));
