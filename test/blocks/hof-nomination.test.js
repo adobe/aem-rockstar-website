@@ -206,7 +206,7 @@ describe('Hall of Fame nomination', () => {
     expect(other.querySelectorAll('.hof-site').length).to.equal(1);
   });
 
-  it('keeps action labels readable in both themes and submission states', async () => {
+  it('keeps fields, errors and action labels readable across themes and submission states', async () => {
     const stylesheet = document.createElement('link');
     stylesheet.rel = 'stylesheet';
     stylesheet.href = new URL('../../blocks/hof-nomination/hof-nomination.css', import.meta.url).href;
@@ -216,7 +216,24 @@ describe('Hall of Fame nomination', () => {
       stylesheet.onerror = reject;
       document.head.append(stylesheet);
     });
+    const themeStyles = document.createElement('style');
+    themeStyles.textContent = `
+      body.rockstar-inner {
+        --rockstar-ink: #181817;
+        --rockstar-white: #f4f4ee;
+        --ink: var(--rockstar-ink);
+        --muted: var(--rockstar-ink);
+        --card: var(--rockstar-white);
+        --brand-1: #ef4937;
+      }
+    `;
+    fixtures.push(themeStyles);
+    document.head.append(themeStyles);
     const block = fixture();
+    const form = block.querySelector('form');
+    const error = block.querySelector('.hof-status');
+    error.classList.add('hof-error');
+    error.textContent = 'Unable to submit. Please try again.';
     const originalClass = document.body.className;
     const luminance = (color) => {
       const channels = color.match(/\d+/g).slice(0, 3).map((value) => {
@@ -225,18 +242,27 @@ describe('Hall of Fame nomination', () => {
       });
       return channels[0] * 0.2126 + channels[1] * 0.7152 + channels[2] * 0.0722;
     };
+    const contrast = (foreground, background) => {
+      const text = luminance(foreground);
+      const fillColor = luminance(background);
+      return (Math.max(text, fillColor) + 0.05) / (Math.min(text, fillColor) + 0.05);
+    };
     try {
-      ['', 'masterclass'].forEach((theme) => {
+      ['', 'masterclass', 'masterclass rockstar-site rockstar-inner rockstar-grunge'].forEach((theme) => {
         document.body.className = theme;
-        const background = luminance(getComputedStyle(block.querySelector('form')).backgroundColor);
+        const background = getComputedStyle(form).backgroundColor;
+        block.querySelectorAll('.hof-field input, .hof-field select, .hof-field textarea').forEach((field) => {
+          const style = getComputedStyle(field);
+          expect(contrast(style.color, style.backgroundColor), `${theme || 'light'} field contrast`)
+            .to.be.at.least(4.5);
+        });
+        expect(contrast(getComputedStyle(error).color, background), `${theme || 'light'} error contrast`)
+          .to.be.at.least(4.5);
         const button = block.querySelector('button:not(.hof-remove)');
-        const text = luminance(getComputedStyle(button).color);
-        const contrast = (Math.max(text, background) + 0.05)
-          / (Math.min(text, background) + 0.05);
-        expect(contrast, `${theme || 'light'} button text contrast`).to.be.at.least(4.5);
+        expect(contrast(getComputedStyle(button).color, background), `${theme || 'light'} button text contrast`)
+          .to.be.at.least(4.5);
         const submit = block.querySelector('.hof-submit');
-        const surface = getComputedStyle(block.querySelector('form')).backgroundColor
-          .match(/\d+/g).slice(0, 3).map(Number);
+        const surface = background.match(/\d+/g).slice(0, 3).map(Number);
         [false, true].forEach((disabled) => {
           submit.disabled = disabled;
           const style = getComputedStyle(submit);
@@ -246,12 +272,9 @@ describe('Hall of Fame nomination', () => {
               .map((value, index) => Math.round(
                 Number(value) * opacity + surface[index] * (1 - opacity),
               ));
-            return luminance(`rgb(${channels.join(',')})`);
+            return `rgb(${channels.join(',')})`;
           };
-          const foreground = painted(style.color);
-          const fillColor = painted(style.backgroundColor);
-          const ratio = (Math.max(foreground, fillColor) + 0.05)
-            / (Math.min(foreground, fillColor) + 0.05);
+          const ratio = contrast(painted(style.color), painted(style.backgroundColor));
           expect(ratio, `${theme || 'light'} submit disabled=${disabled}`).to.be.at.least(4.5);
         });
       });

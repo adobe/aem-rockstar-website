@@ -274,6 +274,31 @@ body.masterclass .hof-nomination {
   white-space: nowrap;
 }
 
+body.rockstar-inner .hof-nomination {
+  --hof-surface: var(--rockstar-white);
+  --hof-ink: var(--rockstar-ink);
+  --hof-muted: var(--rockstar-ink);
+  --hof-border: var(--rockstar-ink);
+  --hof-control: var(--rockstar-white);
+  --hof-accent: var(--rockstar-ink);
+  --hof-error: #b62b00;
+  --hof-button-ink: var(--rockstar-white);
+  --hof-submit: var(--rockstar-ink);
+  --hof-submit-ink: var(--rockstar-white);
+  --hof-submit-hover: var(--rockstar-white);
+  --hof-submit-disabled: #666;
+  --hof-submit-disabled-ink: var(--rockstar-white);
+}
+
+body.rockstar-inner .hof-nomination :is(.hof-form, .hof-site, summary, input, select, textarea, button, .hof-status, .hof-window) {
+  border-radius: 0;
+}
+
+body.rockstar-inner .hof-nomination button.hof-submit:hover:not(:disabled) {
+  border-color: var(--hof-ink);
+  color: var(--hof-ink);
+}
+
 @media (width >= 600px) {
   .hof-nomination .hof-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
