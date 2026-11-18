@@ -17,6 +17,10 @@ body.rockstar-inner {
   color: var(--rockstar-ink);
 }
 
+body.rockstar-inner:has(main .hof-nomination) footer:empty {
+  padding: 0;
+}
+
 .rockstar-inner main {
   display: block;
   max-width: none;
