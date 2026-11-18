@@ -17,7 +17,7 @@ body.rockstar-inner {
   color: var(--rockstar-ink);
 }
 
-body.rockstar-inner:has(main .hof-nomination) footer:empty {
+body.rockstar-inner:has(main :is(.hof-nomination, .hof-directory, .hof-profile)) footer:empty {
   padding: 0;
 }
 

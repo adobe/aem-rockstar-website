@@ -66,36 +66,38 @@ describe('Rockstar homepage preparation', () => {
     });
   });
 
-  it('limits empty-footer handling to nomination pages', async () => {
-    const originalClasses = document.body.className;
-    document.body.classList.add('rockstar-site', 'rockstar-inner');
-    const footer = document.createElement('footer');
-    const main = fixture('<div class="hof-nomination"></div>');
-    const stylesheets = ['rockstar', 'rockstar-pages'].map((name) => {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = new URL(`../styles/${name}.css`, import.meta.url).href;
-      return link;
+  ['hof-nomination', 'hof-directory', 'hof-profile'].forEach((blockName) => {
+    it(`limits empty-footer handling to ${blockName} pages`, async () => {
+      const originalClasses = document.body.className;
+      document.body.classList.add('rockstar-site', 'rockstar-inner');
+      const footer = document.createElement('footer');
+      const main = fixture(`<div class="${blockName}"></div>`);
+      const stylesheets = ['rockstar', 'rockstar-pages'].map((name) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = new URL(`../styles/${name}.css`, import.meta.url).href;
+        return link;
+      });
+      document.body.append(footer);
+      try {
+        await Promise.all(stylesheets.map((stylesheet) => new Promise((resolve, reject) => {
+          stylesheet.onload = resolve;
+          stylesheet.onerror = reject;
+          document.head.append(stylesheet);
+        })));
+        expect(footer.getBoundingClientRect().height).to.be.greaterThan(0);
+        document.body.append(main);
+        expect(footer.getBoundingClientRect().height).to.equal(0);
+        footer.innerHTML = '<div>Footer content</div>';
+        expect(footer.getBoundingClientRect().height)
+          .to.be.greaterThan(footer.firstElementChild.getBoundingClientRect().height);
+      } finally {
+        footer.remove();
+        main.remove();
+        stylesheets.forEach((stylesheet) => stylesheet.remove());
+        document.body.className = originalClasses;
+      }
     });
-    document.body.append(footer);
-    try {
-      await Promise.all(stylesheets.map((stylesheet) => new Promise((resolve, reject) => {
-        stylesheet.onload = resolve;
-        stylesheet.onerror = reject;
-        document.head.append(stylesheet);
-      })));
-      expect(footer.getBoundingClientRect().height).to.be.greaterThan(0);
-      document.body.append(main);
-      expect(footer.getBoundingClientRect().height).to.equal(0);
-      footer.innerHTML = '<div>Footer content</div>';
-      expect(footer.getBoundingClientRect().height)
-        .to.be.greaterThan(footer.firstElementChild.getBoundingClientRect().height);
-    } finally {
-      footer.remove();
-      main.remove();
-      stylesheets.forEach((stylesheet) => stylesheet.remove());
-      document.body.className = originalClasses;
-    }
   });
 
   it('leaves content without a homepage heading untouched', () => {
