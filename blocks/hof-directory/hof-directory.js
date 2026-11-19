@@ -58,6 +58,7 @@ export default function decorate(block) {
     const tier = TIERS.find((label) => normalize(label) === normalize(tierCell?.textContent || ''));
     if (!name || !tier) {
       invalidRows += 1;
+      // eslint-disable-next-line no-console
       console.warn(`[hof-directory] Row ${index + 1} needs a name and a valid recognition tier.`);
     } else {
       const picture = imageCell.querySelector('picture:has(img), img');
@@ -70,6 +71,7 @@ export default function decorate(block) {
           && url.pathname.startsWith('/en/masterclass/hall-of-fame/')) {
           profileHref = `${url.pathname}${url.search}${url.hash}`;
         } else {
+          // eslint-disable-next-line no-console
           console.warn(`[hof-directory] Row ${index + 1} profile link must point to a Hall of Fame page on this site.`);
         }
       }

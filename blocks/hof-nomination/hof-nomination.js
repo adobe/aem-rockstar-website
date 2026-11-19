@@ -408,6 +408,7 @@ function createForm(config) {
       form.replaceChildren(success);
       heading.focus();
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Hall of Fame nomination receipt could not be confirmed.', error.name);
       status.classList.add('hof-error');
       status.textContent = `We couldn't confirm receipt. Your entries are still here. Please try again later. Reference: ${submissionId}`;
@@ -430,6 +431,7 @@ export default function decorate(block) {
   try {
     config = readConfig(block);
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Invalid Hall of Fame nomination configuration.', error.message);
     const message = element('p',
       'The nomination form is unavailable because its configuration needs attention.',

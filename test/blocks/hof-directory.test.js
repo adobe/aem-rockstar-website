@@ -162,8 +162,10 @@ describe('Hall of Fame directory', () => {
 
   it('reports invalid authored rows rather than silently accepting an unknown tier', () => {
     const block = makeBlock([['Alex Morgan', 'Rising Star'], ['', 'Icon'], ['Sam Lee', 'Gold']]);
+    // eslint-disable-next-line no-console
     const original = console.warn;
     const warnings = [];
+    // eslint-disable-next-line no-console
     console.warn = (...args) => warnings.push(args);
     try {
       decorate(block);
@@ -171,6 +173,7 @@ describe('Hall of Fame directory', () => {
       expect(block.querySelector('.hof-content-error').textContent).to.include('2 member rows');
       expect(block.querySelectorAll('.hof-member')).to.have.length(1);
     } finally {
+      // eslint-disable-next-line no-console
       console.warn = original;
     }
   });
