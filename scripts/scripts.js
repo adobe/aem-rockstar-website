@@ -90,7 +90,6 @@ function addVideo(main) {
  * Decorates the main element.
  * @param {Element} main The main element
  */
-// eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
@@ -110,6 +109,21 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
+    const rockstarPage = /^\/en\/(?:submission-(?:guide|2026)|masterclass(?:\/.*)?)\/?$/.test(window.location.pathname);
+    if (doc.body.classList.contains('home') || rockstarPage) {
+      const { prepareRockstarFanzine, prepareRockstarPage } = await import('./rockstar.js');
+      doc.body.classList.add('rockstar-site', 'rockstar-grunge');
+      const styles = ['rockstar'];
+      if (doc.body.classList.contains('home')) {
+        prepareRockstarFanzine(main);
+      } else {
+        doc.body.classList.add('rockstar-inner');
+        prepareRockstarPage(main);
+        styles.push('rockstar-pages');
+      }
+      styles.push('rockstar-grunge');
+      await Promise.all(styles.map((style) => loadCSS(`${window.hlx.codeBasePath}/styles/${style}.css`)));
+    }
     decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
@@ -132,6 +146,10 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
+  if (doc.body.classList.contains('rockstar-home')) {
+    const { finishRockstarHome } = await import('./rockstar.js');
+    finishRockstarHome(main);
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
@@ -175,7 +193,6 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
