@@ -2,7 +2,6 @@ import {
   buildBlock,
   loadHeader,
   loadFooter,
-  decorateButtons,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -11,6 +10,9 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  readBlockConfig,
+  toCamelCase,
+  toClassName,
 } from './aem.js';
 
 // LCP blocks can be added here when needed
@@ -70,6 +72,89 @@ function buildAutoBlocks(main) {
   }
 }
 
+/**
+ * Decorates paragraphs containing a single link as buttons.
+ * @param {Element} element container element
+ */
+function decorateButtons(element) {
+  element.querySelectorAll('a').forEach((a) => {
+    a.title = a.title || a.textContent;
+    if (a.href !== a.textContent) {
+      const up = a.parentElement;
+      const twoup = a.parentElement.parentElement;
+      const isDisabled = a.href && a.href.includes('disabled');
+
+      if (!a.querySelector('img')) {
+        if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
+          a.className = 'button'; // default
+          up.classList.add('button-container');
+        }
+        if (
+          up.childNodes.length === 1
+          && up.tagName === 'STRONG'
+          && twoup.childNodes.length === 1
+          && twoup.tagName === 'P'
+        ) {
+          a.className = 'button primary';
+          twoup.classList.add('button-container');
+        }
+        if (
+          up.childNodes.length === 1
+          && up.tagName === 'EM'
+          && twoup.childNodes.length === 1
+          && twoup.tagName === 'P'
+        ) {
+          a.className = 'button secondary';
+          twoup.classList.add('button-container');
+        }
+
+        // Handle disabled buttons
+        if (isDisabled) {
+          a.classList.add('disabled');
+          a.removeAttribute('href');
+          a.style.cursor = 'not-allowed';
+          a.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          });
+
+          // Add locked icon next to the button
+          const lockIcon = document.createElement('span');
+          lockIcon.className = 'icon icon-locked button-lock';
+          a.parentElement.classList.add('button-container-disabled');
+          a.parentElement.appendChild(lockIcon);
+        }
+      }
+    }
+  });
+}
+
+/**
+ * Applies section metadata as section classes and data attributes.
+ * @param {Element} main The main element
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll(':scope > div.section').forEach((section) => {
+    const sectionMeta = section.querySelector('div.section-metadata');
+    if (!sectionMeta) return;
+
+    const meta = readBlockConfig(sectionMeta);
+    Object.keys(meta).forEach((key) => {
+      if (key === 'style') {
+        meta.style
+          .split(',')
+          .filter((style) => style)
+          .map((style) => toClassName(style.trim()))
+          .forEach((style) => section.classList.add(style));
+      } else {
+        section.dataset[toCamelCase(key)] = meta[key];
+      }
+    });
+    sectionMeta.parentNode.remove();
+  });
+}
+
 function addVideo(main) {
   if (main.querySelector('div.section.blue-header.video')) {
     const videoSection = main.querySelector('div.section.blue-header.video');
@@ -96,6 +181,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
   decorateBlocks(main);
   addVideo(main);
 }
@@ -155,8 +241,8 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
+  loadHeader(doc.querySelector('body > header'));
+  loadFooter(doc.querySelector('body > footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
@@ -193,7 +279,7 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  import('./consent-check.js');
   // load anything that can be postponed to the latest here
 }
 

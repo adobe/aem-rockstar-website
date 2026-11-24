@@ -36,7 +36,8 @@ The repository provides the basic structure, blocks, and configuration needed to
 ├── scripts/         # JavaScript libraries and utilities
     ├── aem.js           # Core AEM Library for Edge Delivery page decoration logic (NEVER MODIFY THIS FILE)
     ├── scripts.js       # Global JavaScript utilities, main entry point for page decoration
-    └── delayed.js       # Delayed functionality such as martech loading
+    ├── consent-check.js # Delayed consent check that loads consented scripts when allowed
+    └── consented.js     # Functionality requiring consent, such as analytics and martech
 ├── fonts/           # Web fonts
 ├── icons/           # SVG icons
 ├── head.html        # Global HTML head content
@@ -139,7 +140,7 @@ Pages are progressively loaded in three phases to maximize performance. This pro
 ### Performance
 - Follow AEM Edge Delivery performance best practices https://www.aem.live/developer/keeping-it-100
 - Images uploaded by authors are automatically optimized, all images and assets committed to git must be optimized and checked for size
-- Use lazy loading for non-critical resources (`lazy-styles.css` and `delayed.js`)
+- Use lazy loading for non-critical resources (`lazy-styles.css` and the consent-gated `consented.js`)
 - Minimize JavaScript bundle size by avoiding dependencies, using automatic code splitting provided by `/blocks/`
 
 ### Accessibility
