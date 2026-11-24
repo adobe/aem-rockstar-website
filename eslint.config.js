@@ -4,7 +4,7 @@ const globals = require('globals');
 
 module.exports = [
   {
-    ignores: ['blocks/n8n-form/n8n-code/**', 'scripts/qrcode.js'],
+    ignores: ['blocks/n8n-form/n8n-code/**', 'scripts/aem.js', 'scripts/qrcode.js'],
   },
   js.configs.recommended,
   importX.flatConfigs.recommended,
@@ -75,13 +75,6 @@ module.exports = [
       'import-x/extensions': ['error', {
         js: 'always',
       }],
-    },
-  },
-  {
-    files: ['scripts/aem.js'],
-    rules: {
-      // Keep the upstream AEM library unchanged.
-      'no-useless-assignment': 'off',
     },
   },
   {
