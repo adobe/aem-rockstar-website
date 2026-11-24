@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-cycle
+// eslint-disable-next-line import-x/no-cycle
 import { loadPage } from '../../scripts/scripts.js';
 
 const importMap = {

@@ -162,7 +162,7 @@ async function loadLazy(doc) {
   loadFonts();
 
   const loadQuickEdit = async (...args) => {
-    // eslint-disable-next-line import/no-cycle
+    // eslint-disable-next-line import-x/no-cycle
     const { default: initQuickEdit } = await import('../tools/quick-edit/quick-edit.js');
     initQuickEdit(...args);
   };
@@ -207,6 +207,6 @@ loadPage();
 
 (async function loadDa() {
   if (!new URL(window.location.href).searchParams.get('dapreview')) return;
-  // eslint-disable-next-line import/no-unresolved
+  // eslint-disable-next-line import-x/no-unresolved
   import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadPage));
 }());
