@@ -1,5 +1,5 @@
 const js = require('@eslint/js');
-const importPlugin = require('eslint-plugin-import');
+const { importX } = require('eslint-plugin-import-x');
 const globals = require('globals');
 
 module.exports = [
@@ -7,7 +7,7 @@ module.exports = [
     ignores: ['blocks/n8n-form/n8n-code/**', 'scripts/qrcode.js'],
   },
   js.configs.recommended,
-  importPlugin.flatConfigs.recommended,
+  importX.flatConfigs.recommended,
   {
     languageOptions: {
       parser: require('@babel/eslint-parser'),
@@ -67,14 +67,21 @@ module.exports = [
         },
       ],
       'guard-for-in': 'error',
-      'import/prefer-default-export': 'error',
-      'import/no-cycle': ['error', { maxDepth: '∞' }],
+      'import-x/prefer-default-export': 'error',
+      'import-x/no-cycle': ['error', { maxDepth: '∞' }],
       // allow reassigning param
       'no-param-reassign': [2, { props: false }],
       'linebreak-style': ['error', 'unix'],
-      'import/extensions': ['error', {
+      'import-x/extensions': ['error', {
         js: 'always',
       }],
+    },
+  },
+  {
+    files: ['scripts/aem.js'],
+    rules: {
+      // Keep the upstream AEM library unchanged.
+      'no-useless-assignment': 'off',
     },
   },
   {
