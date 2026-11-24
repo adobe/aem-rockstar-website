@@ -1,0 +1,245 @@
+body.rockstar-grunge {
+  --rockstar-yellow: #deded7;
+  --rockstar-blue: #ef4937;
+  --rockstar-ink: #181817;
+  --rockstar-white: #f4f4ee;
+  --dark-background-color: var(--rockstar-ink);
+  --fanzine-print: url('./assets/fanzine-print.png');
+
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+  scrollbar-color: var(--rockstar-blue) var(--rockstar-ink);
+}
+
+.rockstar-grunge ::selection {
+  background: var(--rockstar-blue);
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge a:focus-visible,
+.rockstar-grunge button:focus-visible,
+.rockstar-grunge summary:focus-visible {
+  outline-color: currentcolor;
+}
+
+.rockstar-grunge header,
+.rockstar-grunge header .nav-wrapper {
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+  border-color: var(--rockstar-yellow);
+}
+
+.rockstar-grunge header nav .nav-sections ul > li,
+.rockstar-grunge header nav .nav-hamburger button {
+  color: var(--rockstar-white);
+}
+
+.rockstar-grunge main > .section.gig-poster {
+  background: transparent;
+  padding: 32px 22px 56px;
+}
+
+.rockstar-grunge main > .section.gig-replay {
+  background: var(--rockstar-yellow) var(--fanzine-print);
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge .gig-replay h2 {
+  max-width: 18ch;
+}
+
+.rockstar-grunge .gig-replay a:any-link {
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge .gig-replay a.button,
+.rockstar-grunge .gig-news a.button {
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+}
+
+.rockstar-grunge .gig-replay a.button:hover,
+.rockstar-grunge .gig-news a.button:hover {
+  background: var(--rockstar-white);
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge main > .section.gig-topics {
+  background: var(--rockstar-blue) var(--fanzine-print);
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge main > .section.gig-community {
+  color: var(--rockstar-white);
+}
+
+.rockstar-grunge .gig-community .winner-card {
+  padding: 10px;
+  background: var(--rockstar-yellow) var(--fanzine-print);
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge .gig-community .year-badge {
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+  margin-bottom: 8px;
+  padding: 6px 10px;
+}
+
+.rockstar-grunge .gig-community .winner-photo {
+  filter: grayscale(1) contrast(1.1);
+}
+
+.rockstar-grunge .gig-community .winner-name {
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  margin-bottom: 4px;
+}
+
+.rockstar-grunge .gig-community .recording-link {
+  top: 12px;
+  right: 10px;
+  background: var(--rockstar-ink);
+  border-color: var(--rockstar-white);
+}
+
+.rockstar-grunge main > .section.gig-news {
+  background: var(--rockstar-yellow) var(--fanzine-print);
+  color: var(--rockstar-ink);
+  border-color: var(--rockstar-ink);
+}
+
+.rockstar-grunge .gig-news .date-item {
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+  font-variant-numeric: tabular-nums;
+}
+
+.rockstar-grunge .gig-news .date-item span {
+  color: inherit;
+}
+
+.rockstar-grunge .gig-news .info-wrapper,
+.rockstar-grunge .gig-news .info.block {
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge main > .section.gig-stats {
+  background: var(--rockstar-blue) var(--fanzine-print);
+  color: var(--rockstar-ink);
+}
+
+.rockstar-grunge footer {
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+}
+
+.rockstar-inner.rockstar-grunge {
+  --background-color: var(--rockstar-white);
+  --link-color: var(--rockstar-ink);
+  --link-hover-color: var(--rockstar-ink);
+
+  background: var(--rockstar-ink);
+  color: var(--rockstar-ink);
+  accent-color: var(--rockstar-ink);
+}
+
+.rockstar-inner.rockstar-grunge main > .section {
+  background: var(--rockstar-white);
+}
+
+.rockstar-inner.rockstar-grunge main > .rockstar-page-title,
+.rockstar-inner.rockstar-grunge .section .cta-hero-wrapper,
+.rockstar-inner.rockstar-grunge .cta-band,
+.rockstar-inner.rockstar-grunge .agenda-break {
+  background: var(--rockstar-blue) var(--fanzine-print);
+}
+
+.rockstar-inner.rockstar-grunge main a:not(.btn, .button) {
+  color: var(--rockstar-ink);
+  text-decoration: underline;
+}
+
+.rockstar-inner.rockstar-grunge .agenda .time {
+  color: var(--rockstar-ink);
+}
+
+.rockstar-inner.rockstar-grunge .agenda .day-badge {
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+}
+
+.rockstar-inner.rockstar-grunge .speaker .avatar {
+  background: var(--rockstar-ink);
+}
+
+.rockstar-inner.rockstar-grunge .speaker .avatar img {
+  filter: grayscale(1) contrast(1.1);
+}
+
+.rockstar-inner.rockstar-grunge main > .section:has(.mc-register, .mc-confirm, .n8n-form) {
+  background: transparent;
+}
+
+.rockstar-inner.rockstar-grunge .section :is(.mc-register-wrapper, .mc-confirm-wrapper, .n8n-form-wrapper) {
+  background: var(--rockstar-white);
+}
+
+.rockstar-inner.rockstar-grunge .block :is(.mc-register-form, .mc-confirm-form, .n8n-form-form) {
+  padding-bottom: 24px;
+}
+
+.rockstar-inner.rockstar-grunge .block .form-header {
+  background: var(--rockstar-blue) var(--fanzine-print);
+}
+
+.rockstar-inner.rockstar-grunge .block .form-header .form-title {
+  color: var(--rockstar-ink);
+}
+
+.rockstar-inner.rockstar-grunge .block :is(.mc-register-form, .mc-confirm-form, .n8n-form-form) > :is(.form-fields, .submit-wrapper, .actions-wrapper, .success-message, .error-message) {
+  margin-inline: 24px;
+}
+
+.rockstar-inner.rockstar-grunge .n8n-form .form-fields {
+  width: auto;
+  min-width: 0;
+}
+
+.rockstar-inner.rockstar-grunge .mc-confirm .field-error {
+  color: #b62b00;
+}
+
+.rockstar-inner.rockstar-grunge .block :is(.btn, .button) {
+  background: var(--rockstar-ink);
+  color: var(--rockstar-white);
+  border-color: var(--rockstar-ink);
+}
+
+.rockstar-inner.rockstar-grunge .mc-confirm .button.secondary {
+  background: transparent;
+  color: var(--rockstar-ink);
+  border-color: var(--rockstar-ink);
+}
+
+.rockstar-inner.rockstar-grunge .block :is(.btn, .button):focus-visible {
+  outline: 3px solid var(--rockstar-ink);
+  outline-offset: 5px;
+}
+
+.rockstar-inner.rockstar-grunge .block :is(.btn, .button):disabled {
+  background: #666;
+  color: var(--rockstar-white);
+  border-color: #666;
+}
+
+.rockstar-inner.rockstar-grunge .block :is(.btn, .button):hover:not(:disabled) {
+  background: var(--rockstar-white);
+  color: var(--rockstar-ink);
+  border-color: var(--rockstar-ink);
+}
+
+@media (width >= 600px) {
+  .rockstar-grunge main > .section.gig-poster {
+    padding: 36px 36px 64px;
+  }
+}

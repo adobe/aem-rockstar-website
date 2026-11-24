@@ -1,0 +1,79 @@
+.rockstar-hero .rockstar-bill {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 24px 12px;
+}
+
+.rockstar-hero .rockstar-title h1 {
+  font-size: clamp(3.2rem, 12.4vw, 11rem);
+  line-height: 1;
+  letter-spacing: -.025em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.rockstar-hero .rockstar-title p {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  max-width: 24ch;
+  margin: 24px 0 0;
+  font-weight: 700;
+}
+
+.rockstar-hero .rockstar-edition {
+  font-family: var(--rockstar-display);
+  font-size: clamp(6.5rem, 26vw, 23rem);
+  line-height: .87;
+  color: var(--rockstar-blue);
+  padding-bottom: 5px;
+  align-self: start;
+  letter-spacing: -.04em;
+}
+
+.rockstar-hero .rockstar-edition p {
+  margin: 0;
+}
+
+.rockstar-hero .rockstar-ticket {
+  grid-column: 1 / -1;
+  border-top: 1px solid currentcolor;
+  padding-top: 20px;
+}
+
+.rockstar-hero .rockstar-ticket p {
+  margin: 0;
+}
+
+.rockstar-home .rockstar-hero a.button {
+  background: var(--rockstar-blue);
+  color: var(--rockstar-white);
+  margin: 0;
+  width: 100%;
+}
+
+@media (width >= 600px) {
+  .rockstar-hero .rockstar-title p {
+    max-width: none;
+  }
+
+  .rockstar-hero .rockstar-ticket {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+@media (width >= 900px) {
+  .rockstar-hero .rockstar-bill {
+    gap: 32px;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .rockstar-hero .rockstar-title h1 {
+    font-size: clamp(7rem, 12.3vw, 11rem);
+  }
+
+  .rockstar-hero .rockstar-ticket {
+    margin-top: 8px;
+  }
+}

@@ -1,0 +1,93 @@
+main .accordion {
+  --accordion-background: var(--background-color);
+  --accordion-text: var(--text-color);
+  --accordion-border: #d3d3d3;
+  --accordion-accent: var(--link-color);
+
+  display: grid;
+  gap: 12px;
+  color: var(--accordion-text);
+}
+
+body.masterclass main .accordion {
+  --accordion-background: var(--card);
+  --accordion-text: var(--ink);
+  --accordion-border: rgb(255 255 255 / 16%);
+  --accordion-accent: var(--brand-1);
+}
+
+main .accordion details {
+  background: var(--accordion-background);
+  border: 1px solid var(--accordion-border);
+  border-radius: 14px;
+}
+
+main .accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 20px;
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  list-style: none;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+main .accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+main .accordion summary::after {
+  content: '';
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--accordion-accent);
+  border-bottom: 2px solid var(--accordion-accent);
+  transform: rotate(45deg);
+}
+
+main .accordion details[open] > summary::after {
+  transform: rotate(225deg);
+}
+
+main .accordion summary:focus-visible {
+  outline: 2px solid var(--accordion-accent);
+  outline-offset: -4px;
+  border-radius: 12px;
+}
+
+main .accordion .accordion-answer {
+  padding: 0 20px 20px;
+  font-size: var(--body-font-size-s);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+main .accordion .accordion-answer > :first-child {
+  margin-top: 0;
+}
+
+main .accordion .accordion-answer > :last-child {
+  margin-bottom: 0;
+}
+
+main .accordion a:any-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+body.rockstar-inner main .accordion {
+  --accordion-background: var(--rockstar-white);
+  --accordion-text: var(--rockstar-ink);
+  --accordion-border: var(--rockstar-ink);
+  --accordion-accent: var(--rockstar-ink);
+}
+
+body.rockstar-inner main .accordion :is(details, summary:focus-visible) {
+  border-radius: 0;
+}
